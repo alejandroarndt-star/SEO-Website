@@ -97,7 +97,7 @@ def service(path, title, desc, kicker, h1, lede, sections, bullets_title, bullet
 
 # ---------------------------------------------------------------- Leistungen overview
 page("leistungen/index.html",
- u"Leistungen | Markenname",
+ u"Leistungen | Kontor",
  u"SEO, OnPage und Webdesign, Linkaufbau, SEO Audit und Reporting. Festpreis, keine Mindestlaufzeit.",
  HERO.format(kicker=u"Leistungen",
    h1=u"Fünf Bereiche, die zusammen die Position ergeben.",
@@ -116,7 +116,7 @@ page("leistungen/index.html",
 </section>""" % cta("../"))
 
 service("leistungen/seo.html",
- u"SEO | Markenname",
+ u"SEO | Kontor",
  u"Technik, Inhalte und lokale Sichtbarkeit als ein Paket. Die Grundlage für bessere Positionen bei Google.",
  u"Leistung 01", u"SEO.",
  u"Technik, Inhalte und lokale Sichtbarkeit hängen zusammen. Wir trennen sie nicht in Pakete, sondern arbeiten an dem, was bei Ihnen den Unterschied macht.",
@@ -134,7 +134,7 @@ service("leistungen/seo.html",
   u"Ein Unternehmensprofil mit abweichender Adresse oder Telefonnummer"])
 
 service("leistungen/onpage-und-webdesign.html",
- u"OnPage und Webdesign | Markenname",
+ u"OnPage und Webdesign | Kontor",
  u"Aufbau, Gestaltung und Texte der Seiten, die ranken sollen. Struktur, interne Verlinkung und Suchabsicht.",
  u"Leistung 02", u"OnPage und Webdesign.",
  u"Eine Seite muss zwei Dinge gleichzeitig können: von Google richtig eingeordnet werden und den Besucher zur Anfrage bringen. Das eine ohne das andere bringt nichts.",
@@ -152,7 +152,7 @@ service("leistungen/onpage-und-webdesign.html",
   u"Gestaltung und Aufbau der Seiten, die Anfragen bringen sollen"])
 
 service("leistungen/linkaufbau.html",
- u"Linkaufbau | Markenname",
+ u"Linkaufbau | Kontor",
  u"Erwähnungen und Verlinkungen aus Quellen, die tatsächlich zählen. Ohne gekaufte Linknetzwerke.",
  u"Leistung 03", u"Linkaufbau.",
  u"Links von anderen Seiten sind weiterhin einer der stärksten Faktoren. Entscheidend ist nicht die Anzahl, sondern woher sie kommen.",
@@ -169,7 +169,7 @@ service("leistungen/linkaufbau.html",
   u"Fachbeiträge, bei denen die Verlinkung aus dem Inhalt folgt"])
 
 service("leistungen/seo-audit.html",
- u"SEO Audit | Markenname",
+ u"SEO Audit | Kontor",
  u"Vollständige Bestandsaufnahme Ihrer Website: was blockiert, was Potenzial hat, in welcher Reihenfolge.",
  u"Leistung 04", u"SEO Audit.",
  u"Eine vollständige Bestandsaufnahme, bevor irgendetwas umgesetzt wird. Auch einzeln beauftragbar, ohne laufende Betreuung und ohne Folgeauftrag.",
@@ -187,7 +187,7 @@ service("leistungen/seo-audit.html",
   u"Priorisierte Maßnahmenliste mit Aufwandseinschätzung"])
 
 service("leistungen/reporting.html",
- u"Reporting | Markenname",
+ u"Reporting | Kontor",
  u"SEO Bericht auf einer Seite: welche Suchbegriffe sich bewegt haben, woher die Besucher kamen, was ansteht.",
  u"Leistung 05", u"Reporting.",
  u"Ein Bericht, den man ohne Vorkenntnisse lesen kann. Eine Seite, in dem Rhythmus, der zu Ihnen passt, mit den Zahlen, die tatsächlich etwas über das Geschäft aussagen.",
@@ -203,54 +203,124 @@ service("leistungen/reporting.html",
   u"Immer eine Seite, per E-Mail",
   u"Erreichbar bei Fragen, ohne Ticketsystem"])
 
-# ---------------------------------------------------------------- Referenzen
+# ---------------------------------------------------------------- Referenzen (Übersicht)
 page("referenzen.html",
- u"Fallstudie PosyPets | Markenname",
- u"Wie der Onlineshop PosyPets von Grund auf für die organische Suche aufgebaut wurde: Keyword-Recherche, Seitenstruktur, Inhalte und Technik.",
- HERO.format(kicker=u"Fallstudie",
-   h1=u"PosyPets.",
-   lede=u"Ein deutscher Onlineshop für individuelle Tierportraits, aufgebaut mit dem Ziel, über die organische Suche gefunden zu werden statt über bezahlte Anzeigen.") + u"""
+ u"Referenzen | Kontor",
+ u"Fallstudien: wie wir Projekte für die organische Suche aufbauen.",
+ HERO.format(kicker=u"Referenzen",
+   h1=u"Projekte, bei denen wir jeden Schritt selbst gegangen sind.",
+   lede=u"Keine Logowand ohne Zusammenhang. Pro Projekt die Ausgangslage, das Vorgehen und was daraus zu lernen war.") + u"""
 <section class="section" style="padding-top:0">
+  <div class="wrap">
+    <!-- Weitere Fallstudien: einfach eine weitere .case-card hier einfügen. -->
+    <div class="case-cards" style="--case-accent:#A78BFA">
+      <a class="case-card" href="referenzen/posypets.html">
+        <div class="case-card-media">
+          <img src="assets/img/case/posypets-napoleon.jpg" alt="Tierportrait auf Leinwand neben dem abgebildeten Dackel" loading="lazy" width="1200" height="900">
+        </div>
+        <div class="case-card-body">
+          <div class="tags"><span class="tag accent">E-Commerce</span><span class="tag">Technisches SEO</span><span class="tag">Content</span><span class="tag">Local</span></div>
+          <h3>PosyPets</h3>
+          <p>Ein deutscher Onlineshop für individuelle Tierportraits, von Grund auf für die organische Suche aufgebaut statt für bezahlte Anzeigen. Keyword-Struktur, sechs Landingpages, zwei Inhaltsformate.</p>
+          <span class="more">Fallstudie lesen <span class="arr">→</span></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>""")
+
+# ---------------------------------------------------------------- Fallstudie PosyPets
+page("referenzen/posypets.html",
+ u"Fallstudie PosyPets | Kontor",
+ u"Wie der Onlineshop PosyPets von Grund auf für die organische Suche aufgebaut wurde: Keyword-Recherche, Seitenstruktur, Inhalte und Technik.",
+ u"""<section class="section cs" style="padding-top:0">
+  <div class="wrap">
+    <div class="cs-hero">
+      <img src="../assets/img/case/posypets-wohnzimmer.jpg" alt="Tierportraits als Wanddekoration im Wohnzimmer" width="1200" height="600">
+    </div>
+    <span class="kicker">Fallstudie</span>
+    <h1 style="font-size:clamp(2rem,4.6vw,3.4rem);margin:14px 0 18px">PosyPets</h1>
+    <p class="lede">Ein deutscher Onlineshop für individuelle Tierportraits. Der Kunde lädt ein Foto hoch, und sein Tier wird als historische Figur gemalt. Die Aufgabe: gefunden werden, ohne jeden Besucher einkaufen zu müssen.</p>
+    <div class="tags" style="margin-top:20px"><span class="tag accent">E-Commerce</span><span class="tag">Technisches SEO</span><span class="tag">Content</span><span class="tag">Keyword-Strategie</span></div>
+  </div>
+</section>
+
+<section class="section cs" style="padding-top:0">
   <div class="wrap prose">
     <p><em>Offenlegung: PosyPets ist ein eigenes Projekt. Wir zeigen es, weil wir dort jeden Schritt selbst gegangen sind und offen darüber schreiben können, auch über das, was nicht funktioniert hat.</em></p>
 
     <h2>Ausgangssituation</h2>
-    <p>Ein neuer Shop ohne Domainhistorie in einem Umfeld, in dem bereits internationale Anbieter stehen. Bei Google war der Shop zum Start für keinen relevanten Begriff zu finden.</p>
-    <p>Die Alternative wäre gewesen, jeden einzelnen Besucher über bezahlte Anzeigen einzukaufen. Bei einem Produkt mit begrenztem Warenkorbwert frisst das die Marge auf, und die Reichweite endet an dem Tag, an dem das Budget endet. Deshalb sollte die organische Suche die tragende Säule werden.</p>
+    <p>Ein neuer Shop ohne Domainhistorie, in einem Umfeld, in dem bereits internationale Anbieter stehen. Zum Start war der Shop bei Google für keinen einzigen relevanten Begriff zu finden.</p>
+    <p>Die naheliegende Alternative wäre gewesen, jeden Besucher über bezahlte Anzeigen einzukaufen. Das funktioniert, solange Budget da ist, und endet an dem Tag, an dem es aufhört. Bei einem Produkt mit begrenztem Warenkorbwert frisst es außerdem die Marge. Also sollte die organische Suche die tragende Säule werden.</p>
+
+    <div class="cs-split">
+      <img src="../assets/img/case/posypets-caesar.jpg" alt="Hundeportrait im Stil eines römischen Kaisers" loading="lazy" width="600" height="600">
+      <img src="../assets/img/case/posypets-mona.jpg" alt="Katzenportrait im Stil der Mona Lisa" loading="lazy" width="600" height="600">
+    </div>
 
     <h2>Keyword-Recherche</h2>
-    <p>Der wichtigste Fund kam ganz am Anfang und hat die gesamte Struktur bestimmt: bei diesen Begriffen entscheidet die Schreibweise über den Erfolg. Getrennt oder zusammengeschrieben ist nicht dasselbe Wort, und der Unterschied im Suchvolumen liegt beim Zehnfachen. Bei einem Tier gewinnt die getrennte Schreibweise deutlich, beim nächsten die zusammengeschriebene. Es gibt keine Regel, das muss pro Begriff geprüft werden.</p>
-    <p>Genauso wichtig war, was aussortiert wurde. Ein ganzer Begriffscluster sah nach viel Volumen aus, bestand aber fast vollständig aus Leuten, die selbst malen lernen wollen. Ein zweiter Cluster war komplett wertlos, weil die Suchenden etwas völlig anderes meinten. Beide wurden gestrichen, bevor Arbeit hineinfloss.</p>
+    <p>Der wichtigste Fund kam ganz am Anfang und hat die gesamte Struktur bestimmt: bei diesen Begriffen entscheidet die <strong>Schreibweise</strong> über den Erfolg.</p>
+
+    <div class="cs-quote">
+      <p>„Haustier Portrait“ und „Haustierportrait“ sind für Google nicht dasselbe Wort. Der Unterschied im Suchvolumen liegt beim Zehnfachen.</p>
+    </div>
+
+    <p>Und es gibt keine Regel dafür. Bei einem Tier gewinnt die getrennte Schreibweise deutlich, beim nächsten die zusammengeschriebene. Das muss pro Begriff geprüft werden, bevor irgendetwas geschrieben wird, denn die Schreibweise steckt später in Titeln, Überschriften und URLs und lässt sich nicht beiläufig ändern.</p>
+    <p>Genauso wichtig war, was <em>aussortiert</em> wurde. Ein ganzer Begriffscluster sah nach viel Volumen aus, bestand aber fast vollständig aus Leuten, die selbst malen lernen wollen. Ein zweiter war komplett wertlos, weil die Suchenden etwas ganz anderes meinten. Beide wurden gestrichen, bevor Arbeit hineinfloss.</p>
+
+    <figure class="cs-figure">
+      <img src="../assets/img/case/posypets-pferd.jpg" alt="Pferdeportrait nach Foto" loading="lazy" width="1200" height="900">
+      <figcaption>Eigene Landingpage je Hauptbegriff, hier das Pferdemotiv</figcaption>
+    </figure>
 
     <h2>Seitenstruktur</h2>
-    <p>Daraus wurden sechs eigene Landingpages gebaut, je eine pro Hauptbegriff, nach der Regel: ein Suchbegriff, eine Seite. Keine zwei Seiten konkurrieren um denselben Begriff.</p>
+    <p>Daraus wurden sechs eigene Landingpages gebaut, je eine pro Hauptbegriff, nach einer einzigen Regel: <strong>ein Suchbegriff, eine Seite.</strong> Keine zwei Seiten konkurrieren um denselben Begriff, weil sie sich sonst gegenseitig die Position wegnehmen.</p>
     <p>Diese Seiten sind keine Textwüsten, sondern echte Produktübersichten. Wer über die Suche kommt, sieht sofort Produkte und nicht erst 800 Wörter Einleitung. Jede Produktseite bekam zusätzlich einen eigenen Textblock, der auf ihren eigenen Begriff zugeschnitten ist.</p>
 
     <h2>Inhalte</h2>
-    <p>Zwei bewusst unterschiedliche Formate statt eines Blogs:</p>
+    <p>Zwei bewusst unterschiedliche Formate statt eines Blogs, weil sie zwei verschiedene Aufgaben haben:</p>
     <ul>
       <li><strong>Ratgeber</strong> für die ausführlichen Fragen, die sich jemand vor dem Kauf stellt.</li>
       <li><strong>Lexikon</strong> von A bis Z für die vielen kurzen Begriffssuchen, mit eigener Filterung.</li>
     </ul>
-    <p>Dazu eine feste Regel für die interne Verlinkung: etwa 60 Prozent der Links zeigen auf Seiten, die verkaufen, 40 Prozent auf weitere Inhalte. Ohne so eine Regel verlinkt ein Blog irgendwann nur noch sich selbst und schiebt keine Kraft mehr auf die Seiten, die Umsatz bringen.</p>
+    <p>Dazu eine feste Regel für die interne Verlinkung: etwa 60 Prozent der Links zeigen auf Seiten, die verkaufen, 40 Prozent auf weitere Inhalte.</p>
+
+    <div class="cs-note">
+      <h3>Warum diese Regel</h3>
+      <p>Ohne sie verlinkt ein Blog nach einiger Zeit fast nur noch sich selbst. Die Artikel ranken dann vielleicht, schieben aber keine Kraft mehr auf die Seiten, an denen tatsächlich Geld verdient wird.</p>
+    </div>
+
+    <div class="cs-split">
+      <img src="../assets/img/case/posypets-tasse.jpg" alt="Personalisierte Tasse mit Tierportrait" loading="lazy" width="600" height="600">
+      <img src="../assets/img/case/posypets-unboxing.jpg" alt="Ausgepacktes Tierportrait" loading="lazy" width="600" height="600">
+    </div>
 
     <h2>Technik</h2>
     <p>Vollständige Metadaten über alle Produkte und Kategorien, eine FAQ mit passender Auszeichnung für die Suchergebnisse, Ladezeit und mobile Darstellung, und eine saubere interne Verlinkung bis in den Footer.</p>
-    <p>Eine Entscheidung dabei war, bestehende URLs <em>nicht</em> umzuziehen, obwohl eine andere Struktur auf dem Papier schöner gewesen wäre. Die Seiten rankten bereits. Einen Rankingaufbau für eine kosmetische Verbesserung wegzuwerfen, ist ein teurer Fehler, den wir oft genug bei anderen sehen.</p>
+    <p>Eine Entscheidung dabei war, bestehende URLs <em>nicht</em> umzuziehen, obwohl eine andere Struktur auf dem Papier schöner gewesen wäre. Die Seiten rankten bereits.</p>
+
+    <div class="cs-quote">
+      <p>Einen vorhandenen Rankingaufbau für eine kosmetische Verbesserung wegzuwerfen, ist einer der teuersten Fehler überhaupt. Wir sehen ihn ständig.</p>
+    </div>
 
     <h2>Stand heute</h2>
-    <p>Der Shop ist live, verkauft und entwickelt sich geschäftlich gut. Die Sichtbarkeit baut sich weiter auf, die Landingpages ranken für ihre jeweiligen Begriffe, und die Inhalte kommen laufend dazu. SEO ist an dieser Stelle kein abgeschlossenes Projekt, sondern die Grundlage, auf der weitergearbeitet wird.</p>
+    <p>Der Shop ist live, verkauft und läuft geschäftlich gut. Die Sichtbarkeit baut sich weiter auf, die Landingpages ranken für ihre jeweiligen Begriffe, und es kommen laufend Inhalte dazu. SEO ist hier kein abgeschlossenes Projekt, sondern die Grundlage, auf der weitergearbeitet wird.</p>
+
+    <figure class="cs-figure">
+      <img src="../assets/img/case/posypets-valentin.jpg" alt="Tierportrait als Geschenk" loading="lazy" width="1200" height="900">
+      <figcaption>Saisonale Anlässe als eigene Einstiegspunkte in die Suche</figcaption>
+    </figure>
 
     <h2>Was daraus für andere folgt</h2>
-    <p>Die Reihenfolge entscheidet. Zuerst prüfen, welche Suchbegriffe überhaupt zu Umsatz führen, dann die Seiten dafür bauen, erst danach Inhalte produzieren. Wer umgekehrt anfängt, schreibt Texte für Suchanfragen, die nie zu einer Anfrage führen, und merkt es erst nach Monaten.</p>
-    <p>Der zweite Punkt: eine Schreibweise, die falsch gewählt ist, kostet den Großteil des möglichen Volumens, und zwar dauerhaft, weil sie in Titeln, URLs und Überschriften steckt. Diese halbe Stunde Prüfung am Anfang ist die billigste Stunde im ganzen Projekt.</p>
-    %s
+    <p><strong>Die Reihenfolge entscheidet.</strong> Zuerst prüfen, welche Suchbegriffe überhaupt zu Umsatz führen, dann die Seiten dafür bauen, erst danach Inhalte produzieren. Wer umgekehrt anfängt, schreibt Texte für Suchanfragen, die nie zu einer Anfrage führen, und merkt es erst nach Monaten.</p>
+    <p><strong>Und die Schreibweise prüfen.</strong> Eine falsch gewählte Variante kostet dauerhaft den Großteil des möglichen Volumens, weil sie in Titeln, URLs und Überschriften steckt. Diese halbe Stunde am Anfang ist die billigste Stunde im ganzen Projekt.</p>
+    """ + cta("../") + u"""
   </div>
-</section>""" % cta())
+</section>""")
 
 # ---------------------------------------------------------------- Kontakt
 page("kontakt.html",
- u"Kontakt und kostenlose SEO-Analyse | Markenname",
+ u"Kontakt und kostenlose SEO-Analyse | Kontor",
  u"Fordern Sie die kostenlose SEO-Analyse für Ihre Website an.",
  HERO.format(kicker=u"Kontakt",
    h1=u"Kostenlose SEO-Analyse.",
@@ -287,7 +357,7 @@ page("kontakt.html",
 
 # ---------------------------------------------------------------- Blog
 page("blog/index.html",
- u"Blog | Markenname",
+ u"Blog | Kontor",
  u"Artikel über Suchmaschinenoptimierung, ohne Fachchinesisch.",
  HERO.format(kicker=u"Blog",
    h1=u"SEO, erklärt wie am Telefon.",
@@ -304,7 +374,7 @@ page("blog/index.html",
 </section>""")
 
 # ---------------------------------------------------------------- Impressum
-page("impressum.html", u"Impressum | Markenname", u"Impressum nach § 5 DDG.",
+page("impressum.html", u"Impressum | Kontor", u"Impressum nach § 5 DDG.",
  HERO.format(kicker=u"Pflichtangaben", h1=u"Impressum.", lede=u"Angaben gemäß § 5 DDG.") + u"""
 <section class="section" style="padding-top:0">
   <div class="wrap prose">
@@ -326,7 +396,7 @@ page("impressum.html", u"Impressum | Markenname", u"Impressum nach § 5 DDG.",
 </section>""", robots="noindex,follow")
 
 # ---------------------------------------------------------------- Datenschutz
-page("datenschutz.html", u"Datenschutzerklärung | Markenname",
+page("datenschutz.html", u"Datenschutzerklärung | Kontor",
  u"Informationen zur Verarbeitung personenbezogener Daten auf dieser Website.",
  HERO.format(kicker=u"Datenschutz", h1=u"Datenschutzerklärung.",
    lede=u"Diese Website kommt ohne Cookies, ohne Tracking und ohne eingebettete Inhalte Dritter aus.") + u"""
