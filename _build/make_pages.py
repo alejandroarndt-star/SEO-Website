@@ -206,37 +206,44 @@ service("leistungen/reporting.html",
 # ---------------------------------------------------------------- Referenzen
 page("referenzen.html",
  u"Fallstudie PosyPets | Markenname",
- u"Fallstudie: wie PosyPets über die organische Suche gefunden wird statt über bezahlte Anzeigen.",
+ u"Wie der Onlineshop PosyPets von Grund auf für die organische Suche aufgebaut wurde: Keyword-Recherche, Seitenstruktur, Inhalte und Technik.",
  HERO.format(kicker=u"Fallstudie",
    h1=u"PosyPets.",
-   lede=u"Ein Onlineshop für individuelle Tierportraits, der über Google gefunden werden musste statt über bezahlte Anzeigen.") + u"""
+   lede=u"Ein deutscher Onlineshop für individuelle Tierportraits, aufgebaut mit dem Ziel, über die organische Suche gefunden zu werden statt über bezahlte Anzeigen.") + u"""
 <section class="section" style="padding-top:0">
   <div class="wrap prose">
-    <!-- =================================================================
-         PLATZHALTER. Die Struktur steht, die Zahlen und die konkreten
-         Details fehlen. Erst mit den echten Werten aus der PosyPets
-         Auswertung füllen. NICHTS schätzen oder runden: eine erfundene
-         Referenz ist wettbewerbsrechtlich angreifbar.
-         ================================================================= -->
-    <p style="color:var(--warn)"><strong>Platzhalter. Zahlen und Details aus der PosyPets Auswertung eintragen, bevor die Seite online geht.</strong></p>
+    <p><em>Offenlegung: PosyPets ist ein eigenes Projekt. Wir zeigen es, weil wir dort jeden Schritt selbst gegangen sind und offen darüber schreiben können, auch über das, was nicht funktioniert hat.</em></p>
 
     <h2>Ausgangssituation</h2>
-    <p>Platzhalter. Hier steht, wo der Shop stand, bevor etwas gemacht wurde: über welche Kanäle Besucher kamen, was das gekostet hat, und für welche Suchbegriffe er nicht gefunden wurde.</p>
+    <p>Ein neuer Shop ohne Domainhistorie in einem Umfeld, in dem bereits internationale Anbieter stehen. Bei Google war der Shop zum Start für keinen relevanten Begriff zu finden.</p>
+    <p>Die Alternative wäre gewesen, jeden einzelnen Besucher über bezahlte Anzeigen einzukaufen. Bei einem Produkt mit begrenztem Warenkorbwert frisst das die Marge auf, und die Reichweite endet an dem Tag, an dem das Budget endet. Deshalb sollte die organische Suche die tragende Säule werden.</p>
 
-    <h2>Vorgehen</h2>
-    <p>Platzhalter. Hier stehen die konkreten Schritte in der Reihenfolge, in der sie umgesetzt wurden, und warum in dieser Reihenfolge.</p>
+    <h2>Keyword-Recherche</h2>
+    <p>Der wichtigste Fund kam ganz am Anfang und hat die gesamte Struktur bestimmt: bei diesen Begriffen entscheidet die Schreibweise über den Erfolg. Getrennt oder zusammengeschrieben ist nicht dasselbe Wort, und der Unterschied im Suchvolumen liegt beim Zehnfachen. Bei einem Tier gewinnt die getrennte Schreibweise deutlich, beim nächsten die zusammengeschriebene. Es gibt keine Regel, das muss pro Begriff geprüft werden.</p>
+    <p>Genauso wichtig war, was aussortiert wurde. Ein ganzer Begriffscluster sah nach viel Volumen aus, bestand aber fast vollständig aus Leuten, die selbst malen lernen wollen. Ein zweiter Cluster war komplett wertlos, weil die Suchenden etwas völlig anderes meinten. Beide wurden gestrichen, bevor Arbeit hineinfloss.</p>
 
-    <h2>Ergebnis</h2>
-    <p>Platzhalter. Hier steht, was sich verändert hat und über welchen Zeitraum. Mit Zeitraum, nicht nur mit Prozentzahl: eine Steigerung ohne Zeitangabe sagt nichts aus.</p>
+    <h2>Seitenstruktur</h2>
+    <p>Daraus wurden sechs eigene Landingpages gebaut, je eine pro Hauptbegriff, nach der Regel: ein Suchbegriff, eine Seite. Keine zwei Seiten konkurrieren um denselben Begriff.</p>
+    <p>Diese Seiten sind keine Textwüsten, sondern echte Produktübersichten. Wer über die Suche kommt, sieht sofort Produkte und nicht erst 800 Wörter Einleitung. Jede Produktseite bekam zusätzlich einen eigenen Textblock, der auf ihren eigenen Begriff zugeschnitten ist.</p>
 
-    <div class="case-metrics ph" style="margin:30px 0">
-      <div class="case-metric"><div class="big">0</div><div class="lbl">Platzhalter, echte Kennzahl eintragen</div></div>
-      <div class="case-metric"><div class="big">0</div><div class="lbl">Platzhalter, echte Kennzahl eintragen</div></div>
-      <div class="case-metric"><div class="big">0</div><div class="lbl">Platzhalter, echte Kennzahl eintragen</div></div>
-    </div>
+    <h2>Inhalte</h2>
+    <p>Zwei bewusst unterschiedliche Formate statt eines Blogs:</p>
+    <ul>
+      <li><strong>Ratgeber</strong> für die ausführlichen Fragen, die sich jemand vor dem Kauf stellt.</li>
+      <li><strong>Lexikon</strong> von A bis Z für die vielen kurzen Begriffssuchen, mit eigener Filterung.</li>
+    </ul>
+    <p>Dazu eine feste Regel für die interne Verlinkung: etwa 60 Prozent der Links zeigen auf Seiten, die verkaufen, 40 Prozent auf weitere Inhalte. Ohne so eine Regel verlinkt ein Blog irgendwann nur noch sich selbst und schiebt keine Kraft mehr auf die Seiten, die Umsatz bringen.</p>
+
+    <h2>Technik</h2>
+    <p>Vollständige Metadaten über alle Produkte und Kategorien, eine FAQ mit passender Auszeichnung für die Suchergebnisse, Ladezeit und mobile Darstellung, und eine saubere interne Verlinkung bis in den Footer.</p>
+    <p>Eine Entscheidung dabei war, bestehende URLs <em>nicht</em> umzuziehen, obwohl eine andere Struktur auf dem Papier schöner gewesen wäre. Die Seiten rankten bereits. Einen Rankingaufbau für eine kosmetische Verbesserung wegzuwerfen, ist ein teurer Fehler, den wir oft genug bei anderen sehen.</p>
+
+    <h2>Stand heute</h2>
+    <p>Der Shop ist live, verkauft und entwickelt sich geschäftlich gut. Die Sichtbarkeit baut sich weiter auf, die Landingpages ranken für ihre jeweiligen Begriffe, und die Inhalte kommen laufend dazu. SEO ist an dieser Stelle kein abgeschlossenes Projekt, sondern die Grundlage, auf der weitergearbeitet wird.</p>
 
     <h2>Was daraus für andere folgt</h2>
-    <p>Platzhalter. Ein bis zwei Sätze dazu, was an diesem Fall übertragbar ist und was nicht. Das ist der Absatz, den ein Interessent tatsächlich liest.</p>
+    <p>Die Reihenfolge entscheidet. Zuerst prüfen, welche Suchbegriffe überhaupt zu Umsatz führen, dann die Seiten dafür bauen, erst danach Inhalte produzieren. Wer umgekehrt anfängt, schreibt Texte für Suchanfragen, die nie zu einer Anfrage führen, und merkt es erst nach Monaten.</p>
+    <p>Der zweite Punkt: eine Schreibweise, die falsch gewählt ist, kostet den Großteil des möglichen Volumens, und zwar dauerhaft, weil sie in Titeln, URLs und Überschriften steckt. Diese halbe Stunde Prüfung am Anfang ist die billigste Stunde im ganzen Projekt.</p>
     %s
   </div>
 </section>""" % cta())
