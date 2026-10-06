@@ -4,6 +4,7 @@
 @font-face{font-family:'Bricolage';src:url('../fonts/bricolage.woff2') format('woff2');font-weight:400 800;font-display:swap}
 @font-face{font-family:'Archivo';src:url('../fonts/archivo.woff2') format('woff2');font-weight:400 700;font-display:swap}
 @font-face{font-family:'JetBrains';src:url('../fonts/jetbrains.woff2') format('woff2');font-weight:400 600;font-display:swap}
+@font-face{font-family:'Fell';src:url('../fonts/fell.woff2') format('woff2');font-display:swap}
 
 :root{
   --bg:#0B0B0C; --bg-2:#101012; --bg-3:#161618; --bg-4:#1D1D20;
@@ -12,7 +13,7 @@
   --accent:#F2F0EC; --accent-ink:#0B0B0C; --accent-soft:rgba(255,255,255,.07);
   --warn:#FF5A1F;
   --good:#5BE49B; --bad:#FF6B6B;
-  --display:'Bricolage',Georgia,serif; --body:'Archivo',system-ui,sans-serif; --mono:'JetBrains',ui-monospace,monospace;
+  --display:'Bricolage',Georgia,serif; --wordmark:'Fell',Georgia,serif; --body:'Archivo',system-ui,sans-serif; --mono:'JetBrains',ui-monospace,monospace;
   --gut:clamp(16px,5vw,64px); --max:1240px;
   --r:6px; --r-lg:10px;
   --ease:cubic-bezier(.22,1,.36,1);
@@ -74,9 +75,7 @@ p{margin:0}
 .hdr{position:fixed;inset:0 0 auto 0;z-index:100;padding:18px 0;transition:all .45s var(--ease)}
 .hdr.scrolled{padding:10px 0;background:rgba(9,9,11,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
 .hdr-in{display:flex;align-items:center;justify-content:space-between;gap:20px}
-.logo{display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:700;font-size:1.12rem;letter-spacing:-.03em}
-.logo-mark{width:28px;height:28px;border-radius:5px;background:var(--ink);display:grid;place-items:center;flex:none}
-.logo-mark svg{width:16px;height:16px}
+.logo{display:inline-block;font-family:var(--wordmark);font-size:1.6rem;letter-spacing:.01em;line-height:1}
 
 .nav{display:flex;align-items:center;gap:4px;padding:5px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03);backdrop-filter:blur(10px)}
 .nav a{padding:9px 17px;border-radius:999px;font-size:.89rem;font-weight:500;color:var(--ink-2);transition:all .3s var(--ease);position:relative}
@@ -287,7 +286,7 @@ p{margin:0}
 .wrap.prose > .band{max-width:none}
 
 /* Hero reduced to the brand name and the descriptor */
-.hero-brand{font-size:clamp(2.8rem,8vw,6.5rem);letter-spacing:-.04em;line-height:.95;margin:0}
+.hero-brand{font-family:var(--wordmark);font-size:clamp(3rem,8.5vw,7rem);letter-spacing:.01em;line-height:1;margin:0;font-weight:400}
 .hero-sub{font-family:var(--mono);font-size:clamp(.72rem,1.3vw,.9rem);letter-spacing:.3em;
   text-transform:uppercase;color:var(--ink-2);margin:18px 0 0}
 .hero .hero-cta{margin-top:38px}
