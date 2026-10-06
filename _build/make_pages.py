@@ -204,6 +204,8 @@ service("leistungen/reporting.html",
   u"Erreichbar bei Fragen, ohne Ticketsystem"])
 
 # ---------------------------------------------------------------- Referenzen (Übersicht)
+# Weitere Fallstudie hinzufügen: einen .ref-card Block ergänzen, data-cats mit
+# den passenden Kategorien füllen, und falls nötig oben einen Filter ergänzen.
 page("referenzen.html",
  u"Referenzen | Kontor",
  u"Fallstudien: wie wir Projekte für die organische Suche aufbauen.",
@@ -212,20 +214,27 @@ page("referenzen.html",
    lede=u"Keine Logowand ohne Zusammenhang. Pro Projekt die Ausgangslage, das Vorgehen und was daraus zu lernen war.") + u"""
 <section class="section" style="padding-top:0">
   <div class="wrap">
-    <!-- Weitere Fallstudien: einfach eine weitere .case-card hier einfügen. -->
-    <div class="case-cards" style="--case-accent:#A78BFA">
-      <a class="case-card" href="referenzen/posypets.html">
-        <div class="case-card-media">
-          <img src="assets/img/case/posypets-napoleon.jpg" alt="Tierportrait auf Leinwand neben dem abgebildeten Dackel" loading="lazy" width="1200" height="900">
+    <div class="ref-filters" role="group" aria-label="Nach Kategorie filtern">
+      <button class="ref-filter" data-cat="alle" aria-pressed="true">Alle</button>
+      <button class="ref-filter" data-cat="ecommerce" aria-pressed="false">E-Commerce</button>
+      <button class="ref-filter" data-cat="technik" aria-pressed="false">Technisches SEO</button>
+      <button class="ref-filter" data-cat="content" aria-pressed="false">Content</button>
+      <button class="ref-filter" data-cat="local" aria-pressed="false">Local SEO</button>
+    </div>
+
+    <div class="ref-grid" style="--case-accent:#A78BFA">
+      <a class="ref-card" href="referenzen/posypets.html" data-cats="ecommerce technik content local">
+        <div class="ref-tile">
+          <img src="assets/img/case/posypets-napoleon.jpg" alt="Tierportrait auf Leinwand neben dem abgebildeten Dackel" loading="lazy" width="1200" height="1200">
+          <div class="ref-tags"><span class="ref-tag">E-Commerce</span><span class="ref-tag">Organic</span><span class="ref-tag">Content</span></div>
+          <span class="ref-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
-        <div class="case-card-body">
-          <div class="tags"><span class="tag accent">E-Commerce</span><span class="tag">Technisches SEO</span><span class="tag">Content</span><span class="tag">Local</span></div>
-          <h3>PosyPets</h3>
-          <p>Ein deutscher Onlineshop für individuelle Tierportraits, von Grund auf für die organische Suche aufgebaut statt für bezahlte Anzeigen. Keyword-Struktur, sechs Landingpages, zwei Inhaltsformate.</p>
-          <span class="more">Fallstudie lesen <span class="arr">→</span></span>
-        </div>
+        <h3 class="ref-name">PosyPets</h3>
+        <p class="ref-desc">Onlineshop für Tierportraits, von Grund auf für die organische Suche aufgebaut. Keyword-Struktur, sechs Landingpages, zwei Inhaltsformate.</p>
       </a>
     </div>
+
+    <p class="ref-empty" hidden>In dieser Kategorie liegt noch keine Fallstudie vor.</p>
   </div>
 </section>""")
 

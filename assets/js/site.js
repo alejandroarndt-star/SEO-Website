@@ -101,3 +101,27 @@
     }, { threshold: 0.05 }).observe(hv);
   }
 })();
+
+/* ---- Referenzen category filter ---- */
+(function () {
+  'use strict';
+  var bar = document.querySelector('.ref-filters');
+  if (!bar) return;
+  var cards = [].slice.call(document.querySelectorAll('.ref-card'));
+  var empty = document.querySelector('.ref-empty');
+  bar.addEventListener('click', function (e) {
+    var btn = e.target.closest('.ref-filter');
+    if (!btn) return;
+    var cat = btn.getAttribute('data-cat');
+    bar.querySelectorAll('.ref-filter').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b === btn));
+    });
+    var shown = 0;
+    cards.forEach(function (c) {
+      var hit = cat === 'alle' || (c.getAttribute('data-cats') || '').split(' ').indexOf(cat) > -1;
+      c.hidden = !hit;
+      if (hit) shown++;
+    });
+    if (empty) empty.hidden = shown > 0;
+  });
+})();
