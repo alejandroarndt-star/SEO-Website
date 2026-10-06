@@ -64,8 +64,7 @@ def page(path, title, desc, body, robots="index,follow"):
 
 HERO = u"""<section class="section" style="padding-top:0">
   <div class="wrap">
-    <span class="kicker">{kicker}</span>
-    <h1 style="font-size:clamp(2rem,4.6vw,3.4rem);max-width:20ch;margin:14px 0 18px">{h1}</h1>
+    <h1 style="font-size:clamp(2rem,4.6vw,3.4rem);max-width:20ch;margin:0 0 18px">{h1}</h1>
     <p class="lede">{lede}</p>
   </div>
 </section>"""
@@ -73,8 +72,7 @@ HERO = u"""<section class="section" style="padding-top:0">
 def cta(up=""):
     return u"""<div class="band" style="margin-top:46px">
       <div class="band-in">
-        <span class="kicker">Kostenlos und unverbindlich</span>
-        <h2 style="margin:12px 0 14px">Wo steht Ihre Seite gerade?</h2>
+        <h2 style="margin:0 0 14px">Wo steht Ihre Seite gerade?</h2>
         <p class="lede">Sie bekommen schriftlich, für welche Suchbegriffe Sie gefunden werden, wer vor Ihnen steht und woran es liegt.</p>
         <div class="hero-cta"><a href="%skontakt.html" class="btn btn-primary">Kostenlose SEO-Analyse<span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
       </div>
@@ -100,7 +98,7 @@ page("leistungen/index.html",
  u"Leistungen | Kontor",
  u"SEO, OnPage und Webdesign, Linkaufbau, SEO Audit und Reporting. Festpreis, keine Mindestlaufzeit.",
  HERO.format(kicker=u"Leistungen",
-   h1=u"Fünf Bereiche, die zusammen die Position ergeben.",
+   h1=u"Leistungen",
    lede=u"Je nach Ausgangslage liegt der Hebel woanders. Welcher es bei Ihnen ist, steht in der Analyse, bevor Sie etwas beauftragen.") + u"""
 <section class="section" style="padding-top:0">
   <div class="wrap">
@@ -210,7 +208,7 @@ page("referenzen.html",
  u"Referenzen | Kontor",
  u"Fallstudien: wie wir Projekte für die organische Suche aufbauen.",
  HERO.format(kicker=u"Referenzen",
-   h1=u"Projekte, bei denen wir jeden Schritt selbst gegangen sind.",
+   h1=u"Referenzen",
    lede=u"Keine Logowand ohne Zusammenhang. Pro Projekt die Ausgangslage, das Vorgehen und was daraus zu lernen war.") + u"""
 <section class="section" style="padding-top:0">
   <div class="wrap">
@@ -247,8 +245,7 @@ page("referenzen/poseypets.html",
     <div class="cs-hero">
       <img src="../assets/img/case/poseypets-wohnzimmer.jpg" alt="Tierportraits als Wanddekoration im Wohnzimmer" width="1200" height="600">
     </div>
-    <span class="kicker">Fallstudie</span>
-    <h1 style="font-size:clamp(2rem,4.6vw,3.4rem);margin:14px 0 18px">PoseyPets</h1>
+    <h1 style="font-size:clamp(2rem,4.6vw,3.4rem);margin:0 0 18px">PoseyPets</h1>
     <p class="lede">Ein deutscher Onlineshop für individuelle Tierportraits. Der Kunde lädt ein Foto hoch, und sein Tier wird als historische Figur gemalt. Die Aufgabe: gefunden werden, ohne jeden Besucher einkaufen zu müssen.</p>
     <div class="tags" style="margin-top:20px"><span class="tag accent">E-Commerce</span><span class="tag">Technisches SEO</span><span class="tag">Content</span><span class="tag">Keyword-Strategie</span></div>
   </div>
@@ -369,7 +366,7 @@ page("blog/index.html",
  u"Blog | Kontor",
  u"Artikel über Suchmaschinenoptimierung, ohne Fachchinesisch.",
  HERO.format(kicker=u"Blog",
-   h1=u"SEO, erklärt wie am Telefon.",
+   h1=u"Blog",
    lede=u"Kurze Artikel zu den Fragen, die uns Kunden immer wieder stellen.") + u"""
 <section class="section" style="padding-top:0">
   <div class="wrap">
