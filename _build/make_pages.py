@@ -223,13 +223,13 @@ page("referenzen.html",
     </div>
 
     <div class="ref-grid" style="--case-accent:#A78BFA">
-      <a class="ref-card" href="referenzen/posypets.html" data-cats="ecommerce technik content local">
+      <a class="ref-card" href="referenzen/poseypets.html" data-cats="ecommerce technik content local">
         <div class="ref-tile">
-          <img src="assets/img/case/posypets-napoleon.jpg" alt="Tierportrait auf Leinwand neben dem abgebildeten Dackel" loading="lazy" width="1200" height="1200">
+          <img src="assets/img/case/poseypets-napoleon.jpg" alt="Tierportrait auf Leinwand neben dem abgebildeten Dackel" loading="lazy" width="1200" height="1200">
           <div class="ref-tags"><span class="ref-tag">E-Commerce</span><span class="ref-tag">Organic</span><span class="ref-tag">Content</span></div>
           <span class="ref-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
-        <h3 class="ref-name">PosyPets</h3>
+        <h3 class="ref-name">PoseyPets</h3>
         <p class="ref-desc">Onlineshop für Tierportraits, von Grund auf für die organische Suche aufgebaut. Keyword-Struktur, sechs Landingpages, zwei Inhaltsformate.</p>
       </a>
     </div>
@@ -238,17 +238,17 @@ page("referenzen.html",
   </div>
 </section>""")
 
-# ---------------------------------------------------------------- Fallstudie PosyPets
-page("referenzen/posypets.html",
- u"Fallstudie PosyPets | Kontor",
- u"Wie der Onlineshop PosyPets von Grund auf für die organische Suche aufgebaut wurde: Keyword-Recherche, Seitenstruktur, Inhalte und Technik.",
+# ---------------------------------------------------------------- Fallstudie PoseyPets
+page("referenzen/poseypets.html",
+ u"Fallstudie PoseyPets | Kontor",
+ u"Wie der Onlineshop PoseyPets von Grund auf für die organische Suche aufgebaut wurde: Keyword-Recherche, Seitenstruktur, Inhalte und Technik.",
  u"""<section class="section cs" style="padding-top:0">
   <div class="wrap">
     <div class="cs-hero">
-      <img src="../assets/img/case/posypets-wohnzimmer.jpg" alt="Tierportraits als Wanddekoration im Wohnzimmer" width="1200" height="600">
+      <img src="../assets/img/case/poseypets-wohnzimmer.jpg" alt="Tierportraits als Wanddekoration im Wohnzimmer" width="1200" height="600">
     </div>
     <span class="kicker">Fallstudie</span>
-    <h1 style="font-size:clamp(2rem,4.6vw,3.4rem);margin:14px 0 18px">PosyPets</h1>
+    <h1 style="font-size:clamp(2rem,4.6vw,3.4rem);margin:14px 0 18px">PoseyPets</h1>
     <p class="lede">Ein deutscher Onlineshop für individuelle Tierportraits. Der Kunde lädt ein Foto hoch, und sein Tier wird als historische Figur gemalt. Die Aufgabe: gefunden werden, ohne jeden Besucher einkaufen zu müssen.</p>
     <div class="tags" style="margin-top:20px"><span class="tag accent">E-Commerce</span><span class="tag">Technisches SEO</span><span class="tag">Content</span><span class="tag">Keyword-Strategie</span></div>
   </div>
@@ -256,15 +256,15 @@ page("referenzen/posypets.html",
 
 <section class="section cs" style="padding-top:0">
   <div class="wrap prose">
-    <p><em>Offenlegung: PosyPets ist ein eigenes Projekt. Wir zeigen es, weil wir dort jeden Schritt selbst gegangen sind und offen darüber schreiben können, auch über das, was nicht funktioniert hat.</em></p>
+    <p><em>Offenlegung: PoseyPets ist ein eigenes Projekt. Wir zeigen es, weil wir dort jeden Schritt selbst gegangen sind und offen darüber schreiben können, auch über das, was nicht funktioniert hat.</em></p>
 
     <h2>Ausgangssituation</h2>
     <p>Ein neuer Shop ohne Domainhistorie, in einem Umfeld, in dem bereits internationale Anbieter stehen. Zum Start war der Shop bei Google für keinen einzigen relevanten Begriff zu finden.</p>
     <p>Die naheliegende Alternative wäre gewesen, jeden Besucher über bezahlte Anzeigen einzukaufen. Das funktioniert, solange Budget da ist, und endet an dem Tag, an dem es aufhört. Bei einem Produkt mit begrenztem Warenkorbwert frisst es außerdem die Marge. Also sollte die organische Suche die tragende Säule werden.</p>
 
     <div class="cs-split">
-      <img src="../assets/img/case/posypets-caesar.jpg" alt="Hundeportrait im Stil eines römischen Kaisers" loading="lazy" width="600" height="600">
-      <img src="../assets/img/case/posypets-mona.jpg" alt="Katzenportrait im Stil der Mona Lisa" loading="lazy" width="600" height="600">
+      <img src="../assets/img/case/poseypets-caesar.jpg" alt="Hundeportrait im Stil eines römischen Kaisers" loading="lazy" width="600" height="600">
+      <img src="../assets/img/case/poseypets-mona.jpg" alt="Katzenportrait im Stil der Mona Lisa" loading="lazy" width="600" height="600">
     </div>
 
     <h2>Keyword-Recherche</h2>
@@ -278,7 +278,7 @@ page("referenzen/posypets.html",
     <p>Genauso wichtig war, was <em>aussortiert</em> wurde. Ein ganzer Begriffscluster sah nach viel Volumen aus, bestand aber fast vollständig aus Leuten, die selbst malen lernen wollen. Ein zweiter war komplett wertlos, weil die Suchenden etwas ganz anderes meinten. Beide wurden gestrichen, bevor Arbeit hineinfloss.</p>
 
     <figure class="cs-figure">
-      <img src="../assets/img/case/posypets-pferd.jpg" alt="Pferdeportrait nach Foto" loading="lazy" width="1200" height="900">
+      <img src="../assets/img/case/poseypets-pferd.jpg" alt="Pferdeportrait nach Foto" loading="lazy" width="1200" height="900">
       <figcaption>Eigene Landingpage je Hauptbegriff, hier das Pferdemotiv</figcaption>
     </figure>
 
@@ -300,8 +300,8 @@ page("referenzen/posypets.html",
     </div>
 
     <div class="cs-split">
-      <img src="../assets/img/case/posypets-tasse.jpg" alt="Personalisierte Tasse mit Tierportrait" loading="lazy" width="600" height="600">
-      <img src="../assets/img/case/posypets-unboxing.jpg" alt="Ausgepacktes Tierportrait" loading="lazy" width="600" height="600">
+      <img src="../assets/img/case/poseypets-tasse.jpg" alt="Personalisierte Tasse mit Tierportrait" loading="lazy" width="600" height="600">
+      <img src="../assets/img/case/poseypets-unboxing.jpg" alt="Ausgepacktes Tierportrait" loading="lazy" width="600" height="600">
     </div>
 
     <h2>Technik</h2>
@@ -316,7 +316,7 @@ page("referenzen/posypets.html",
     <p>Der Shop ist live, verkauft und läuft geschäftlich gut. Die Sichtbarkeit baut sich weiter auf, die Landingpages ranken für ihre jeweiligen Begriffe, und es kommen laufend Inhalte dazu. SEO ist hier kein abgeschlossenes Projekt, sondern die Grundlage, auf der weitergearbeitet wird.</p>
 
     <figure class="cs-figure">
-      <img src="../assets/img/case/posypets-valentin.jpg" alt="Tierportrait als Geschenk" loading="lazy" width="1200" height="900">
+      <img src="../assets/img/case/poseypets-valentin.jpg" alt="Tierportrait als Geschenk" loading="lazy" width="1200" height="900">
       <figcaption>Saisonale Anlässe als eigene Einstiegspunkte in die Suche</figcaption>
     </figure>
 
@@ -411,7 +411,7 @@ page("datenschutz.html", u"Datenschutzerklärung | Kontor",
    lede=u"Diese Website kommt ohne Cookies, ohne Tracking und ohne eingebettete Inhalte Dritter aus.") + u"""
 <section class="section" style="padding-top:0">
   <div class="wrap prose">
-    <!-- Verantwortlicher aus dem PosyPets Datenschutz übernommen. Der REST ist
+    <!-- Verantwortlicher aus dem PoseyPets Datenschutz übernommen. Der REST ist
          bewusst NICHT übernommen: dort stehen Shopify, Printify, Klarna und
          PayPal, die es hier alle nicht gibt. Hier ist GitHub der Hoster. -->
     <h2>Verantwortlicher</h2>
