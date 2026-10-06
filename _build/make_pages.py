@@ -97,89 +97,71 @@ def service(path, title, desc, kicker, h1, lede, sections, bullets_title, bullet
 
 # ---------------------------------------------------------------- Leistungen overview
 page("leistungen/index.html",
- u"Leistungen | SEO-Agentur",
- u"Technisches SEO, OnPage und Inhalte, lokales SEO, Linkaufbau, SEO Audit und Reporting. Festpreis, keine Mindestlaufzeit.",
+ u"Leistungen | Markenname",
+ u"SEO, OnPage und Webdesign, Linkaufbau, SEO Audit und Reporting. Festpreis, keine Mindestlaufzeit.",
  HERO.format(kicker=u"Leistungen",
-   h1=u"Sechs Bereiche, die zusammen die Position ergeben.",
+   h1=u"Fünf Bereiche, die zusammen die Position ergeben.",
    lede=u"Je nach Ausgangslage liegt der Hebel woanders. Welcher es bei Ihnen ist, steht in der Analyse, bevor Sie etwas beauftragen.") + u"""
 <section class="section" style="padding-top:0">
   <div class="wrap">
     <div class="index">
-      <a class="index-row" href="technisches-seo.html"><span class="idx">01</span><h3>Technisches SEO</h3><p>Ladezeit, Core Web Vitals, Indexierung und Seitenstruktur. Die Grundlage, ohne die der Rest wenig bringt.</p></a>
-      <a class="index-row" href="onpage-und-inhalte.html"><span class="idx">02</span><h3>OnPage und Inhalte</h3><p>Seitenstruktur, Überschriften, interne Verlinkung und Texte, die eine konkrete Suchabsicht beantworten.</p></a>
-      <a class="index-row" href="lokales-seo.html"><span class="idx">03</span><h3>Lokales SEO</h3><p>Google Unternehmensprofil, Kartenbereich, Verzeichnisse und Bewertungen.</p></a>
-      <a class="index-row" href="linkaufbau.html"><span class="idx">04</span><h3>Linkaufbau</h3><p>Erwähnungen und Verlinkungen aus Quellen, die tatsächlich etwas zählen.</p></a>
-      <a class="index-row" href="seo-audit.html"><span class="idx">05</span><h3>SEO Audit</h3><p>Vollständige Bestandsaufnahme, auch einzeln beauftragbar.</p></a>
-      <a class="index-row" href="reporting.html"><span class="idx">06</span><h3>Reporting</h3><p>Monatlich auf einer Seite, verständlich, ohne Fachchinesisch.</p></a>
+      <a class="index-row" href="seo.html"><span class="idx">01</span><h3>SEO</h3><p>Technik, Inhalte und lokale Sichtbarkeit als ein Paket.</p></a>
+      <a class="index-row" href="onpage-und-webdesign.html"><span class="idx">02</span><h3>OnPage und Webdesign</h3><p>Aufbau, Gestaltung und Texte der Seiten, die ranken sollen.</p></a>
+      <a class="index-row" href="linkaufbau.html"><span class="idx">03</span><h3>Linkaufbau</h3><p>Verlinkungen aus Quellen, die tatsächlich zählen.</p></a>
+      <a class="index-row" href="seo-audit.html"><span class="idx">04</span><h3>SEO Audit</h3><p>Vollständige Bestandsaufnahme, auch einzeln beauftragbar.</p></a>
+      <a class="index-row" href="reporting.html"><span class="idx">05</span><h3>Reporting</h3><p>Ein Bericht, wann immer Sie ihn brauchen.</p></a>
     </div>
     <div class="prose" style="max-width:none">%s</div>
   </div>
 </section>""" % cta("../"))
 
-service("leistungen/technisches-seo.html",
- u"Technisches SEO | Markenname",
- u"Ladezeit, Core Web Vitals, Indexierung und Seitenstruktur. Die technische Grundlage für bessere Positionen bei Google.",
- u"Leistung 01", u"Technisches SEO.",
- u"Eine Seite kann die besten Texte der Welt haben. Wenn Google sie nicht sauber lesen, einordnen und schnell ausliefern kann, bleibt sie unten.",
- [(u"Was dazugehört",
-   u"Ladezeit und Core Web Vitals, die Darstellung auf dem Handy, saubere Weiterleitungen, eine nachvollziehbare URL Struktur, korrekte Canonicals und eine Sitemap, die auch stimmt. Dazu strukturierte Daten, damit Google versteht, worum es auf einer Seite geht."),
-  (u"Warum das zuerst kommt",
-   u"Technische Fehler wirken wie eine Bremse auf alles andere. Wer Inhalte produziert, während die Hälfte der Seiten gar nicht im Index ist, zahlt für Arbeit, die nicht ankommt. Deshalb steht dieser Bereich am Anfang und ist meist auch der, in dem am meisten liegen bleibt."),
-  (u"Wie wir vorgehen",
-   u"Zuerst eine Bestandsaufnahme mit Crawl und Search Console. Daraus entsteht eine Liste nach Wirkung sortiert, nicht nach Aufwand. Dann wird abgearbeitet, und Sie sehen im Bericht, welcher Punkt erledigt ist und was sich daraufhin bewegt hat.")],
+service("leistungen/seo.html",
+ u"SEO | Markenname",
+ u"Technik, Inhalte und lokale Sichtbarkeit als ein Paket. Die Grundlage für bessere Positionen bei Google.",
+ u"Leistung 01", u"SEO.",
+ u"Technik, Inhalte und lokale Sichtbarkeit hängen zusammen. Wir trennen sie nicht in Pakete, sondern arbeiten an dem, was bei Ihnen den Unterschied macht.",
+ [(u"Technik",
+   u"Ladezeit und Core Web Vitals, die Darstellung auf dem Handy, saubere Weiterleitungen, eine nachvollziehbare URL Struktur und eine Sitemap, die stimmt. Technische Fehler wirken wie eine Bremse auf alles andere: wer Inhalte produziert, während die Hälfte der Seiten nicht im Index ist, zahlt für Arbeit, die nicht ankommt."),
+  (u"Inhalte",
+   u"Google rankt keine Unternehmen, sondern einzelne Seiten. Für jeden Suchbegriff, der Anfragen bringt, braucht es eine Seite, die genau diese Frage beantwortet. Die häufigste Schwachstelle ist eine einzige Leistungsseite, auf der alles gleichzeitig steht."),
+  (u"Lokale Sichtbarkeit",
+   u"Bei jeder Suche mit Ortsbezug zeigt Google zuerst drei Einträge mit Karte und Telefonnummer. Darüber läuft ein großer Teil der Anrufe, bevor jemand die normalen Treffer sieht. Das Google Unternehmensprofil ist kostenlos und bei vielen Unternehmen der schnellste Hebel.")],
  u"Typische Funde", [
   u"Seiten, die durch robots.txt oder noindex versehentlich blockiert sind",
   u"Bilder in Originalgröße, die die Ladezeit auf dem Handy verdoppeln",
   u"Mehrere URLs mit demselben Inhalt, die sich gegenseitig Konkurrenz machen",
-  u"Weiterleitungsketten aus einem alten Relaunch",
-  u"Fehlende oder doppelte Seitentitel über ganze Bereiche hinweg"])
+  u"Eine Leistungsseite, die zehn Themen gleichzeitig abdecken soll",
+  u"Ein Unternehmensprofil mit abweichender Adresse oder Telefonnummer"])
 
-service("leistungen/onpage-und-inhalte.html",
- u"OnPage und Inhalte | Markenname",
- u"Seitenstruktur, Überschriften, interne Verlinkung und Texte, die eine konkrete Suchabsicht beantworten.",
- u"Leistung 02", u"OnPage und Inhalte.",
- u"Google rankt keine Unternehmen, sondern einzelne Seiten. Für jeden Suchbegriff, der Ihnen etwas bringt, braucht es eine Seite, die genau diese Frage beantwortet.",
- [(u"Eine Seite, eine Suchabsicht",
-   u"Die häufigste Schwachstelle ist eine einzige Leistungsseite, auf der alles gleichzeitig steht. Google kann daraus nicht ableiten, wofür Sie der beste Treffer sind. Besser ist eine eigene Seite je Leistung, die eine Frage vollständig beantwortet."),
+service("leistungen/onpage-und-webdesign.html",
+ u"OnPage und Webdesign | Markenname",
+ u"Aufbau, Gestaltung und Texte der Seiten, die ranken sollen. Struktur, interne Verlinkung und Suchabsicht.",
+ u"Leistung 02", u"OnPage und Webdesign.",
+ u"Eine Seite muss zwei Dinge gleichzeitig können: von Google richtig eingeordnet werden und den Besucher zur Anfrage bringen. Das eine ohne das andere bringt nichts.",
+ [(u"Struktur vor Gestaltung",
+   u"Wie eine Seite aufgebaut ist, entscheidet mehr über die Position als ihr Aussehen. Überschriftenhierarchie, interne Verlinkung und eine Gliederung, die der Suchabsicht folgt, sind die Arbeit, die unter der Oberfläche passiert."),
+  (u"Gestaltung, die zur Anfrage führt",
+   u"Besucher auf der Seite zu haben, ist nur der halbe Weg. Telefonnummer sichtbar und antippbar, ein klarer nächster Schritt, kurze Formulare und Ladezeiten, die auf dem Handy keine Geduld verlangen."),
   (u"Suchabsicht vor Suchvolumen",
-   u"Ein Begriff mit tausend Suchen im Monat ist wertlos, wenn die Leute dahinter nur vergleichen. Ein Begriff mit dreißig Suchen kann jeden Monat Aufträge bringen, wenn dahinter jemand mit konkretem Bedarf sitzt. Wir sortieren nach dem, was Anfragen auslöst."),
-  (u"Interne Verlinkung",
-   u"Links innerhalb der eigenen Seite entscheiden mit, welche Seite Google für wichtig hält. Eine Seite, auf die von nirgendwo verlinkt wird, hat es schwer, egal wie gut der Text ist.")],
+   u"Ein Begriff mit tausend Suchen im Monat ist wertlos, wenn die Leute dahinter nur vergleichen. Ein Begriff mit dreißig Suchen kann Aufträge bringen, wenn dahinter konkreter Bedarf steht. Wir sortieren nach dem, was Anfragen auslöst.")],
  u"Was Sie bekommen", [
   u"Eine Keyword Zuordnung: welcher Begriff auf welche Seite gehört",
   u"Titel und Beschreibungen, die auch angeklickt werden",
-  u"Eine Gliederung pro Seite, die der Suchabsicht folgt",
   u"Vorschläge für fehlende Seiten statt längerer Texte auf bestehenden",
-  u"Interne Links von den starken auf die wichtigen Seiten"])
-
-service("leistungen/lokales-seo.html",
- u"Lokales SEO | Markenname",
- u"Google Unternehmensprofil, Kartenbereich, Branchenverzeichnisse und Bewertungen für Unternehmen mit Einzugsgebiet.",
- u"Leistung 03", u"Lokales SEO.",
- u"Bei fast jeder Suche mit Ortsbezug zeigt Google zuerst drei Einträge mit Karte, Telefonnummer und Bewertungen. Darüber läuft ein großer Teil der Anrufe, bevor jemand die normalen Treffer überhaupt sieht.",
- [(u"Der Kartenbereich steht über allem",
-   u"Wer dort nicht auftaucht, verliert Anfragen an Wettbewerber, die weniger gut sind, aber besser gepflegt. Das Google Unternehmensprofil ist kostenlos und bei vielen Unternehmen der schnellste Hebel überhaupt."),
-  (u"Einheitliche Daten",
-   u"Name, Adresse und Telefonnummer müssen überall identisch sein, auf der Website, im Profil und in den Verzeichnissen. Abweichungen kosten Vertrauen bei Google und sind einer der häufigsten Gründe, warum ein Eintrag nicht nach oben kommt."),
-  (u"Bewertungen",
-   u"Bewertungen wirken auf die Position und noch stärker auf die Entscheidung, wer angerufen wird. Wir zeigen Ihnen, wie Sie seriös danach fragen. Gekaufte Bewertungen fliegen auf und schaden mehr, als sie je bringen.")],
- u"Besonders relevant für", [
-  u"Unternehmen mit festem Standort und Laufkundschaft",
-  u"Dienstleister mit Einzugsgebiet statt Ladenlokal",
-  u"Betriebe mit mehreren Filialen oder Servicegebieten",
-  u"Praxen, Kanzleien und Beratungen"])
+  u"Interne Links von den starken auf die wichtigen Seiten",
+  u"Gestaltung und Aufbau der Seiten, die Anfragen bringen sollen"])
 
 service("leistungen/linkaufbau.html",
  u"Linkaufbau | Markenname",
  u"Erwähnungen und Verlinkungen aus Quellen, die tatsächlich zählen. Ohne gekaufte Linknetzwerke.",
- u"Leistung 04", u"Linkaufbau.",
- u"Links von anderen Seiten sind weiterhin einer der stärksten Faktoren. Entscheidend ist aber nicht die Anzahl, sondern woher sie kommen und ob sie plausibel sind.",
+ u"Leistung 03", u"Linkaufbau.",
+ u"Links von anderen Seiten sind weiterhin einer der stärksten Faktoren. Entscheidend ist nicht die Anzahl, sondern woher sie kommen.",
  [(u"Was zählt",
    u"Ein Link aus einem regionalen Nachrichtenportal, einem Branchenverband, einem Partnerunternehmen oder einem Fachbeitrag. Also Quellen, bei denen eine Erwähnung auch ohne SEO Sinn ergeben würde."),
   (u"Was schadet",
-   u"Gekaufte Links aus Netzwerken, Verzeichnisse ohne eigenen Zweck und getauschte Links in großer Zahl. Das lässt sich erkennen, und der Schaden trifft die gesamte Domain, nicht nur die verlinkte Seite. Wir machen das nicht, auch nicht auf Wunsch."),
+   u"Gekaufte Links aus Netzwerken, Verzeichnisse ohne eigenen Zweck und getauschte Links in großer Zahl. Das lässt sich erkennen, und der Schaden trifft die gesamte Domain. Wir machen das nicht, auch nicht auf Wunsch."),
   (u"Realistische Erwartung",
-   u"Linkaufbau ist der langsamste der sechs Bereiche. Vor den anderen fünf lohnt er sich selten. Wenn Technik, Inhalte und lokale Präsenz stehen und es trotzdem nicht reicht, ist dies der nächste Schritt.")],
+   u"Linkaufbau ist der langsamste Bereich. Vor den anderen lohnt er sich selten. Wenn Technik, Inhalte und lokale Präsenz stehen und es trotzdem nicht reicht, ist dies der nächste Schritt.")],
  u"Wie wir arbeiten", [
   u"Analyse, welche Quellen Ihre Wettbewerber verlinken",
   u"Erwähnungen Ihres Namens ohne Link finden und nachträglich verlinken lassen",
@@ -188,15 +170,15 @@ service("leistungen/linkaufbau.html",
 
 service("leistungen/seo-audit.html",
  u"SEO Audit | Markenname",
- u"Vollständige Bestandsaufnahme Ihrer Website: was blockiert, was Potenzial hat, in welcher Reihenfolge. Auch einzeln beauftragbar.",
- u"Leistung 05", u"SEO Audit.",
+ u"Vollständige Bestandsaufnahme Ihrer Website: was blockiert, was Potenzial hat, in welcher Reihenfolge.",
+ u"Leistung 04", u"SEO Audit.",
  u"Eine vollständige Bestandsaufnahme, bevor irgendetwas umgesetzt wird. Auch einzeln beauftragbar, ohne laufende Betreuung und ohne Folgeauftrag.",
  [(u"Was drin steht",
    u"Technischer Zustand, Inhalte und Suchbegriffe, lokale Präsenz, Verlinkung und ein direkter Vergleich mit drei Wettbewerbern. Am Ende eine nach Wirkung sortierte Liste, keine Sammlung von Hinweisen."),
   (u"Für wen sich das lohnt",
    u"Für Unternehmen, die wissen wollen, woran sie sind, bevor sie ein Budget binden. Und für alle, die bereits mit einer Agentur arbeiten und eine unabhängige zweite Meinung möchten."),
   (u"Was danach passiert",
-   u"Nichts, wenn Sie das so wollen. Das Audit gehört Ihnen, Sie können es intern oder mit einem anderen Dienstleister umsetzen. Wenn wir weitermachen sollen, bekommen Sie dafür einen Festpreis.")],
+   u"Nichts, wenn Sie das so wollen. Das Audit gehört Ihnen, Sie können es intern oder mit einem anderen Dienstleister umsetzen.")],
  u"Umfang", [
   u"Vollständiger Crawl der Website",
   u"Auswertung von Search Console und Ladezeitdaten",
@@ -206,38 +188,55 @@ service("leistungen/seo-audit.html",
 
 service("leistungen/reporting.html",
  u"Reporting | Markenname",
- u"Monatlicher SEO Bericht auf einer Seite: welche Suchbegriffe sich bewegt haben, woher die Besucher kamen, was als Nächstes ansteht.",
- u"Leistung 06", u"Reporting.",
- u"Ein Bericht, den man ohne Vorkenntnisse lesen kann. Eine Seite, jeden Monat, mit den Zahlen, die tatsächlich etwas über das Geschäft aussagen.",
+ u"SEO Bericht auf einer Seite: welche Suchbegriffe sich bewegt haben, woher die Besucher kamen, was ansteht.",
+ u"Leistung 05", u"Reporting.",
+ u"Ein Bericht, den man ohne Vorkenntnisse lesen kann. Eine Seite, in dem Rhythmus, der zu Ihnen passt, mit den Zahlen, die tatsächlich etwas über das Geschäft aussagen.",
  [(u"Was drin steht",
-   u"Positionen für die vereinbarten Suchbegriffe und die Veränderung zum Vormonat, Besucher aus der Suche, Anrufe und Anfragen soweit messbar, und was im Monat umgesetzt wurde. Dazu der nächste Schritt."),
+   u"Positionen für die vereinbarten Suchbegriffe und die Veränderung seit dem letzten Bericht, Besucher aus der Suche, Anfragen soweit messbar, und was umgesetzt wurde. Dazu der nächste Schritt."),
   (u"Was nicht drin steht",
-   u"Keine 40 Seiten aus einem Tool, keine Kennzahlen ohne Bezug zum Geschäft, keine Diagramme, die gut aussehen und nichts aussagen. Wenn ein Monat schlecht lief, steht das so im Bericht."),
+   u"Keine 40 Seiten aus einem Tool, keine Kennzahlen ohne Bezug zum Geschäft, keine Diagramme, die gut aussehen und nichts aussagen. Wenn eine Phase schlecht lief, steht das so im Bericht."),
   (u"Messbar ohne Tracking auf Besucherebene",
    u"Die Daten stammen aus der Google Search Console und aus Ihrem Unternehmensprofil. Dafür ist kein Tracking Cookie und kein Banner auf Ihrer Seite nötig.")],
  u"Rhythmus", [
-  u"Monatlicher Bericht per E-Mail, eine Seite",
-  u"Quartalsgespräch, wenn Sie es möchten, sonst nicht",
-  u"Jederzeit erreichbar bei Fragen, ohne Ticketsystem"])
+  u"Ein Bericht, wann immer Sie ihn brauchen",
+  u"Auf Wunsch fest getaktet, sonst auf Zuruf",
+  u"Immer eine Seite, per E-Mail",
+  u"Erreichbar bei Fragen, ohne Ticketsystem"])
 
 # ---------------------------------------------------------------- Referenzen
 page("referenzen.html",
- u"Referenzen | Markenname",
- u"Projekte und Ergebnisse.",
- HERO.format(kicker=u"Referenzen",
-   h1=u"Projekte und Ergebnisse.",
-   lede=u"Belegbare Zahlen aus echten Projekten statt Logos ohne Zusammenhang.") + u"""
+ u"Fallstudie PosyPets | Markenname",
+ u"Fallstudie: wie PosyPets über die organische Suche gefunden wird statt über bezahlte Anzeigen.",
+ HERO.format(kicker=u"Fallstudie",
+   h1=u"PosyPets.",
+   lede=u"Ein Onlineshop für individuelle Tierportraits, der über Google gefunden werden musste statt über bezahlte Anzeigen.") + u"""
 <section class="section" style="padding-top:0">
   <div class="wrap prose">
-    <!-- ====================================================================
-         PLATZHALTER. Hier kommt die PosyPets Referenz hin, mit echten,
-         belegbaren Zahlen. Bis dahin steht hier bewusst KEINE erfundene
-         Referenz: erfundene Ergebnisse auf einer SEO Seite sind
-         wettbewerbsrechtlich angreifbar und zerstören genau das Vertrauen,
-         das die Seite aufbauen soll.
-         ==================================================================== -->
-    <p style="color:var(--warn)"><strong>Platzhalter. Vor dem Start die PosyPets Referenz mit echten Zahlen einsetzen.</strong></p>
-    <p>Diese Seite wird gerade aufgebaut. Wenn Sie vorab wissen möchten, wie wir arbeiten und was realistisch erreichbar ist, fordern Sie die kostenlose Analyse an. Darin sehen Sie am eigenen Beispiel, was möglich ist, statt an fremden Zahlen.</p>
+    <!-- =================================================================
+         PLATZHALTER. Die Struktur steht, die Zahlen und die konkreten
+         Details fehlen. Erst mit den echten Werten aus der PosyPets
+         Auswertung füllen. NICHTS schätzen oder runden: eine erfundene
+         Referenz ist wettbewerbsrechtlich angreifbar.
+         ================================================================= -->
+    <p style="color:var(--warn)"><strong>Platzhalter. Zahlen und Details aus der PosyPets Auswertung eintragen, bevor die Seite online geht.</strong></p>
+
+    <h2>Ausgangssituation</h2>
+    <p>Platzhalter. Hier steht, wo der Shop stand, bevor etwas gemacht wurde: über welche Kanäle Besucher kamen, was das gekostet hat, und für welche Suchbegriffe er nicht gefunden wurde.</p>
+
+    <h2>Vorgehen</h2>
+    <p>Platzhalter. Hier stehen die konkreten Schritte in der Reihenfolge, in der sie umgesetzt wurden, und warum in dieser Reihenfolge.</p>
+
+    <h2>Ergebnis</h2>
+    <p>Platzhalter. Hier steht, was sich verändert hat und über welchen Zeitraum. Mit Zeitraum, nicht nur mit Prozentzahl: eine Steigerung ohne Zeitangabe sagt nichts aus.</p>
+
+    <div class="case-metrics ph" style="margin:30px 0">
+      <div class="case-metric"><div class="big">0</div><div class="lbl">Platzhalter, echte Kennzahl eintragen</div></div>
+      <div class="case-metric"><div class="big">0</div><div class="lbl">Platzhalter, echte Kennzahl eintragen</div></div>
+      <div class="case-metric"><div class="big">0</div><div class="lbl">Platzhalter, echte Kennzahl eintragen</div></div>
+    </div>
+
+    <h2>Was daraus für andere folgt</h2>
+    <p>Platzhalter. Ein bis zwei Sätze dazu, was an diesem Fall übertragbar ist und was nicht. Das ist der Absatz, den ein Interessent tatsächlich liest.</p>
     %s
   </div>
 </section>""" % cta())
@@ -245,15 +244,15 @@ page("referenzen.html",
 # ---------------------------------------------------------------- Kontakt
 page("kontakt.html",
  u"Kontakt und kostenlose SEO-Analyse | Markenname",
- u"Fordern Sie die kostenlose SEO-Analyse für Ihre Website an oder vereinbaren Sie direkt einen Termin.",
+ u"Fordern Sie die kostenlose SEO-Analyse für Ihre Website an.",
  HERO.format(kicker=u"Kontakt",
    h1=u"Kostenlose SEO-Analyse.",
-   lede=u"Schreiben Sie kurz, um welche Website es geht. Sie bekommen die Analyse schriftlich, kostenlos und ohne Verpflichtung.") + u"""
+   lede=u"Schreiben Sie kurz, um welche Website es geht. Sie bekommen die Analyse schriftlich und unverbindlich.") + u"""
 <section class="section" style="padding-top:0">
   <div class="wrap serp-grid">
     <div class="prose">
       <h2 style="margin-top:0">Direkt erreichbar</h2>
-      <!-- TODO: echte Kontaktdaten eintragen, sobald Domain und Postfach stehen -->
+      <!-- TODO: Adresse auf das neue Postfach umstellen, sobald die Domain steht -->
       <p><strong>E-Mail:</strong> <a href="mailto:kontakt@beispiel.de">kontakt@beispiel.de</a><br>
          <strong>Telefon:</strong> <a href="tel:+491771885605">+49 177 188 5605</a></p>
       <h3>Was wir für die Analyse brauchen</h3>
@@ -262,17 +261,17 @@ page("kontakt.html",
         <li>Ihr Ort oder Einzugsgebiet</li>
         <li>Die zwei bis drei Leistungen, über die Sie am liebsten Anfragen bekommen</li>
       </ul>
-      <p>Mehr nicht. Den Rest finden wir selbst heraus. Antwort in der Regel innerhalb eines Werktags.</p>
+      <p>Antwort in der Regel innerhalb eines Werktags.</p>
     </div>
     <div>
       <!-- TODO: Terminbuchung einsetzen. GitHub Pages ist statisch, es gibt kein
-           Backend. Ein Formular braucht also entweder die Google Buchungsseite
-           (in Workspace Business Starter enthalten) oder eine Serverless Funktion. -->
+           Backend. Also entweder die Google Buchungsseite (in Workspace Business
+           Starter enthalten) oder eine Serverless Funktion. -->
       <div class="band ph">
         <div class="band-in">
           <span class="kicker">Platzhalter</span>
           <h2 style="font-size:clamp(1.4rem,2.6vw,2rem);margin:12px 0">Terminbuchung</h2>
-          <p class="lede">Hier kommt der Buchungskalender hin. Bis dahin genügt eine E-Mail oder ein Anruf.</p>
+          <p class="lede">Hier kommt der Buchungskalender hin.</p>
         </div>
       </div>
     </div>
@@ -302,22 +301,18 @@ page("impressum.html", u"Impressum | Markenname", u"Impressum nach § 5 DDG.",
  HERO.format(kicker=u"Pflichtangaben", h1=u"Impressum.", lede=u"Angaben gemäß § 5 DDG.") + u"""
 <section class="section" style="padding-top:0">
   <div class="wrap prose">
-    <!-- ====================================================================
-         PLATZHALTER. Vor dem Start vollständig ausfüllen. Pflicht sind unter
-         anderem: voller Klarname, ladungsfähige Anschrift (kein Postfach),
-         E-Mail-Adresse, Telefonnummer und, falls vorhanden, die
-         Umsatzsteuer-Identifikationsnummer nach § 27a UStG.
-         ==================================================================== -->
-    <p style="color:var(--warn)"><strong>Platzhalter. Vor dem Start vollständig ausfüllen.</strong></p>
+    <!-- Übernommen aus dem Impressum von poseypets.com, auf diese Tätigkeit
+         angepasst. OFFEN: Marken- bzw. Firmierung und die E-Mail-Adresse auf
+         der neuen Domain eintragen, sobald beides steht. -->
+    <p style="color:var(--warn)"><strong>Offen: Firmierung und E-Mail-Adresse auf der neuen Domain eintragen.</strong></p>
     <h2>Diensteanbieter</h2>
-    <p>Vorname Nachname<br>Straße und Hausnummer<br>PLZ Ort<br>Deutschland</p>
+    <p>Alejandro Arndt<br>Albstraße 54<br>73066 Uhingen<br>Deutschland</p>
     <h2>Kontakt</h2>
-    <p>Telefon: +49 ...<br>E-Mail: kontakt@beispiel.de</p>
+    <p>Telefon: +49 177 188 5605<br>E-Mail: kontakt@beispiel.de</p>
     <h2>Umsatzsteuer</h2>
-    <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: DE ...<br>
-       Alternativ, falls Kleinunternehmerregelung nach § 19 UStG: entsprechenden Hinweis ergänzen.</p>
-    <h2>Verantwortlich für den Inhalt</h2>
-    <p>Vorname Nachname, Anschrift wie oben.</p>
+    <p>Gemäß § 19 UStG wird keine Umsatzsteuer berechnet (Kleinunternehmerregelung).</p>
+    <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+    <p>Alejandro Arndt, Anschrift wie oben.</p>
     <h2>Streitbeilegung</h2>
     <p>Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
   </div>
@@ -330,12 +325,11 @@ page("datenschutz.html", u"Datenschutzerklärung | Markenname",
    lede=u"Diese Website kommt ohne Cookies, ohne Tracking und ohne eingebettete Inhalte Dritter aus.") + u"""
 <section class="section" style="padding-top:0">
   <div class="wrap prose">
-    <!-- PLATZHALTER, inhaltlich aber bereits auf DIESE Seite zugeschnitten.
-         NICHT die Datenschutzerklärung von PosyPets übernehmen: dort steht ein
-         anderer Hoster. Hier ist GitHub der Hoster, das muss drinstehen. -->
-    <p style="color:var(--warn)"><strong>Platzhalter. Vor dem Start prüfen und die Verantwortlichen-Angaben ergänzen.</strong></p>
+    <!-- Verantwortlicher aus dem PosyPets Datenschutz übernommen. Der REST ist
+         bewusst NICHT übernommen: dort stehen Shopify, Printify, Klarna und
+         PayPal, die es hier alle nicht gibt. Hier ist GitHub der Hoster. -->
     <h2>Verantwortlicher</h2>
-    <p>Vorname Nachname, Anschrift, E-Mail. Siehe <a href="impressum.html">Impressum</a>.</p>
+    <p>Alejandro Arndt, Albstraße 54, 73066 Uhingen, Deutschland. Siehe <a href="impressum.html">Impressum</a>.</p>
     <h2>Keine Cookies, kein Tracking</h2>
     <p>Diese Website setzt keine Cookies, verwendet keine Analyse- oder Trackingdienste und bindet keine Inhalte Dritter ein. Schriftarten und Videos werden vom eigenen Webspace ausgeliefert, es findet keine Verbindung zu Google Fonts oder zu einem Videoportal statt. Deshalb gibt es auch keinen Cookie-Banner.</p>
     <h2>Hosting durch GitHub Pages</h2>

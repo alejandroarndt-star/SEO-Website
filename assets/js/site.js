@@ -74,13 +74,6 @@
     nums.forEach(function (el) { cio.observe(el); });
   }
 
-  /* ---- marquee: duplicate content so the loop is seamless ---- */
-  var mq = document.querySelector('.marquee');
-  if (mq && !mq.dataset.cloned) {
-    mq.innerHTML += mq.innerHTML;
-    mq.dataset.cloned = '1';
-  }
-
   /* ---- active nav link by scroll position (homepage only) ---- */
   var sections = document.querySelectorAll('section[id]');
   var navLinks = document.querySelectorAll('.nav a[href^="#"]');
