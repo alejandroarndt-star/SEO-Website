@@ -41,6 +41,13 @@ python3 _build/make_pages.py
 Das schreibt die Unterseiten neu. Die erzeugten HTML Dateien sind das, was
 ausgeliefert wird, und gehören ins Repo.
 
+## Domain, Pages und Postfach
+
+Die vollständige Einrichtung, Schritt für Schritt in der richtigen Reihenfolge,
+steht in `Domain-Postfach-Einrichtung.md` im privaten Repo `SEO-outreach-`.
+Dort stehen die DNS Einträge, die Workspace Schritte und der Ablauf für den
+Wechsel des Absenders.
+
 ## Vor dem Start
 
 - [ ] Markenname festlegen und „Markenname" an drei Stellen in `index.html`
