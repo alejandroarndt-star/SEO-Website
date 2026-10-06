@@ -34,7 +34,6 @@ SHELL = u"""<!doctype html>
 <meta name="robots" content="{robots}">
 <link rel="icon" href="{up}assets/img/icon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="{up}assets/img/icon-180.png">
-<link rel="preload" href="{up}assets/fonts/fell.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{up}assets/fonts/bricolage.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{up}assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{up}assets/css/site.css">
