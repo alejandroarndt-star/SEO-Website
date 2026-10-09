@@ -525,3 +525,72 @@ a.index-row:hover h3{color:#fff}
   border-radius:50%;color:var(--c,var(--ink));transition:all .4s var(--ease)}
 .xs-a svg{width:15px;height:15px}
 .xs-row:hover .xs-a{background:var(--c,var(--ink));color:#0B0B0C;border-color:var(--c,var(--ink))}
+
+/* ============================================================
+   Mobil
+   ============================================================ */
+/* Rueckmeldung beim Antippen; ohne sie wirkt auf dem Handy nichts klickbar. */
+a,button,summary{-webkit-tap-highlight-color:rgba(255,255,255,.07)}
+
+/* Geraete ohne Zeigegeraet. Zustaende, die nur beim Ueberfahren entstehen,
+   sind dort entweder unerreichbar oder bleiben nach dem Antippen haengen. */
+@media (hover:none){
+  .svc-card:hover{transform:none}
+  .xs-row:hover,.index-row:hover{padding-inline:0}
+  .svc-go{border-color:var(--c,var(--line-2))}
+  /* Die Klickraten im Suchergebnis waren ohne Hover gar nicht zu sehen.
+     Sie stehen deshalb dauerhaft in einer eigenen Zeile der Trefferzeile. */
+  .serp-row[data-ctr]{flex-wrap:wrap}
+  .serp-row[data-ctr]::after{
+    position:static;opacity:1;transform:none;flex:0 0 100%;
+    /* Basis 100% erzwingt die eigene Zeile, max-content zieht die Box
+       wieder auf Textbreite zurueck, sonst laeuft sie rechts aus der Karte. */
+    max-width:max-content;margin:8px 0 0 36px;align-self:flex-start;
+  }
+}
+
+@media(max-width:620px){
+  /* Untergrenzen fuer Schriftgroessen: 11.5px fuer Beschriftungen,
+     12px fuer alles, was tatsaechlich gelesen werden muss. */
+  .hero-proof{flex-direction:column;align-items:center;gap:9px;font-size:.75rem;letter-spacing:.1em}
+  .kicker,.page-hero .pill{font-size:.72rem}
+  .svc-num,.step-n,.xs-n,.post .meta{font-size:.72rem}
+  .ftr h4{font-size:.72rem}
+  .ref-tag{font-size:.7rem}
+  .cs-figure figcaption{font-size:.74rem}
+  /* Wortmarke und Rechtslinks waren 15 bis 24 Pixel hoch. */
+  .logo{padding:12px 0}
+  .serp-break{font-size:.7rem}
+  /* Links im Fliesstext bleiben zeilenhoch. Mehr Zeilenabstand macht
+     sie weiter auseinander und damit mit dem Finger treffbarer. */
+  .seo-cols p{line-height:1.78}
+  .ftr-legal a{display:inline-block;padding:9px 0}
+  .serp-q{font-size:.78rem}
+  .serp-url{font-size:.74rem}
+  .serp-row[data-ctr]::after{font-size:.7rem}
+
+  /* Klickflaechen im Fuss waren 16 bis 24 Pixel hoch, also kaum zu treffen. */
+  .ftr ul a{display:inline-block;padding:9px 0}
+
+  /* Anrufen und Mailen sind auf dem Handy die eigentlichen Aktionen. */
+  .prose a[href^="tel:"],.prose a[href^="mailto:"]{display:inline-block;padding:7px 0}
+
+  /* Dichter, damit beim Scrollen kein Text durch die Leiste scheint. */
+  .hdr.scrolled{background:rgba(9,9,11,.94)}
+
+  /* Im Menue erbte die Schaltflaeche die 2rem der Navigationslinks und
+     lief dadurch bis an ihre eigenen Kanten. */
+  .mnav .btn{font-family:var(--body);font-size:1rem;line-height:54px;padding:0 24px}
+}
+
+/* Filterleiste: eine Zeile zum Wischen statt drei Zeilen Pillen. */
+@media(max-width:760px){
+  .ref-filters{
+    display:flex;flex-wrap:nowrap;gap:8px;overflow-x:auto;
+    margin-inline:calc(var(--gut) * -1);padding-inline:var(--gut);
+    scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+  }
+  .ref-filters::-webkit-scrollbar{display:none}
+  .ref-filter{flex:0 0 auto;scroll-snap-align:start;display:inline-flex;align-items:center;
+    min-height:44px;font-size:.75rem;padding-inline:18px}
+}

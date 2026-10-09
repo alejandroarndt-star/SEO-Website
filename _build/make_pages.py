@@ -38,7 +38,7 @@ SHELL = u"""<!doctype html>
 <link rel="preload" href="{up}assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{up}assets/css/site.css">
 <meta name="theme-color" content="#0B0B0C">
-<noscript><style>.rv{{opacity:1;transform:none}}</style></noscript>
+<noscript><style>.rv{{opacity:1;transform:none}}.serp-row{{opacity:1;transform:none}}</style></noscript>
 </head>
 <body>
 {header}
