@@ -38,6 +38,7 @@ SHELL = u"""<!doctype html>
 <link rel="preload" href="{up}assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{up}assets/css/site.css">
 <meta name="theme-color" content="#0B0B0C">
+<noscript><style>.rv{{opacity:1;transform:none}}</style></noscript>
 </head>
 <body>
 {header}
@@ -93,19 +94,99 @@ def cta(up=""):
       </div>
     </div>""" % up
 
-def service(path, title, desc, kicker, h1, lede, sections, bullets_title, bullets, accent=None):
+SERVICES = [
+ (1, u"SEO", u"seo.html"),
+ (2, u"OnPage und Webdesign", u"onpage-und-webdesign.html"),
+ (3, u"Linkaufbau", u"linkaufbau.html"),
+ (4, u"SEO Audit", u"seo-audit.html"),
+ (5, u"Reporting", u"reporting.html"),
+]
+
+def other_services(n):
+    """Querverweise auf die uebrigen vier Leistungen, je im eigenen Farbton."""
+    rows = u"".join(
+        u'\n      <a class="xs-row" href="%s" style="--c:var(--c%d);--c-soft:var(--c%d-soft)">'
+        u'<span class="xs-n">0%d</span><span class="xs-t">%s</span>'
+        u'<span class="xs-a">%s</span></a>' % (href, i, i, i, name, ARR)
+        for i, name, href in SERVICES if i != n)
+    return u"""
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head" style="max-width:none;align-items:center;text-align:center">
+      <h2>Weitere Leistungen</h2>
+    </div>
+    <div class="xs-list">%s
+    </div>
+  </div>
+</section>""" % rows
+
+def service(path, title, desc, kicker, h1, lede, sections, bullets_title, bullets,
+            accent=None, vals_head=u"", vals=(), faq_head=u"", faq=()):
     body = hero(kicker=kicker, h1=h1, lede=lede, cta_up="../")
-    inner = "".join(u"\n    <h2>%s</h2>\n    <p>%s</p>" % (h, t) for h, t in sections)
-    lis = "".join(u"\n      <li>%s</li>" % b for b in bullets)
+
+    # Die drei Textbloecke als nummerierte Zeilen statt als Fliesstext.
+    steps = u"".join(
+        u"""
+      <div class="step rv">
+        <div class="step-k"><span class="step-n">%02d</span><h2>%s</h2></div>
+        <p>%s</p>
+      </div>""" % (i + 1, h, t) for i, (h, t) in enumerate(sections))
     body += u"""
 <section class="section" style="padding-top:0">
-  <div class="wrap prose">%s
-    <h2>%s</h2>
-    <ul>%s
-    </ul>
-    %s
+  <div class="wrap">
+    <div class="steps">%s
+    </div>
   </div>
-</section>""" % (inner, bullets_title, lis, cta("../"))
+</section>""" % steps
+
+    # Vier kurze Punkte, wie in der Vorlage unter der Ueberschrift.
+    if vals:
+        cells = u"".join(u"""
+      <div class="val rv"><h3>%s</h3><p>%s</p></div>""" % (h, t) for h, t in vals)
+        body += u"""
+<section class="section" style="background:var(--bg-2);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head" style="max-width:none;align-items:center;text-align:center">
+      <h2>%s</h2>
+    </div>
+    <div class="vals">%s
+    </div>
+  </div>
+</section>""" % (vals_head, cells)
+
+    lis = u"".join(u"\n        <li>%s</li>" % b for b in bullets)
+    body += u"""
+<section class="section">
+  <div class="wrap">
+    <div class="checks rv">
+      <h2>%s</h2>
+      <ul>%s
+      </ul>
+    </div>
+  </div>
+</section>""" % (bullets_title, lis)
+
+    if faq:
+        qs = u"".join(u"""
+      <details class="q"><summary>%s <span class="ic"></span></summary><div class="a">%s</div></details>""" % (q, a)
+                      for q, a in faq)
+        body += u"""
+<section class="section" style="background:var(--bg-2);border-block:1px solid var(--line);padding-bottom:clamp(44px,5vw,72px)">
+  <div class="wrap">
+    <div class="sec-head" style="max-width:none;align-items:center;text-align:center">
+      <h2>%s</h2>
+    </div>
+    <div class="faq">%s
+    </div>
+  </div>
+</section>""" % (faq_head, qs)
+
+    body += other_services(accent)
+    body += u"""
+<section class="section" style="padding-top:0">
+  <div class="wrap">%s
+  </div>
+</section>""" % cta("../")
     page(path, title, desc, body, accent=accent)
 
 # Die Leistungskarten stehen auf der Startseite und auf der Uebersicht. Hier
@@ -173,7 +254,18 @@ service("leistungen/seo.html",
   u"Bilder in Originalgröße, die die Ladezeit auf dem Handy verdoppeln",
   u"Mehrere URLs mit demselben Inhalt, die sich gegenseitig Konkurrenz machen",
   u"Eine Leistungsseite, die zehn Themen gleichzeitig abdecken soll",
-  u"Ein Unternehmensprofil mit abweichender Adresse oder Telefonnummer"], accent=1)
+  u"Ein Unternehmensprofil mit abweichender Adresse oder Telefonnummer"], accent=1,
+ vals_head=u'Was sich dadurch ändert',
+ vals=[
+   (u'Gefunden, wo gesucht wird', u'Nicht mehr Besucher irgendwoher, sondern die, die genau Ihre Leistung eingegeben haben.'),
+   (u'Weniger Abhängigkeit von Anzeigen', u'Was organisch steht, bringt auch in einem Monat ohne Werbebudget Anfragen.'),
+   (u'Eine Seite, die schneller lädt', u'Arbeit an Ladezeit und Darstellung auf dem Handy merkt jeder Besucher, nicht nur Google.'),
+   (u'Nachvollziehbare Entwicklung', u'Positionen und Klicks stehen in der Search Console. Sie sehen, was passiert, nicht nur, dass gearbeitet wird.')],
+ faq_head=u'Fragen zu SEO',
+ faq=[
+   (u'Wie lange dauert es, bis sich etwas zeigt?', u'Technische Verbesserungen und das Unternehmensprofil wirken oft innerhalb weniger Wochen. Bei umkämpften Suchbegriffen sind drei bis sechs Monate realistisch.'),
+   (u'Können Sie Position 1 garantieren?', u'Nein. Niemand kann das, weil niemand außer Google über die Reihenfolge entscheidet. Wer es trotzdem zusagt, verkauft Ihnen etwas, das er nicht halten kann.'),
+   (u'Muss ich dafür meine Website neu bauen?', u'Meistens nicht. In den allermeisten Fällen lässt sich mit der vorhandenen Seite arbeiten. Wenn ein Neubau wirklich der günstigere Weg ist, sagen wir das offen, bevor Sie Geld ausgeben.')])
 
 service("leistungen/onpage-und-webdesign.html",
  u"OnPage und Webdesign | Kontor",
@@ -191,7 +283,18 @@ service("leistungen/onpage-und-webdesign.html",
   u"Titel und Beschreibungen, die auch angeklickt werden",
   u"Vorschläge für fehlende Seiten statt längerer Texte auf bestehenden",
   u"Interne Links von den starken auf die wichtigen Seiten",
-  u"Gestaltung und Aufbau der Seiten, die Anfragen bringen sollen"], accent=2)
+  u"Gestaltung und Aufbau der Seiten, die Anfragen bringen sollen"], accent=2,
+ vals_head=u'Was dabei entsteht',
+ vals=[
+   (u'Eine Seite je Suchabsicht', u'Statt einer Leistungsseite, auf der alles gleichzeitig steht, eine Seite pro Frage, die Anfragen bringt.'),
+   (u'Titel, die angeklickt werden', u'Position allein reicht nicht. Titel und Beschreibung entscheiden, wer von den Suchenden tatsächlich klickt.'),
+   (u'Interne Links mit Richtung', u'Die starken Seiten geben ihre Kraft an die wichtigen weiter, statt sie zufällig zu verteilen.'),
+   (u'Ein sichtbarer nächster Schritt', u'Telefonnummer antippbar, kurzes Formular, klarer Abschluss. Besucher ohne Anfrage sind nur halb gewonnen.')],
+ faq_head=u'Fragen zu OnPage und Webdesign',
+ faq=[
+   (u'Arbeiten Sie mit meinem bestehenden System?', u'Ja. WordPress, Shopify, Webflow, Typo3 oder eine selbst gebaute Seite – gearbeitet wird an dem, was da ist. Ein Systemwechsel ist nur dann ein Thema, wenn er sich unabhängig von SEO lohnt.'),
+   (u'Schreiben Sie die Texte selbst?', u'Auf Wunsch ja. Häufiger ist der bessere Weg, dass Sie das Fachliche liefern und wir Struktur, Überschriften und Suchbegriffe einarbeiten. Sie kennen Ihr Geschäft besser.'),
+   (u'Leidet das Design, wenn es für Google gebaut wird?', u'Nein. Die Arbeit liegt in Struktur, Reihenfolge und Technik, nicht darin, Text mit Suchbegriffen zu füllen. Eine Seite, die nach SEO aussieht, ist falsch gebaut.')])
 
 service("leistungen/linkaufbau.html",
  u"Linkaufbau | Kontor",
@@ -208,7 +311,18 @@ service("leistungen/linkaufbau.html",
   u"Analyse, welche Quellen Ihre Wettbewerber verlinken",
   u"Erwähnungen Ihres Namens ohne Link finden und nachträglich verlinken lassen",
   u"Partner, Lieferanten und Verbände, bei denen ein Eintrag ohnehin naheliegt",
-  u"Fachbeiträge, bei denen die Verlinkung aus dem Inhalt folgt"], accent=3)
+  u"Fachbeiträge, bei denen die Verlinkung aus dem Inhalt folgt"], accent=3,
+ vals_head=u'Woran wir Qualität messen',
+ vals=[
+   (u'Themenbezug', u'Ein Link aus dem eigenen Umfeld zählt mehr als zehn aus einem beliebigen Verzeichnis.'),
+   (u'Erreichbarkeit der Quelle', u'Seiten, die selbst Besucher haben. Über einen guten Link kommen auch Menschen, nicht nur Signale.'),
+   (u'Dauerhaftigkeit', u'Ein Link, der in einem Jahr noch steht. Gemietete Links verschwinden, sobald nicht mehr gezahlt wird.'),
+   (u'Natürliches Wachstum', u'Gleichmäßig statt in Schüben. Hundert Links in einer Woche sind ein Muster, das auffällt.')],
+ faq_head=u'Fragen zum Linkaufbau',
+ faq=[
+   (u'Kaufen Sie Links?', u'Nein, auch nicht auf Wunsch. Gekaufte Links aus Netzwerken lassen sich erkennen, und der Schaden trifft die gesamte Domain, nicht nur die verlinkte Seite.'),
+   (u'Wie viele Links pro Monat?', u'Keine feste Zahl. Eine Zusage über Stückzahlen lässt sich nur einhalten, indem man Links kauft. Gearbeitet wird an Gelegenheiten, die es tatsächlich gibt.'),
+   (u'Wann lohnt sich Linkaufbau?', u'Zuletzt. Wenn Technik, Inhalte und lokale Präsenz stehen und es trotzdem nicht reicht. Davor ist der Hebel fast immer woanders größer.')])
 
 service("leistungen/seo-audit.html",
  u"SEO Audit | Kontor",
@@ -226,7 +340,18 @@ service("leistungen/seo-audit.html",
   u"Auswertung von Search Console und Ladezeitdaten",
   u"Keyword Zuordnung und Lücken im Vergleich zum Wettbewerb",
   u"Prüfung des Google Unternehmensprofils und der Verzeichnisse",
-  u"Priorisierte Maßnahmenliste mit Aufwandseinschätzung"], accent=4)
+  u"Priorisierte Maßnahmenliste mit Aufwandseinschätzung"], accent=4,
+ vals_head=u'Was Sie am Ende in der Hand haben',
+ vals=[
+   (u'Eine priorisierte Liste', u'Nach Wirkung sortiert, nicht nach Reihenfolge des Findens. Oben steht, was am meisten bringt.'),
+   (u'Einen Wettbewerbsvergleich', u'Drei Wettbewerber, direkt gegenübergestellt: wofür sie gefunden werden und Sie nicht.'),
+   (u'Eine Aufwandseinschätzung', u'Zu jedem Punkt, was er ungefähr kostet. Damit Sie entscheiden können, ohne nachzufragen.'),
+   (u'Ein Dokument, das Ihnen gehört', u'Intern umsetzbar oder mit einem anderen Dienstleister. Ohne Folgeauftrag.')],
+ faq_head=u'Fragen zum SEO Audit',
+ faq=[
+   (u'Was kostet das Audit?', u'Nach der kostenlosen Analyse bekommen Sie einen Festpreis für einen klar beschriebenen Umfang. Kein Stundensatz.'),
+   (u'Wie lange dauert es?', u'In der Regel ein bis zwei Wochen, abhängig von der Größe der Website und davon, wie schnell die Zugänge zu Search Console und Unternehmensprofil vorliegen.'),
+   (u'Muss ich danach mit Ihnen weiterarbeiten?', u'Nein. Das Audit ist einzeln beauftragbar und endet mit der Übergabe. Viele setzen es intern um, und das ist in Ordnung.')])
 
 service("leistungen/reporting.html",
  u"Reporting | Kontor",
@@ -243,7 +368,18 @@ service("leistungen/reporting.html",
   u"Ein Bericht, wann immer Sie ihn brauchen",
   u"Auf Wunsch fest getaktet, sonst auf Zuruf",
   u"Immer eine Seite, per E-Mail",
-  u"Erreichbar bei Fragen, ohne Ticketsystem"], accent=5)
+  u"Erreichbar bei Fragen, ohne Ticketsystem"], accent=5,
+ vals_head=u'Was im Bericht steht',
+ vals=[
+   (u'Positionen und Veränderung', u'Die vereinbarten Suchbegriffe und wie sie sich seit dem letzten Bericht bewegt haben.'),
+   (u'Besucher aus der Suche', u'Wie viele über Google kamen und auf welchen Seiten sie gelandet sind.'),
+   (u'Umgesetzte Maßnahmen', u'Was in diesem Zeitraum tatsächlich gemacht wurde, in einer Sprache ohne Fachbegriffe.'),
+   (u'Der nächste Schritt', u'Woran als Nächstes gearbeitet wird und warum gerade daran.')],
+ faq_head=u'Fragen zum Reporting',
+ faq=[
+   (u'Wie oft kommt der Bericht?', u'Wann immer Sie ihn brauchen. Auf Wunsch fest getaktet, sonst auf Zuruf. Immer eine Seite, immer per E-Mail.'),
+   (u'Brauche ich dafür Tracking oder einen Cookie-Banner?', u'Nein. Die Daten stammen aus der Google Search Console und aus Ihrem Unternehmensprofil. Auf Ihrer Seite ist dafür nichts einzubauen.'),
+   (u'Was steht drin, wenn eine Phase schlecht lief?', u'Dass sie schlecht lief, und woran es lag. Ein Bericht, der nur gute Nachrichten enthält, ist kein Bericht.')])
 
 # ---------------------------------------------------------------- Referenzen (Übersicht)
 # Weitere Fallstudie hinzufügen: einen .ref-card Block ergänzen, data-cats mit
