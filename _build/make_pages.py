@@ -42,7 +42,7 @@ SHELL = u"""<!doctype html>
 <body>
 {header}
 {mnav}
-<main class="page-top">
+<main class="page-top"{mainstyle}>
 {body}
 </main>
 {footer}
@@ -51,10 +51,11 @@ SHELL = u"""<!doctype html>
 </html>
 """
 
-def page(path, title, desc, body, robots="index,follow"):
+def page(path, title, desc, body, robots="index,follow", accent=None):
     d = path.count("/")
     up = "../" * d
-    html = SHELL.format(title=title, desc=desc, robots=robots, up=up,
+    ms = u'' if accent is None else u' style="--c:var(--c%d);--c-soft:var(--c%d-soft)"' % (accent, accent)
+    html = SHELL.format(title=title, desc=desc, robots=robots, up=up, mainstyle=ms,
                         header=depth_fix(HEADER, d), mnav=depth_fix(MNAV, d),
                         footer=depth_fix(FOOTER, d), body=body)
     out = os.path.join(ROOT, path)
@@ -92,7 +93,7 @@ def cta(up=""):
       </div>
     </div>""" % up
 
-def service(path, title, desc, kicker, h1, lede, sections, bullets_title, bullets):
+def service(path, title, desc, kicker, h1, lede, sections, bullets_title, bullets, accent=None):
     body = hero(kicker=kicker, h1=h1, lede=lede, cta_up="../")
     inner = "".join(u"\n    <h2>%s</h2>\n    <p>%s</p>" % (h, t) for h, t in sections)
     lis = "".join(u"\n      <li>%s</li>" % b for b in bullets)
@@ -105,7 +106,7 @@ def service(path, title, desc, kicker, h1, lede, sections, bullets_title, bullet
     %s
   </div>
 </section>""" % (inner, bullets_title, lis, cta("../"))
-    page(path, title, desc, body)
+    page(path, title, desc, body, accent=accent)
 
 # Die Leistungskarten stehen auf der Startseite und auf der Uebersicht. Hier
 # relativ innerhalb von leistungen/, auf der Startseite mit dem Praefix.
@@ -172,7 +173,7 @@ service("leistungen/seo.html",
   u"Bilder in Originalgröße, die die Ladezeit auf dem Handy verdoppeln",
   u"Mehrere URLs mit demselben Inhalt, die sich gegenseitig Konkurrenz machen",
   u"Eine Leistungsseite, die zehn Themen gleichzeitig abdecken soll",
-  u"Ein Unternehmensprofil mit abweichender Adresse oder Telefonnummer"])
+  u"Ein Unternehmensprofil mit abweichender Adresse oder Telefonnummer"], accent=1)
 
 service("leistungen/onpage-und-webdesign.html",
  u"OnPage und Webdesign | Kontor",
@@ -190,7 +191,7 @@ service("leistungen/onpage-und-webdesign.html",
   u"Titel und Beschreibungen, die auch angeklickt werden",
   u"Vorschläge für fehlende Seiten statt längerer Texte auf bestehenden",
   u"Interne Links von den starken auf die wichtigen Seiten",
-  u"Gestaltung und Aufbau der Seiten, die Anfragen bringen sollen"])
+  u"Gestaltung und Aufbau der Seiten, die Anfragen bringen sollen"], accent=2)
 
 service("leistungen/linkaufbau.html",
  u"Linkaufbau | Kontor",
@@ -207,7 +208,7 @@ service("leistungen/linkaufbau.html",
   u"Analyse, welche Quellen Ihre Wettbewerber verlinken",
   u"Erwähnungen Ihres Namens ohne Link finden und nachträglich verlinken lassen",
   u"Partner, Lieferanten und Verbände, bei denen ein Eintrag ohnehin naheliegt",
-  u"Fachbeiträge, bei denen die Verlinkung aus dem Inhalt folgt"])
+  u"Fachbeiträge, bei denen die Verlinkung aus dem Inhalt folgt"], accent=3)
 
 service("leistungen/seo-audit.html",
  u"SEO Audit | Kontor",
@@ -225,7 +226,7 @@ service("leistungen/seo-audit.html",
   u"Auswertung von Search Console und Ladezeitdaten",
   u"Keyword Zuordnung und Lücken im Vergleich zum Wettbewerb",
   u"Prüfung des Google Unternehmensprofils und der Verzeichnisse",
-  u"Priorisierte Maßnahmenliste mit Aufwandseinschätzung"])
+  u"Priorisierte Maßnahmenliste mit Aufwandseinschätzung"], accent=4)
 
 service("leistungen/reporting.html",
  u"Reporting | Kontor",
@@ -242,7 +243,7 @@ service("leistungen/reporting.html",
   u"Ein Bericht, wann immer Sie ihn brauchen",
   u"Auf Wunsch fest getaktet, sonst auf Zuruf",
   u"Immer eine Seite, per E-Mail",
-  u"Erreichbar bei Fragen, ohne Ticketsystem"])
+  u"Erreichbar bei Fragen, ohne Ticketsystem"], accent=5)
 
 # ---------------------------------------------------------------- Referenzen (Übersicht)
 # Weitere Fallstudie hinzufügen: einen .ref-card Block ergänzen, data-cats mit
@@ -263,7 +264,7 @@ page("referenzen.html",
       <button class="ref-filter" data-cat="local" aria-pressed="false">Local SEO</button>
     </div>
 
-    <div class="ref-grid" style="--case-accent:#A78BFA">
+    <div class="ref-grid" style="--case-accent:var(--c4)">
       <a class="ref-card" href="referenzen/poseypets.html" data-cats="ecommerce technik content local">
         <div class="ref-tile">
           <img src="assets/img/case/poseypets-napoleon.jpg" alt="Tierportrait auf Leinwand neben dem abgebildeten Dackel" loading="lazy" width="1200" height="1200">

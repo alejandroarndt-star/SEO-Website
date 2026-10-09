@@ -11,6 +11,13 @@
   --ink:#F5F3EF; --ink-2:#A5A29B; --ink-3:#6B6862;
   --accent:#F2F0EC; --accent-ink:#0B0B0C; --accent-soft:rgba(255,255,255,.07);
   --warn:#FF5A1F;
+  /* Spektrum: eine Farbe je Leistung. Alle fuenf liegen auf den dunklen
+     Flaechen ueber 5:1, sind also auch fuer Kleintext tragfaehig. */
+  --c1:#E0A33C; --c1-soft:rgba(224,163,60,.30); --c1-wash:rgba(224,163,60,.13);
+  --c2:#4FA9D8; --c2-soft:rgba(79,169,216,.30);  --c2-wash:rgba(79,169,216,.13);
+  --c3:#E0603C; --c3-soft:rgba(224,96,60,.30);   --c3-wash:rgba(224,96,60,.13);
+  --c4:#9B7BE0; --c4-soft:rgba(155,123,224,.30); --c4-wash:rgba(155,123,224,.13);
+  --c5:#5FBF8A; --c5-soft:rgba(95,191,138,.30);  --c5-wash:rgba(95,191,138,.13);
   --good:#5BE49B; --bad:#FF6B6B;
   --display:'Bricolage',Georgia,serif; --body:'Archivo',system-ui,sans-serif; --mono:'JetBrains',ui-monospace,monospace;
   --gut:clamp(16px,5vw,64px); --max:1240px;
@@ -224,7 +231,10 @@ p{margin:0}
 .posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:22px}
 .post{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--bg-2);padding:26px;display:flex;flex-direction:column;gap:13px;transition:all .45s var(--ease)}
 .post:hover{border-color:var(--line-2);background:var(--bg-3);transform:translateY(-4px)}
-.post .meta{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.post .meta{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--c,var(--ink-3))}
+.posts > :nth-child(5n+1){--c:var(--c1)} .posts > :nth-child(5n+2){--c:var(--c2)}
+.posts > :nth-child(5n+3){--c:var(--c3)} .posts > :nth-child(5n+4){--c:var(--c4)}
+.posts > :nth-child(5n+5){--c:var(--c5)}
 .post p{color:var(--ink-2);font-size:.93rem;flex:1}
 .post .more{font-size:.86rem;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:7px}
 
@@ -318,7 +328,7 @@ a.index-row:hover h3{color:#fff}
 @media(prefers-reduced-motion:reduce){.serp-row[data-ctr]::after{transition:none}}
 
 /* ---- Case study page -------------------------------------------------- */
-.cs{--case-accent:#A78BFA}
+.cs{--case-accent:var(--c4)}
 .cs-hero{border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--line);margin-bottom:clamp(30px,4vw,52px);max-width:1000px}
 .cs-hero img{width:100%;height:auto;aspect-ratio:24/9;object-fit:cover}
 .cs .kicker{color:var(--case-accent)}
@@ -411,23 +421,35 @@ a.index-row:hover h3{color:#fff}
 }
 @media(max-width:620px){.svc-grid{grid-template-columns:1fr}}
 .svc-card{
+  position:relative;overflow:hidden;
   display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;
-  border:1px solid var(--line);border-radius:var(--r-lg);background:var(--bg-3);
+  border:1px solid var(--c-soft,var(--line));border-radius:var(--r-lg);background:var(--bg-3);
   padding:clamp(26px,3vw,34px) clamp(20px,2.4vw,28px);
   transition:border-color .45s var(--ease),background .45s var(--ease),transform .45s var(--ease);
 }
-.svc-card:hover{border-color:var(--line-2);background:var(--bg-4);transform:translateY(-3px)}
-.svc-num{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--ink-2)}
+.svc-card::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 120% 70% at 50% 0%,var(--c-wash,transparent),transparent 70%)}
+.svc-card > *{position:relative;z-index:1}
+.svc-card:hover{border-color:var(--c,var(--line-2));background:var(--bg-4);transform:translateY(-3px)}
+.svc-num{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--c,var(--ink-2))}
+
+/* Jede Karte traegt ihre eigene Farbe. --c faerbt Text und Rahmen,
+   --c-soft den Ruhezustand des Rahmens, --c-wash den Schimmer im Kopf. */
+.svc-grid > :nth-child(1){--c:var(--c1);--c-soft:var(--c1-soft);--c-wash:var(--c1-wash)}
+.svc-grid > :nth-child(2){--c:var(--c2);--c-soft:var(--c2-soft);--c-wash:var(--c2-wash)}
+.svc-grid > :nth-child(3){--c:var(--c3);--c-soft:var(--c3-soft);--c-wash:var(--c3-wash)}
+.svc-grid > :nth-child(4){--c:var(--c4);--c-soft:var(--c4-soft);--c-wash:var(--c4-wash)}
+.svc-grid > :nth-child(5){--c:var(--c5);--c-soft:var(--c5-soft);--c-wash:var(--c5-wash)}
 .svc-card h3{margin:2px 0 0}
 .svc-tag{font-size:.86rem;color:var(--ink);font-weight:600}
 .svc-txt{font-size:.92rem;color:var(--ink-2);margin-bottom:6px}
 /* schiebt die Schaltfläche auf gleiche Höhe, egal wie lang der Text ist */
 .svc-go{
-  margin-top:auto;width:100%;border:1px solid var(--line-2);border-radius:999px;
-  padding:11px 18px;font-size:.86rem;font-weight:600;
+  margin-top:auto;width:100%;border:1px solid var(--c-soft,var(--line-2));border-radius:999px;
+  padding:11px 18px;font-size:.86rem;font-weight:600;color:var(--c,var(--ink));
   transition:background .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease);
 }
-.svc-card:hover .svc-go{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.svc-card:hover .svc-go{background:var(--c,var(--accent));color:#0B0B0C;border-color:var(--c,var(--accent))}
 
 /* ============================================================
    Warum eine SEO-Agentur: acht Felder
@@ -437,7 +459,10 @@ a.index-row:hover h3{color:#fff}
 .ben{background:var(--bg);padding:clamp(22px,2.6vw,30px);display:flex;flex-direction:column;gap:9px;
   transition:background .45s var(--ease)}
 .ben:hover{background:var(--bg-2)}
-.ben h3{font-size:clamp(1rem,1.5vw,1.14rem)}
+.ben h3{font-size:clamp(1rem,1.5vw,1.14rem);color:var(--c,var(--ink))}
+.ben-grid > :nth-child(5n+1){--c:var(--c1)} .ben-grid > :nth-child(5n+2){--c:var(--c2)}
+.ben-grid > :nth-child(5n+3){--c:var(--c3)} .ben-grid > :nth-child(5n+4){--c:var(--c4)}
+.ben-grid > :nth-child(5n+5){--c:var(--c5)}
 .ben p{font-size:.9rem;color:var(--ink-2)}
 
 /* ============================================================
@@ -457,8 +482,10 @@ a.index-row:hover h3{color:#fff}
 .page-hero{text-align:center}
 .page-hero .pill{
   display:inline-block;font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--ink-2);border:1px solid var(--line-2);border-radius:999px;padding:7px 16px;margin-bottom:22px;
+  color:var(--c,var(--ink-2));border:1px solid var(--c-soft,var(--line-2));border-radius:999px;padding:7px 16px;margin-bottom:22px;
 }
+/* --c kommt vom <main> der jeweiligen Leistungsseite */
+.page-top .prose ul li::marker{color:var(--c,var(--ink-3))}
 .page-hero h1{margin-inline:auto}
 .page-hero .lede{margin:20px auto 0}
 .page-hero .hero-cta{justify-content:center;margin-top:30px}
