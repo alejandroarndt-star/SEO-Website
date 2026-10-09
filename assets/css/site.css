@@ -104,23 +104,25 @@ p{margin:0}
 /* ============================================================
    Hero
    ============================================================ */
-.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding-bottom:clamp(48px,7vw,86px);overflow:hidden}
+.hero{position:relative;min-height:clamp(520px,74svh,740px);display:flex;align-items:center;
+  text-align:center;padding-block:clamp(128px,15vh,172px) clamp(52px,7vw,84px);overflow:hidden}
 .hero-media{position:absolute;inset:0;z-index:0}
 .hero-media video,.hero-media img{width:100%;height:100%;object-fit:cover}
 .hero-media::after{
   content:'';position:absolute;inset:0;
   background:
-    linear-gradient(to top,var(--bg) 0%,rgba(9,9,11,.62) 34%,rgba(9,9,11,.2) 66%,rgba(9,9,11,.55) 100%),
-    linear-gradient(to right,rgba(9,9,11,.8) 0%,rgba(9,9,11,.35) 48%,transparent 78%);
+    linear-gradient(to top,var(--bg) 0%,rgba(9,9,11,.68) 36%,rgba(9,9,11,.38) 70%,rgba(9,9,11,.6) 100%),
+    radial-gradient(ellipse 120% 90% at 50% 45%,rgba(9,9,11,.4) 0%,rgba(9,9,11,.78) 75%);
 }
 .grain{position:absolute;inset:0;z-index:1;opacity:.055;pointer-events:none;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .hero-in{position:relative;z-index:2;width:100%}
-.hero h1{max-width:15ch;margin:18px 0 0}
+.hero h1{max-width:15ch;margin:0 auto}
 .hero h1 em{white-space:nowrap}
 .hero h1 em{font-style:normal;color:var(--accent)}
-.hero .lede{margin-top:22px;max-width:52ch}
+.hero .lede{margin:22px auto 0;max-width:52ch}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.hero .hero-cta{justify-content:center}
 .scroll-cue{display:flex;align-items:center;gap:10px;margin-top:46px;font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
 .scroll-cue i{display:block;width:40px;height:1px;background:linear-gradient(90deg,var(--ink-3),transparent);position:relative;overflow:hidden}
 .scroll-cue i::after{content:'';position:absolute;inset:0;width:14px;background:var(--ink-2);animation:cue 2.4s var(--ease) infinite}
@@ -382,3 +384,81 @@ a.index-row:hover h3{color:#fff}
   text-transform:uppercase;line-height:1.1}
 .ref-desc{color:var(--ink-2);font-size:.9rem;line-height:1.55}
 .ref-empty{color:var(--ink-3);font-size:.95rem;padding:30px 0}
+
+/* ============================================================
+   Hero: Beleg-Zeile
+   ============================================================ */
+.hero-proof{
+  list-style:none;margin:26px auto 0;padding:0;max-width:900px;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);
+}
+.hero-proof li{display:flex;align-items:center;gap:9px}
+.hero-proof li::before{content:'';width:4px;height:4px;background:var(--ink-3);flex:0 0 auto}
+@media(max-width:620px){.hero-proof{font-size:.62rem;letter-spacing:.08em;gap:8px 18px}}
+
+/* ============================================================
+   Leistungen als Karten
+   ============================================================ */
+.svc-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.svc-card{grid-column:span 2}
+.svc-grid > :nth-child(4):nth-last-child(2),
+.svc-grid > :nth-child(5):nth-last-child(1){grid-column:span 3}
+@media(max-width:1000px){
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .svc-card,.svc-grid > :nth-child(4):nth-last-child(2),
+  .svc-grid > :nth-child(5):nth-last-child(1){grid-column:span 1}
+}
+@media(max-width:620px){.svc-grid{grid-template-columns:1fr}}
+.svc-card{
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;
+  border:1px solid var(--line);border-radius:var(--r-lg);background:var(--bg-3);
+  padding:clamp(26px,3vw,34px) clamp(20px,2.4vw,28px);
+  transition:border-color .45s var(--ease),background .45s var(--ease),transform .45s var(--ease);
+}
+.svc-card:hover{border-color:var(--line-2);background:var(--bg-4);transform:translateY(-3px)}
+.svc-num{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--ink-2)}
+.svc-card h3{margin:2px 0 0}
+.svc-tag{font-size:.86rem;color:var(--ink);font-weight:600}
+.svc-txt{font-size:.92rem;color:var(--ink-2);margin-bottom:6px}
+/* schiebt die Schaltfläche auf gleiche Höhe, egal wie lang der Text ist */
+.svc-go{
+  margin-top:auto;width:100%;border:1px solid var(--line-2);border-radius:999px;
+  padding:11px 18px;font-size:.86rem;font-weight:600;
+  transition:background .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease);
+}
+.svc-card:hover .svc-go{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+
+/* ============================================================
+   Warum eine SEO-Agentur: acht Felder
+   ============================================================ */
+.ben-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(246px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden}
+.ben{background:var(--bg);padding:clamp(22px,2.6vw,30px);display:flex;flex-direction:column;gap:9px;
+  transition:background .45s var(--ease)}
+.ben:hover{background:var(--bg-2)}
+.ben h3{font-size:clamp(1rem,1.5vw,1.14rem)}
+.ben p{font-size:.9rem;color:var(--ink-2)}
+
+/* ============================================================
+   SEO-Fließtext am Seitenende
+   ============================================================ */
+.seo-text h2{font-size:clamp(1.3rem,2.2vw,1.8rem);margin-bottom:clamp(22px,3vw,34px)}
+.seo-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(20px,3vw,44px)}
+.seo-cols > div{display:flex;flex-direction:column;gap:16px}
+.seo-cols p{font-size:.93rem;color:var(--ink-2)}
+.seo-cols a{color:var(--ink);text-decoration:underline;text-underline-offset:3px;
+  text-decoration-color:var(--line-2);transition:text-decoration-color .3s var(--ease)}
+.seo-cols a:hover{text-decoration-color:var(--ink)}
+
+/* ============================================================
+   Unterseiten: zentrierter Kopf mit Marker
+   ============================================================ */
+.page-hero{text-align:center}
+.page-hero .pill{
+  display:inline-block;font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-2);border:1px solid var(--line-2);border-radius:999px;padding:7px 16px;margin-bottom:22px;
+}
+.page-hero h1{margin-inline:auto}
+.page-hero .lede{margin:20px auto 0}
+.page-hero .hero-cta{justify-content:center;margin-top:30px}

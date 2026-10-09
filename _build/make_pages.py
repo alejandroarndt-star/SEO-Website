@@ -64,12 +64,24 @@ def page(path, title, desc, body, robots="index,follow"):
     io.open(out, "w", encoding="utf-8").write(html)
     print("wrote", path)
 
-HERO = u"""<section class="section" style="padding-top:0">
+ARR = (u'<span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" '
+       u'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>')
+
+# Unterseiten-Kopf: Marker, zentrierte Zeile, optional eine Schaltflaeche.
+HERO_T = u"""<section class="section page-hero" style="padding-top:0">
   <div class="wrap">
-    <h1 style="font-size:clamp(2rem,4.6vw,3.4rem);max-width:20ch;margin:0 0 18px">{h1}</h1>
-    <p class="lede">{lede}</p>
+    <span class="pill">{kicker}</span>
+    <h1 style="font-size:clamp(2rem,4.6vw,3.4rem);max-width:24ch;margin:0 auto">{h1}</h1>
+    <p class="lede">{lede}</p>{cta}
   </div>
 </section>"""
+
+def hero(kicker, h1, lede, cta_up=None):
+    btn = u""
+    if cta_up is not None:
+        btn = (u'\n    <div class="hero-cta"><a href="%skontakt.html" class="btn btn-primary">'
+               u'Kostenlose SEO-Analyse%s</a></div>' % (cta_up, ARR))
+    return HERO_T.format(kicker=kicker, h1=h1, lede=lede, cta=btn)
 
 def cta(up=""):
     return u"""<div class="band" style="margin-top:46px">
@@ -81,7 +93,7 @@ def cta(up=""):
     </div>""" % up
 
 def service(path, title, desc, kicker, h1, lede, sections, bullets_title, bullets):
-    body = HERO.format(kicker=kicker, h1=h1, lede=lede)
+    body = hero(kicker=kicker, h1=h1, lede=lede, cta_up="../")
     inner = "".join(u"\n    <h2>%s</h2>\n    <p>%s</p>" % (h, t) for h, t in sections)
     lis = "".join(u"\n      <li>%s</li>" % b for b in bullets)
     body += u"""
@@ -95,25 +107,54 @@ def service(path, title, desc, kicker, h1, lede, sections, bullets_title, bullet
 </section>""" % (inner, bullets_title, lis, cta("../"))
     page(path, title, desc, body)
 
+# Die Leistungskarten stehen auf der Startseite und auf der Uebersicht. Hier
+# relativ innerhalb von leistungen/, auf der Startseite mit dem Praefix.
+SVC = [
+ (u"01", u"SEO", u"seo.html",
+  u"Technik, Inhalte, lokale Sichtbarkeit.",
+  u"Die drei Bereiche h\u00e4ngen zusammen. Wir trennen sie nicht in Pakete, sondern arbeiten an dem, was bei Ihnen den Unterschied macht.",
+  u"Jetzt ranken"),
+ (u"02", u"OnPage und Webdesign", u"onpage-und-webdesign.html",
+  u"Struktur vor Gestaltung.",
+  u"Wie eine Seite aufgebaut ist, entscheidet mehr \u00fcber die Position als ihr Aussehen. \u00dcberschriften, interne Links und Suchabsicht.",
+  u"Jetzt umbauen"),
+ (u"03", u"Linkaufbau", u"linkaufbau.html",
+  u"Herkunft statt Anzahl.",
+  u"Verlinkungen aus Quellen, bei denen eine Erw\u00e4hnung auch ohne SEO Sinn ergeben w\u00fcrde. Keine gekauften Netzwerke.",
+  u"Jetzt verlinken"),
+ (u"04", u"SEO Audit", u"seo-audit.html",
+  u"Erst messen, dann entscheiden.",
+  u"Vollst\u00e4ndige Bestandsaufnahme mit priorisierter Ma\u00dfnahmenliste. Auch einzeln beauftragbar, ohne Folgeauftrag.",
+  u"Jetzt pr\u00fcfen"),
+ (u"05", u"Reporting", u"reporting.html",
+  u"Eine Seite, keine vierzig.",
+  u"Positionen, Besucher aus der Suche und was umgesetzt wurde. Lesbar ohne Vorkenntnisse, wann immer Sie ihn brauchen.",
+  u"Jetzt mitlesen"),
+]
+SVC_CARDS = u"".join(u"""
+      <a class="svc-card" href="%s">
+        <span class="svc-num">%s</span>
+        <h3>%s</h3>
+        <p class="svc-tag">%s</p>
+        <p class="svc-txt">%s</p>
+        <span class="svc-go">%s</span>
+      </a>""" % (href, num, name, tag, txt, go) for num, name, href, tag, txt, go in SVC)
+
 # ---------------------------------------------------------------- Leistungen overview
 page("leistungen/index.html",
  u"Leistungen | Kontor",
  u"SEO, OnPage und Webdesign, Linkaufbau, SEO Audit und Reporting. Festpreis, keine Mindestlaufzeit.",
- HERO.format(kicker=u"Leistungen",
+ hero(kicker=u"Leistungen",
    h1=u"Leistungen",
-   lede=u"Je nach Ausgangslage liegt der Hebel woanders. Welcher es bei Ihnen ist, steht in der Analyse, bevor Sie etwas beauftragen.") + u"""
+   lede=u"Je nach Ausgangslage liegt der Hebel woanders. Welcher es bei Ihnen ist, steht in der Analyse, bevor Sie etwas beauftragen.",
+   cta_up="../") + u"""
 <section class="section" style="padding-top:0">
   <div class="wrap">
-    <div class="index">
-      <a class="index-row" href="seo.html"><span class="idx">01</span><h3>SEO</h3><p>Technik, Inhalte und lokale Sichtbarkeit als ein Paket.</p></a>
-      <a class="index-row" href="onpage-und-webdesign.html"><span class="idx">02</span><h3>OnPage und Webdesign</h3><p>Aufbau, Gestaltung und Texte der Seiten, die ranken sollen.</p></a>
-      <a class="index-row" href="linkaufbau.html"><span class="idx">03</span><h3>Linkaufbau</h3><p>Verlinkungen aus Quellen, die tatsächlich zählen.</p></a>
-      <a class="index-row" href="seo-audit.html"><span class="idx">04</span><h3>SEO Audit</h3><p>Vollständige Bestandsaufnahme, auch einzeln beauftragbar.</p></a>
-      <a class="index-row" href="reporting.html"><span class="idx">05</span><h3>Reporting</h3><p>Ein Bericht, wann immer Sie ihn brauchen.</p></a>
+    <div class="svc-grid">%s
     </div>
     <div class="prose" style="max-width:none">%s</div>
   </div>
-</section>""" % cta("../"))
+</section>""" % (SVC_CARDS, cta("../")))
 
 service("leistungen/seo.html",
  u"SEO | Kontor",
@@ -209,7 +250,7 @@ service("leistungen/reporting.html",
 page("referenzen.html",
  u"Referenzen | Kontor",
  u"Fallstudien: wie wir Projekte für die organische Suche aufbauen.",
- HERO.format(kicker=u"Referenzen",
+ hero(kicker=u"Referenzen",
    h1=u"Referenzen",
    lede=u"Keine Logowand ohne Zusammenhang. Pro Projekt die Ausgangslage, das Vorgehen und was daraus zu lernen war.") + u"""
 <section class="section" style="padding-top:0">
@@ -330,7 +371,7 @@ page("referenzen/poseypets.html",
 page("kontakt.html",
  u"Kontakt und kostenlose SEO-Analyse | Kontor",
  u"Fordern Sie die kostenlose SEO-Analyse für Ihre Website an.",
- HERO.format(kicker=u"Kontakt",
+ hero(kicker=u"Kontakt",
    h1=u"Kostenlose SEO-Analyse.",
    lede=u"Schreiben Sie kurz, um welche Website es geht. Sie bekommen die Analyse schriftlich und unverbindlich.") + u"""
 <section class="section" style="padding-top:0">
@@ -367,7 +408,7 @@ page("kontakt.html",
 page("blog/index.html",
  u"Blog | Kontor",
  u"Artikel über Suchmaschinenoptimierung, ohne Fachchinesisch.",
- HERO.format(kicker=u"Blog",
+ hero(kicker=u"Blog",
    h1=u"Blog",
    lede=u"Kurze Artikel zu den Fragen, die uns Kunden immer wieder stellen.") + u"""
 <section class="section" style="padding-top:0">
@@ -383,7 +424,7 @@ page("blog/index.html",
 
 # ---------------------------------------------------------------- Impressum
 page("impressum.html", u"Impressum | Kontor", u"Impressum nach § 5 DDG.",
- HERO.format(kicker=u"Pflichtangaben", h1=u"Impressum.", lede=u"Angaben gemäß § 5 DDG.") + u"""
+ hero(kicker=u"Pflichtangaben", h1=u"Impressum.", lede=u"Angaben gemäß § 5 DDG.") + u"""
 <section class="section" style="padding-top:0">
   <div class="wrap prose">
     <!-- Übernommen aus dem Impressum von poseypets.com, auf diese Tätigkeit
@@ -406,7 +447,7 @@ page("impressum.html", u"Impressum | Kontor", u"Impressum nach § 5 DDG.",
 # ---------------------------------------------------------------- Datenschutz
 page("datenschutz.html", u"Datenschutzerklärung | Kontor",
  u"Informationen zur Verarbeitung personenbezogener Daten auf dieser Website.",
- HERO.format(kicker=u"Datenschutz", h1=u"Datenschutzerklärung.",
+ hero(kicker=u"Datenschutz", h1=u"Datenschutzerklärung.",
    lede=u"Diese Website kommt ohne Cookies, ohne Tracking und ohne eingebettete Inhalte Dritter aus.") + u"""
 <section class="section" style="padding-top:0">
   <div class="wrap prose">
