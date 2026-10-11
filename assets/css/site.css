@@ -722,3 +722,8 @@ code{font-family:var(--mono);font-size:.9em;background:var(--bg-3);border:1px so
 .ref-filters.az{flex-wrap:wrap;gap:6px}
 .ref-filters.az .ref-filter{min-width:40px;padding-inline:12px;justify-content:center}
 @media(max-width:760px){.ref-filters.az{flex-wrap:wrap;overflow:visible;margin-inline:0;padding-inline:0}}
+
+/* Bilder in Beitraegen. height:auto, sonst machen die width/height-Attribute
+   das aspect-ratio wirkungslos und das Bild wird beschnitten. */
+.art-body img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;
+  border-radius:var(--r);border:1px solid var(--line);margin:clamp(26px,3.4vw,40px) 0}
