@@ -653,3 +653,18 @@ a,button,summary{-webkit-tap-highlight-color:rgba(255,255,255,.07)}
    bleibt trotzdem auf lesbarer Zeilenlaenge. */
 .acc-body > p,.acc-body > ul,.acc-body > ol{max-width:72ch}
 .acc-body .cs-quote{border-left-color:var(--c,var(--case-accent))}
+
+/* ============================================================
+   Terminbuchung
+   ============================================================ */
+.book{border:1px solid var(--line);border-radius:var(--r-lg);background:var(--bg-2);
+  padding:clamp(26px,3.4vw,40px);display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.book h2{font-size:clamp(1.4rem,2.6vw,2rem);margin:0}
+.book .lede{margin:0}
+.book .btn{margin-top:6px}
+.book-hint,.book-fallback{font-size:.82rem;color:var(--ink-3);margin:0}
+.book-hint a,.book-fallback a{color:var(--ink-2);text-decoration:underline;text-underline-offset:3px}
+.book-hint a:hover,.book-fallback a:hover{color:var(--ink)}
+.book-frame{width:100%;min-height:620px;border:1px solid var(--line);border-radius:var(--r);
+  background:var(--bg-3);margin-top:4px}
+@media(max-width:620px){.book-frame{min-height:560px}}

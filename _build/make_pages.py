@@ -530,9 +530,33 @@ page("referenzen/poseypets.html",
 </section>""")
 
 # ---------------------------------------------------------------- Kontakt
+# EINE Stelle fuer die Buchungsseite. Der Link kommt aus Google Kalender,
+# Terminplan -> Teilen. Solange hier der Platzhalter steht, zeigt die Seite
+# statt des Kalenders den Hinweis, dass per Mail ein Termin vereinbart wird.
+BOOKING_URL = u"BUCHUNGSSEITE_EINTRAGEN"
+MAIL = u"kontakt@kontor-seo.de"
+TEL_LINK, TEL_TEXT = u"+491771885605", u"+49 177 188 5605"
+
+if BOOKING_URL.startswith(u"http"):
+    BOOKING_PANEL = u"""<div class="book" data-booking="%(url)s">
+        <span class="kicker">Termin</span>
+        <h2>Telefontermin buchen</h2>
+        <p class="lede">Zwanzig Minuten, in denen wir uns Ihre Seite gemeinsam ansehen. <strong>Termine finden freitags statt.</strong></p>
+        <button class="btn btn-primary book-go" type="button">Freien Freitagstermin wählen%(arr)s</button>
+        <p class="book-hint">Mit dem Klick wird der Kalender von Google geladen. Dabei erhält Google Ihre IP-Adresse. Details in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+        <p class="book-fallback" hidden>Der Kalender lädt nicht? <a href="%(url)s" target="_blank" rel="noopener">Buchungsseite direkt öffnen</a> oder einfach eine Mail an <a href="mailto:%(mail)s">%(mail)s</a>.</p>
+      </div>""" % {"url": BOOKING_URL, "arr": ARR, "mail": MAIL}
+else:
+    BOOKING_PANEL = u"""<div class="book">
+        <span class="kicker">Termin</span>
+        <h2>Telefontermin</h2>
+        <p class="lede">Zwanzig Minuten, in denen wir uns Ihre Seite gemeinsam ansehen. <strong>Termine finden freitags statt.</strong></p>
+        <p class="book-hint">Die Online-Buchung wird gerade eingerichtet. Schreiben Sie uns bis dahin kurz an <a href="mailto:%(mail)s">%(mail)s</a>, wir schlagen Ihnen einen Freitagstermin vor.</p>
+      </div>""" % {"mail": MAIL}
+
 page("kontakt.html",
  u"Kontakt und kostenlose SEO-Analyse | Kontor",
- u"Fordern Sie die kostenlose SEO-Analyse für Ihre Website an.",
+ u"Fordern Sie die kostenlose SEO-Analyse für Ihre Website an. Telefontermine freitags.",
  hero(kicker=u"Kontakt",
    h1=u"Kostenlose SEO-Analyse.",
    lede=u"Schreiben Sie kurz, um welche Website es geht. Sie bekommen die Analyse schriftlich und unverbindlich.") + u"""
@@ -540,9 +564,8 @@ page("kontakt.html",
   <div class="wrap serp-grid">
     <div class="prose">
       <h2 style="margin-top:0">Direkt erreichbar</h2>
-      <!-- TODO: Adresse auf das neue Postfach umstellen, sobald die Domain steht -->
-      <p><strong>E-Mail:</strong> <a href="mailto:kontakt@beispiel.de">kontakt@beispiel.de</a><br>
-         <strong>Telefon:</strong> <a href="tel:+491771885605">+49 177 188 5605</a></p>
+      <p><strong>E-Mail:</strong> <a href="mailto:%(mail)s">%(mail)s</a><br>
+         <strong>Telefon:</strong> <a href="tel:%(tel_link)s">%(tel_text)s</a></p>
       <h3>Was wir für die Analyse brauchen</h3>
       <ul>
         <li>Ihre Website</li>
@@ -552,19 +575,13 @@ page("kontakt.html",
       <p>Antwort in der Regel innerhalb eines Werktags.</p>
     </div>
     <div>
-      <!-- TODO: Terminbuchung einsetzen. GitHub Pages ist statisch, es gibt kein
-           Backend. Also entweder die Google Buchungsseite (in Workspace Business
-           Starter enthalten) oder eine Serverless Funktion. -->
-      <div class="band ph">
-        <div class="band-in">
-          <span class="kicker">Platzhalter</span>
-          <h2 style="font-size:clamp(1.4rem,2.6vw,2rem);margin:12px 0">Terminbuchung</h2>
-          <p class="lede">Hier kommt der Buchungskalender hin.</p>
-        </div>
-      </div>
+      <!-- Der Kalender wird erst nach einem Klick geladen. Vorher geht keine
+           Anfrage an Google, damit die Aussage in der Datenschutzerklaerung
+           ("keine Inhalte Dritter") fuer alle gilt, die nicht buchen wollen. -->
+      %(panel)s
     </div>
   </div>
-</section>""")
+</section>""" % {"mail": MAIL, "tel_link": TEL_LINK, "tel_text": TEL_TEXT, "panel": BOOKING_PANEL})
 
 # ---------------------------------------------------------------- Blog
 page("blog/index.html",
@@ -590,13 +607,12 @@ page("impressum.html", u"Impressum | Kontor", u"Impressum nach § 5 DDG.",
 <section class="section" style="padding-top:0">
   <div class="wrap prose">
     <!-- Übernommen aus dem Impressum von poseypets.com, auf diese Tätigkeit
-         angepasst. OFFEN: Marken- bzw. Firmierung und die E-Mail-Adresse auf
-         der neuen Domain eintragen, sobald beides steht. -->
-    <p style="color:var(--warn)"><strong>Offen: Firmierung und E-Mail-Adresse auf der neuen Domain eintragen.</strong></p>
+         angepasst. Einzelunternehmen, daher nach § 5 DDG der bürgerliche Name
+         und die ladungsfähige Anschrift; eine Firmierung ist nicht nötig. -->
     <h2>Diensteanbieter</h2>
     <p>Alejandro Arndt<br>Albstraße 54<br>73066 Uhingen<br>Deutschland</p>
     <h2>Kontakt</h2>
-    <p>Telefon: +49 177 188 5605<br>E-Mail: kontakt@beispiel.de</p>
+    <p>Telefon: +49 177 188 5605<br>E-Mail: <a href="mailto:kontakt@kontor-seo.de">kontakt@kontor-seo.de</a></p>
     <h2>Umsatzsteuer</h2>
     <p>Gemäß § 19 UStG wird keine Umsatzsteuer berechnet (Kleinunternehmerregelung).</p>
     <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
@@ -623,6 +639,11 @@ page("datenschutz.html", u"Datenschutzerklärung | Kontor",
     <h2>Hosting durch GitHub Pages</h2>
     <p>Diese Website wird bei GitHub Pages gehostet, einem Dienst der GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Beim Aufruf verarbeitet GitHub technisch notwendige Zugriffsdaten, insbesondere die IP-Adresse, Datum und Uhrzeit des Zugriffs, die aufgerufene Seite, den verweisenden Link sowie Browser- und Betriebssystemangaben. Diese Verarbeitung ist für die Auslieferung und die Sicherheit der Website erforderlich.</p>
     <p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO, das berechtigte Interesse an einer sicheren und zuverlässigen Bereitstellung der Website. Da GitHub seinen Sitz in den USA hat, kann eine Übermittlung personenbezogener Daten in die USA nicht ausgeschlossen werden.</p>
+    <h2>Terminbuchung über Google Kalender</h2>
+    <p>Auf der Kontaktseite können Sie einen Telefontermin buchen. Der Kalender stammt von Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Er wird <strong>erst geladen, wenn Sie die Schaltfläche anklicken</strong>. Vorher wird keine Verbindung zu Google aufgebaut und es werden keine Daten übertragen.</p>
+    <p>Mit dem Klick übermittelt Ihr Browser an Google insbesondere Ihre IP-Adresse sowie Browser- und Geräteangaben; Google kann dabei Cookies setzen. Rechtsgrundlage für das Laden ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO, die Sie durch den Klick erteilen und für die Zukunft widerrufen können, indem Sie die Seite verlassen oder neu laden. Buchen Sie anschließend einen Termin, verarbeiten wir Ihre Angaben zur Durchführung des Termins auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO.</p>
+    <p>Sie können einen Termin auch ohne Google vereinbaren, indem Sie uns per <a href="mailto:kontakt@kontor-seo.de">E-Mail</a> oder telefonisch schreiben.</p>
+
     <h2>Kontaktaufnahme</h2>
     <p>Wenn Sie uns per E-Mail oder Telefon kontaktieren, verarbeiten wir Ihre Angaben ausschließlich zur Bearbeitung Ihrer Anfrage. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO bei vorvertraglichen Maßnahmen, sonst Art. 6 Abs. 1 lit. f DSGVO. Die Daten werden gelöscht, sobald sie nicht mehr erforderlich sind und keine gesetzlichen Aufbewahrungsfristen entgegenstehen.</p>
     <h2>Ihre Rechte</h2>

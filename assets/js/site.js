@@ -125,3 +125,37 @@
     if (empty) empty.hidden = shown > 0;
   });
 })();
+
+/* ---- Terminbuchung: Kalender erst nach dem Klick laden ----------------
+   Vorher geht keine Anfrage an Google. Der Link daneben bleibt immer
+   erreichbar, falls Google das Einbetten der Seite ablehnt. */
+(function () {
+  var box = document.querySelector('.book[data-booking]');
+  if (!box) return;
+  var url = box.getAttribute('data-booking');
+  var btn = box.querySelector('.book-go');
+  var hint = box.querySelector('.book-hint');
+  var fallback = box.querySelector('.book-fallback');
+  var ready = url && url.indexOf('http') === 0;
+
+  if (!ready) {
+    // Noch keine Buchungsseite hinterlegt: nicht so tun, als gaebe es eine.
+    if (btn) btn.remove();
+    if (hint) hint.textContent = 'Die Buchungsseite wird gerade eingerichtet. Schreiben Sie uns bis dahin kurz eine Mail, wir melden uns am selben Werktag.';
+    if (fallback) fallback.remove();
+    return;
+  }
+
+  btn.addEventListener('click', function () {
+    var frame = document.createElement('iframe');
+    frame.src = url;
+    frame.title = 'Terminbuchung';
+    frame.loading = 'lazy';
+    frame.className = 'book-frame';
+    frame.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+    btn.remove();
+    if (hint) hint.remove();
+    box.appendChild(frame);
+    if (fallback) fallback.hidden = false;
+  });
+})();
