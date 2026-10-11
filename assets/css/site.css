@@ -594,3 +594,62 @@ a,button,summary{-webkit-tap-highlight-color:rgba(255,255,255,.07)}
   .ref-filter{flex:0 0 auto;scroll-snap-align:start;display:inline-flex;align-items:center;
     min-height:44px;font-size:.75rem;padding-inline:18px}
 }
+
+/* ============================================================
+   Aufklappbare Abschnitte
+   ============================================================ */
+/* <details>, damit es ohne JavaScript funktioniert und der Inhalt auch
+   im zugeklappten Zustand im Quelltext steht. --c kommt vom Element. */
+.acc{display:flex;flex-direction:column;gap:12px}
+.wrap.prose > .acc{max-width:none}
+.acc-item{border:1px solid var(--c-soft,var(--line));border-radius:var(--r-lg);background:var(--bg-2);
+  overflow:hidden;transition:border-color .4s var(--ease),background .4s var(--ease)}
+.acc-item[open]{background:var(--bg-3);border-color:var(--c,var(--line-2))}
+.acc-item > summary{
+  list-style:none;cursor:pointer;display:grid;grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:center;gap:16px;padding:clamp(18px,2.2vw,24px) clamp(18px,2.4vw,26px);
+}
+.acc-item > summary::-webkit-details-marker{display:none}
+.acc-n{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--c,var(--ink-3))}
+.acc-t{display:block;font-family:var(--display);font-weight:700;letter-spacing:-.02em;
+  font-size:clamp(1.1rem,1.9vw,1.4rem);line-height:1.2}
+.acc-s{display:block;font-size:.88rem;color:var(--ink-2);margin-top:5px}
+.acc-ic{display:grid;place-items:center;width:34px;height:34px;flex:none;
+  border:1px solid var(--c-soft,var(--line-2));border-radius:50%;color:var(--c,var(--ink));
+  transition:background .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease)}
+.acc-ic svg{width:15px;height:15px;transition:transform .4s var(--ease)}
+.acc-item > summary:hover .acc-ic{border-color:var(--c,var(--ink))}
+.acc-item[open] .acc-ic{background:var(--c,var(--ink));color:#0B0B0C;border-color:var(--c,var(--ink))}
+.acc-item[open] .acc-ic svg{transform:rotate(180deg)}
+.acc-body{padding:20px clamp(18px,2.4vw,26px) clamp(24px,2.8vw,32px);border-top:1px solid var(--line);
+  animation:accIn .4s var(--ease)}
+.acc-body > :last-child{margin-bottom:0}
+@keyframes accIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.acc-body{animation:none}}
+@media(max-width:620px){
+  .acc-item > summary{gap:12px;padding:16px 16px}
+  .acc-body{padding:18px 16px 22px}
+  .acc-s{font-size:.84rem}
+}
+
+/* Kopf der Fallstudie mit dem Logo des Projekts */
+.cs-brand{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;
+  margin-bottom:clamp(26px,3.4vw,40px)}
+.cs-brand img{width:clamp(118px,15vw,164px);height:auto}
+.cs-brand .tags{justify-content:center}
+.cs-visit{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.7rem;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);
+  border-bottom:1px solid var(--line-2);padding-bottom:3px;transition:color .3s var(--ease),border-color .3s var(--ease)}
+.cs-visit:hover{color:var(--ink);border-color:var(--ink)}
+
+/* Schlagworte im Kopf der Fallstudie. Es gab dafuer bisher keine Regel,
+   die vier Begriffe liefen als nackter Text ineinander. */
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-2);border:1px solid var(--line-2);border-radius:999px;padding:7px 14px;line-height:1}
+.tag.accent{color:var(--case-accent,var(--ink));border-color:currentColor}
+@media(max-width:620px){.tag{font-size:.66rem;padding:7px 12px}}
+/* Die Felder sind breiter als der Fliesstext daneben; der Text darin
+   bleibt trotzdem auf lesbarer Zeilenlaenge. */
+.acc-body > p,.acc-body > ul,.acc-body > ol{max-width:72ch}
+.acc-body .cs-quote{border-left-color:var(--c,var(--case-accent))}

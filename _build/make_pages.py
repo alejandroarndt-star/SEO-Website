@@ -94,6 +94,28 @@ def cta(up=""):
       </div>
     </div>""" % up
 
+CHEV = (u'<span class="acc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" '
+        u'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>')
+
+def acc(items, hue=None):
+    """items: (nr, titel, unterzeile, inhalt). Das erste Feld ist offen, damit
+    die Seite nicht leer wirkt. <details> braucht kein JavaScript.
+    hue: fester Farbton fuer alle Felder; ohne ihn traegt jedes seinen eigenen."""
+    out = []
+    for i, (nr, title, sub, body) in enumerate(items):
+        n = hue if hue else int(nr)
+        out.append(u"""
+      <details class="acc-item"%s style="--c:var(--c%d);--c-soft:var(--c%d-soft)">
+        <summary>
+          <span class="acc-n">%s</span>
+          <span><span class="acc-t">%s</span><span class="acc-s">%s</span></span>
+          %s
+        </summary>
+        <div class="acc-body">%s
+        </div>
+      </details>""" % (u" open" if i == 0 else u"", n, n, nr, title, sub, CHEV, body))
+    return u'\n    <div class="acc">%s\n    </div>' % u"".join(out)
+
 SERVICES = [
  (1, u"SEO", u"seo.html"),
  (2, u"OnPage und Webdesign", u"onpage-und-webdesign.html"),
@@ -121,23 +143,19 @@ def other_services(n):
 </section>""" % rows
 
 def service(path, title, desc, kicker, h1, lede, sections, bullets_title, bullets,
-            accent=None, vals_head=u"", vals=(), faq_head=u"", faq=()):
+            accent=None, vals_head=u"", vals=(), faq_head=u"", faq=(), subs=()):
     body = hero(kicker=kicker, h1=h1, lede=lede, cta_up="../")
 
-    # Die drei Textbloecke als nummerierte Zeilen statt als Fliesstext.
-    steps = u"".join(
-        u"""
-      <div class="step rv">
-        <div class="step-k"><span class="step-n">%02d</span><h2>%s</h2></div>
-        <p>%s</p>
-      </div>""" % (i + 1, h, t) for i, (h, t) in enumerate(sections))
+    # Die drei Textbloecke als aufklappbare Felder, erstes offen.
+    # Der Farbton kommt von der Seite, nicht vom Feld.
+    blocks = acc([(u"%02d" % (i + 1), h, subs[i] if i < len(subs) else u"",
+                   u"\n          <p>%s</p>" % t)
+                  for i, (h, t) in enumerate(sections)], hue=accent)
     body += u"""
 <section class="section" style="padding-top:0">
-  <div class="wrap">
-    <div class="steps">%s
-    </div>
+  <div class="wrap">%s
   </div>
-</section>""" % steps
+</section>""" % blocks
 
     # Vier kurze Punkte, wie in der Vorlage unter der Ueberschrift.
     if vals:
@@ -255,6 +273,7 @@ service("leistungen/seo.html",
   u"Mehrere URLs mit demselben Inhalt, die sich gegenseitig Konkurrenz machen",
   u"Eine Leistungsseite, die zehn Themen gleichzeitig abdecken soll",
   u"Ein Unternehmensprofil mit abweichender Adresse oder Telefonnummer"], accent=1,
+ subs=[u'Ladezeit, Indexierung, saubere Weiterleitungen', u'Eine Seite je Suchbegriff statt einer für alles', u'Das Unternehmensprofil, oft der schnellste Hebel'],
  vals_head=u'Was sich dadurch ändert',
  vals=[
    (u'Gefunden, wo gesucht wird', u'Nicht mehr Besucher irgendwoher, sondern die, die genau Ihre Leistung eingegeben haben.'),
@@ -284,6 +303,7 @@ service("leistungen/onpage-und-webdesign.html",
   u"Vorschläge für fehlende Seiten statt längerer Texte auf bestehenden",
   u"Interne Links von den starken auf die wichtigen Seiten",
   u"Gestaltung und Aufbau der Seiten, die Anfragen bringen sollen"], accent=2,
+ subs=[u'Überschriften, interne Links, Gliederung', u'Ein sichtbarer nächster Schritt statt nur Besuch', u'Dreißig Suchen mit Bedarf schlagen tausend ohne'],
  vals_head=u'Was dabei entsteht',
  vals=[
    (u'Eine Seite je Suchabsicht', u'Statt einer Leistungsseite, auf der alles gleichzeitig steht, eine Seite pro Frage, die Anfragen bringt.'),
@@ -312,6 +332,7 @@ service("leistungen/linkaufbau.html",
   u"Erwähnungen Ihres Namens ohne Link finden und nachträglich verlinken lassen",
   u"Partner, Lieferanten und Verbände, bei denen ein Eintrag ohnehin naheliegt",
   u"Fachbeiträge, bei denen die Verlinkung aus dem Inhalt folgt"], accent=3,
+ subs=[u'Quellen, bei denen eine Erwähnung Sinn ergibt', u'Gekaufte Netzwerke treffen die ganze Domain', u'Der langsamste Bereich, deshalb zuletzt'],
  vals_head=u'Woran wir Qualität messen',
  vals=[
    (u'Themenbezug', u'Ein Link aus dem eigenen Umfeld zählt mehr als zehn aus einem beliebigen Verzeichnis.'),
@@ -341,6 +362,7 @@ service("leistungen/seo-audit.html",
   u"Keyword Zuordnung und Lücken im Vergleich zum Wettbewerb",
   u"Prüfung des Google Unternehmensprofils und der Verzeichnisse",
   u"Priorisierte Maßnahmenliste mit Aufwandseinschätzung"], accent=4,
+ subs=[u'Technik, Inhalte, lokal, Links, drei Wettbewerber', u'Bevor ein Budget gebunden wird', u'Nichts, wenn Sie das so wollen'],
  vals_head=u'Was Sie am Ende in der Hand haben',
  vals=[
    (u'Eine priorisierte Liste', u'Nach Wirkung sortiert, nicht nach Reihenfolge des Findens. Oben steht, was am meisten bringt.'),
@@ -369,6 +391,7 @@ service("leistungen/reporting.html",
   u"Auf Wunsch fest getaktet, sonst auf Zuruf",
   u"Immer eine Seite, per E-Mail",
   u"Erreichbar bei Fragen, ohne Ticketsystem"], accent=5,
+ subs=[u'Positionen, Besucher, Umgesetztes, nächster Schritt', u'Keine vierzig Seiten aus einem Tool', u'Ohne Cookie und ohne Banner auf Ihrer Seite'],
  vals_head=u'Was im Bericht steht',
  vals=[
    (u'Positionen und Veränderung', u'Die vereinbarten Suchbegriffe und wie sie sich seit dem letzten Bericht bewegt haben.'),
@@ -422,16 +445,20 @@ page("referenzen/poseypets.html",
  u"Wie der Onlineshop PoseyPets von Grund auf für die organische Suche aufgebaut wurde: Keyword-Recherche, Seitenstruktur, Inhalte und Technik.",
  u"""<section class="section cs" style="padding-top:0">
   <div class="wrap">
-    <div class="cs-hero">
+    <div class="cs-brand">
+      <img src="../assets/img/case/posey-logo.png" alt="Logo von PoseyPets" width="500" height="268">
+      <h1 style="font-size:clamp(2rem,4.6vw,3.4rem);margin:0">PoseyPets</h1>
+      <p class="lede" style="margin:0 auto">Ein deutscher Onlineshop für individuelle Tierportraits. Der Kunde lädt ein Foto hoch, und sein Tier wird als historische Figur gemalt. Die Aufgabe: gefunden werden, ohne jeden Besucher einkaufen zu müssen.</p>
+      <div class="tags"><span class="tag accent">E-Commerce</span><span class="tag">Technisches SEO</span><span class="tag">Content</span><span class="tag">Keyword-Strategie</span></div>
+      <a class="cs-visit" href="https://poseypets.com" target="_blank" rel="noopener">poseypets.com ansehen</a>
+    </div>
+    <div class="cs-hero" style="margin-bottom:0">
       <img src="../assets/img/case/poseypets-wohnzimmer.jpg" alt="Tierportraits als Wanddekoration im Wohnzimmer" width="1200" height="600">
     </div>
-    <h1 style="font-size:clamp(2rem,4.6vw,3.4rem);margin:0 0 18px">PoseyPets</h1>
-    <p class="lede">Ein deutscher Onlineshop für individuelle Tierportraits. Der Kunde lädt ein Foto hoch, und sein Tier wird als historische Figur gemalt. Die Aufgabe: gefunden werden, ohne jeden Besucher einkaufen zu müssen.</p>
-    <div class="tags" style="margin-top:20px"><span class="tag accent">E-Commerce</span><span class="tag">Technisches SEO</span><span class="tag">Content</span><span class="tag">Keyword-Strategie</span></div>
   </div>
 </section>
 
-<section class="section cs" style="padding-top:0">
+<section class="section cs" style="padding-top:clamp(40px,5vw,72px)">
   <div class="wrap prose">
     <p><em>Offenlegung: PoseyPets ist ein eigenes Projekt. Wir zeigen es, weil wir dort jeden Schritt selbst gegangen sind und offen darüber schreiben können, auch über das, was nicht funktioniert hat.</em></p>
 
@@ -444,50 +471,48 @@ page("referenzen/poseypets.html",
       <img src="../assets/img/case/poseypets-mona.jpg" alt="Katzenportrait im Stil der Mona Lisa" loading="lazy" width="600" height="600">
     </div>
 
-    <h2>Keyword-Recherche</h2>
-    <p>Der wichtigste Fund kam ganz am Anfang und hat die gesamte Struktur bestimmt: bei diesen Begriffen entscheidet die <strong>Schreibweise</strong> über den Erfolg.</p>
+    <h2>Was im Einzelnen gemacht wurde</h2>
+    <p>Vier Bereiche, in dieser Reihenfolge. Zum Aufklappen.</p>""" + acc([
 
-    <div class="cs-quote">
-      <p>„Haustier Portrait“ und „Haustierportrait“ sind für Google nicht dasselbe Wort. Der Unterschied im Suchvolumen liegt beim Zehnfachen.</p>
-    </div>
+  (u"01", u"Keyword-Recherche", u"Die Schreibweise entscheidet über das Zehnfache", u"""
+          <p>Der wichtigste Fund kam ganz am Anfang und hat die gesamte Struktur bestimmt: bei diesen Begriffen entscheidet die <strong>Schreibweise</strong> über den Erfolg.</p>
+          <div class="cs-quote">
+            <p>„Haustier Portrait“ und „Haustierportrait“ sind für Google nicht dasselbe Wort. Der Unterschied im Suchvolumen liegt beim Zehnfachen.</p>
+          </div>
+          <p>Und es gibt keine Regel dafür. Bei einem Tier gewinnt die getrennte Schreibweise deutlich, beim nächsten die zusammengeschriebene. Das muss pro Begriff geprüft werden, bevor irgendetwas geschrieben wird, denn die Schreibweise steckt später in Titeln, Überschriften und URLs und lässt sich nicht beiläufig ändern.</p>
+          <p>Genauso wichtig war, was <em>aussortiert</em> wurde. Ein ganzer Begriffscluster sah nach viel Volumen aus, bestand aber fast vollständig aus Leuten, die selbst malen lernen wollen. Ein zweiter war komplett wertlos, weil die Suchenden etwas ganz anderes meinten. Beide wurden gestrichen, bevor Arbeit hineinfloss.</p>"""),
 
-    <p>Und es gibt keine Regel dafür. Bei einem Tier gewinnt die getrennte Schreibweise deutlich, beim nächsten die zusammengeschriebene. Das muss pro Begriff geprüft werden, bevor irgendetwas geschrieben wird, denn die Schreibweise steckt später in Titeln, Überschriften und URLs und lässt sich nicht beiläufig ändern.</p>
-    <p>Genauso wichtig war, was <em>aussortiert</em> wurde. Ein ganzer Begriffscluster sah nach viel Volumen aus, bestand aber fast vollständig aus Leuten, die selbst malen lernen wollen. Ein zweiter war komplett wertlos, weil die Suchenden etwas ganz anderes meinten. Beide wurden gestrichen, bevor Arbeit hineinfloss.</p>
+  (u"02", u"Seitenstruktur", u"Ein Suchbegriff, eine Seite. Daraus sechs Landingpages.", u"""
+          <p>Daraus wurden sechs eigene Landingpages gebaut, je eine pro Hauptbegriff, nach einer einzigen Regel: <strong>ein Suchbegriff, eine Seite.</strong> Keine zwei Seiten konkurrieren um denselben Begriff, weil sie sich sonst gegenseitig die Position wegnehmen.</p>
+          <p>Diese Seiten sind keine Textwüsten, sondern echte Produktübersichten. Wer über die Suche kommt, sieht sofort Produkte und nicht erst 800 Wörter Einleitung. Jede Produktseite bekam zusätzlich einen eigenen Textblock, der auf ihren eigenen Begriff zugeschnitten ist.</p>
+          <figure class="cs-figure">
+            <img src="../assets/img/case/poseypets-pferd.jpg" alt="Pferdeportrait nach Foto" loading="lazy" width="1200" height="900">
+            <figcaption>Eigene Landingpage je Hauptbegriff, hier das Pferdemotiv</figcaption>
+          </figure>"""),
 
-    <figure class="cs-figure">
-      <img src="../assets/img/case/poseypets-pferd.jpg" alt="Pferdeportrait nach Foto" loading="lazy" width="1200" height="900">
-      <figcaption>Eigene Landingpage je Hauptbegriff, hier das Pferdemotiv</figcaption>
-    </figure>
+  (u"03", u"Inhalte und Blog", u"Ratgeber und Lexikon, dazu eine Regel für interne Links", u"""
+          <p>Zwei bewusst unterschiedliche Formate statt eines Blogs, weil sie zwei verschiedene Aufgaben haben:</p>
+          <ul>
+            <li><strong>Ratgeber</strong> für die ausführlichen Fragen, die sich jemand vor dem Kauf stellt.</li>
+            <li><strong>Lexikon</strong> von A bis Z für die vielen kurzen Begriffssuchen, mit eigener Filterung.</li>
+          </ul>
+          <p>Dazu eine feste Regel für die interne Verlinkung: etwa 60 Prozent der Links zeigen auf Seiten, die verkaufen, 40 Prozent auf weitere Inhalte.</p>
+          <div class="cs-note">
+            <h3>Warum diese Regel</h3>
+            <p>Ohne sie verlinkt ein Blog nach einiger Zeit fast nur noch sich selbst. Die Artikel ranken dann vielleicht, schieben aber keine Kraft mehr auf die Seiten, an denen tatsächlich Geld verdient wird.</p>
+          </div>
+          <div class="cs-split">
+            <img src="../assets/img/case/poseypets-tasse.jpg" alt="Personalisierte Tasse mit Tierportrait" loading="lazy" width="600" height="600">
+            <img src="../assets/img/case/poseypets-unboxing.jpg" alt="Ausgepacktes Tierportrait" loading="lazy" width="600" height="600">
+          </div>"""),
 
-    <h2>Seitenstruktur</h2>
-    <p>Daraus wurden sechs eigene Landingpages gebaut, je eine pro Hauptbegriff, nach einer einzigen Regel: <strong>ein Suchbegriff, eine Seite.</strong> Keine zwei Seiten konkurrieren um denselben Begriff, weil sie sich sonst gegenseitig die Position wegnehmen.</p>
-    <p>Diese Seiten sind keine Textwüsten, sondern echte Produktübersichten. Wer über die Suche kommt, sieht sofort Produkte und nicht erst 800 Wörter Einleitung. Jede Produktseite bekam zusätzlich einen eigenen Textblock, der auf ihren eigenen Begriff zugeschnitten ist.</p>
-
-    <h2>Inhalte</h2>
-    <p>Zwei bewusst unterschiedliche Formate statt eines Blogs, weil sie zwei verschiedene Aufgaben haben:</p>
-    <ul>
-      <li><strong>Ratgeber</strong> für die ausführlichen Fragen, die sich jemand vor dem Kauf stellt.</li>
-      <li><strong>Lexikon</strong> von A bis Z für die vielen kurzen Begriffssuchen, mit eigener Filterung.</li>
-    </ul>
-    <p>Dazu eine feste Regel für die interne Verlinkung: etwa 60 Prozent der Links zeigen auf Seiten, die verkaufen, 40 Prozent auf weitere Inhalte.</p>
-
-    <div class="cs-note">
-      <h3>Warum diese Regel</h3>
-      <p>Ohne sie verlinkt ein Blog nach einiger Zeit fast nur noch sich selbst. Die Artikel ranken dann vielleicht, schieben aber keine Kraft mehr auf die Seiten, an denen tatsächlich Geld verdient wird.</p>
-    </div>
-
-    <div class="cs-split">
-      <img src="../assets/img/case/poseypets-tasse.jpg" alt="Personalisierte Tasse mit Tierportrait" loading="lazy" width="600" height="600">
-      <img src="../assets/img/case/poseypets-unboxing.jpg" alt="Ausgepacktes Tierportrait" loading="lazy" width="600" height="600">
-    </div>
-
-    <h2>Technik</h2>
-    <p>Vollständige Metadaten über alle Produkte und Kategorien, eine FAQ mit passender Auszeichnung für die Suchergebnisse, Ladezeit und mobile Darstellung, und eine saubere interne Verlinkung bis in den Footer.</p>
-    <p>Eine Entscheidung dabei war, bestehende URLs <em>nicht</em> umzuziehen, obwohl eine andere Struktur auf dem Papier schöner gewesen wäre. Die Seiten rankten bereits.</p>
-
-    <div class="cs-quote">
-      <p>Einen vorhandenen Rankingaufbau für eine kosmetische Verbesserung wegzuwerfen, ist einer der teuersten Fehler überhaupt. Wir sehen ihn ständig.</p>
-    </div>
+  (u"04", u"Technisches SEO", u"Metadaten, FAQ-Auszeichnung, Ladezeit — und eine URL-Entscheidung", u"""
+          <p>Vollständige Metadaten über alle Produkte und Kategorien, eine FAQ mit passender Auszeichnung für die Suchergebnisse, Ladezeit und mobile Darstellung, und eine saubere interne Verlinkung bis in den Footer.</p>
+          <p>Eine Entscheidung dabei war, bestehende URLs <em>nicht</em> umzuziehen, obwohl eine andere Struktur auf dem Papier schöner gewesen wäre. Die Seiten rankten bereits.</p>
+          <div class="cs-quote">
+            <p>Einen vorhandenen Rankingaufbau für eine kosmetische Verbesserung wegzuwerfen, ist einer der teuersten Fehler überhaupt. Wir sehen ihn ständig.</p>
+          </div>"""),
+ ]) + u"""
 
     <h2>Stand heute</h2>
     <p>Der Shop ist live, verkauft und läuft geschäftlich gut. Die Sichtbarkeit baut sich weiter auf, die Landingpages ranken für ihre jeweiligen Begriffe, und es kommen laufend Inhalte dazu. SEO ist hier kein abgeschlossenes Projekt, sondern die Grundlage, auf der weitergearbeitet wird.</p>
