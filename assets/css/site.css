@@ -673,3 +673,7 @@ a,button,summary{-webkit-tap-highlight-color:rgba(255,255,255,.07)}
 
 .acc-body > :first-child{margin-top:0}
 .acc-body h3:first-child{margin-top:0}
+/* Bilder in den Feldern kleiner: in der vollen Feldbreite wirkte eine
+   Abbildung mit 860px erschlagend. */
+.acc-body .cs-figure{max-width:600px}
+.acc-body .cs-split{max-width:720px}

@@ -324,14 +324,15 @@ service("leistungen/linkaufbau.html",
  [(u"Was zählt",
    u"Ein Link aus einem regionalen Nachrichtenportal, einem Branchenverband, einem Partnerunternehmen oder einem Fachbeitrag. Also Quellen, bei denen eine Erwähnung auch ohne SEO Sinn ergeben würde."),
   (u"Was schadet",
-   u"Gekaufte Links aus Netzwerken, Verzeichnisse ohne eigenen Zweck und getauschte Links in großer Zahl. Das lässt sich erkennen, und der Schaden trifft die gesamte Domain. Wir machen das nicht, auch nicht auf Wunsch."),
+   u"Gekaufte Links aus Netzwerken, Verzeichnisse ohne eigenen Zweck und maschinell verteilter Tausch in großer Zahl. Das lässt sich erkennen, und der Schaden trifft die gesamte Domain. Wir machen das nicht, auch nicht auf Wunsch. Ein einzelner Tausch mit einem Betrieb, dessen Thema tatsächlich zu Ihrem passt, ist etwas anderes: Dort ergibt die Erwähnung auch für dessen Leser Sinn."),
   (u"Realistische Erwartung",
    u"Linkaufbau ist der langsamste Bereich. Vor den anderen lohnt er sich selten. Wenn Technik, Inhalte und lokale Präsenz stehen und es trotzdem nicht reicht, ist dies der nächste Schritt.")],
  u"Wie wir arbeiten", [
   u"Analyse, welche Quellen Ihre Wettbewerber verlinken",
+  u"Suche nach Betrieben, die thematisch passen und selbst eine sichtbare Seite haben",
+  u"Persönliche Ansprache mit einem konkreten Vorschlag: Verlinkung untereinander oder ein Gastartikel, den wir schreiben",
   u"Erwähnungen Ihres Namens ohne Link finden und nachträglich verlinken lassen",
-  u"Partner, Lieferanten und Verbände, bei denen ein Eintrag ohnehin naheliegt",
-  u"Fachbeiträge, bei denen die Verlinkung aus dem Inhalt folgt"], accent=3,
+  u"Partner, Lieferanten und Verbände, bei denen ein Eintrag ohnehin naheliegt"], accent=3,
  subs=[u'Quellen, bei denen eine Erwähnung Sinn ergibt', u'Gekaufte Netzwerke treffen die ganze Domain', u'Der langsamste Bereich, deshalb zuletzt'],
  vals_head=u'Woran wir Qualität messen',
  vals=[
@@ -442,14 +443,14 @@ page("referenzen.html",
 # ---------------------------------------------------------------- Fallstudie PoseyPets
 page("referenzen/poseypets.html",
  u"Fallstudie PoseyPets | Kontor",
- u"Wie der Onlineshop PoseyPets von Grund auf für die organische Suche aufgebaut wurde: Keyword-Recherche, Seitenstruktur, Inhalte und Technik.",
+ u"Wie der Onlineshop PoseyPets von Grund auf für die organische Suche aufgebaut wurde: Keyword-Recherche mit Sistrix, Seitenstruktur, täglicher Content, Technik und Linkaufbau.",
  u"""<section class="section cs" style="padding-top:0">
   <div class="wrap">
     <div class="cs-brand">
       <img src="../assets/img/case/posey-logo.png" alt="Logo von PoseyPets" width="500" height="268">
       <h1 style="font-size:clamp(2rem,4.6vw,3.4rem);margin:0">PoseyPets</h1>
       <p class="lede" style="margin:0 auto">Ein deutscher Onlineshop für individuelle Tierportraits. Der Kunde lädt ein Foto hoch, und sein Tier wird als historische Figur gemalt. Die Aufgabe: gefunden werden, ohne jeden Besucher einkaufen zu müssen.</p>
-      <div class="tags"><span class="tag accent">E-Commerce</span><span class="tag">Technisches SEO</span><span class="tag">Content</span><span class="tag">Keyword-Strategie</span></div>
+      <div class="tags"><span class="tag accent">E-Commerce</span><span class="tag">Technisches SEO</span><span class="tag">Content</span><span class="tag">Keyword-Strategie</span><span class="tag">Linkaufbau</span></div>
       <a class="cs-visit" href="https://poseypets.com" target="_blank" rel="noopener">poseypets.com ansehen</a>
       <!-- Die Offenlegung steht bewusst offen und nicht in einem Feld: ein
            Hinweis, den man erst aufklappen muss, ist keine Offenlegung. -->
@@ -465,62 +466,86 @@ page("referenzen/poseypets.html",
   <div class="wrap">""" + acc([
 
   (u"01", u"Ausgangssituation", u"Neuer Shop, keine Domainhistorie, null Sichtbarkeit", u"""
-          <p>Ein neuer Shop ohne Domainhistorie, in einem Umfeld, in dem bereits internationale Anbieter stehen. Zum Start war der Shop bei Google für keinen einzigen relevanten Begriff zu finden.</p>
-          <p>Die naheliegende Alternative wäre gewesen, jeden Besucher über bezahlte Anzeigen einzukaufen. Das funktioniert, solange Budget da ist, und endet an dem Tag, an dem es aufhört. Bei einem Produkt mit begrenztem Warenkorbwert frisst es außerdem die Marge. Also sollte die organische Suche die tragende Säule werden.</p>
+          <p>Ein neuer Shop ohne Domainhistorie, in einem Umfeld, in dem bereits internationale Anbieter stehen. Zum Start war der Shop bei Google für keinen einzigen relevanten Begriff zu finden. Es gab keine eingehenden Links, keine Historie, keine Seite, die irgendwo rankte.</p>
+          <p>Die naheliegende Alternative wäre gewesen, jeden Besucher über bezahlte Anzeigen einzukaufen. Das funktioniert, solange Budget da ist, und endet an dem Tag, an dem es aufhört. Bei einem Produkt mit begrenztem Warenkorbwert frisst es außerdem die Marge: Wenn der Klickpreis steigt, steigt er für jede einzelne Bestellung mit, und die Rechnung geht irgendwann nicht mehr auf.</p>
+          <p>Also sollte die organische Suche die tragende Säule werden, mit allem, was das bedeutet: langsamer Start, kein Ergebnis in den ersten Wochen, und eine Reihenfolge, von der nicht abgewichen wird. Die folgenden Bereiche beschreiben genau diese Reihenfolge.</p>
           <div class="cs-split">
             <img src="../assets/img/case/poseypets-caesar.jpg" alt="Hundeportrait im Stil eines römischen Kaisers" loading="lazy" width="600" height="600">
             <img src="../assets/img/case/poseypets-mona.jpg" alt="Katzenportrait im Stil der Mona Lisa" loading="lazy" width="600" height="600">
           </div>"""),
 
-  (u"02", u"Keyword-Recherche", u"Die Schreibweise entscheidet über das Zehnfache", u"""
-          <p>Der wichtigste Fund kam ganz am Anfang und hat die gesamte Struktur bestimmt: bei diesen Begriffen entscheidet die <strong>Schreibweise</strong> über den Erfolg.</p>
+  (u"02", u"Keyword-Recherche", u"Der komplette erste Monat, bevor eine Zeile geschrieben wurde", u"""
+          <p><strong>Der erste Monat ging vollständig in die Recherche.</strong> Keine Landingpage, kein Blogbeitrag, keine Produktbeschreibung, bevor die Begriffsliste stand. Das klingt nach verlorener Zeit und ist das Gegenteil davon: Jede Seite, die danach entstand, hatte einen Begriff, für den sie gebaut wurde, und jeder Artikel ein Thema, von dem vorher feststand, dass danach gesucht wird.</p>
+          <p>Gearbeitet wurde mit <strong>Sistrix</strong>. Jeder einzelne Begriff wurde angesehen, nicht nur die offensichtlichen: Suchvolumen, Wettbewerb, und vor allem die Absicht dahinter. Wer „Hundeportrait malen lassen“ eingibt, will kaufen. Wer „Hundeportrait malen“ eingibt, will es selbst tun. Dazwischen liegt ein Buchstabe und der gesamte Unterschied zwischen einer Bestellung und einem Besucher, der nie etwas kauft.</p>
+          <p>Der wichtigste Fund kam ganz am Anfang und hat danach die gesamte Struktur bestimmt: bei diesen Begriffen entscheidet die <strong>Schreibweise</strong> über den Erfolg.</p>
           <div class="cs-quote">
             <p>„Haustier Portrait“ und „Haustierportrait“ sind für Google nicht dasselbe Wort. Der Unterschied im Suchvolumen liegt beim Zehnfachen.</p>
           </div>
-          <p>Und es gibt keine Regel dafür. Bei einem Tier gewinnt die getrennte Schreibweise deutlich, beim nächsten die zusammengeschriebene. Das muss pro Begriff geprüft werden, bevor irgendetwas geschrieben wird, denn die Schreibweise steckt später in Titeln, Überschriften und URLs und lässt sich nicht beiläufig ändern.</p>
-          <p>Genauso wichtig war, was <em>aussortiert</em> wurde. Ein ganzer Begriffscluster sah nach viel Volumen aus, bestand aber fast vollständig aus Leuten, die selbst malen lernen wollen. Ein zweiter war komplett wertlos, weil die Suchenden etwas ganz anderes meinten. Beide wurden gestrichen, bevor Arbeit hineinfloss.</p>"""),
+          <p>Und es gibt keine Regel dafür. Bei einem Tier gewinnt die getrennte Schreibweise deutlich, beim nächsten die zusammengeschriebene. Das muss pro Begriff geprüft werden, bevor irgendetwas geschrieben wird, denn die Schreibweise steckt später im Titel, in der Überschrift, in der URL und in jedem internen Link, der darauf zeigt. Sie lässt sich nicht beiläufig korrigieren.</p>
+          <p>Genauso wichtig war, was <em>aussortiert</em> wurde. Ein ganzer Begriffscluster sah nach viel Volumen aus, bestand aber fast vollständig aus Leuten, die selbst malen lernen wollen. Ein zweiter war komplett wertlos, weil die Suchenden etwas ganz anderes meinten. Beide wurden gestrichen, bevor Arbeit hineinfloss. Das ist die unsichtbare Hälfte der Recherche: Nicht nur zu wissen, worauf man zielt, sondern worauf man bewusst nicht zielt.</p>
+          <p>Am Ende des Monats stand eine sortierte Liste. Aus ihrem oberen Teil wurden die Landingpages, aus dem langen unteren Teil die Themen für Ratgeber und Lexikon. Beides kam aus derselben Datei, und keine Seite und kein Artikel entstand ohne Eintrag darin.</p>"""),
 
-  (u"03", u"Seitenstruktur", u"Ein Suchbegriff, eine Seite. Daraus sechs Landingpages.", u"""
-          <p>Daraus wurden sechs eigene Landingpages gebaut, je eine pro Hauptbegriff, nach einer einzigen Regel: <strong>ein Suchbegriff, eine Seite.</strong> Keine zwei Seiten konkurrieren um denselben Begriff, weil sie sich sonst gegenseitig die Position wegnehmen.</p>
-          <p>Diese Seiten sind keine Textwüsten, sondern echte Produktübersichten. Wer über die Suche kommt, sieht sofort Produkte und nicht erst 800 Wörter Einleitung. Jede Produktseite bekam zusätzlich einen eigenen Textblock, der auf ihren eigenen Begriff zugeschnitten ist.</p>
-          <figure class="cs-figure">
-            <img src="../assets/img/case/poseypets-pferd.jpg" alt="Pferdeportrait nach Foto" loading="lazy" width="1200" height="900">
-            <figcaption>Eigene Landingpage je Hauptbegriff, hier das Pferdemotiv</figcaption>
-          </figure>"""),
+  (u"03", u"Seitenstruktur", u"Ein Suchbegriff, eine Seite. Sechs Landingpages als Einstiege.", u"""
+          <p>Aus der Liste wurden sechs eigene Landingpages gebaut, je eine pro Hauptbegriff, nach einer einzigen Regel: <strong>ein Suchbegriff, eine Seite.</strong></p>
+          <p>Der Grund dafür ist unspektakulär und wird trotzdem ständig übersehen. Google rankt keine Shops, sondern einzelne Seiten. Gibt es zwei Seiten, die dasselbe Thema behandeln, muss Google sich entscheiden, welche davon zum Suchbegriff passt, und beide verlieren: Jede bekommt einen Teil der Signale, keine bekommt genug, um vorn zu stehen. Im Fachjargon heißt das Keyword-Kannibalisierung, praktisch heißt es, dass man sich selbst Konkurrenz macht.</p>
+          <p>Eine Landingpage ist hier keine Textseite, sondern eine vollwertige Produktübersicht zu genau einem Begriff. Die Überschrift trägt den Begriff in der Schreibweise, die vorher gewonnen hat. Darunter kommen ein kurzer Einstieg, die passenden Produkte, die wiederkehrenden Fragen zu genau diesem Motiv und Links zu den Artikeln, die dazu gehören. Wer über die Suche kommt, sieht sofort Produkte und nicht erst 800 Wörter Einleitung — die Reihenfolge auf der Seite folgt dem, was der Besucher in diesem Moment vorhat.</p>
+          <p>Darunter liegt die zweite Ebene: die Produktseiten. Jede bekam einen eigenen Textblock, der auf ihren eigenen Begriff zugeschnitten ist, statt überall denselben Beschreibungstext zu wiederholen. Daneben, nicht darunter, stehen Ratgeber und Lexikon. So entsteht eine Struktur, in der jede Seite eine Aufgabe hat und keine zwei Seiten dieselbe.</p>"""),
 
-  (u"04", u"Inhalte und Blog", u"Ratgeber und Lexikon, dazu eine Regel für interne Links", u"""
-          <p>Zwei bewusst unterschiedliche Formate statt eines Blogs, weil sie zwei verschiedene Aufgaben haben:</p>
+  (u"04", u"Inhalte und Blog", u"Jeden Tag ein Beitrag, in zwei Formaten mit zwei Aufgaben", u"""
+          <p><strong>Seit dem Start erscheint jeden Tag ein Beitrag.</strong> Nicht wöchentlich, nicht wenn gerade Zeit ist, sondern täglich. Das ist weniger eine kreative als eine rechnerische Entscheidung: Jeder Artikel ist ein eigener Einstiegspunkt in die Suche. Einer bringt fast nichts. Hundert bringen, nach einigen Monaten, einen Strom, der nicht von einzelnen Begriffen abhängt und den kein Wettbewerber mit einer einzelnen guten Seite einholt.</p>
+          <p>Die Themen kommen nicht aus Einfällen, sondern aus dem unteren Teil der Keyword-Liste aus Bereich 02. Jeder Beitrag hat einen Begriff, für den er geschrieben wurde. Gibt es keinen, wird er nicht geschrieben.</p>
+          <p>Dafür gibt es zwei bewusst unterschiedliche Formate statt eines Blogs, weil sie zwei verschiedene Aufgaben haben:</p>
           <ul>
-            <li><strong>Ratgeber</strong> für die ausführlichen Fragen, die sich jemand vor dem Kauf stellt.</li>
-            <li><strong>Lexikon</strong> von A bis Z für die vielen kurzen Begriffssuchen, mit eigener Filterung.</li>
+            <li><strong>Ratgeber</strong> für die ausführlichen Fragen, die sich jemand vor dem Kauf stellt. Längere Stücke, die eine Entscheidung vorbereiten — welches Foto sich eignet, welcher Stil zu welchem Tier passt, wie lange es dauert.</li>
+            <li><strong>Lexikon</strong> von A bis Z für die vielen kurzen Begriffssuchen, mit eigener Filterung. Kurze Einträge, die jeweils einen Begriff sauber erklären und von dort weiterführen.</li>
           </ul>
-          <p>Dazu eine feste Regel für die interne Verlinkung: etwa 60 Prozent der Links zeigen auf Seiten, die verkaufen, 40 Prozent auf weitere Inhalte.</p>
+          <p>Dazu eine feste Regel für die interne Verlinkung: etwa <strong>60 Prozent der Links zeigen auf Seiten, die verkaufen, 40 Prozent auf weitere Inhalte.</strong> Diese Quote wird bei jedem Beitrag eingehalten, nicht im Nachhinein geprüft.</p>
           <div class="cs-note">
             <h3>Warum diese Regel</h3>
-            <p>Ohne sie verlinkt ein Blog nach einiger Zeit fast nur noch sich selbst. Die Artikel ranken dann vielleicht, schieben aber keine Kraft mehr auf die Seiten, an denen tatsächlich Geld verdient wird.</p>
+            <p>Ohne sie verlinkt ein Blog nach einiger Zeit fast nur noch sich selbst. Die Artikel ranken dann vielleicht, schieben aber keine Kraft mehr auf die Seiten, an denen tatsächlich Geld verdient wird. Man hat dann eine gut besuchte Inhaltssammlung gebaut und keinen Shop.</p>
           </div>
           <div class="cs-split">
             <img src="../assets/img/case/poseypets-tasse.jpg" alt="Personalisierte Tasse mit Tierportrait" loading="lazy" width="600" height="600">
             <img src="../assets/img/case/poseypets-unboxing.jpg" alt="Ausgepacktes Tierportrait" loading="lazy" width="600" height="600">
           </div>"""),
 
-  (u"05", u"Technisches SEO", u"Metadaten, FAQ-Auszeichnung, Ladezeit — und eine URL-Entscheidung", u"""
-          <p>Vollständige Metadaten über alle Produkte und Kategorien, eine FAQ mit passender Auszeichnung für die Suchergebnisse, Ladezeit und mobile Darstellung, und eine saubere interne Verlinkung bis in den Footer.</p>
-          <p>Eine Entscheidung dabei war, bestehende URLs <em>nicht</em> umzuziehen, obwohl eine andere Struktur auf dem Papier schöner gewesen wäre. Die Seiten rankten bereits.</p>
+  (u"05", u"Technisches SEO", u"Metadaten, Alt-Texte, Auszeichnung, Ladezeit, interne Links", u"""
+          <p>Technik bringt selten allein eine Position. Sie verhindert aber, dass alles andere wirkungslos bleibt. Deshalb lief sie parallel mit, von Anfang an und über den gesamten Shop, nicht als einmalige Aufräumaktion.</p>
+          <ul>
+            <li><strong>Metadaten über alle Produkte und Kategorien.</strong> Jede Seite hat einen eigenen Titel und eine eigene Beschreibung, beide mit dem Begriff, für den die Seite gebaut wurde. Kein generiertes Muster, das sich über hundert Seiten wiederholt. Der Titel entscheidet nicht nur über die Einordnung, sondern darüber, ob jemand im Suchergebnis überhaupt klickt.</li>
+            <li><strong>Alt-Texte für jedes Bild.</strong> In einem Shop, der von Bildern lebt, ist das doppelt wichtig: Sie beschreiben Screenreadern, was zu sehen ist, und sie sind das Einzige, woran die Bildersuche ein Motiv erkennt. Bei „Tierportrait“ ist die Bildersuche ein eigener Einstieg, nicht ein Nebenschauplatz.</li>
+            <li><strong>FAQ mit passender Auszeichnung.</strong> Die wiederkehrenden Fragen stehen strukturiert ausgezeichnet auf der Seite, sodass Google sie als Frage-Antwort-Paare erkennen und direkt im Suchergebnis anzeigen kann. Das vergrößert den eigenen Eintrag und nimmt Platz, den sonst jemand anderes bekommt.</li>
+            <li><strong>Ladezeit und Darstellung auf dem Handy.</strong> Der größte Teil der Besucher kommt mobil. Eine Seite, die zu lange lädt, verliert Besucher, bevor sie etwas gesehen haben — und die abgebrochenen Aufrufe sind für Google ein Signal, das auf die Position zurückwirkt.</li>
+            <li><strong>Interne Verlinkung bis in den Footer.</strong> Jede wichtige Seite ist von mehreren Stellen aus erreichbar, auch aus dem Fußbereich. Was nur über die Suche im Shop zu finden ist, findet Google schlecht und ein Besucher gar nicht.</li>
+          </ul>
+          <p>Eine Entscheidung fiel gegen den ersten Impuls: bestehende URLs wurden <em>nicht</em> umgezogen, obwohl eine andere Struktur auf dem Papier aufgeräumter gewesen wäre. Die Seiten rankten bereits.</p>
           <div class="cs-quote">
             <p>Einen vorhandenen Rankingaufbau für eine kosmetische Verbesserung wegzuwerfen, ist einer der teuersten Fehler überhaupt. Wir sehen ihn ständig.</p>
           </div>"""),
 
-  (u"06", u"Stand heute", u"Live, verkauft, und die Sichtbarkeit baut sich weiter auf", u"""
-          <p>Der Shop ist live, verkauft und läuft geschäftlich gut. Die Sichtbarkeit baut sich weiter auf, die Landingpages ranken für ihre jeweiligen Begriffe, und es kommen laufend Inhalte dazu. SEO ist hier kein abgeschlossenes Projekt, sondern die Grundlage, auf der weitergearbeitet wird.</p>
+  (u"06", u"Linkaufbau", u"Gezielte Ansprache passender Unternehmen, rund 30 externe Links", u"""
+          <p>Linkaufbau kam zuletzt, und das hat einen Grund: Solange Technik, Struktur und Inhalte nicht stehen, zeigen Links auf eine Seite, die die Aufmerksamkeit nicht halten kann. Erst als die sechs Landingpages standen und der tägliche Takt lief, ergab es Sinn, dass von außen jemand darauf zeigt.</p>
+          <p>Das Vorgehen ist Handarbeit und sieht so aus: Wir suchen Unternehmen und Seiten, die inhaltlich zu PoseyPets passen — Tierbedarf, Geschenke, Fotografie, Tierblogs — und die selbst eine echte, sichtbare Seite betreiben. Wer selbst nicht gefunden wird, kann niemanden weiterempfehlen. Diese Betriebe werden angeschrieben, persönlich und mit einem konkreten Vorschlag.</p>
+          <p>Angeboten wird eines von zwei Dingen:</p>
+          <ul>
+            <li>Ein <strong>Linktausch</strong>, bei dem beide Seiten voneinander profitieren, weil die Themen tatsächlich zusammenpassen und die Erwähnung für die Leser der anderen Seite Sinn ergibt.</li>
+            <li>Ein <strong>Gastartikel</strong>, für den wir den Beitrag schreiben. Die andere Seite bekommt einen Inhalt, den sie sonst selbst erstellen müsste, und wir die Verlinkung aus dem Text heraus.</li>
+          </ul>
+          <p>Auf diesem Weg sind für PoseyPets <strong>rund 30 externe Links</strong> entstanden. Keiner davon gekauft, keiner aus einem Linknetzwerk, keiner aus einem Verzeichnis, das nur existiert, um Links zu verteilen. Das ist bewusst so: Gekaufte und maschinell verteilte Links lassen sich erkennen, und der Schaden trifft dann nicht eine Unterseite, sondern die gesamte Domain.</p>
+          <p>Es ist der langsamste Bereich von allen. Dreißig gute Links brauchen deutlich mehr Zeit als dreihundert schlechte, und genau darin liegt ihr Wert.</p>"""),
+
+  (u"07", u"Stand heute", u"Live, verkauft, und die Sichtbarkeit baut sich weiter auf", u"""
+          <p>Der Shop ist live, verkauft und läuft geschäftlich gut. Die Sichtbarkeit baut sich weiter auf, die Landingpages ranken für ihre jeweiligen Begriffe, der tägliche Takt bei den Inhalten läuft unverändert weiter, und die Zahl der externen Erwähnungen wächst langsam mit.</p>
+          <p>SEO ist hier kein abgeschlossenes Projekt, sondern die Grundlage, auf der weitergearbeitet wird. Das ist die ehrliche Beschreibung: Es gibt keinen Tag, an dem man fertig ist. Es gibt einen Punkt, ab dem die Arbeit der letzten Monate ohne weiteres Zutun Besucher bringt, und danach entscheidet man, wie viel man noch darauflegt.</p>
           <figure class="cs-figure">
             <img src="../assets/img/case/poseypets-valentin.jpg" alt="Tierportrait als Geschenk" loading="lazy" width="1200" height="900">
             <figcaption>Saisonale Anlässe als eigene Einstiegspunkte in die Suche</figcaption>
           </figure>"""),
 
-  (u"07", u"Was daraus für andere folgt", u"Die Reihenfolge entscheidet, und die halbe Stunde am Anfang", u"""
-          <p><strong>Die Reihenfolge entscheidet.</strong> Zuerst prüfen, welche Suchbegriffe überhaupt zu Umsatz führen, dann die Seiten dafür bauen, erst danach Inhalte produzieren. Wer umgekehrt anfängt, schreibt Texte für Suchanfragen, die nie zu einer Anfrage führen, und merkt es erst nach Monaten.</p>
-          <p><strong>Und die Schreibweise prüfen.</strong> Eine falsch gewählte Variante kostet dauerhaft den Großteil des möglichen Volumens, weil sie in Titeln, URLs und Überschriften steckt. Diese halbe Stunde am Anfang ist die billigste Stunde im ganzen Projekt.</p>"""),
+  (u"08", u"Was daraus für andere folgt", u"Die Reihenfolge entscheidet, und die halbe Stunde am Anfang", u"""
+          <p><strong>Die Reihenfolge entscheidet.</strong> Zuerst prüfen, welche Suchbegriffe überhaupt zu Umsatz führen, dann die Seiten dafür bauen, dann Inhalte produzieren, und erst ganz zum Schluss Links aufbauen. Wer umgekehrt anfängt, schreibt Texte für Suchanfragen, die nie zu einer Anfrage führen, und merkt es erst nach Monaten.</p>
+          <p><strong>Und die Schreibweise prüfen.</strong> Eine falsch gewählte Variante kostet dauerhaft den Großteil des möglichen Volumens, weil sie in Titeln, URLs und Überschriften steckt. Diese halbe Stunde am Anfang ist die billigste Stunde im ganzen Projekt.</p>
+          <p>Beides lässt sich auf fast jedes Geschäft übertragen, das über Google gefunden werden will. Nur die Begriffe sind andere.</p>"""),
  ]) + u"""
   </div>
 </section>
