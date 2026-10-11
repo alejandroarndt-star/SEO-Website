@@ -4,7 +4,7 @@ Run after changing the header or footer:  python3 _build/make_pages.py
 The generated .html files are what ships; this script is convenience only."""
 import io, re, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from blog_posts import RATGEBER, LEXIKON, META, TITEL
+from blog_posts import RATGEBER, GEPLANT, META, TITEL
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 idx = io.open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
@@ -611,49 +611,42 @@ page("kontakt.html",
   </div>
 </section>""" % {"mail": MAIL, "tel_link": TEL_LINK, "tel_text": TEL_TEXT, "panel": BOOKING_PANEL})
 
-# ---------------------------------------------------------------- Blog und Lexikon
-# Wie bei PoseyPets zwei getrennte Bereiche mit je eigener Uebersicht:
-# Ratgeber unter blog/ mit Themenfilter, Lexikon unter lexikon/ mit
-# A-Z-Buchstabenleiste. Der Buchstabe ist dort zugleich die Kategorie.
+# ---------------------------------------------------------------- Blog
+# Nur noch ein Format: Ratgeber. Jeder Beitrag eine eigene Seite unter blog/.
 RAT_SLUGS = set(q[0] for q in RATGEBER)
-LEX_SLUGS = set(q[0] for q in LEXIKON)
+PLAN_SLUGS = set(q[0] for q in GEPLANT)
 
-def fix_links(html, folder):
-    """Die Beitragstexte verlinken einander ueber den reinen Slug. Hier wird
-    daraus der richtige Pfad, je nachdem in welchem Bereich das Ziel liegt."""
+def fix_links(html):
+    """Verweise auf noch nicht geschriebene Beitraege werden zu normalem Text.
+    So steht nie ein toter Link auf der Seite, und sobald der Beitrag da ist,
+    wird aus demselben Text automatisch wieder ein Link."""
     def repl(m):
         slug = m.group(1)
         if slug in RAT_SLUGS:
-            return u'href="%s.html"' % slug if folder == "blog" else u'href="../blog/%s.html"' % slug
-        if slug in LEX_SLUGS:
-            return u'href="%s.html"' % slug if folder == "lexikon" else u'href="../lexikon/%s.html"' % slug
+            return m.group(0)
+        if slug in PLAN_SLUGS:
+            return u'<<STRIP>>'
         return m.group(0)
-    return re.sub(r'href="([a-z0-9][a-z0-9.-]*)\.html"', repl, html)
+    html = re.sub(r'href="([a-z0-9][a-z0-9.-]*)\.html"', repl, html)
+    # <a <<STRIP>> ...>Text</a>  ->  Text
+    return re.sub(r'<a [^>]*<<STRIP>>[^>]*>(.*?)</a>', r'\1', html, flags=re.S)
 
 def lesezeit(html):
     """Woerter geteilt durch 200, wie in blog-darstellung.md."""
     return max(1, int(round(len(re.sub(r'<[^>]+>', ' ', html).split()) / 200.0)))
 
-POSTS = ([(sl, u"Ratgeber", u"blog", ti, te, le, bo) for sl, ti, te, le, bo in RATGEBER]
-       + [(sl, u"Lexikon", u"lexikon", ti, te, te, bo) for sl, ti, te, bo in LEXIKON])
+POSTS = [(sl, ti, te, le, bo) for sl, ti, te, le, bo in RATGEBER]
 
-def card(q, folder):
-    """Karte in einer Uebersicht. Im Lexikon ist die Kategorie der
-    Anfangsbuchstabe, danach filtert die A-Z-Leiste."""
-    cat = q[3][0].upper() if q[2] == "lexikon" else u"Ratgeber"
-    href = u"%s.html" % q[0] if q[2] == folder else u"../%s/%s.html" % (q[2], q[0])
+def card(q):
     return u"""
-      <a class="post" href="%s" data-cats="%s"><span class="meta">%s</span><h3>%s</h3><p>%s</p>"""\
+      <a class="post" href="%s.html"><span class="meta">Ratgeber</span><h3>%s</h3><p>%s</p>"""\
            u"""<span class="more">%s min lesen <span class="arr">&rarr;</span></span></a>""" % (
-        href, cat.lower(), cat, q[3], q[4], lesezeit(q[6]))
+        q[0], q[1], q[2], lesezeit(q[4]))
 
-def related(slug, folder):
-    """Drei Hinweise zum Weiterlesen, zuerst aus demselben Bereich."""
-    same = [q for q in POSTS if q[0] != slug and q[2] == folder]
-    other = [q for q in POSTS if q[0] != slug and q[2] != folder]
+def related(slug):
+    rest = [q for q in POSTS if q[0] != slug]
     i = [q[0] for q in POSTS].index(slug)
-    pick = [same[(i + k) % len(same)] for k in (1, 2)] + [other[i % len(other)]]
-    return u"".join(card(q, folder) for q in pick)
+    return u"".join(card(rest[(i + k) % len(rest)]) for k in (1, 2, 3))
 
 SIDE = u"""
     <aside class="art-side">
@@ -668,12 +661,11 @@ SIDE = u"""
       </div>
     </aside>"""
 
-for slug, fmt_name, folder, titel, teaser, lede, body in POSTS:
-    text = fix_links(body, folder)
-    page("%s/%s.html" % (folder, slug),
+for slug, titel, teaser, lede, body in POSTS:
+    page("blog/%s.html" % slug,
          u"%s | Kontor" % TITEL.get(slug, titel),
          META[slug],
-         hero(kicker=u"%s &middot; %s min lesen" % (fmt_name, lesezeit(body)),
+         hero(kicker=u"Ratgeber &middot; %s min lesen" % lesezeit(body),
               h1=titel, lede=lede) + u"""
 <section class="section" style="padding-top:0">
   <div class="wrap art-grid">%s
@@ -695,44 +687,20 @@ for slug, fmt_name, folder, titel, teaser, lede, body in POSTS:
 <section class="section" style="padding-top:0">
   <div class="wrap">%s
   </div>
-</section>""" % (SIDE, text, related(slug, folder), cta("../")))
+</section>""" % (SIDE, fix_links(body), related(slug), cta("../")))
 
-# ---- Uebersicht Ratgeber ----------------------------------------------------
 page("blog/index.html",
  u"Blog | Kontor",
  u"Ratgeber zur Suchmaschinenoptimierung: verständlich erklärt, ohne Fachchinesisch und ohne Versprechen, die niemand halten kann.",
  hero(kicker=u"Blog",
-   h1=u"Ratgeber",
-   lede=u"Die ausführlichen Antworten auf die Fragen, die uns Kunden immer wieder stellen. Einzelne Begriffe stehen im <a href=\"../lexikon/\">Lexikon</a>.") + u"""
+   h1=u"Blog",
+   lede=u"Die ausführlichen Antworten auf die Fragen, die uns Kunden immer wieder stellen.") + u"""
 <section class="section" style="padding-top:0">
   <div class="wrap">
     <div class="posts">%s
     </div>
   </div>
-</section>""" % u"".join(card(q, "blog") for q in POSTS if q[2] == "blog"))
-
-# ---- Uebersicht Lexikon mit A-Z-Leiste --------------------------------------
-LETTERS = sorted(set(q[3][0].upper() for q in POSTS if q[2] == "lexikon"))
-AZ = u"".join(u"""
-      <button class="ref-filter" data-cat="%s" aria-pressed="false">%s</button>""" % (l.lower(), l)
-              for l in LETTERS)
-
-page("lexikon/index.html",
- u"SEO-Lexikon | Kontor",
- u"SEO-Lexikon von A bis Z: die Begriffe aus der Suchmaschinenoptimierung kurz erklärt, von Keyword bis Sichtbarkeitsindex.",
- hero(kicker=u"Lexikon",
-   h1=u"SEO-Lexikon",
-   lede=u"Die Begriffe, über die man bei der Suchmaschinenoptimierung stolpert, jeweils in zwei Minuten erklärt. Die längeren Antworten stehen im <a href=\"../blog/\">Ratgeber</a>.") + u"""
-<section class="section" style="padding-top:0">
-  <div class="wrap">
-      <div class="ref-filters az" role="group" aria-label="Nach Anfangsbuchstabe filtern">
-      <button class="ref-filter" data-cat="alle" aria-pressed="true">Alle</button>%s
-    </div>
-    <div class="posts">%s
-    </div>
-    <p class="ref-empty" hidden>Zu diesem Buchstaben gibt es noch keinen Eintrag.</p>
-  </div>
-</section>""" % (AZ, u"".join(card(q, "lexikon") for q in POSTS if q[2] == "lexikon")))
+</section>""" % u"".join(card(q) for q in POSTS))
 
 # ---------------------------------------------------------------- Impressum
 page("impressum.html", u"Impressum | Kontor", u"Impressum nach § 5 DDG.",
