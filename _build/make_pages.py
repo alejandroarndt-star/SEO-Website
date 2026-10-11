@@ -2,7 +2,9 @@
 """Generates every sub page from the shared shell in index.html.
 Run after changing the header or footer:  python3 _build/make_pages.py
 The generated .html files are what ships; this script is convenience only."""
-import io, re, os
+import io, re, os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from blog_posts import RATGEBER, LEXIKON
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 idx = io.open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
@@ -610,22 +612,73 @@ page("kontakt.html",
 </section>""" % {"mail": MAIL, "tel_link": TEL_LINK, "tel_text": TEL_TEXT, "panel": BOOKING_PANEL})
 
 # ---------------------------------------------------------------- Blog
-page("blog/index.html",
- u"Blog | Kontor",
- u"Artikel über Suchmaschinenoptimierung, ohne Fachchinesisch.",
- hero(kicker=u"Blog",
-   h1=u"Blog",
-   lede=u"Kurze Artikel zu den Fragen, die uns Kunden immer wieder stellen.") + u"""
+# Zwei Formate mit zwei Aufgaben, wie bei PoseyPets: Ratgeber fuer die
+# ausfuehrlichen Fragen vor einer Entscheidung, Lexikon fuer die kurzen
+# Begriffssuchen. Jeder Beitrag wird eine eigene Seite unter blog/.
+POSTS = ([(sl, u"Ratgeber", u"ratgeber", ti, te, le, bo) for sl, ti, te, le, bo in RATGEBER]
+       + [(sl, u"Lexikon", u"lexikon", ti, te, te, bo) for sl, ti, te, bo in LEXIKON])
+
+def related(slug, fmt):
+    """Drei Hinweise zum Weiterlesen: zuerst aus demselben Format."""
+    same = [q for q in POSTS if q[0] != slug and q[2] == fmt]
+    other = [q for q in POSTS if q[0] != slug and q[2] != fmt]
+    i = [q[0] for q in POSTS].index(slug)
+    pick = [same[(i + k) % len(same)] for k in (1, 2)] + [other[i % len(other)]]
+    return u"".join(
+        u"""
+      <a class="post" href="%s.html"><span class="meta">%s</span><h3>%s</h3><p>%s</p>"""
+        u"""<span class="more">Lesen <span class="arr">&rarr;</span></span></a>""" % (q[0], q[1], q[3], q[4])
+        for q in pick)
+
+for slug, fmt_name, fmt, titel, teaser, lede, body in POSTS:
+    page("blog/%s.html" % slug,
+         u"%s | Kontor" % titel,
+         teaser,
+         hero(kicker=fmt_name, h1=titel, lede=lede) + u"""
 <section class="section" style="padding-top:0">
+  <div class="wrap prose">%s
+  </div>
+</section>
+
+<section class="section" style="padding-top:clamp(30px,4vw,56px)">
   <div class="wrap">
-    <!-- TODO: Artikel als eigene Seiten anlegen und hier verlinken. -->
-    <div class="posts">
-      <article class="post"><span class="meta">Grundlagen</span><h3>Warum findet mich bei Google niemand?</h3><p>Die fünf Ursachen, die in den meisten Fällen dahinterstecken.</p><span class="more">Bald verfügbar</span></article>
-      <article class="post"><span class="meta">Lokales SEO</span><h3>Google Unternehmensprofil richtig einrichten</h3><p>Welche Felder zählen und welcher Fehler am meisten Sichtbarkeit kostet.</p><span class="more">Bald verfügbar</span></article>
-      <article class="post"><span class="meta">Technik</span><h3>Core Web Vitals, kurz erklärt</h3><p>Was Google misst und ab wann sich die Ladezeit auf die Position auswirkt.</p><span class="more">Bald verfügbar</span></article>
+    <div class="sec-head" style="max-width:none;align-items:center;text-align:center">
+      <h2>Weiterlesen</h2>
+    </div>
+    <div class="posts">%s
     </div>
   </div>
-</section>""")
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">%s
+  </div>
+</section>""" % (body, related(slug, fmt), cta("../")))
+
+BLOG_CARDS = u"".join(
+    u"""
+      <a class="post" href="%s.html" data-cats="%s"><span class="meta">%s</span><h3>%s</h3><p>%s</p>"""
+    u"""<span class="more">Lesen <span class="arr">&rarr;</span></span></a>""" % (q[0], q[2], q[1], q[3], q[4])
+    for q in POSTS)
+
+page("blog/index.html",
+ u"Blog | Kontor",
+ u"Ratgeber und Lexikon zur Suchmaschinenoptimierung, ohne Fachchinesisch.",
+ hero(kicker=u"Blog",
+   h1=u"Blog",
+   lede=u"Zwei Formate mit zwei Aufgaben: Ratgeber für die Fragen vor einer Entscheidung, Lexikon für die Begriffe, über die man dabei stolpert.") + u"""
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="ref-filters" role="group" aria-label="Nach Format filtern">
+      <button class="ref-filter" data-cat="alle" aria-pressed="true">Alle</button>
+      <button class="ref-filter" data-cat="ratgeber" aria-pressed="false">Ratgeber</button>
+      <button class="ref-filter" data-cat="lexikon" aria-pressed="false">Lexikon</button>
+    </div>
+    <div class="posts">%s
+    </div>
+    <p class="ref-empty" hidden>In diesem Format liegt noch kein Beitrag vor.</p>
+  </div>
+</section>""" % BLOG_CARDS)
 
 # ---------------------------------------------------------------- Impressum
 page("impressum.html", u"Impressum | Kontor", u"Impressum nach § 5 DDG.",

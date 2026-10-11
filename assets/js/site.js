@@ -107,7 +107,7 @@
   'use strict';
   var bar = document.querySelector('.ref-filters');
   if (!bar) return;
-  var cards = [].slice.call(document.querySelectorAll('.ref-card'));
+  var cards = [].slice.call(document.querySelectorAll('.ref-card, .post[data-cats]'));
   var empty = document.querySelector('.ref-empty');
   bar.addEventListener('click', function (e) {
     var btn = e.target.closest('.ref-filter');

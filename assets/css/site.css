@@ -677,3 +677,6 @@ a,button,summary{-webkit-tap-highlight-color:rgba(255,255,255,.07)}
    Abbildung mit 860px erschlagend. */
 .acc-body .cs-figure{max-width:600px}
 .acc-body .cs-split{max-width:720px}
+/* Codeschnipsel in Beitraegen (site:domain.de, noindex, robots.txt). */
+code{font-family:var(--mono);font-size:.9em;background:var(--bg-3);border:1px solid var(--line);
+  border-radius:4px;padding:2px 6px;color:var(--ink)}
