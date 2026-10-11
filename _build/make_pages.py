@@ -103,12 +103,12 @@ def acc(items, hue=None):
     hue: fester Farbton fuer alle Felder; ohne ihn traegt jedes seinen eigenen."""
     out = []
     for i, (nr, title, sub, body) in enumerate(items):
-        n = hue if hue else int(nr)
+        n = hue if hue else ((int(nr) - 1) % 5) + 1
         out.append(u"""
       <details class="acc-item"%s style="--c:var(--c%d);--c-soft:var(--c%d-soft)">
         <summary>
           <span class="acc-n">%s</span>
-          <span><span class="acc-t">%s</span><span class="acc-s">%s</span></span>
+          <span><h2 class="acc-t">%s</h2><span class="acc-s">%s</span></span>
           %s
         </summary>
         <div class="acc-body">%s
@@ -451,6 +451,9 @@ page("referenzen/poseypets.html",
       <p class="lede" style="margin:0 auto">Ein deutscher Onlineshop für individuelle Tierportraits. Der Kunde lädt ein Foto hoch, und sein Tier wird als historische Figur gemalt. Die Aufgabe: gefunden werden, ohne jeden Besucher einkaufen zu müssen.</p>
       <div class="tags"><span class="tag accent">E-Commerce</span><span class="tag">Technisches SEO</span><span class="tag">Content</span><span class="tag">Keyword-Strategie</span></div>
       <a class="cs-visit" href="https://poseypets.com" target="_blank" rel="noopener">poseypets.com ansehen</a>
+      <!-- Die Offenlegung steht bewusst offen und nicht in einem Feld: ein
+           Hinweis, den man erst aufklappen muss, ist keine Offenlegung. -->
+      <p class="cs-disclosure">Offenlegung: PoseyPets ist ein eigenes Projekt. Wir zeigen es, weil wir dort jeden Schritt selbst gegangen sind und offen darüber schreiben können, auch über das, was nicht funktioniert hat.</p>
     </div>
     <div class="cs-hero" style="margin-bottom:0">
       <img src="../assets/img/case/poseypets-wohnzimmer.jpg" alt="Tierportraits als Wanddekoration im Wohnzimmer" width="1200" height="600">
@@ -459,22 +462,17 @@ page("referenzen/poseypets.html",
 </section>
 
 <section class="section cs" style="padding-top:clamp(40px,5vw,72px)">
-  <div class="wrap prose">
-    <p><em>Offenlegung: PoseyPets ist ein eigenes Projekt. Wir zeigen es, weil wir dort jeden Schritt selbst gegangen sind und offen darüber schreiben können, auch über das, was nicht funktioniert hat.</em></p>
+  <div class="wrap">""" + acc([
 
-    <h2>Ausgangssituation</h2>
-    <p>Ein neuer Shop ohne Domainhistorie, in einem Umfeld, in dem bereits internationale Anbieter stehen. Zum Start war der Shop bei Google für keinen einzigen relevanten Begriff zu finden.</p>
-    <p>Die naheliegende Alternative wäre gewesen, jeden Besucher über bezahlte Anzeigen einzukaufen. Das funktioniert, solange Budget da ist, und endet an dem Tag, an dem es aufhört. Bei einem Produkt mit begrenztem Warenkorbwert frisst es außerdem die Marge. Also sollte die organische Suche die tragende Säule werden.</p>
+  (u"01", u"Ausgangssituation", u"Neuer Shop, keine Domainhistorie, null Sichtbarkeit", u"""
+          <p>Ein neuer Shop ohne Domainhistorie, in einem Umfeld, in dem bereits internationale Anbieter stehen. Zum Start war der Shop bei Google für keinen einzigen relevanten Begriff zu finden.</p>
+          <p>Die naheliegende Alternative wäre gewesen, jeden Besucher über bezahlte Anzeigen einzukaufen. Das funktioniert, solange Budget da ist, und endet an dem Tag, an dem es aufhört. Bei einem Produkt mit begrenztem Warenkorbwert frisst es außerdem die Marge. Also sollte die organische Suche die tragende Säule werden.</p>
+          <div class="cs-split">
+            <img src="../assets/img/case/poseypets-caesar.jpg" alt="Hundeportrait im Stil eines römischen Kaisers" loading="lazy" width="600" height="600">
+            <img src="../assets/img/case/poseypets-mona.jpg" alt="Katzenportrait im Stil der Mona Lisa" loading="lazy" width="600" height="600">
+          </div>"""),
 
-    <div class="cs-split">
-      <img src="../assets/img/case/poseypets-caesar.jpg" alt="Hundeportrait im Stil eines römischen Kaisers" loading="lazy" width="600" height="600">
-      <img src="../assets/img/case/poseypets-mona.jpg" alt="Katzenportrait im Stil der Mona Lisa" loading="lazy" width="600" height="600">
-    </div>
-
-    <h2>Was im Einzelnen gemacht wurde</h2>
-    <p>Vier Bereiche, in dieser Reihenfolge. Zum Aufklappen.</p>""" + acc([
-
-  (u"01", u"Keyword-Recherche", u"Die Schreibweise entscheidet über das Zehnfache", u"""
+  (u"02", u"Keyword-Recherche", u"Die Schreibweise entscheidet über das Zehnfache", u"""
           <p>Der wichtigste Fund kam ganz am Anfang und hat die gesamte Struktur bestimmt: bei diesen Begriffen entscheidet die <strong>Schreibweise</strong> über den Erfolg.</p>
           <div class="cs-quote">
             <p>„Haustier Portrait“ und „Haustierportrait“ sind für Google nicht dasselbe Wort. Der Unterschied im Suchvolumen liegt beim Zehnfachen.</p>
@@ -482,7 +480,7 @@ page("referenzen/poseypets.html",
           <p>Und es gibt keine Regel dafür. Bei einem Tier gewinnt die getrennte Schreibweise deutlich, beim nächsten die zusammengeschriebene. Das muss pro Begriff geprüft werden, bevor irgendetwas geschrieben wird, denn die Schreibweise steckt später in Titeln, Überschriften und URLs und lässt sich nicht beiläufig ändern.</p>
           <p>Genauso wichtig war, was <em>aussortiert</em> wurde. Ein ganzer Begriffscluster sah nach viel Volumen aus, bestand aber fast vollständig aus Leuten, die selbst malen lernen wollen. Ein zweiter war komplett wertlos, weil die Suchenden etwas ganz anderes meinten. Beide wurden gestrichen, bevor Arbeit hineinfloss.</p>"""),
 
-  (u"02", u"Seitenstruktur", u"Ein Suchbegriff, eine Seite. Daraus sechs Landingpages.", u"""
+  (u"03", u"Seitenstruktur", u"Ein Suchbegriff, eine Seite. Daraus sechs Landingpages.", u"""
           <p>Daraus wurden sechs eigene Landingpages gebaut, je eine pro Hauptbegriff, nach einer einzigen Regel: <strong>ein Suchbegriff, eine Seite.</strong> Keine zwei Seiten konkurrieren um denselben Begriff, weil sie sich sonst gegenseitig die Position wegnehmen.</p>
           <p>Diese Seiten sind keine Textwüsten, sondern echte Produktübersichten. Wer über die Suche kommt, sieht sofort Produkte und nicht erst 800 Wörter Einleitung. Jede Produktseite bekam zusätzlich einen eigenen Textblock, der auf ihren eigenen Begriff zugeschnitten ist.</p>
           <figure class="cs-figure">
@@ -490,7 +488,7 @@ page("referenzen/poseypets.html",
             <figcaption>Eigene Landingpage je Hauptbegriff, hier das Pferdemotiv</figcaption>
           </figure>"""),
 
-  (u"03", u"Inhalte und Blog", u"Ratgeber und Lexikon, dazu eine Regel für interne Links", u"""
+  (u"04", u"Inhalte und Blog", u"Ratgeber und Lexikon, dazu eine Regel für interne Links", u"""
           <p>Zwei bewusst unterschiedliche Formate statt eines Blogs, weil sie zwei verschiedene Aufgaben haben:</p>
           <ul>
             <li><strong>Ratgeber</strong> für die ausführlichen Fragen, die sich jemand vor dem Kauf stellt.</li>
@@ -506,26 +504,29 @@ page("referenzen/poseypets.html",
             <img src="../assets/img/case/poseypets-unboxing.jpg" alt="Ausgepacktes Tierportrait" loading="lazy" width="600" height="600">
           </div>"""),
 
-  (u"04", u"Technisches SEO", u"Metadaten, FAQ-Auszeichnung, Ladezeit — und eine URL-Entscheidung", u"""
+  (u"05", u"Technisches SEO", u"Metadaten, FAQ-Auszeichnung, Ladezeit — und eine URL-Entscheidung", u"""
           <p>Vollständige Metadaten über alle Produkte und Kategorien, eine FAQ mit passender Auszeichnung für die Suchergebnisse, Ladezeit und mobile Darstellung, und eine saubere interne Verlinkung bis in den Footer.</p>
           <p>Eine Entscheidung dabei war, bestehende URLs <em>nicht</em> umzuziehen, obwohl eine andere Struktur auf dem Papier schöner gewesen wäre. Die Seiten rankten bereits.</p>
           <div class="cs-quote">
             <p>Einen vorhandenen Rankingaufbau für eine kosmetische Verbesserung wegzuwerfen, ist einer der teuersten Fehler überhaupt. Wir sehen ihn ständig.</p>
           </div>"""),
+
+  (u"06", u"Stand heute", u"Live, verkauft, und die Sichtbarkeit baut sich weiter auf", u"""
+          <p>Der Shop ist live, verkauft und läuft geschäftlich gut. Die Sichtbarkeit baut sich weiter auf, die Landingpages ranken für ihre jeweiligen Begriffe, und es kommen laufend Inhalte dazu. SEO ist hier kein abgeschlossenes Projekt, sondern die Grundlage, auf der weitergearbeitet wird.</p>
+          <figure class="cs-figure">
+            <img src="../assets/img/case/poseypets-valentin.jpg" alt="Tierportrait als Geschenk" loading="lazy" width="1200" height="900">
+            <figcaption>Saisonale Anlässe als eigene Einstiegspunkte in die Suche</figcaption>
+          </figure>"""),
+
+  (u"07", u"Was daraus für andere folgt", u"Die Reihenfolge entscheidet, und die halbe Stunde am Anfang", u"""
+          <p><strong>Die Reihenfolge entscheidet.</strong> Zuerst prüfen, welche Suchbegriffe überhaupt zu Umsatz führen, dann die Seiten dafür bauen, erst danach Inhalte produzieren. Wer umgekehrt anfängt, schreibt Texte für Suchanfragen, die nie zu einer Anfrage führen, und merkt es erst nach Monaten.</p>
+          <p><strong>Und die Schreibweise prüfen.</strong> Eine falsch gewählte Variante kostet dauerhaft den Großteil des möglichen Volumens, weil sie in Titeln, URLs und Überschriften steckt. Diese halbe Stunde am Anfang ist die billigste Stunde im ganzen Projekt.</p>"""),
  ]) + u"""
+  </div>
+</section>
 
-    <h2>Stand heute</h2>
-    <p>Der Shop ist live, verkauft und läuft geschäftlich gut. Die Sichtbarkeit baut sich weiter auf, die Landingpages ranken für ihre jeweiligen Begriffe, und es kommen laufend Inhalte dazu. SEO ist hier kein abgeschlossenes Projekt, sondern die Grundlage, auf der weitergearbeitet wird.</p>
-
-    <figure class="cs-figure">
-      <img src="../assets/img/case/poseypets-valentin.jpg" alt="Tierportrait als Geschenk" loading="lazy" width="1200" height="900">
-      <figcaption>Saisonale Anlässe als eigene Einstiegspunkte in die Suche</figcaption>
-    </figure>
-
-    <h2>Was daraus für andere folgt</h2>
-    <p><strong>Die Reihenfolge entscheidet.</strong> Zuerst prüfen, welche Suchbegriffe überhaupt zu Umsatz führen, dann die Seiten dafür bauen, erst danach Inhalte produzieren. Wer umgekehrt anfängt, schreibt Texte für Suchanfragen, die nie zu einer Anfrage führen, und merkt es erst nach Monaten.</p>
-    <p><strong>Und die Schreibweise prüfen.</strong> Eine falsch gewählte Variante kostet dauerhaft den Großteil des möglichen Volumens, weil sie in Titeln, URLs und Überschriften steckt. Diese halbe Stunde am Anfang ist die billigste Stunde im ganzen Projekt.</p>
-    """ + cta("../") + u"""
+<section class="section" style="padding-top:0">
+  <div class="wrap">""" + cta("../") + u"""
   </div>
 </section>""")
 
