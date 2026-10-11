@@ -15,10 +15,10 @@ RATGEBER = [
  u"Die fünf Ursachen, die in den meisten Fällen dahinterstecken.",
  u"Die Website ist online, sieht gut aus, und trotzdem kommt über Google niemand. Das hat fast immer eine von fünf Ursachen.",
  u"""
-    <p>Diese Frage steht am Anfang fast jedes Gesprächs. Die Website ist fertig, hat Geld gekostet, sieht ordentlich aus — und bringt keine einzige Anfrage. Dafür gibt es selten einen exotischen Grund. In den allermeisten Fällen ist es einer der folgenden fünf.</p>
+    <p>Diese Frage steht am Anfang fast jedes Gesprächs. Die Website ist fertig, hat Geld gekostet, sieht ordentlich aus - und bringt keine einzige Anfrage. Dafür gibt es selten einen exotischen Grund. In den allermeisten Fällen ist es einer der folgenden fünf.</p>
 
     <h2>1. Die Seiten stehen gar nicht im Index</h2>
-    <p>Bevor eine Seite eine Position haben kann, muss Google sie überhaupt kennen. Eine Seite, die nicht im Index ist, kann nicht auf Platz 50 stehen — sie existiert für die Suche nicht. Das passiert häufiger, als man denkt: ein <a href="noindex.html">noindex</a> aus der Entwicklungsphase, das nie entfernt wurde, eine blockierende <a href="robots-txt.html">robots.txt</a>, oder schlicht Seiten, auf die intern kein einziger Link zeigt.</p>
+    <p>Bevor eine Seite eine Position haben kann, muss Google sie überhaupt kennen. Eine Seite, die nicht im Index ist, kann nicht auf Platz 50 stehen - sie existiert für die Suche nicht. Das passiert häufiger, als man denkt: ein <a href="noindex.html">noindex</a> aus der Entwicklungsphase, das nie entfernt wurde, eine blockierende <a href="robots-txt.html">robots.txt</a>, oder schlicht Seiten, auf die intern kein einziger Link zeigt.</p>
     <p>Prüfen lässt sich das in zwei Minuten: In die Google-Suche <code>site:ihre-domain.de</code> eingeben. Was dort nicht auftaucht, ist nicht im Index.</p>
 
     <h2>2. Es gibt keine Seite für den Suchbegriff</h2>
@@ -26,7 +26,7 @@ RATGEBER = [
     <p>Die Lösung ist unspektakulär: eine Seite je Begriff, der Anfragen bringt. Mehr dazu unter <a href="../leistungen/onpage-und-webdesign.html">OnPage und Webdesign</a>.</p>
 
     <h2>3. Die Begriffe sind zu groß gewählt</h2>
-    <p>Wer bei „Rechtsanwalt“ auf Seite 1 will, tritt gegen Kanzleien an, die seit fünfzehn Jahren daran arbeiten. „Fachanwalt Arbeitsrecht Göppingen“ ist ein anderes Spiel — weniger Suchen, aber erreichbar, und dahinter steht jemand mit konkretem Bedarf. Das nennt sich <a href="long-tail-keyword.html">Long-Tail</a> und ist für kleine und mittlere Unternehmen fast immer der richtige Einstieg.</p>
+    <p>Wer bei „Rechtsanwalt“ auf Seite 1 will, tritt gegen Kanzleien an, die seit fünfzehn Jahren daran arbeiten. „Fachanwalt Arbeitsrecht Göppingen“ ist ein anderes Spiel - weniger Suchen, aber erreichbar, und dahinter steht jemand mit konkretem Bedarf. Das nennt sich <a href="long-tail-keyword.html">Long-Tail</a> und ist für kleine und mittlere Unternehmen fast immer der richtige Einstieg.</p>
 
     <h2>4. Es fehlt die lokale Präsenz</h2>
     <p>Bei jeder Suche mit Ortsbezug zeigt Google zuerst drei Einträge mit Karte und Telefonnummer, das <a href="local-pack.html">Local Pack</a>. Darüber laufen viele Anrufe, bevor jemand die normalen Treffer überhaupt ansieht. Wer dort nicht steht, verliert die Kundschaft im Umkreis, egal wie gut die Website ist. Das <a href="google-unternehmensprofil-einrichten.html">Google Unternehmensprofil</a> kostet nichts und ist bei vielen Betrieben der schnellste Hebel.</p>
@@ -43,7 +43,7 @@ RATGEBER = [
 ("google-unternehmensprofil-einrichten",
  u"Google Unternehmensprofil richtig einrichten",
  u"Welche Felder zählen und welcher Fehler am meisten Sichtbarkeit kostet.",
- u"Der schnellste Hebel für Betriebe mit Kundschaft aus der Umgebung — und er kostet nichts.",
+ u"Der schnellste Hebel für Betriebe mit Kundschaft aus der Umgebung - und er kostet nichts.",
  u"""
     <p>Das Google Unternehmensprofil ist der Eintrag, der bei einer Suche mit Ortsbezug rechts oder oben mit Karte, Öffnungszeiten und Telefonnummer erscheint. Für viele Betriebe bringt er mehr Anrufe als die eigene Website, und er ist kostenlos. Trotzdem ist er bei den meisten halb ausgefüllt.</p>
 
@@ -55,7 +55,7 @@ RATGEBER = [
     <p><strong>Fotos.</strong> Echte, eigene. Innen, außen, Team, Arbeit. Stockfotos erkennt man, und sie wirken genau so, wie sie sind.</p>
 
     <h2>Der Fehler, der am meisten kostet</h2>
-    <p>Abweichende Angaben zwischen Profil, Website und Verzeichnissen. Wenn im Profil „Str.“ steht, auf der Website „Straße“ und im Branchenbuch noch die alte Telefonnummer, muss Google entscheiden, welche Angabe stimmt — und wird im Zweifel vorsichtig. Diese Einheitlichkeit heißt in der Branche NAP-Konsistenz, und sie ist stumpfe Fleißarbeit mit messbarem Ergebnis.</p>
+    <p>Abweichende Angaben zwischen Profil, Website und Verzeichnissen. Wenn im Profil „Str.“ steht, auf der Website „Straße“ und im Branchenbuch noch die alte Telefonnummer, muss Google entscheiden, welche Angabe stimmt - und wird im Zweifel vorsichtig. Diese Einheitlichkeit heißt in der Branche NAP-Konsistenz, und sie ist stumpfe Fleißarbeit mit messbarem Ergebnis.</p>
 
     <h2>Bewertungen</h2>
     <p>Fragen Sie nach ihnen, und zwar am Tag, an dem jemand zufrieden war. Nicht kaufen, nicht erfinden: Google erkennt Muster, und gefälschte Bewertungen kosten im Zweifel den ganzen Eintrag. Antworten Sie auf jede Bewertung, auch auf die schlechten, sachlich und kurz. Das lesen nicht nur die Verfasser, sondern alle, die nach Ihnen kommen.</p>
@@ -69,7 +69,7 @@ RATGEBER = [
 ("was-kostet-seo",
  u"Was kostet SEO?",
  u"Die drei üblichen Abrechnungsmodelle und woran Sie unseriöse Angebote erkennen.",
- u"Eine ehrliche Antwort auf die Frage, auf die es keine Pauschalantwort gibt — aber eine klare Orientierung.",
+ u"Eine ehrliche Antwort auf die Frage, auf die es keine Pauschalantwort gibt - aber eine klare Orientierung.",
  u"""
     <p>Auf diese Frage gibt es keine Zahl, die für alle stimmt, und jeder, der am Telefon sofort eine nennt, hat sich Ihre Seite nicht angesehen. Was es gibt, sind drei übliche Modelle, und die Frage, welches zu Ihnen passt, lässt sich beantworten.</p>
 
@@ -77,7 +77,7 @@ RATGEBER = [
     <p>Ein fester Betrag pro Monat für laufende Arbeit: Inhalte, Technik, Berichte. Sinnvoll, wenn dauerhaft etwas passieren soll und Sie jemanden brauchen, der dranbleibt. Die Frage, die Sie stellen sollten: Was genau passiert in diesem Monat, und woran sehe ich, dass es passiert ist? Eine Pauschale ohne beschriebenen Umfang ist ein Abonnement, keine Leistung.</p>
 
     <h2>Festpreis je Projekt</h2>
-    <p>Ein klar umrissenes Paket zu einem festen Preis: ein <a href="../leistungen/seo-audit.html">Audit</a>, der Aufbau von fünf Landingpages, die technische Überarbeitung. Der Vorteil liegt auf der Hand — Sie wissen vorher, was es kostet und was dabei herauskommt. So arbeiten wir, weil sich der Aufwand bei klar beschriebenem Umfang vorher einschätzen lässt.</p>
+    <p>Ein klar umrissenes Paket zu einem festen Preis: ein <a href="../leistungen/seo-audit.html">Audit</a>, der Aufbau von fünf Landingpages, die technische Überarbeitung. Der Vorteil liegt auf der Hand - Sie wissen vorher, was es kostet und was dabei herauskommt. So arbeiten wir, weil sich der Aufwand bei klar beschriebenem Umfang vorher einschätzen lässt.</p>
 
     <h2>Stundensatz</h2>
     <p>Üblich bei Beratung und kleinen Eingriffen. Für ein längeres Projekt ist es das unangenehmste Modell für den Kunden, weil das Risiko vollständig bei ihm liegt: Dauert es länger, zahlen Sie mehr, ohne dass das Ergebnis besser wird.</p>
@@ -87,13 +87,13 @@ RATGEBER = [
 
     <div class="cs-note">
       <h3>Kurz gesagt</h3>
-      <p>Lassen Sie sich vor jedem Angebot zeigen, woran Sie heute stehen. Unsere <a href="../kontakt.html">kostenlose Analyse</a> ist genau dafür da: Sie sehen, wer vor Ihnen steht und warum — und entscheiden danach, ob und mit wem Sie arbeiten.</p>
+      <p>Lassen Sie sich vor jedem Angebot zeigen, woran Sie heute stehen. Unsere <a href="../kontakt.html">kostenlose Analyse</a> ist genau dafür da: Sie sehen, wer vor Ihnen steht und warum - und entscheiden danach, ob und mit wem Sie arbeiten.</p>
     </div>
 """),
 
 ("wie-lange-dauert-seo",
  u"Wie lange dauert SEO?",
- u"Was nach Wochen passiert, was nach Monaten — und woran die Dauer wirklich hängt.",
+ u"Was nach Wochen passiert, was nach Monaten - und woran die Dauer wirklich hängt.",
  u"Eine realistische Zeitrechnung, aufgeteilt nach dem, was schnell geht, und dem, was dauert.",
  u"""
     <p>Die ehrliche Antwort lautet: Es kommt darauf an, woran gearbeitet wird. Manche Dinge wirken in Wochen, andere brauchen Monate, und beides im selben Projekt. Deshalb ist die Frage „wie lange dauert SEO“ ungefähr so präzise wie „wie lange dauert Renovieren“.</p>
@@ -105,7 +105,7 @@ RATGEBER = [
     <p>Eine neue Seite braucht Zeit, bis Google sie eingeordnet hat und bis sich zeigt, wie Nutzer darauf reagieren. Bei wenig umkämpften Begriffen sind zwei bis drei Monate realistisch, bei umkämpften sechs und mehr. Dazwischen passiert nichts Spektakuläres: Die Seite steht erst auf Position 60, dann auf 30, dann auf 12. Erst der letzte Schritt bringt spürbar Besucher.</p>
 
     <h2>Ein Jahr und länger: Autorität</h2>
-    <p><a href="../leistungen/linkaufbau.html">Linkaufbau</a> und der Aufbau einer Inhaltssammlung wirken am langsamsten und am dauerhaftesten. Das ist der Teil, bei dem ein Wettbewerber, der zwei Jahre Vorsprung hat, schwer einzuholen ist — und der Grund, warum man am besten gestern angefangen hätte.</p>
+    <p><a href="../leistungen/linkaufbau.html">Linkaufbau</a> und der Aufbau einer Inhaltssammlung wirken am langsamsten und am dauerhaftesten. Das ist der Teil, bei dem ein Wettbewerber, der zwei Jahre Vorsprung hat, schwer einzuholen ist - und der Grund, warum man am besten gestern angefangen hätte.</p>
 
     <h2>Wovon die Dauer tatsächlich abhängt</h2>
     <p>Drei Dinge: der Zustand der Seite zu Beginn, die Stärke des Wettbewerbs bei Ihren Begriffen, und wie schnell Änderungen tatsächlich umgesetzt werden. Der dritte Punkt wird unterschätzt. Projekte verzögern sich selten an der Suchmaschine, sondern daran, dass eine Freigabe drei Wochen liegen bleibt.</p>
@@ -125,16 +125,16 @@ RATGEBER = [
 
     <h2>Was Sie gut selbst machen können</h2>
     <p><strong>Das Unternehmensprofil.</strong> Vollständig ausfüllen, echte Fotos hochladen, Bewertungen einsammeln und beantworten. Dafür braucht es niemanden, nur eine Stunde und etwas Regelmäßigkeit.</p>
-    <p><strong>Texte über Ihre eigene Arbeit.</strong> Sie wissen besser als jede Agentur, welche Fragen Kunden am Telefon stellen. Diese Fragen aufzuschreiben, ist der Rohstoff für gute Inhalte — die Struktur drumherum kann jemand anderes bauen.</p>
+    <p><strong>Texte über Ihre eigene Arbeit.</strong> Sie wissen besser als jede Agentur, welche Fragen Kunden am Telefon stellen. Diese Fragen aufzuschreiben, ist der Rohstoff für gute Inhalte - die Struktur drumherum kann jemand anderes bauen.</p>
     <p><strong>Fotos.</strong> Eigene Bilder von eigener Arbeit schlagen jede gekaufte Bildsammlung, und sie kosten nichts.</p>
 
     <h2>Wo es sich selten lohnt</h2>
-    <p><strong>Keyword-Recherche.</strong> Nicht weil sie schwer wäre, sondern weil der häufigste Fehler darin besteht, auf die falschen Begriffe zu zielen — und das merkt man erst nach Monaten vergeblicher Arbeit. Ein Tag Recherche zu Beginn spart ein halbes Jahr.</p>
+    <p><strong>Keyword-Recherche.</strong> Nicht weil sie schwer wäre, sondern weil der häufigste Fehler darin besteht, auf die falschen Begriffe zu zielen - und das merkt man erst nach Monaten vergeblicher Arbeit. Ein Tag Recherche zu Beginn spart ein halbes Jahr.</p>
     <p><strong>Technik.</strong> <a href="indexierung.html">Indexierung</a>, <a href="canonical-tag.html">Canonical-Tags</a>, Weiterleitungen, Ladezeit. Hier richtet ein gut gemeinter Eingriff schnell Schaden an, den man selbst nicht sieht.</p>
     <p><strong>Linkaufbau.</strong> Der Bereich, in dem die meisten Anfänger Geld für Dinge ausgeben, die der Domain schaden.</p>
 
     <h2>Der dritte Weg</h2>
-    <p>Häufig ist die sinnvollste Aufteilung: Ein <a href="../leistungen/seo-audit.html">Audit</a> einmal von außen, mit einer priorisierten Liste — und die Umsetzung danach intern, soweit Sie können. Das Audit gehört Ihnen, und es gibt keinen Grund, daraus einen Dauerauftrag zu machen, wenn Sie die Punkte selbst abarbeiten können.</p>
+    <p>Häufig ist die sinnvollste Aufteilung: Ein <a href="../leistungen/seo-audit.html">Audit</a> einmal von außen, mit einer priorisierten Liste - und die Umsetzung danach intern, soweit Sie können. Das Audit gehört Ihnen, und es gibt keinen Grund, daraus einen Dauerauftrag zu machen, wenn Sie die Punkte selbst abarbeiten können.</p>
 
     <div class="cs-note">
       <h3>Kurz gesagt</h3>
@@ -165,7 +165,7 @@ RATGEBER += [
     <p>Vierzig Seiten aus einem Tool, in denen keine einzige Zahl mit Ihrem Geschäft zu tun hat. Ein brauchbarer Bericht passt auf eine Seite und beantwortet: Welche Begriffe haben sich bewegt, wie viele Besucher kamen aus der Suche, was wurde gemacht, was kommt als Nächstes. Siehe <a href="../leistungen/reporting.html">Reporting</a>.</p>
 
     <h2>5. Lange Mindestlaufzeit bei kurzer Erklärung</h2>
-    <p>Zwölf Monate Bindung sind nicht per se unseriös — SEO dauert. Unseriös wird es, wenn die Laufzeit lang ist und die Beschreibung der Leistung kurz.</p>
+    <p>Zwölf Monate Bindung sind nicht per se unseriös - SEO dauert. Unseriös wird es, wenn die Laufzeit lang ist und die Beschreibung der Leistung kurz.</p>
 
     <h2>6. Keine Zugänge, keine Einsicht</h2>
     <p>Search Console und Analysezugang gehören Ihnen. Eine Agentur, die darauf besteht, dass die Konten auf ihren Namen laufen, baut eine Abhängigkeit auf, die beim Wechsel teuer wird.</p>
@@ -192,21 +192,21 @@ RATGEBER += [
     <h2>Wann ein Neubau wirklich günstiger ist</h2>
     <p><strong>Wenn das System keine eigenen Seiten zulässt.</strong> Manche Baukästen erlauben pro Seite keinen eigenen Titel oder keine saubere Überschriftenstruktur. Dann arbeitet man dauerhaft gegen das Werkzeug.</p>
     <p><strong>Wenn die Seite auf dem Handy unbrauchbar ist</strong> und sich das nicht nachrüsten lässt. Der Großteil der Suchen ist mobil; eine Seite, die dort nicht funktioniert, verliert Besucher unabhängig von der Position.</p>
-    <p><strong>Wenn die Ladezeit baulich bedingt ist</strong> — zum Beispiel bei einer Seite, die komplett aus eingebetteten Fremdinhalten besteht.</p>
+    <p><strong>Wenn die Ladezeit baulich bedingt ist</strong> - zum Beispiel bei einer Seite, die komplett aus eingebetteten Fremdinhalten besteht.</p>
 
     <h2>Der teuerste Fehler beim Neubau</h2>
     <p>Alte URLs ersatzlos abschalten. Jede Seite, die rankte, verliert ihre Position, und die Besucher landen auf einer Fehlerseite. Wer neu baut, braucht eine vollständige Liste der alten Adressen und für jede eine <a href="301-weiterleitung.html">301-Weiterleitung</a> auf das passende neue Ziel. Ohne diese Liste kostet ein Neubau Sichtbarkeit, die vorher da war.</p>
 
     <div class="cs-note">
       <h3>Kurz gesagt</h3>
-      <p>Lassen Sie prüfen, ob Ihre Seite die Grundlagen zulässt, bevor Sie über einen Neubau nachdenken. Wenn ein Neubau wirklich der günstigere Weg ist, sagen wir das offen — und wenn nicht, auch. Siehe <a href="../leistungen/onpage-und-webdesign.html">OnPage und Webdesign</a>.</p>
+      <p>Lassen Sie prüfen, ob Ihre Seite die Grundlagen zulässt, bevor Sie über einen Neubau nachdenken. Wenn ein Neubau wirklich der günstigere Weg ist, sagen wir das offen - und wenn nicht, auch. Siehe <a href="../leistungen/onpage-und-webdesign.html">OnPage und Webdesign</a>.</p>
     </div>
 """),
 
 ("keyword-recherche-fuer-einsteiger",
  u"Keyword-Recherche für Einsteiger",
  u"Wie Sie in einer Stunde herausfinden, wonach Ihre Kundschaft wirklich sucht.",
- u"Der Schritt, der über alles andere entscheidet — und der ohne Werkzeug weiter kommt, als die meisten denken.",
+ u"Der Schritt, der über alles andere entscheidet - und der ohne Werkzeug weiter kommt, als die meisten denken.",
  u"""
     <p>Jede Seite, jeder Text, jede Überschrift zielt auf einen Begriff. Wenn dieser Begriff falsch gewählt ist, war die gesamte Arbeit danach umsonst. Deshalb steht die Recherche am Anfang, nicht am Ende.</p>
 
@@ -217,13 +217,13 @@ RATGEBER += [
     <p>Tippen Sie Ihren Begriff in die Suche und sehen Sie sich die Vorschläge an, die beim Tippen erscheinen. Scrollen Sie zum Ende der Ergebnisseite zu den verwandten Suchanfragen. Öffnen Sie die Kästen „Ähnliche Fragen“. Das ist echte Suchdatenlage, kostenlos, und für den Einstieg reicht sie weit.</p>
 
     <h2>Schritt 3: die Absicht prüfen</h2>
-    <p>Geben Sie den Begriff ein und sehen Sie sich an, was Google bereits auf Seite 1 zeigt. Stehen dort Shops, will der Suchende kaufen. Stehen dort Anleitungen, will er es selbst machen. Eine Verkaufsseite wird bei einem Begriff, hinter dem Anleitungen stehen, nicht ranken — egal wie gut sie ist. Mehr dazu unter <a href="suchintention.html">Suchintention</a>.</p>
+    <p>Geben Sie den Begriff ein und sehen Sie sich an, was Google bereits auf Seite 1 zeigt. Stehen dort Shops, will der Suchende kaufen. Stehen dort Anleitungen, will er es selbst machen. Eine Verkaufsseite wird bei einem Begriff, hinter dem Anleitungen stehen, nicht ranken - egal wie gut sie ist. Mehr dazu unter <a href="suchintention.html">Suchintention</a>.</p>
 
     <h2>Schritt 4: aussortieren</h2>
     <p>Das ist die unsichtbare Hälfte. Streichen Sie alles, hinter dem keine Kundschaft steht, auch wenn es nach viel Volumen aussieht. Ein Begriff mit tausend Suchen, bei denen niemand kaufen will, ist wertlos. Ein Begriff mit dreißig Suchen und konkretem Bedarf bringt Aufträge.</p>
 
     <h2>Schritt 5: eine Seite je Begriff zuordnen</h2>
-    <p>Legen Sie eine Tabelle an: Begriff, Suchabsicht, und welche Ihrer Seiten diesen Begriff bedient. Taucht eine Seite zweimal auf, haben Sie ein Problem — siehe <a href="keyword-kannibalisierung.html">Keyword-Kannibalisierung</a>. Fehlt zu einem guten Begriff eine Seite, haben Sie Ihre nächste Aufgabe.</p>
+    <p>Legen Sie eine Tabelle an: Begriff, Suchabsicht, und welche Ihrer Seiten diesen Begriff bedient. Taucht eine Seite zweimal auf, haben Sie ein Problem - siehe <a href="keyword-kannibalisierung.html">Keyword-Kannibalisierung</a>. Fehlt zu einem guten Begriff eine Seite, haben Sie Ihre nächste Aufgabe.</p>
 
     <div class="cs-note">
       <h3>Kurz gesagt</h3>
@@ -234,21 +234,21 @@ RATGEBER += [
 ("core-web-vitals-erklaert",
  u"Core Web Vitals, kurz erklärt",
  u"Was Google misst und ab wann sich die Ladezeit auf die Position auswirkt.",
- u"Drei Messwerte, drei Alltagsfragen — ohne Fachchinesisch.",
+ u"Drei Messwerte, drei Alltagsfragen - ohne Fachchinesisch.",
  u"""
     <p>Core Web Vitals sind drei Messwerte, mit denen Google beschreibt, wie sich eine Seite für den Besucher anfühlt. Sie sind kein Geheimnis und kein Hexenwerk, und man kann sie in Alltagssprache übersetzen.</p>
 
-    <h2>LCP — wie schnell ist das Wesentliche da?</h2>
+    <h2>LCP - wie schnell ist das Wesentliche da?</h2>
     <p>Gemessen wird, wann das größte sichtbare Element geladen ist, meist ein Bild oder eine Überschrift. Als gut gilt unter 2,5 Sekunden. Der häufigste Grund für schlechte Werte: Bilder, die in Originalgröße ausgeliefert werden, obwohl sie auf dem Handy auf Daumengröße schrumpfen.</p>
 
-    <h2>INP — reagiert die Seite, wenn ich tippe?</h2>
-    <p>Gemessen wird die Verzögerung zwischen einer Eingabe und der sichtbaren Reaktion. Als gut gilt unter 200 Millisekunden. Schlechte Werte kommen fast immer von zu vielen Skripten, die gleichzeitig arbeiten — Chat-Fenster, Tracking, Einwilligungsbanner, Schriftarten von fremden Servern.</p>
+    <h2>INP - reagiert die Seite, wenn ich tippe?</h2>
+    <p>Gemessen wird die Verzögerung zwischen einer Eingabe und der sichtbaren Reaktion. Als gut gilt unter 200 Millisekunden. Schlechte Werte kommen fast immer von zu vielen Skripten, die gleichzeitig arbeiten - Chat-Fenster, Tracking, Einwilligungsbanner, Schriftarten von fremden Servern.</p>
 
-    <h2>CLS — springt das Layout?</h2>
+    <h2>CLS - springt das Layout?</h2>
     <p>Gemessen wird, wie stark sich Inhalte beim Laden noch verschieben. Jeder kennt das: Man will auf einen Link tippen, im selben Moment lädt oben ein Banner nach, und man trifft etwas anderes. Die häufigste Ursache sind Bilder ohne angegebene Größe und nachgeladene Werbeflächen.</p>
 
     <h2>Ab wann wirkt sich das auf die Position aus?</h2>
-    <p>Hier ist Ehrlichkeit angebracht: Die Werte sind ein schwaches Signal im Vergleich zu Inhalt und Verlinkung. Eine schnelle Seite mit dem falschen Inhalt rankt nicht. Entscheidend wird die Geschwindigkeit dort, wo zwei Seiten inhaltlich gleichauf liegen — und in dem, was sie mit den Besuchern macht: Wer abbricht, kauft nicht, und das sieht Google an der Rückkehr zur Suche.</p>
+    <p>Hier ist Ehrlichkeit angebracht: Die Werte sind ein schwaches Signal im Vergleich zu Inhalt und Verlinkung. Eine schnelle Seite mit dem falschen Inhalt rankt nicht. Entscheidend wird die Geschwindigkeit dort, wo zwei Seiten inhaltlich gleichauf liegen - und in dem, was sie mit den Besuchern macht: Wer abbricht, kauft nicht, und das sieht Google an der Rückkehr zur Suche.</p>
 
     <div class="cs-note">
       <h3>Kurz gesagt</h3>
@@ -261,7 +261,7 @@ RATGEBER += [
  u"Wie Betriebe im Umkreis gefunden werden, bevor jemand die normalen Treffer ansieht.",
  u"Bei Suchen mit Ortsbezug entscheidet sich fast alles in den ersten drei Einträgen mit Karte.",
  u"""
-    <p>Wer „Elektriker Göppingen“ sucht, bekommt zuerst eine Karte mit drei Einträgen, Telefonnummern und Bewertungen. Erst darunter beginnen die normalen Ergebnisse. Ein großer Teil der Anrufe entsteht in diesen drei Zeilen — das <a href="local-pack.html">Local Pack</a> ist für ortsgebundene Betriebe wichtiger als die eigene Startseite.</p>
+    <p>Wer „Elektriker Göppingen“ sucht, bekommt zuerst eine Karte mit drei Einträgen, Telefonnummern und Bewertungen. Erst darunter beginnen die normalen Ergebnisse. Ein großer Teil der Anrufe entsteht in diesen drei Zeilen - das <a href="local-pack.html">Local Pack</a> ist für ortsgebundene Betriebe wichtiger als die eigene Startseite.</p>
 
     <h2>Was über die Platzierung entscheidet</h2>
     <p>Google nennt drei Faktoren: <strong>Relevanz</strong> (passt der Eintrag zur Suche?), <strong>Entfernung</strong> (wie weit ist es zum Suchenden?) und <strong>Bekanntheit</strong> (wie präsent ist der Betrieb im Netz?). Die Entfernung können Sie nicht ändern. Die anderen beiden schon.</p>
@@ -270,10 +270,10 @@ RATGEBER += [
     <p>Die Hauptkategorie im <a href="google-unternehmensprofil-einrichten.html">Unternehmensprofil</a> ist das stärkste Einzelsignal. Dazu jede Leistung einzeln eintragen. Ein Betrieb, der nur „Elektriker“ hinterlegt hat, erscheint seltener bei „Wallbox installieren“ als einer, der es ausdrücklich aufgeführt hat.</p>
 
     <h2>Bekanntheit: einheitliche Angaben und Bewertungen</h2>
-    <p>Name, Adresse und Telefonnummer müssen überall identisch sein — Website, Profil, Branchenverzeichnisse, Handwerkskammer. Jede Abweichung schwächt den Eintrag. Dazu Bewertungen: regelmäßig, echt, beantwortet.</p>
+    <p>Name, Adresse und Telefonnummer müssen überall identisch sein - Website, Profil, Branchenverzeichnisse, Handwerkskammer. Jede Abweichung schwächt den Eintrag. Dazu Bewertungen: regelmäßig, echt, beantwortet.</p>
 
     <h2>Und die Website?</h2>
-    <p>Sie stützt den Eintrag. Eine eigene Seite je Leistung und, bei mehreren Einzugsgebieten, je Ort — mit echtem, unterschiedlichem Inhalt, nicht derselbe Text mit ausgetauschtem Ortsnamen. Diese Seiten geben Google den Zusammenhang zwischen Ihrem Betrieb, der Leistung und dem Gebiet.</p>
+    <p>Sie stützt den Eintrag. Eine eigene Seite je Leistung und, bei mehreren Einzugsgebieten, je Ort - mit echtem, unterschiedlichem Inhalt, nicht derselbe Text mit ausgetauschtem Ortsnamen. Diese Seiten geben Google den Zusammenhang zwischen Ihrem Betrieb, der Leistung und dem Gebiet.</p>
 
     <h2>Der häufigste Fehler</h2>
     <p>Eine Seite mit dreißig Ortsnamen in einer Liste am Seitenende. Das hat vor zehn Jahren funktioniert und wird heute als das erkannt, was es ist. Besser sind wenige echte Seiten für die Orte, aus denen tatsächlich Kundschaft kommt.</p>
@@ -289,11 +289,11 @@ LEXIKON = [
 
 ("keyword",
  u"Keyword",
- u"Der Begriff, den jemand bei Google eingibt — und auf den eine Seite ausgerichtet wird.",
+ u"Der Begriff, den jemand bei Google eingibt - und auf den eine Seite ausgerichtet wird.",
  u"""
     <p>Ein Keyword ist nichts anderes als das, was ein Mensch in das Suchfeld tippt. „Schreiner Stuttgart“, „Fenster abdichten Kosten“, „Steuerberater für Kleinunternehmer“. In der Suchmaschinenoptimierung bezeichnet der Begriff den Suchausdruck, auf den eine einzelne Seite ausgerichtet wird.</p>
     <h2>Warum es darauf ankommt</h2>
-    <p>Google ordnet Seiten einzelnen Suchanfragen zu, nicht ganzen Unternehmen. Jede Seite braucht deshalb einen Begriff, für den sie gebaut wurde. Fehlt diese Zuordnung, konkurrieren mehrere eigene Seiten um denselben Begriff und schwächen sich gegenseitig — siehe <a href="keyword-kannibalisierung.html">Keyword-Kannibalisierung</a>.</p>
+    <p>Google ordnet Seiten einzelnen Suchanfragen zu, nicht ganzen Unternehmen. Jede Seite braucht deshalb einen Begriff, für den sie gebaut wurde. Fehlt diese Zuordnung, konkurrieren mehrere eigene Seiten um denselben Begriff und schwächen sich gegenseitig - siehe <a href="keyword-kannibalisierung.html">Keyword-Kannibalisierung</a>.</p>
     <h2>Häufiger Fehler</h2>
     <p>Begriffe wählen, die das Unternehmen benutzt, statt derer, die die Kundschaft benutzt. „Sanitärinstallation“ steht im Firmenprofil, gesucht wird „Klempner in der Nähe“.</p>
     <p>Wie man die richtigen findet, steht unter <a href="keyword-recherche-fuer-einsteiger.html">Keyword-Recherche für Einsteiger</a>, und was wir daraus bauen, unter <a href="../leistungen/seo.html">SEO</a>.</p>
@@ -301,11 +301,11 @@ LEXIKON = [
 
 ("suchintention",
  u"Suchintention",
- u"Was jemand vorhat, der einen Begriff eingibt — kaufen, vergleichen oder nur nachschlagen.",
+ u"Was jemand vorhat, der einen Begriff eingibt - kaufen, vergleichen oder nur nachschlagen.",
  u"""
     <p>Die Suchintention ist die Absicht hinter einer Suchanfrage. Üblicherweise unterscheidet man drei Arten: jemand will etwas <strong>wissen</strong> („wie funktioniert eine Wärmepumpe“), etwas <strong>finden</strong> („Stadtwerke Göppingen Login“) oder etwas <strong>tun bzw. kaufen</strong> („Wärmepumpe installieren lassen“).</p>
     <h2>Warum es darauf ankommt</h2>
-    <p>Google zeigt für jede Anfrage den Seitentyp, der zur Absicht passt. Eine Verkaufsseite wird bei einem Begriff, hinter dem Wissensdurst steht, nicht ranken — unabhängig davon, wie gut sie gemacht ist. Umgekehrt bringt ein Ratgeber keine Aufträge, wenn der Suchende kaufen wollte.</p>
+    <p>Google zeigt für jede Anfrage den Seitentyp, der zur Absicht passt. Eine Verkaufsseite wird bei einem Begriff, hinter dem Wissensdurst steht, nicht ranken - unabhängig davon, wie gut sie gemacht ist. Umgekehrt bringt ein Ratgeber keine Aufträge, wenn der Suchende kaufen wollte.</p>
     <h2>Wie man sie prüft</h2>
     <p>Begriff eingeben und ansehen, was Google bereits auf Seite 1 zeigt. Stehen dort Shops, ist die Absicht kommerziell. Stehen dort Anleitungen und Videos, ist sie es nicht. Diese Prüfung dauert zehn Sekunden und erspart manchmal Wochen.</p>
     <p>Siehe auch <a href="keyword.html">Keyword</a> und <a href="long-tail-keyword.html">Long-Tail-Keyword</a>.</p>
@@ -331,7 +331,7 @@ LEXIKON = [
     <h2>Warum es darauf ankommt</h2>
     <p>Er wirkt zweifach: Google benutzt ihn für die Einordnung, und der Mensch entscheidet an ihm, ob er klickt. Die beste Position bringt nichts, wenn der Titel nicht erkennen lässt, dass hier die passende Antwort steht.</p>
     <h2>Was hineingehört</h2>
-    <p>Der Begriff, für den die Seite gebaut wurde, möglichst weit vorn, dazu das Unterscheidbare: Ort, Leistung, Besonderheit. Rund 55 bis 60 Zeichen werden angezeigt, danach schneidet Google ab. Jede Seite braucht einen eigenen Titel — identische Titel über eine ganze Website sind eines der häufigsten Versäumnisse.</p>
+    <p>Der Begriff, für den die Seite gebaut wurde, möglichst weit vorn, dazu das Unterscheidbare: Ort, Leistung, Besonderheit. Rund 55 bis 60 Zeichen werden angezeigt, danach schneidet Google ab. Jede Seite braucht einen eigenen Titel - identische Titel über eine ganze Website sind eines der häufigsten Versäumnisse.</p>
     <p>Siehe auch <a href="meta-description.html">Meta-Description</a> und <a href="../leistungen/onpage-und-webdesign.html">OnPage und Webdesign</a>.</p>
 """),
 
@@ -339,7 +339,7 @@ LEXIKON = [
  u"Meta-Description",
  u"Der kurze Beschreibungstext unter dem Treffer. Kein Rankingfaktor, aber entscheidend für den Klick.",
  u"""
-    <p>Die Meta-Description ist der graue Text unter dem Titel im Suchergebnis. Sie ist kein Rankingfaktor — Google verwendet sie nicht für die Einordnung. Sie entscheidet aber mit darüber, ob jemand Ihren Treffer anklickt oder den darunter.</p>
+    <p>Die Meta-Description ist der graue Text unter dem Titel im Suchergebnis. Sie ist kein Rankingfaktor - Google verwendet sie nicht für die Einordnung. Sie entscheidet aber mit darüber, ob jemand Ihren Treffer anklickt oder den darunter.</p>
     <h2>Was hineingehört</h2>
     <p>Ein Satz, der die Frage des Suchenden aufgreift, und ein zweiter, der sagt, was er auf der Seite bekommt. Rund 150 bis 160 Zeichen werden angezeigt. Keine Aufzählung von Begriffen, sondern ein Text, den ein Mensch gern liest.</p>
     <h2>Gut zu wissen</h2>
@@ -361,11 +361,11 @@ LEXIKON = [
 
 ("alt-text",
  u"Alt-Text",
- u"Die Textbeschreibung eines Bildes — für Screenreader, für die Bildersuche und wenn das Bild nicht lädt.",
+ u"Die Textbeschreibung eines Bildes - für Screenreader, für die Bildersuche und wenn das Bild nicht lädt.",
  u"""
     <p>Der Alt-Text ist eine kurze Beschreibung, die im Quelltext bei jedem Bild hinterlegt wird. Sichtbar wird er, wenn das Bild nicht lädt. Vorgelesen wird er von Screenreadern. Und er ist das Einzige, woran eine Suchmaschine erkennt, was auf dem Bild zu sehen ist.</p>
     <h2>Warum es darauf ankommt</h2>
-    <p>Zum einen Barrierefreiheit: Für blinde Nutzer ist der Alt-Text das Bild. Zum anderen die Bildersuche, die in manchen Branchen ein eigener Einstieg ist — bei allem, wo Menschen zuerst sehen wollen, bevor sie lesen.</p>
+    <p>Zum einen Barrierefreiheit: Für blinde Nutzer ist der Alt-Text das Bild. Zum anderen die Bildersuche, die in manchen Branchen ein eigener Einstieg ist - bei allem, wo Menschen zuerst sehen wollen, bevor sie lesen.</p>
     <h2>Wie er aussehen sollte</h2>
     <p>Beschreibend und knapp: „Monteur verlegt Fußbodenheizung in einem Neubau“. Nicht „bild1.jpg“, nicht eine Aneinanderreihung von Suchbegriffen. Rein dekorative Bilder bekommen einen leeren Alt-Text, damit Screenreader sie überspringen.</p>
     <p>Wie wir das in einem Projekt umgesetzt haben, steht in der <a href="../referenzen/poseypets.html">Fallstudie PoseyPets</a>.</p>
@@ -387,11 +387,11 @@ LEXIKON = [
  u"Interne Verlinkung",
  u"Links innerhalb der eigenen Website. Sie verteilen Aufmerksamkeit und Kraft.",
  u"""
-    <p>Interne Verlinkung bezeichnet alle Links, die von einer Seite Ihrer Website auf eine andere zeigen — aus dem Menü, aus dem Text, aus dem Fußbereich.</p>
+    <p>Interne Verlinkung bezeichnet alle Links, die von einer Seite Ihrer Website auf eine andere zeigen - aus dem Menü, aus dem Text, aus dem Fußbereich.</p>
     <h2>Warum es darauf ankommt</h2>
     <p>Sie hat zwei Aufgaben. Erstens findet Google über Links neue Seiten: Was nirgends verlinkt ist, wird schlecht oder gar nicht gefunden. Zweitens geben starke Seiten über Links einen Teil ihrer Kraft weiter. Welche Ihrer Seiten die wichtigste ist, teilen Sie Google unter anderem dadurch mit, wie oft und von wo Sie darauf verlinken.</p>
     <h2>Eine Regel aus der Praxis</h2>
-    <p>Etwa 60 Prozent der Links in Inhalten sollten auf Seiten zeigen, die verkaufen, 40 Prozent auf weitere Inhalte. Ohne eine solche Quote verlinkt eine Inhaltssammlung nach einiger Zeit fast nur noch sich selbst — die Artikel ranken dann, bringen aber niemanden mehr dorthin, wo Geld verdient wird.</p>
+    <p>Etwa 60 Prozent der Links in Inhalten sollten auf Seiten zeigen, die verkaufen, 40 Prozent auf weitere Inhalte. Ohne eine solche Quote verlinkt eine Inhaltssammlung nach einiger Zeit fast nur noch sich selbst - die Artikel ranken dann, bringen aber niemanden mehr dorthin, wo Geld verdient wird.</p>
     <p>Siehe <a href="../referenzen/poseypets.html">Fallstudie PoseyPets</a>.</p>
 """),
 
@@ -401,7 +401,7 @@ LEXIKON = [
  u"""
     <p>Indexierung bezeichnet den Vorgang, bei dem Google eine Seite abruft, auswertet und in seinen Datenbestand aufnimmt. Erst danach kann sie überhaupt in den Ergebnissen erscheinen.</p>
     <h2>Warum es darauf ankommt</h2>
-    <p>Eine nicht indexierte Seite steht nicht auf Position 90 — sie existiert für die Suche nicht. Das ist der erste Punkt, den man prüft, wenn eine Seite keine Besucher bringt, und überraschend oft auch schon der letzte.</p>
+    <p>Eine nicht indexierte Seite steht nicht auf Position 90 - sie existiert für die Suche nicht. Das ist der erste Punkt, den man prüft, wenn eine Seite keine Besucher bringt, und überraschend oft auch schon der letzte.</p>
     <h2>Wie man es prüft</h2>
     <p>In der Google-Suche <code>site:ihre-domain.de</code> eingeben. Genauer geht es in der <a href="search-console.html">Search Console</a>, die für jede Seite ausweist, ob sie aufgenommen wurde und wenn nicht, warum.</p>
     <h2>Typische Ursachen für fehlende Indexierung</h2>
@@ -413,13 +413,13 @@ LEXIKON += [
 
 ("noindex",
  u"noindex",
- u"Eine Anweisung, eine Seite nicht in den Suchindex aufzunehmen. Nützlich — und gefährlich, wenn vergessen.",
+ u"Eine Anweisung, eine Seite nicht in den Suchindex aufzunehmen. Nützlich - und gefährlich, wenn vergessen.",
  u"""
     <p><code>noindex</code> ist eine Anweisung im Quelltext einer Seite, die Suchmaschinen sagt: Diese Seite bitte nicht in die Ergebnisse aufnehmen. Die Seite bleibt für Besucher erreichbar, taucht aber in der Suche nicht auf.</p>
     <h2>Wofür man es braucht</h2>
     <p>Für Seiten, die niemand über die Suche finden soll: Dankeseiten nach einem Formular, interne Suchergebnisse, Testseiten, doppelte Druckansichten.</p>
     <h2>Warum es gefährlich ist</h2>
-    <p>Während der Entwicklung wird eine Website meist komplett auf <code>noindex</code> gesetzt, damit die unfertige Fassung nicht in der Suche landet. Wird das beim Livegang vergessen, ist die fertige Seite monatelang unsichtbar — und niemand merkt es, weil die Seite ja aufrufbar ist. Das ist einer der häufigsten und teuersten Fehler überhaupt.</p>
+    <p>Während der Entwicklung wird eine Website meist komplett auf <code>noindex</code> gesetzt, damit die unfertige Fassung nicht in der Suche landet. Wird das beim Livegang vergessen, ist die fertige Seite monatelang unsichtbar - und niemand merkt es, weil die Seite ja aufrufbar ist. Das ist einer der häufigsten und teuersten Fehler überhaupt.</p>
     <p>Prüfen lässt sich das über die <a href="search-console.html">Search Console</a> oder mit <code>site:ihre-domain.de</code>. Siehe auch <a href="indexierung.html">Indexierung</a>.</p>
 """),
 
@@ -429,7 +429,7 @@ LEXIKON += [
  u"""
     <p>Die <code>robots.txt</code> liegt im Hauptverzeichnis einer Website und enthält Regeln dafür, welche Bereiche Suchmaschinen abrufen dürfen. Sie ist das erste, was ein Crawler ansieht.</p>
     <h2>Ein wichtiger Unterschied</h2>
-    <p>Die Datei steuert das <strong>Abrufen</strong>, nicht das <strong>Anzeigen</strong>. Eine über robots.txt gesperrte Seite kann trotzdem in den Ergebnissen erscheinen, wenn andere Seiten darauf verlinken — dann allerdings ohne Beschreibung. Wer eine Seite zuverlässig aus den Ergebnissen halten will, braucht <a href="noindex.html">noindex</a>, nicht robots.txt.</p>
+    <p>Die Datei steuert das <strong>Abrufen</strong>, nicht das <strong>Anzeigen</strong>. Eine über robots.txt gesperrte Seite kann trotzdem in den Ergebnissen erscheinen, wenn andere Seiten darauf verlinken - dann allerdings ohne Beschreibung. Wer eine Seite zuverlässig aus den Ergebnissen halten will, braucht <a href="noindex.html">noindex</a>, nicht robots.txt.</p>
     <h2>Häufiger Fehler</h2>
     <p>Ein <code>Disallow: /</code> aus der Entwicklungsphase, das live bleibt. Damit ist die gesamte Website gesperrt. Zweithäufigster Fehler: CSS- und Bildverzeichnisse sperren, wodurch Google die Seite nicht mehr so sieht wie ein Besucher und sie schlechter bewertet.</p>
     <p>Siehe auch <a href="sitemap.html">Sitemap</a> und <a href="indexierung.html">Indexierung</a>.</p>
@@ -440,7 +440,7 @@ LEXIKON += [
  u"Eine Liste aller Seiten einer Website für Suchmaschinen.",
  u"""
     <p>Eine XML-Sitemap ist eine Datei, die alle Adressen einer Website auflistet, die in der Suche erscheinen sollen, oft mit dem Datum der letzten Änderung. Sie wird in der <a href="search-console.html">Search Console</a> hinterlegt.</p>
-    <h2>Was sie leistet — und was nicht</h2>
+    <h2>Was sie leistet - und was nicht</h2>
     <p>Sie hilft Google, Seiten zu finden, besonders bei großen Websites und bei Seiten, auf die wenig intern verlinkt wird. Sie ist aber keine Garantie für Aufnahme: Google entscheidet weiterhin selbst, was in den Index kommt. Eine Sitemap ersetzt deshalb keine gute <a href="interne-verlinkung.html">interne Verlinkung</a>.</p>
     <h2>Häufiger Fehler</h2>
     <p>Eine Sitemap, die Seiten enthält, die auf <a href="noindex.html">noindex</a> stehen, weitergeleitet werden oder nicht mehr existieren. Das sind widersprüchliche Angaben, und sie kosten Vertrauen in die gesamte Datei.</p>
@@ -452,7 +452,7 @@ LEXIKON += [
  u"""
     <p>Das Canonical-Tag ist eine Angabe im Quelltext, die sagt: Es gibt diese Seite unter mehreren Adressen, aber diese hier ist die richtige. Google soll die Signale aller Varianten auf dieser einen bündeln.</p>
     <h2>Wofür man es braucht</h2>
-    <p>Dieselbe Seite ist oft über mehrere Adressen erreichbar — mit und ohne <code>www</code>, mit angehängten Parametern aus Werbekampagnen, in Shops über verschiedene Kategoriepfade. Ohne Canonical behandelt Google sie als mehrere Seiten, die sich gegenseitig Konkurrenz machen.</p>
+    <p>Dieselbe Seite ist oft über mehrere Adressen erreichbar - mit und ohne <code>www</code>, mit angehängten Parametern aus Werbekampagnen, in Shops über verschiedene Kategoriepfade. Ohne Canonical behandelt Google sie als mehrere Seiten, die sich gegenseitig Konkurrenz machen.</p>
     <h2>Häufiger Fehler</h2>
     <p>Ein Canonical, das auf jeder Seite auf die Startseite zeigt. Das kommt bei falsch konfigurierten Vorlagen vor und sorgt dafür, dass sämtliche Unterseiten aus dem Index verschwinden. Zweithäufigster Fehler: Canonical auf eine Seite, die ihrerseits auf <a href="noindex.html">noindex</a> steht.</p>
     <p>Siehe auch <a href="keyword-kannibalisierung.html">Keyword-Kannibalisierung</a>.</p>
@@ -460,13 +460,13 @@ LEXIKON += [
 
 ("301-weiterleitung",
  u"301-Weiterleitung",
- u"Die dauerhafte Umleitung einer alten Adresse auf eine neue — der Rettungsanker bei jedem Umbau.",
+ u"Die dauerhafte Umleitung einer alten Adresse auf eine neue - der Rettungsanker bei jedem Umbau.",
  u"""
     <p>Eine 301-Weiterleitung sagt Browser und Suchmaschine: Diese Adresse gibt es nicht mehr, der Inhalt liegt dauerhaft dort. Im Unterschied zur 302, die nur eine vorübergehende Umleitung meldet, gibt die 301 den größten Teil der aufgebauten Signale an das neue Ziel weiter.</p>
     <h2>Wann man sie braucht</h2>
     <p>Bei jedem Umbau, der Adressen verändert: neues System, neue Struktur, Umzug auf eine andere Domain, Wechsel auf HTTPS. Ohne Weiterleitung verliert jede Seite, die rankte, ihre Position, und Besucher landen auf einer Fehlerseite.</p>
     <h2>So geht man vor</h2>
-    <p>Vor dem Umbau eine vollständige Liste aller bestehenden Adressen ziehen. Nach dem Umbau für jede eine Weiterleitung auf die inhaltlich passende neue Seite setzen — nicht pauschal alles auf die Startseite. Eine pauschale Umleitung aller alten Adressen auf die Startseite wertet Google wie eine Fehlerseite.</p>
+    <p>Vor dem Umbau eine vollständige Liste aller bestehenden Adressen ziehen. Nach dem Umbau für jede eine Weiterleitung auf die inhaltlich passende neue Seite setzen - nicht pauschal alles auf die Startseite. Eine pauschale Umleitung aller alten Adressen auf die Startseite wertet Google wie eine Fehlerseite.</p>
     <p>Siehe auch <a href="neue-website-fuer-seo.html">Brauche ich für SEO eine neue Website?</a></p>
 """),
 
@@ -474,7 +474,7 @@ LEXIKON += [
  u"Keyword-Kannibalisierung",
  u"Wenn zwei eigene Seiten um denselben Suchbegriff konkurrieren und sich gegenseitig schwächen.",
  u"""
-    <p>Von Kannibalisierung spricht man, wenn mehrere Seiten derselben Website auf denselben Suchbegriff ausgerichtet sind. Google muss sich dann entscheiden, welche davon angezeigt wird — und beide verlieren, weil sich Signale und Verlinkung auf zwei Seiten verteilen statt auf einer zu bündeln.</p>
+    <p>Von Kannibalisierung spricht man, wenn mehrere Seiten derselben Website auf denselben Suchbegriff ausgerichtet sind. Google muss sich dann entscheiden, welche davon angezeigt wird - und beide verlieren, weil sich Signale und Verlinkung auf zwei Seiten verteilen statt auf einer zu bündeln.</p>
     <h2>Woran man es erkennt</h2>
     <p>In der <a href="search-console.html">Search Console</a> eine Suchanfrage auswählen und ansehen, welche Seiten dafür angezeigt werden. Wechseln sich zwei Adressen ab oder stehen beide auf mittelmäßigen Plätzen, liegt der Fall vor.</p>
     <h2>Was man tut</h2>
@@ -486,7 +486,7 @@ LEXIKON += [
  u"Local Pack",
  u"Die Box mit Karte und drei Einträgen bei Suchen mit Ortsbezug.",
  u"""
-    <p>Das Local Pack ist der Kasten mit Kartenausschnitt und drei Unternehmenseinträgen, den Google bei Suchen mit örtlichem Bezug über den normalen Ergebnissen zeigt — mit Bewertung, Öffnungszeiten, Telefonnummer und Route.</p>
+    <p>Das Local Pack ist der Kasten mit Kartenausschnitt und drei Unternehmenseinträgen, den Google bei Suchen mit örtlichem Bezug über den normalen Ergebnissen zeigt - mit Bewertung, Öffnungszeiten, Telefonnummer und Route.</p>
     <h2>Warum es darauf ankommt</h2>
     <p>Für ortsgebundene Betriebe passiert hier ein großer Teil der Kontaktaufnahme, bevor jemand die normalen Treffer überhaupt ansieht. Viele Nutzer rufen direkt aus dem Eintrag an, ohne die Website zu besuchen.</p>
     <h2>Was über die Platzierung entscheidet</h2>
@@ -500,7 +500,7 @@ LEXIKON += [
  u"""
     <p>Die Search Console ist ein kostenloser Dienst von Google für Websitebetreiber. Sie zeigt, bei welchen Suchanfragen Ihre Seiten erscheinen, wie oft sie angeklickt werden, auf welcher Position sie stehen und welche technischen Probleme Google feststellt.</p>
     <h2>Warum sie zuerst eingerichtet wird</h2>
-    <p>Sie ist die einzige Quelle, die echte Suchdaten zu Ihrer eigenen Website liefert — keine Schätzung, sondern das, was Google tatsächlich gemessen hat. Jede Arbeit an der Sichtbarkeit beginnt sinnvollerweise damit, sie einzurichten und ein paar Wochen Daten zu sammeln.</p>
+    <p>Sie ist die einzige Quelle, die echte Suchdaten zu Ihrer eigenen Website liefert - keine Schätzung, sondern das, was Google tatsächlich gemessen hat. Jede Arbeit an der Sichtbarkeit beginnt sinnvollerweise damit, sie einzurichten und ein paar Wochen Daten zu sammeln.</p>
     <h2>Worauf man zuerst schaut</h2>
     <p>Auf den Bericht zur <a href="indexierung.html">Indexierung</a>: Welche Seiten sind aufgenommen, welche nicht und warum. Danach auf die Suchanfragen: Wofür werden Sie bereits gefunden, oft überraschenderweise für Begriffe, an die niemand gedacht hat.</p>
     <h2>Wichtig</h2>
@@ -513,7 +513,7 @@ LEXIKON += [
  u"""
     <p>Strukturierte Daten sind maschinenlesbare Angaben im Quelltext, die den Inhalt einer Seite eindeutig benennen: Das hier ist eine Adresse, das ein Preis, das eine Öffnungszeit, das eine Frage mit Antwort. Üblich ist das Format JSON-LD nach dem Vokabular von schema.org.</p>
     <h2>Was sie bringen</h2>
-    <p>Google kann daraus erweiterte Darstellungen im Suchergebnis bauen — Sternebewertungen, Öffnungszeiten, aufklappbare Fragen, Preisangaben. Diese Einträge sind größer und auffälliger und bekommen mehr Klicks, auch bei gleicher Position.</p>
+    <p>Google kann daraus erweiterte Darstellungen im Suchergebnis bauen - Sternebewertungen, Öffnungszeiten, aufklappbare Fragen, Preisangaben. Diese Einträge sind größer und auffälliger und bekommen mehr Klicks, auch bei gleicher Position.</p>
     <h2>Was sie nicht bringen</h2>
     <p>Sie sind kein direkter Rankingfaktor. Die Seite steigt nicht, weil sie ausgezeichnet ist. Sie fällt im Ergebnis nur mehr auf.</p>
     <h2>Häufiger Fehler</h2>
@@ -522,7 +522,7 @@ LEXIKON += [
 
 ("sichtbarkeitsindex",
  u"Sichtbarkeitsindex",
- u"Eine Kennzahl, die zeigt, wie präsent eine Domain in der Suche ist — nützlich als Verlauf, nicht als Ziel.",
+ u"Eine Kennzahl, die zeigt, wie präsent eine Domain in der Suche ist - nützlich als Verlauf, nicht als Ziel.",
  u"""
     <p>Der Sichtbarkeitsindex ist eine Kennzahl von Analyse-Anbietern wie Sistrix. Sie fasst zusammen, für wie viele Begriffe eine Domain rankt, auf welchen Positionen und wie häufig diese Begriffe gesucht werden.</p>
     <h2>Wofür er gut ist</h2>
@@ -532,3 +532,50 @@ LEXIKON += [
     <p>Deshalb steht in unseren Berichten, was sich bei den <em>vereinbarten</em> Begriffen bewegt hat. Siehe <a href="../leistungen/reporting.html">Reporting</a>.</p>
 """),
 ]
+
+# Meta Description je Beitrag: 140-160 Zeichen, Fokus-Keyword drin,
+# keine Pfeile, keine Emojis, keine Gedankenstriche (Regel 3).
+META = {
+"warum-findet-mich-bei-google-niemand": u"Bei Google nicht gefunden zu werden hat fast immer eine von fünf Ursachen. Woran es liegt, wie Sie es selbst prüfen und was Sie zuerst angehen sollten.",
+"google-unternehmensprofil-einrichten": u"Das Google Unternehmensprofil richtig einrichten: welche Felder über die Platzierung entscheiden und welcher Fehler am meisten Sichtbarkeit kostet.",
+"was-kostet-seo": u"Was kostet SEO? Die drei üblichen Abrechnungsmodelle im Vergleich und die drei Zeichen, an denen Sie ein unseriöses Angebot sicher erkennen.",
+"wie-lange-dauert-seo": u"Wie lange dauert SEO? Was schon nach wenigen Wochen wirkt, was mehrere Monate braucht und wovon die Dauer bei Ihrem Projekt tatsächlich abhängt.",
+"seo-agentur-oder-selbst-machen": u"SEO selbst machen oder eine Agentur beauftragen? Was Sie ohne Vorkenntnisse gut selbst erledigen und wo ein Fehler erst nach Monaten auffällt.",
+"unserioese-seo-agentur-erkennen": u"Unseriöse SEO-Agentur erkennen: sieben Sätze und Versprechen, nach denen Sie das Gespräch beenden können, bevor Sie Geld und ein Jahr verlieren.",
+"neue-website-fuer-seo": u"Brauche ich für SEO eine neue Website? Meistens nicht. Wann ein Neubau sich wirklich lohnt und welcher Fehler dabei am meisten Sichtbarkeit kostet.",
+"keyword-recherche-fuer-einsteiger": u"Keyword-Recherche für Einsteiger: in fünf Schritten und ganz ohne Werkzeug herausfinden, wonach Ihre Kundschaft bei Google tatsächlich sucht.",
+"core-web-vitals-erklaert": u"Core Web Vitals einfach erklärt: was LCP, INP und CLS messen, welche Werte gut sind und ab wann sich die Ladezeit auf die Position auswirkt.",
+"lokale-seo-handwerker-dienstleister": u"Lokale SEO für Handwerk und Dienstleistung: wie Betriebe im Umkreis gefunden werden und was über die Platzierung im Local Pack von Google entscheidet.",
+"keyword": u"Ein Keyword ist der Begriff, den jemand bei Google eingibt. Warum jede Seite genau einen braucht und welcher Fehler bei der Wahl am häufigsten ist.",
+"suchintention": u"Die Suchintention ist die Absicht hinter einer Suchanfrage. Wie Sie in zehn Sekunden prüfen, ob jemand kaufen, vergleichen oder nachschlagen will.",
+"long-tail-keyword": u"Long-Tail-Keywords sind längere, genauere Suchanfragen mit weniger Wettbewerb und mehr Kaufabsicht. Warum sie für kleine Betriebe der Einstieg sind.",
+"meta-title": u"Der Meta-Title ist die anklickbare Überschrift im Suchergebnis. Was hineingehört, wie lang er sein darf und warum jede Seite einen eigenen braucht.",
+"meta-description": u"Die Meta-Description ist der Beschreibungstext unter dem Treffer. Kein Rankingfaktor, aber entscheidend dafür, ob jemand Ihren Eintrag anklickt.",
+"h1-ueberschrift": u"Die H1 ist die Hauptüberschrift einer Seite. Warum es genau eine pro Seite sein sollte und wieso Überschriftenebenen kein Gestaltungsmittel sind.",
+"alt-text": u"Der Alt-Text beschreibt ein Bild für Screenreader und für die Bildersuche. Wie ein guter Alt-Text aussieht und wann er bewusst leer bleiben sollte.",
+"backlink": u"Ein Backlink ist ein Link von einer fremden Seite auf Ihre. Warum die Herkunft zählt und nicht die Anzahl, und welche Links der Domain schaden.",
+"interne-verlinkung": u"Interne Verlinkung verteilt Aufmerksamkeit und Kraft innerhalb Ihrer Website. Die 60/40-Regel und warum ein Blog sonst nur noch sich selbst verlinkt.",
+"indexierung": u"Indexierung ist die Aufnahme einer Seite in den Datenbestand von Google. Wie Sie in zwei Minuten prüfen, ob Ihre Seiten überhaupt im Index stehen.",
+"noindex": u"noindex hält eine Seite aus den Suchergebnissen heraus. Wofür man es braucht und warum ein vergessenes noindex zu den teuersten Fehlern gehört.",
+"robots-txt": u"Die robots.txt steuert, welche Bereiche Suchmaschinen abrufen dürfen. Der wichtige Unterschied zu noindex und die zwei häufigsten Fehler darin.",
+"sitemap": u"Eine XML-Sitemap listet alle Seiten einer Website für Suchmaschinen auf. Was sie leistet, was sie nicht leistet und welcher Fehler Vertrauen kostet.",
+"canonical-tag": u"Das Canonical-Tag sagt Google, welche von mehreren gleichen Seiten die maßgebliche ist. Wofür man es braucht und wie ein Fehler ganze Shops kostet.",
+"301-weiterleitung": u"Die 301-Weiterleitung leitet eine alte Adresse dauerhaft auf eine neue um. Warum sie bei jedem Umbau Pflicht ist und wie man dabei richtig vorgeht.",
+"keyword-kannibalisierung": u"Keyword-Kannibalisierung bedeutet, dass zwei eigene Seiten um denselben Begriff konkurrieren. Wie Sie es erkennen und wie Sie es wieder auflösen.",
+"local-pack": u"Das Local Pack ist die Box mit Karte und drei Einträgen bei Suchen mit Ortsbezug. Was über die Platzierung entscheidet und was Sie beeinflussen können.",
+"search-console": u"Die Google Search Console zeigt, wofür Ihre Website gefunden wird. Warum sie zuerst eingerichtet wird und worauf Sie darin zuerst schauen sollten.",
+"strukturierte-daten": u"Strukturierte Daten zeichnen Inhalte für Google eindeutig aus. Was sie im Suchergebnis bringen, was nicht, und welcher Fehler zur Abstrafung führt.",
+"sichtbarkeitsindex": u"Der Sichtbarkeitsindex zeigt, wie präsent eine Domain in der Suche ist. Warum er als Verlauf nützlich ist und warum er als Ziel in die Irre führt.",
+}
+# Meta-Titel max. 60 Zeichen inklusive " | Kontor" (Regel 3).
+TITEL = {
+"warum-findet-mich-bei-google-niemand": u"Bei Google nicht gefunden",
+"google-unternehmensprofil-einrichten": u"Google Unternehmensprofil einrichten",
+"unserioese-seo-agentur-erkennen": u"Unseriöse SEO-Agentur erkennen",
+"neue-website-fuer-seo": u"Neue Website für SEO nötig?",
+"keyword-recherche-fuer-einsteiger": u"Keyword-Recherche für Einsteiger",
+"core-web-vitals-erklaert": u"Core Web Vitals erklärt",
+"lokale-seo-handwerker-dienstleister": u"Lokale SEO für Handwerk",
+"seo-agentur-oder-selbst-machen": u"SEO-Agentur oder selbst machen",
+"search-console": u"Google Search Console",
+}

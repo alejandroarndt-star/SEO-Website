@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Keyword-Kannibalisierung | Kontor</title>
-<meta name="description" content="Wenn zwei eigene Seiten um denselben Suchbegriff konkurrieren und sich gegenseitig schwächen.">
+<title>Canonical-Tag | Kontor</title>
+<meta name="description" content="Das Canonical-Tag sagt Google, welche von mehreren gleichen Seiten die maßgebliche ist. Wofür man es braucht und wie ein Fehler ganze Shops kostet.">
 <meta name="robots" content="index,follow">
 <link rel="icon" href="../assets/img/icon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="../assets/img/icon-180.png">
@@ -24,6 +24,7 @@
       <a href="../leistungen/">Leistungen</a>
       <a href="../referenzen.html">Referenzen</a>
       <a href="../blog/">Blog</a>
+      <a href="../lexikon/">Lexikon</a>
     </nav>
     <div class="hdr-cta">
       <a href="../kontakt.html" class="btn btn-primary btn-sm">SEO-Analyse<span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
@@ -36,26 +37,40 @@
   <a href="../leistungen/">Leistungen</a>
   <a href="../referenzen.html">Referenzen</a>
   <a href="../blog/">Blog</a>
+  <a href="../lexikon/">Lexikon</a>
   <a href="../kontakt.html">Kontakt</a>
   <a href="../kontakt.html" class="btn btn-primary">Kostenlose SEO-Analyse</a>
 </div>
 <main class="page-top">
 <section class="section page-hero" style="padding-top:0">
   <div class="wrap">
-    <span class="pill">Lexikon</span>
-    <h1 style="font-size:clamp(2rem,4.6vw,3.4rem);max-width:24ch;margin:0 auto">Keyword-Kannibalisierung</h1>
-    <p class="lede">Wenn zwei eigene Seiten um denselben Suchbegriff konkurrieren und sich gegenseitig schwächen.</p>
+    <span class="pill">Lexikon &middot; 1 min lesen</span>
+    <h1 style="font-size:clamp(2rem,4.6vw,3.4rem);max-width:24ch;margin:0 auto">Canonical-Tag</h1>
+    <p class="lede">Ein Hinweis, welche von mehreren gleichen Seiten die maßgebliche ist.</p>
   </div>
 </section>
 <section class="section" style="padding-top:0">
-  <div class="wrap prose">
-    <p>Von Kannibalisierung spricht man, wenn mehrere Seiten derselben Website auf denselben Suchbegriff ausgerichtet sind. Google muss sich dann entscheiden, welche davon angezeigt wird — und beide verlieren, weil sich Signale und Verlinkung auf zwei Seiten verteilen statt auf einer zu bündeln.</p>
-    <h2>Woran man es erkennt</h2>
-    <p>In der <a href="search-console.html">Search Console</a> eine Suchanfrage auswählen und ansehen, welche Seiten dafür angezeigt werden. Wechseln sich zwei Adressen ab oder stehen beide auf mittelmäßigen Plätzen, liegt der Fall vor.</p>
-    <h2>Was man tut</h2>
-    <p>Entscheiden, welche Seite die maßgebliche sein soll. Die andere entweder inhaltlich klar auf einen anderen Begriff ausrichten, in die erste zusammenführen und per <a href="301-weiterleitung.html">301</a> weiterleiten, oder per <a href="canonical-tag.html">Canonical</a> der ersten zuordnen.</p>
-    <p>Vorbeugen ist einfacher: ein Suchbegriff, eine Seite. Siehe <a href="keyword-recherche-fuer-einsteiger.html">Keyword-Recherche für Einsteiger</a>.</p>
+  <div class="wrap art-grid">
+    <aside class="art-side">
+      <div class="art-box">
+        <a href="../index.html" class="logo">Kontor</a>
+        <p class="art-sub">SEO-Agentur</p>
+        <nav class="art-toc" aria-label="Kapitel" hidden>
+          <span class="art-toc-h">Kapitel</span>
+          <ol></ol>
+        </nav>
+        <a href="../kontakt.html" class="btn btn-primary btn-sm art-cta">Kostenlose SEO-Analyse</a>
+      </div>
+    </aside>
+    <div class="prose art-body">
+    <p>Das Canonical-Tag ist eine Angabe im Quelltext, die sagt: Es gibt diese Seite unter mehreren Adressen, aber diese hier ist die richtige. Google soll die Signale aller Varianten auf dieser einen bündeln.</p>
+    <h2>Wofür man es braucht</h2>
+    <p>Dieselbe Seite ist oft über mehrere Adressen erreichbar - mit und ohne <code>www</code>, mit angehängten Parametern aus Werbekampagnen, in Shops über verschiedene Kategoriepfade. Ohne Canonical behandelt Google sie als mehrere Seiten, die sich gegenseitig Konkurrenz machen.</p>
+    <h2>Häufiger Fehler</h2>
+    <p>Ein Canonical, das auf jeder Seite auf die Startseite zeigt. Das kommt bei falsch konfigurierten Vorlagen vor und sorgt dafür, dass sämtliche Unterseiten aus dem Index verschwinden. Zweithäufigster Fehler: Canonical auf eine Seite, die ihrerseits auf <a href="noindex.html">noindex</a> steht.</p>
+    <p>Siehe auch <a href="keyword-kannibalisierung.html">Keyword-Kannibalisierung</a>.</p>
 
+    </div>
   </div>
 </section>
 
@@ -65,9 +80,9 @@
       <h2>Weiterlesen</h2>
     </div>
     <div class="posts">
-      <a class="post" href="backlink.html"><span class="meta">Lexikon</span><h3>Backlink</h3><p>Ein Link von einer fremden Seite auf Ihre. Nach wie vor einer der stärksten Faktoren.</p><span class="more">Lesen <span class="arr">&rarr;</span></span></a>
-      <a class="post" href="interne-verlinkung.html"><span class="meta">Lexikon</span><h3>Interne Verlinkung</h3><p>Links innerhalb der eigenen Website. Sie verteilen Aufmerksamkeit und Kraft.</p><span class="more">Lesen <span class="arr">&rarr;</span></span></a>
-      <a class="post" href="unserioese-seo-agentur-erkennen.html"><span class="meta">Ratgeber</span><h3>Woran Sie eine unseriöse SEO-Agentur erkennen</h3><p>Sieben Sätze, nach denen Sie das Gespräch beenden können.</p><span class="more">Lesen <span class="arr">&rarr;</span></span></a>
+      <a class="post" href="h1-ueberschrift.html" data-cats="h"><span class="meta">H</span><h3>H1-Überschrift</h3><p>Die Hauptüberschrift auf der Seite. Eine pro Seite, und sie sagt, worum es geht.</p><span class="more">1 min lesen <span class="arr">&rarr;</span></span></a>
+      <a class="post" href="alt-text.html" data-cats="a"><span class="meta">A</span><h3>Alt-Text</h3><p>Die Textbeschreibung eines Bildes - für Screenreader, für die Bildersuche und wenn das Bild nicht lädt.</p><span class="more">1 min lesen <span class="arr">&rarr;</span></span></a>
+      <a class="post" href="../blog/wie-lange-dauert-seo.html" data-cats="ratgeber"><span class="meta">Ratgeber</span><h3>Wie lange dauert SEO?</h3><p>Was nach Wochen passiert, was nach Monaten - und woran die Dauer wirklich hängt.</p><span class="more">1 min lesen <span class="arr">&rarr;</span></span></a>
     </div>
   </div>
 </section>
@@ -106,6 +121,7 @@
         <ul>
           <li><a href="../referenzen.html">Referenzen</a></li>
           <li><a href="../blog/">Blog</a></li>
+          <li><a href="../lexikon/">Lexikon</a></li>
           <li><a href="../kontakt.html">Kontakt</a></li>
         </ul>
       </div>

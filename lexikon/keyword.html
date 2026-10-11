@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>robots.txt | Kontor</title>
-<meta name="description" content="Eine Datei, die Suchmaschinen sagt, welche Bereiche sie nicht abrufen sollen.">
+<title>Keyword | Kontor</title>
+<meta name="description" content="Ein Keyword ist der Begriff, den jemand bei Google eingibt. Warum jede Seite genau einen braucht und welcher Fehler bei der Wahl am häufigsten ist.">
 <meta name="robots" content="index,follow">
 <link rel="icon" href="../assets/img/icon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="../assets/img/icon-180.png">
@@ -24,6 +24,7 @@
       <a href="../leistungen/">Leistungen</a>
       <a href="../referenzen.html">Referenzen</a>
       <a href="../blog/">Blog</a>
+      <a href="../lexikon/">Lexikon</a>
     </nav>
     <div class="hdr-cta">
       <a href="../kontakt.html" class="btn btn-primary btn-sm">SEO-Analyse<span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
@@ -36,26 +37,40 @@
   <a href="../leistungen/">Leistungen</a>
   <a href="../referenzen.html">Referenzen</a>
   <a href="../blog/">Blog</a>
+  <a href="../lexikon/">Lexikon</a>
   <a href="../kontakt.html">Kontakt</a>
   <a href="../kontakt.html" class="btn btn-primary">Kostenlose SEO-Analyse</a>
 </div>
 <main class="page-top">
 <section class="section page-hero" style="padding-top:0">
   <div class="wrap">
-    <span class="pill">Lexikon</span>
-    <h1 style="font-size:clamp(2rem,4.6vw,3.4rem);max-width:24ch;margin:0 auto">robots.txt</h1>
-    <p class="lede">Eine Datei, die Suchmaschinen sagt, welche Bereiche sie nicht abrufen sollen.</p>
+    <span class="pill">Lexikon &middot; 1 min lesen</span>
+    <h1 style="font-size:clamp(2rem,4.6vw,3.4rem);max-width:24ch;margin:0 auto">Keyword</h1>
+    <p class="lede">Der Begriff, den jemand bei Google eingibt - und auf den eine Seite ausgerichtet wird.</p>
   </div>
 </section>
 <section class="section" style="padding-top:0">
-  <div class="wrap prose">
-    <p>Die <code>robots.txt</code> liegt im Hauptverzeichnis einer Website und enthält Regeln dafür, welche Bereiche Suchmaschinen abrufen dürfen. Sie ist das erste, was ein Crawler ansieht.</p>
-    <h2>Ein wichtiger Unterschied</h2>
-    <p>Die Datei steuert das <strong>Abrufen</strong>, nicht das <strong>Anzeigen</strong>. Eine über robots.txt gesperrte Seite kann trotzdem in den Ergebnissen erscheinen, wenn andere Seiten darauf verlinken — dann allerdings ohne Beschreibung. Wer eine Seite zuverlässig aus den Ergebnissen halten will, braucht <a href="noindex.html">noindex</a>, nicht robots.txt.</p>
+  <div class="wrap art-grid">
+    <aside class="art-side">
+      <div class="art-box">
+        <a href="../index.html" class="logo">Kontor</a>
+        <p class="art-sub">SEO-Agentur</p>
+        <nav class="art-toc" aria-label="Kapitel" hidden>
+          <span class="art-toc-h">Kapitel</span>
+          <ol></ol>
+        </nav>
+        <a href="../kontakt.html" class="btn btn-primary btn-sm art-cta">Kostenlose SEO-Analyse</a>
+      </div>
+    </aside>
+    <div class="prose art-body">
+    <p>Ein Keyword ist nichts anderes als das, was ein Mensch in das Suchfeld tippt. „Schreiner Stuttgart“, „Fenster abdichten Kosten“, „Steuerberater für Kleinunternehmer“. In der Suchmaschinenoptimierung bezeichnet der Begriff den Suchausdruck, auf den eine einzelne Seite ausgerichtet wird.</p>
+    <h2>Warum es darauf ankommt</h2>
+    <p>Google ordnet Seiten einzelnen Suchanfragen zu, nicht ganzen Unternehmen. Jede Seite braucht deshalb einen Begriff, für den sie gebaut wurde. Fehlt diese Zuordnung, konkurrieren mehrere eigene Seiten um denselben Begriff und schwächen sich gegenseitig - siehe <a href="keyword-kannibalisierung.html">Keyword-Kannibalisierung</a>.</p>
     <h2>Häufiger Fehler</h2>
-    <p>Ein <code>Disallow: /</code> aus der Entwicklungsphase, das live bleibt. Damit ist die gesamte Website gesperrt. Zweithäufigster Fehler: CSS- und Bildverzeichnisse sperren, wodurch Google die Seite nicht mehr so sieht wie ein Besucher und sie schlechter bewertet.</p>
-    <p>Siehe auch <a href="sitemap.html">Sitemap</a> und <a href="indexierung.html">Indexierung</a>.</p>
+    <p>Begriffe wählen, die das Unternehmen benutzt, statt derer, die die Kundschaft benutzt. „Sanitärinstallation“ steht im Firmenprofil, gesucht wird „Klempner in der Nähe“.</p>
+    <p>Wie man die richtigen findet, steht unter <a href="../blog/keyword-recherche-fuer-einsteiger.html">Keyword-Recherche für Einsteiger</a>, und was wir daraus bauen, unter <a href="../leistungen/seo.html">SEO</a>.</p>
 
+    </div>
   </div>
 </section>
 
@@ -65,9 +80,9 @@
       <h2>Weiterlesen</h2>
     </div>
     <div class="posts">
-      <a class="post" href="meta-title.html"><span class="meta">Lexikon</span><h3>Meta-Title</h3><p>Die anklickbare Überschrift eines Treffers im Suchergebnis.</p><span class="more">Lesen <span class="arr">&rarr;</span></span></a>
-      <a class="post" href="meta-description.html"><span class="meta">Lexikon</span><h3>Meta-Description</h3><p>Der kurze Beschreibungstext unter dem Treffer. Kein Rankingfaktor, aber entscheidend für den Klick.</p><span class="more">Lesen <span class="arr">&rarr;</span></span></a>
-      <a class="post" href="google-unternehmensprofil-einrichten.html"><span class="meta">Ratgeber</span><h3>Google Unternehmensprofil richtig einrichten</h3><p>Welche Felder zählen und welcher Fehler am meisten Sichtbarkeit kostet.</p><span class="more">Lesen <span class="arr">&rarr;</span></span></a>
+      <a class="post" href="sitemap.html" data-cats="s"><span class="meta">S</span><h3>Sitemap</h3><p>Eine Liste aller Seiten einer Website für Suchmaschinen.</p><span class="more">1 min lesen <span class="arr">&rarr;</span></span></a>
+      <a class="post" href="canonical-tag.html" data-cats="c"><span class="meta">C</span><h3>Canonical-Tag</h3><p>Ein Hinweis, welche von mehreren gleichen Seiten die maßgebliche ist.</p><span class="more">1 min lesen <span class="arr">&rarr;</span></span></a>
+      <a class="post" href="../blog/warum-findet-mich-bei-google-niemand.html" data-cats="ratgeber"><span class="meta">Ratgeber</span><h3>Warum findet mich bei Google niemand?</h3><p>Die fünf Ursachen, die in den meisten Fällen dahinterstecken.</p><span class="more">2 min lesen <span class="arr">&rarr;</span></span></a>
     </div>
   </div>
 </section>
@@ -106,6 +121,7 @@
         <ul>
           <li><a href="../referenzen.html">Referenzen</a></li>
           <li><a href="../blog/">Blog</a></li>
+          <li><a href="../lexikon/">Lexikon</a></li>
           <li><a href="../kontakt.html">Kontakt</a></li>
         </ul>
       </div>

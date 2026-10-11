@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Long-Tail-Keyword | Kontor</title>
-<meta name="description" content="Längere, genauere Suchanfragen mit weniger Volumen und deutlich mehr Kaufabsicht.">
+<title>robots.txt | Kontor</title>
+<meta name="description" content="Die robots.txt steuert, welche Bereiche Suchmaschinen abrufen dürfen. Der wichtige Unterschied zu noindex und die zwei häufigsten Fehler darin.">
 <meta name="robots" content="index,follow">
 <link rel="icon" href="../assets/img/icon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="../assets/img/icon-180.png">
@@ -24,6 +24,7 @@
       <a href="../leistungen/">Leistungen</a>
       <a href="../referenzen.html">Referenzen</a>
       <a href="../blog/">Blog</a>
+      <a href="../lexikon/">Lexikon</a>
     </nav>
     <div class="hdr-cta">
       <a href="../kontakt.html" class="btn btn-primary btn-sm">SEO-Analyse<span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
@@ -36,26 +37,40 @@
   <a href="../leistungen/">Leistungen</a>
   <a href="../referenzen.html">Referenzen</a>
   <a href="../blog/">Blog</a>
+  <a href="../lexikon/">Lexikon</a>
   <a href="../kontakt.html">Kontakt</a>
   <a href="../kontakt.html" class="btn btn-primary">Kostenlose SEO-Analyse</a>
 </div>
 <main class="page-top">
 <section class="section page-hero" style="padding-top:0">
   <div class="wrap">
-    <span class="pill">Lexikon</span>
-    <h1 style="font-size:clamp(2rem,4.6vw,3.4rem);max-width:24ch;margin:0 auto">Long-Tail-Keyword</h1>
-    <p class="lede">Längere, genauere Suchanfragen mit weniger Volumen und deutlich mehr Kaufabsicht.</p>
+    <span class="pill">Lexikon &middot; 1 min lesen</span>
+    <h1 style="font-size:clamp(2rem,4.6vw,3.4rem);max-width:24ch;margin:0 auto">robots.txt</h1>
+    <p class="lede">Eine Datei, die Suchmaschinen sagt, welche Bereiche sie nicht abrufen sollen.</p>
   </div>
 </section>
 <section class="section" style="padding-top:0">
-  <div class="wrap prose">
-    <p>Als Long-Tail bezeichnet man längere, spezifische Suchanfragen: nicht „Anwalt“, sondern „Fachanwalt Arbeitsrecht Kündigung Göppingen“. Einzeln hat jede davon wenig Volumen. In der Summe machen sie den größten Teil aller Suchanfragen aus.</p>
-    <h2>Warum es darauf ankommt</h2>
-    <p>Zwei Gründe. Erstens ist der Wettbewerb deutlich geringer: Bei einem Wort treten Sie gegen Anbieter mit zwanzig Jahren Vorsprung an, bei fünf Wörtern oft gegen niemanden. Zweitens ist die Absicht klarer. Wer so genau sucht, weiß, was er will, und ist näher an der Anfrage.</p>
+  <div class="wrap art-grid">
+    <aside class="art-side">
+      <div class="art-box">
+        <a href="../index.html" class="logo">Kontor</a>
+        <p class="art-sub">SEO-Agentur</p>
+        <nav class="art-toc" aria-label="Kapitel" hidden>
+          <span class="art-toc-h">Kapitel</span>
+          <ol></ol>
+        </nav>
+        <a href="../kontakt.html" class="btn btn-primary btn-sm art-cta">Kostenlose SEO-Analyse</a>
+      </div>
+    </aside>
+    <div class="prose art-body">
+    <p>Die <code>robots.txt</code> liegt im Hauptverzeichnis einer Website und enthält Regeln dafür, welche Bereiche Suchmaschinen abrufen dürfen. Sie ist das erste, was ein Crawler ansieht.</p>
+    <h2>Ein wichtiger Unterschied</h2>
+    <p>Die Datei steuert das <strong>Abrufen</strong>, nicht das <strong>Anzeigen</strong>. Eine über robots.txt gesperrte Seite kann trotzdem in den Ergebnissen erscheinen, wenn andere Seiten darauf verlinken - dann allerdings ohne Beschreibung. Wer eine Seite zuverlässig aus den Ergebnissen halten will, braucht <a href="noindex.html">noindex</a>, nicht robots.txt.</p>
     <h2>Häufiger Fehler</h2>
-    <p>Den großen Begriff anvisieren, weil die Zahl daneben größer aussieht. Hundert Besucher, die etwas Bestimmtes suchen, sind mehr wert als zehntausend, die sich umschauen.</p>
-    <p>Siehe auch <a href="suchintention.html">Suchintention</a> und <a href="warum-findet-mich-bei-google-niemand.html">Warum findet mich bei Google niemand?</a></p>
+    <p>Ein <code>Disallow: /</code> aus der Entwicklungsphase, das live bleibt. Damit ist die gesamte Website gesperrt. Zweithäufigster Fehler: CSS- und Bildverzeichnisse sperren, wodurch Google die Seite nicht mehr so sieht wie ein Besucher und sie schlechter bewertet.</p>
+    <p>Siehe auch <a href="sitemap.html">Sitemap</a> und <a href="indexierung.html">Indexierung</a>.</p>
 
+    </div>
   </div>
 </section>
 
@@ -65,9 +80,9 @@
       <h2>Weiterlesen</h2>
     </div>
     <div class="posts">
-      <a class="post" href="301-weiterleitung.html"><span class="meta">Lexikon</span><h3>301-Weiterleitung</h3><p>Die dauerhafte Umleitung einer alten Adresse auf eine neue — der Rettungsanker bei jedem Umbau.</p><span class="more">Lesen <span class="arr">&rarr;</span></span></a>
-      <a class="post" href="keyword-kannibalisierung.html"><span class="meta">Lexikon</span><h3>Keyword-Kannibalisierung</h3><p>Wenn zwei eigene Seiten um denselben Suchbegriff konkurrieren und sich gegenseitig schwächen.</p><span class="more">Lesen <span class="arr">&rarr;</span></span></a>
-      <a class="post" href="was-kostet-seo.html"><span class="meta">Ratgeber</span><h3>Was kostet SEO?</h3><p>Die drei üblichen Abrechnungsmodelle und woran Sie unseriöse Angebote erkennen.</p><span class="more">Lesen <span class="arr">&rarr;</span></span></a>
+      <a class="post" href="meta-title.html" data-cats="m"><span class="meta">M</span><h3>Meta-Title</h3><p>Die anklickbare Überschrift eines Treffers im Suchergebnis.</p><span class="more">1 min lesen <span class="arr">&rarr;</span></span></a>
+      <a class="post" href="meta-description.html" data-cats="m"><span class="meta">M</span><h3>Meta-Description</h3><p>Der kurze Beschreibungstext unter dem Treffer. Kein Rankingfaktor, aber entscheidend für den Klick.</p><span class="more">1 min lesen <span class="arr">&rarr;</span></span></a>
+      <a class="post" href="../blog/google-unternehmensprofil-einrichten.html" data-cats="ratgeber"><span class="meta">Ratgeber</span><h3>Google Unternehmensprofil richtig einrichten</h3><p>Welche Felder zählen und welcher Fehler am meisten Sichtbarkeit kostet.</p><span class="more">2 min lesen <span class="arr">&rarr;</span></span></a>
     </div>
   </div>
 </section>
@@ -106,6 +121,7 @@
         <ul>
           <li><a href="../referenzen.html">Referenzen</a></li>
           <li><a href="../blog/">Blog</a></li>
+          <li><a href="../lexikon/">Lexikon</a></li>
           <li><a href="../kontakt.html">Kontakt</a></li>
         </ul>
       </div>

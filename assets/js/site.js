@@ -159,3 +159,44 @@
     if (fallback) fallback.hidden = false;
   });
 })();
+
+/* ---- Kapitelverzeichnis einer Beitragsseite --------------------------
+   Entsteht aus allen h2 des Beitrags, wie bei PoseyPets. Ohne h2 bleibt
+   der Kasten ausgeblendet. */
+(function () {
+  var box = document.querySelector('.art-toc');
+  var body = document.querySelector('.art-body');
+  if (!box || !body) return;
+  var heads = [].slice.call(body.querySelectorAll('h2'));
+  if (!heads.length) return;
+
+  var list = box.querySelector('ol');
+  var links = [];
+  heads.forEach(function (h, i) {
+    if (!h.id) {
+      h.id = 'kap-' + (i + 1) + '-' + h.textContent.toLowerCase()
+        .replace(/[äöüß]/g, function (c) { return {'ä':'ae','ö':'oe','ü':'ue','ß':'ss'}[c]; })
+        .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40);
+    }
+    var li = document.createElement('li');
+    var a = document.createElement('a');
+    a.href = '#' + h.id;
+    a.textContent = h.textContent;
+    li.appendChild(a);
+    list.appendChild(li);
+    links.push(a);
+  });
+  box.hidden = false;
+
+  if (!('IntersectionObserver' in window)) return;
+  var seen = {};
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { seen[en.target.id] = en.isIntersecting; });
+    var active = null;
+    heads.forEach(function (h) { if (seen[h.id] && !active) active = h.id; });
+    links.forEach(function (a) {
+      a.classList.toggle('on', !!active && a.getAttribute('href') === '#' + active);
+    });
+  }, { rootMargin: '-90px 0px -65% 0px' });
+  heads.forEach(function (h) { io.observe(h); });
+})();
