@@ -58,6 +58,26 @@ _RATGEBER = [
  u"Lokale SEO für Handwerk und Dienstleistung",
  u"Wie Betriebe im Umkreis gefunden werden, bevor jemand die normalen Treffer ansieht.",
  u"Bei Suchen mit Ortsbezug entscheidet sich fast alles in den ersten drei Einträgen mit Karte."),
+("keyword",
+ u"Keywords richtig wählen: welcher Begriff auf welche Seite gehört",
+ u"Ein Begriff, eine Seite. Was passiert, wenn diese Regel verletzt wird.",
+ u"Ein Keyword ist der Satz, den jemand bei Google eingibt. Welche Ihrer Seiten dafür zuständig ist, muss vorher festgelegt sein, nicht hinterher."),
+("suchintention",
+ u"Suchintention verstehen: warum gute Seiten trotzdem nicht ranken",
+ u"Die Erwartung hinter der Suche, und wie Sie sie in einer Minute ablesen.",
+ u"Eine Seite kann gut geschrieben, schnell und technisch sauber sein und trotzdem nicht erscheinen. Dann liegt es meist an der Frage, die sie beantworten soll."),
+("long-tail-keyword",
+ u"Long-Tail-Keywords: weniger Suchen, mehr Aufträge",
+ u"Warum dreißig Suchen im Monat mehr bringen können als dreitausend.",
+ u"Lange, genaue Suchanfragen sind für Betriebe ohne großes Budget der einzige Weg, der von Anfang an funktioniert. Das hat drei Gründe."),
+("meta-title",
+ u"Meta-Title schreiben: die Überschrift, die über den Klick entscheidet",
+ u"Ein Satz je Seite, und er bestimmt, ob überhaupt geklickt wird.",
+ u"Der Meta-Title ist die Zeile, die im Suchergebnis als anklickbare Überschrift erscheint. Das Feld mit dem besten Verhältnis von Aufwand zu Wirkung."),
+("meta-description",
+ u"Meta-Description schreiben: der Text unter dem Treffer",
+ u"Kein Rankingfaktor, aber entscheidend für die Zahl der Klicks.",
+ u"Die Meta-Description steht im Suchergebnis unter dem Titel. Sie verändert Ihre Position nicht, wohl aber, wie viele Menschen sie nutzen."),
 ]
 
 RATGEBER = [(sl, ti, te, le, _body(sl)) for sl, ti, te, le in _RATGEBER]
@@ -65,11 +85,6 @@ RATGEBER = [(sl, ti, te, le, _body(sl)) for sl, ti, te, le in _RATGEBER]
 # Geplante Ratgeber. Solange hier kein Text steht, wird keine Seite erzeugt
 # und Verweise darauf erscheinen als normaler Text statt als toter Link.
 GEPLANT = [
-("keyword", u"Keywords richtig wählen: welcher Begriff auf welche Seite gehört"),
-("suchintention", u"Suchintention verstehen: warum gute Seiten trotzdem nicht ranken"),
-("long-tail-keyword", u"Long-Tail-Keywords: weniger Suchen, mehr Aufträge"),
-("meta-title", u"Meta-Title schreiben: die Überschrift, die über den Klick entscheidet"),
-("meta-description", u"Meta-Description schreiben: der Text unter dem Treffer"),
 ("h1-ueberschrift", u"Überschriftenstruktur: H1, H2 und warum sie keine Gestaltung sind"),
 ("alt-text", u"Alt-Texte richtig schreiben: Bildersuche und Barrierefreiheit"),
 ("backlink", u"Backlinks aufbauen: was zählt, was schadet, was Geld verbrennt"),
@@ -132,4 +147,9 @@ TITEL = {
 "lokale-seo-handwerker-dienstleister": u"Lokale SEO für Handwerk",
 "seo-agentur-oder-selbst-machen": u"SEO-Agentur oder selbst machen",
 "search-console": u"Google Search Console",
+"keyword": u"Keywords richtig wählen",
+"suchintention": u"Suchintention verstehen",
+"long-tail-keyword": u"Long-Tail-Keywords",
+"meta-title": u"Meta-Title schreiben",
+"meta-description": u"Meta-Description schreiben",
 }
