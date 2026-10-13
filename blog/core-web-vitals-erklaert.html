@@ -42,7 +42,7 @@
 <main class="page-top">
 <section class="section page-hero" style="padding-top:0">
   <div class="wrap">
-    <span class="pill">Ratgeber &middot; 1 min lesen</span>
+    <span class="pill">Ratgeber &middot; 6 min lesen</span>
     <h1 style="font-size:clamp(2rem,4.6vw,3.4rem);max-width:24ch;margin:0 auto">Core Web Vitals, kurz erklärt</h1>
     <p class="lede">Drei Messwerte, drei Alltagsfragen, ohne Fachchinesisch.</p>
   </div>
@@ -61,24 +61,73 @@
       </div>
     </aside>
     <div class="prose art-body">
-<p>Core Web Vitals sind drei Messwerte, mit denen Google beschreibt, wie sich eine Seite für den Besucher anfühlt. Sie sind kein Geheimnis und kein Hexenwerk, und man kann sie in Alltagssprache übersetzen.</p>
+<p>Core Web Vitals sind drei Messwerte, mit denen Google beschreibt, wie sich eine Seite für den Besucher anfühlt. Sie klingen technisch, sind aber in Alltagssprache übersetzbar, und man braucht keinen Entwickler, um zu verstehen, was sie messen und woran schlechte Werte üblicherweise liegen.</p>
 
-    <h2>LCP - wie schnell ist das Wesentliche da?</h2>
-    <p>Gemessen wird, wann das größte sichtbare Element geladen ist, meist ein Bild oder eine Überschrift. Als gut gilt unter 2,5 Sekunden. Der häufigste Grund für schlechte Werte: Bilder, die in Originalgröße ausgeliefert werden, obwohl sie auf dem Handy auf Daumengröße schrumpfen.</p>
+<p>Dieser Beitrag erklärt alle drei, nennt für jeden die häufigste Ursache und ordnet am Ende ein, wie stark sie sich tatsächlich auf die Position auswirken. Letzteres wird im Gespräch über Suchmaschinenoptimierung regelmäßig übertrieben, in beide Richtungen.</p>
 
-    <h2>INP - reagiert die Seite, wenn ich tippe?</h2>
-    <p>Gemessen wird die Verzögerung zwischen einer Eingabe und der sichtbaren Reaktion. Als gut gilt unter 200 Millisekunden. Schlechte Werte kommen fast immer von zu vielen Skripten, die gleichzeitig arbeiten - Chat-Fenster, Tracking, Einwilligungsbanner, Schriftarten von fremden Servern.</p>
+<img src="../assets/img/blog/core-web-vitals-erklaert-1.jpg" alt="Sanduhr auf einem dunklen Tisch, der Sand läuft durch die Engstelle" width="1200" height="900" loading="lazy">
 
-    <h2>CLS - springt das Layout?</h2>
-    <p>Gemessen wird, wie stark sich Inhalte beim Laden noch verschieben. Jeder kennt das: Man will auf einen Link tippen, im selben Moment lädt oben ein Banner nach, und man trifft etwas anderes. Die häufigste Ursache sind Bilder ohne angegebene Größe und nachgeladene Werbeflächen.</p>
+<h2>LCP, wann das Wesentliche da ist</h2>
 
-    <h2>Ab wann wirkt sich das auf die Position aus?</h2>
-    <p>Hier ist Ehrlichkeit angebracht: Die Werte sind ein schwaches Signal im Vergleich zu Inhalt und Verlinkung. Eine schnelle Seite mit dem falschen Inhalt rankt nicht. Entscheidend wird die Geschwindigkeit dort, wo zwei Seiten inhaltlich gleichauf liegen - und in dem, was sie mit den Besuchern macht: Wer abbricht, kauft nicht, und das sieht Google an der Rückkehr zur Suche.</p>
+<p>Gemessen wird, wann das größte sichtbare Element im Bildschirmbereich fertig geladen ist. Meist ist das ein Bild, manchmal eine große Überschrift. Als gut gilt ein Wert unter 2,5 Sekunden, gemessen bei echten Besuchern, nicht im Labor. Der Wert beschreibt damit ziemlich genau den Moment, in dem ein Besucher das Gefühl hat, die Seite sei da.</p>
 
-    <div class="cs-note">
-      <h3>Kurz gesagt</h3>
-      <p>Prüfen Sie Ihre Seite einmal mit PageSpeed Insights von Google. Die größten Gewinne liegen fast immer bei Bildern und bei Skripten, die niemand vermisst. Siehe auch <a href="../leistungen/seo.html">SEO</a>.</p>
-    </div>
+<p>Die häufigste Ursache für schlechte Werte ist banal: Bilder werden in Originalgröße ausgeliefert. Ein Foto mit 4.000 Pixel Breite und vier Megabyte wird auf dem Telefon auf Daumengröße geschrumpft, aber vorher vollständig geladen. Der Besucher bezahlt das mit Wartezeit und mit seinem Datenvolumen. Das Bild einmal auf eine vernünftige Größe zu bringen, kostet eine Minute und ist oft der größte Einzelgewinn auf der ganzen Seite.</p>
+
+<p>Zweithäufigste Ursache sind Schriftarten, die von fremden Servern geladen werden. Der Text ist dann technisch längst vorhanden, bleibt aber unsichtbar, bis die Schrift eingetroffen ist. Drittens: Seiten, bei denen der sichtbare Inhalt erst von einem Skript zusammengebaut wird. Dann wartet der Besucher nicht auf das Bild, sondern auf das Programm, das das Bild einsetzt.</p>
+
+<p>Ein Punkt, der oft übersehen wird: Der Wert wird auf echten Geräten gemessen, und die Mehrheit davon sind Telefone in mobilen Netzen, nicht Rechner mit Glasfaser. Eine Seite, die im Büro in einer Sekunde steht, kann bei Ihren Besuchern bei vier Sekunden liegen. Prüfen Sie deshalb nie am eigenen Arbeitsplatz, ob eine Seite schnell ist, sondern an den gemessenen Werten.</p>
+
+<h2>INP, wann die Seite reagiert</h2>
+
+<p>Gemessen wird die Verzögerung zwischen einer Eingabe und der sichtbaren Reaktion. Sie tippen auf ein Menü, und es dauert, bis sich etwas öffnet. Als gut gilt unter 200 Millisekunden. Dieser Wert hat 2024 einen älteren Messwert ersetzt, der nur die erste Eingabe berücksichtigte, und ist damit strenger geworden: Jetzt zählt auch das Tippen weiter unten auf der Seite.</p>
+
+<p>Schlechte Werte kommen fast immer von zu vielen Skripten, die gleichzeitig arbeiten. Das Einwilligungsbanner, ein Chatfenster, zwei Messwerkzeuge, eine Kartendarstellung, ein Bewertungsbalken, dazu der Baukasten selbst. Jedes einzelne davon wirkt harmlos. Zusammen belegen sie den Hauptprozess des Browsers so, dass für die Reaktion auf eine Berührung nichts übrig bleibt.</p>
+
+<p>Der Weg zur Besserung ist unbeliebt, weil er mit Verzicht zu tun hat: Jedes Werkzeug auf der Seite muss sich rechtfertigen. In der Praxis steht auf den meisten Seiten mindestens ein Skript, das seit Jahren niemand mehr nutzt, und ein zweites, das dieselbe Aufgabe doppelt erfüllt. Beide zu entfernen bringt mehr als jede Einstellung im Baukasten.</p>
+
+<img src="../assets/img/blog/core-web-vitals-erklaert-2.jpg" alt="Nahaufnahme ineinandergreifender Zahnräder in einer alten Maschine" width="1200" height="900" loading="lazy">
+
+<h2>CLS, wenn das Layout springt</h2>
+
+<p>Gemessen wird, wie stark sich Inhalte beim Laden noch verschieben. Jeder kennt die Situation: Man will auf einen Link tippen, im selben Moment lädt oben ein Banner nach, alles rutscht nach unten, und man trifft etwas anderes. Als gut gilt ein Wert unter 0,1, und der Messwert ist der einzige der drei, den Besucher nicht als Langsamkeit, sondern als Ärger wahrnehmen.</p>
+
+<p>Die häufigste Ursache sind Bilder ohne angegebene Größe. Weiß der Browser vorher nicht, wie hoch ein Bild sein wird, kann er keinen Platz dafür freihalten. Er setzt den Text, und wenn das Bild eintrifft, schiebt es den Text weg. Die Lösung ist eine Angabe im Quelltext, die jedes System unterstützt, und sie wird trotzdem in der Mehrheit der Fälle weggelassen.</p>
+
+<p>Zweite Ursache sind nachgeladene Flächen: Werbung, Hinweisleisten, Bewertungssterne, eingebettete Beiträge. Alles, was nach dem ersten Aufbau noch dazukommt und vorher keinen reservierten Platz hat, verschiebt den Rest. Dritte Ursache sind Schriftarten mit abweichender Laufweite, die beim Austausch die Zeilenumbrüche ändern. Alle drei haben dieselbe Lösung: vorher Platz reservieren, statt nachher zu verschieben.</p>
+
+<p>Bemerkenswert ist, wie unterschiedlich die drei Werte wahrgenommen werden. Eine langsame Seite wird entschuldigt, ein springendes Layout nicht. Wer zweimal daneben tippt, verlässt die Seite, und zwar mit einem Eindruck, der länger hält als die Ladezeit. Das ist der Grund, warum dieser Wert in der Praxis oft der wichtigste der drei ist, obwohl er der unscheinbarste aussieht.</p>
+
+<img src="../assets/img/blog/core-web-vitals-erklaert-3.jpg" alt="Person eilt unscharf durch einen Flur in Richtung einer hellen Tür" width="1200" height="900" loading="lazy">
+
+<h2>Wie stark das die Position beeinflusst</h2>
+
+<p>Hier ist Ehrlichkeit angebracht, auch wenn sie gegen das eigene Verkaufsinteresse geht: Die Werte sind ein schwaches Signal im Vergleich zu Inhalt und Verweisen. Eine schnelle Seite mit dem falschen Inhalt rankt nicht. Eine langsame Seite mit dem besten Inhalt zur Suchanfrage rankt trotzdem, und das sieht man täglich.</p>
+
+<p>Entscheidend werden die Werte an zwei Stellen. Erstens dort, wo zwei Seiten inhaltlich gleichauf liegen. Dann ist Geschwindigkeit der Unterschied, und bei umkämpften Begriffen liegen viele Seiten gleichauf. Zweitens, und das ist der wichtigere Teil, über das Verhalten der Besucher: Wer abbricht, kauft nicht und ruft nicht an. Diese Abbrüche kosten Sie unmittelbar Aufträge, ganz unabhängig davon, wie Google sie bewertet.</p>
+
+<p>Deshalb ist die richtige Reihenfolge: zuerst Inhalt und Struktur, dann Geschwindigkeit. Wer es umgekehrt macht, hat am Ende eine sehr schnelle Seite, die für nichts gefunden wird. Welche Gründe für fehlende Sichtbarkeit sonst in Frage kommen, steht im Beitrag <a href="warum-findet-mich-bei-google-niemand.html">Warum findet mich bei Google niemand?</a></p>
+
+<h2>Wo Sie am schnellsten gewinnen</h2>
+
+<p>Prüfen Sie Ihre Seite einmal mit PageSpeed Insights von Google. Geben Sie die Adresse ein und sehen Sie sich zuerst die Werte aus echten Besuchen an, nicht die Laborwerte darunter. Nur die echten Werte zählen für Google, und sie weichen oft deutlich von der Labormessung ab.</p>
+
+<p>Die größten Gewinne liegen fast immer an drei Stellen, und zwar in dieser Reihenfolge: Bilder verkleinern, überflüssige Skripte entfernen, Größenangaben bei Bildern ergänzen. Alle drei sind einmalige Arbeiten ohne laufende Kosten, und alle drei lassen sich auf bestehenden Seiten durchführen, ohne etwas neu zu bauen. Wann ein Neubau trotzdem der günstigere Weg ist, beschreibt der Beitrag <a href="neue-website-fuer-seo.html">Brauche ich für SEO eine neue Website?</a></p>
+
+<p>Was danach bleibt, ist meist baulich bedingt und gehört in eine Bestandsaufnahme, die auch die übrigen technischen Punkte mitnimmt. Was dabei geprüft wird, steht unter <a href="../leistungen/seo-audit.html">SEO Audit</a>.</p>
+
+<img src="../assets/img/blog/core-web-vitals-erklaert-4.jpg" alt="Leerer Warteraum mit einer Reihe Holzstühle an einer kahlen Wand" width="1200" height="900" loading="lazy">
+
+<p>Ein praktischer Hinweis zum Vorgehen: Arbeiten Sie die Punkte nicht einzeln über Monate ab, sondern in einem Durchgang. Jede dieser Änderungen betrifft dieselben Dateien und dieselben Einstellungen, und zweimal hineingehen kostet doppelt. Welche Arbeiten dabei zusammengehören, haben wir unter <a href="../leistungen/onpage-und-webdesign.html">OnPage und Webdesign</a> aufgeführt.</p>
+
+<p>Und messen Sie nach vier Wochen noch einmal. Die echten Werte stammen aus einem laufenden Zeitfenster von 28 Tagen, das heißt: Eine Verbesserung von heute zeigt sich dort erst nach Wochen vollständig. Wer am Tag nach der Änderung nachsieht und nichts findet, zieht leicht den falschen Schluss.</p>
+
+<h2>Fazit</h2>
+
+<p>LCP ist die Frage, wann das Wesentliche sichtbar ist. INP ist die Frage, ob die Seite auf Berührung reagiert. CLS ist die Frage, ob beim Laden noch etwas verrutscht. Drei Fragen, die ein Besucher in den ersten Sekunden ohnehin stellt, nur eben in Zahlen.</p>
+
+<p>Behandeln Sie die Werte als das, was sie sind: ein Hinweis auf Dinge, die Besucher vertreiben, und ein schwaches Rankingsignal obendrein. Sie sind kein Projekt für sich, und eine Punktzahl von 100 ist kein Ziel. Ein Wert im grünen Bereich genügt, der Rest der Zeit gehört dem Inhalt.</p>
+
+<p>Wenn Sie wissen wollen, welche der drei bei Ihnen tatsächlich klemmt und was dahintersteckt, nehmen wir das in der <a href="../kontakt.html">kostenlosen SEO-Analyse</a> mit auf. Sie bekommen die Messwerte und dazu die konkrete Ursache, nicht nur die Farbe.</p>
 
     </div>
   </div>
