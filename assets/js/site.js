@@ -103,19 +103,72 @@
        es dann einfach stehen, und man muesste auf Abspielen tippen. Deshalb
        wird hier angestossen, sobald der Abschnitt in Sicht kommt, und wieder
        angehalten, wenn er weg ist. Das spart ausserdem Akku. */
-    if (!ruhig && 'IntersectionObserver' in window) {
-      var vio = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          var v = en.target;
-          if (en.isIntersecting) {
-            var p = v.play();
-            if (p && p.catch) { p.catch(function () {}); }
-          } else if (!v.paused) {
-            v.pause();
+    if (!ruhig) {
+      /* iOS verlangt die Eigenschaft, nicht nur das Attribut. Ohne sie gilt das
+         Video als nicht stumm und autoplay wird verweigert. */
+      Array.prototype.forEach.call(reels, function (v) {
+        v.muted = true;
+        v.setAttribute('muted', '');
+        v.playsInline = true;
+      });
+
+      var inSicht = [];
+      var anstossen = function (v) {
+        /* Der Versatz muss beim ersten echten Start sitzen. Setzt man ihn nur
+           beim Laden der Metadaten, beginnt das Video beim Abspielen doch
+           wieder bei null und beide Handys wischen im Gleichschritt. */
+        if (!v.getAttribute('data-versetzt')) {
+          var vz = parseFloat(v.getAttribute('data-versatz') || '0');
+          if (vz && v.duration && vz < v.duration) {
+            try { v.currentTime = vz; } catch (e) {}
           }
+          v.setAttribute('data-versetzt', '1');
+        }
+        var p = v.play();
+        if (p && p['catch']) {
+          p['catch'](function () {
+            /* Abgelehnt, etwa im Stromsparmodus. Dann beim ersten Tippen
+               irgendwo auf der Seite noch einmal versuchen. */
+            nachTipp();
+          });
+        }
+      };
+      var getippt = false;
+      var nachTipp = function () {
+        if (getippt) return;
+        getippt = true;
+        var los = function () {
+          inSicht.forEach(function (v) {
+            var p = v.play();
+            if (p && p['catch']) { p['catch'](function () {}); }
+          });
+          document.removeEventListener('touchstart', los);
+          document.removeEventListener('click', los);
+        };
+        document.addEventListener('touchstart', los, { passive: true, once: true });
+        document.addEventListener('click', los, { once: true });
+      };
+
+      if ('IntersectionObserver' in window) {
+        var vio = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            var v = en.target;
+            var i = inSicht.indexOf(v);
+            if (en.isIntersecting) {
+              if (i < 0) inSicht.push(v);
+              anstossen(v);
+            } else {
+              if (i >= 0) inSicht.splice(i, 1);
+              if (!v.paused) v.pause();
+            }
+          });
+        }, { threshold: 0.15 });
+        Array.prototype.forEach.call(reels, function (v) { vio.observe(v); });
+      } else {
+        Array.prototype.forEach.call(reels, function (v) {
+          inSicht.push(v); anstossen(v);
         });
-      }, { threshold: 0.15 });
-      Array.prototype.forEach.call(reels, function (v) { vio.observe(v); });
+      }
     }
   }
 
@@ -134,22 +187,59 @@
   oeffneZiel();
   window.addEventListener('hashchange', oeffneZiel);
 
-  /* ---- Die Osmo Pocket drehen ----
-     Zeigerereignisse, damit Maus und Finger denselben Weg gehen. Gedreht wird
-     nur das Geraet, nicht die Kamera im Geraet: die Neigung ist begrenzt,
-     sonst steht es irgendwann auf dem Kopf. */
-  var stage = document.querySelector('.pocket-stage');
-  var pocket = document.getElementById('pocket');
-  if (stage && pocket) {
-    var ry = 26, rx = -10, zieht = false, x0 = 0, y0 = 0, ry0 = 0, rx0 = 0;
-    var setzen = function () {
-      pocket.style.setProperty('--ry', ry + 'deg');
-      pocket.style.setProperty('--rx', rx + 'deg');
+  /* ---- Bildergalerie auf der Referenzseite ---- */
+  var gal = document.querySelector('[data-gal]');
+  if (gal) {
+    var spur = gal.querySelector('.gal-spur');
+    var punkte = document.querySelectorAll('.gal-punkt');
+    var anzahl = spur.children.length;
+    var zeige = function (i) {
+      i = Math.max(0, Math.min(anzahl - 1, i));
+      var ziel = spur.clientWidth * i;
+      var sanft = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      spur.scrollTo({ left: ziel, behavior: sanft ? 'smooth' : 'auto' });
+      /* In manchen Browsern wird ein weiches Scrollen von
+         scroll-snap-type: mandatory verschluckt und es passiert gar nichts.
+         Deshalb kurz nachsehen und notfalls hart setzen. */
+      if (sanft) {
+        window.setTimeout(function () {
+          if (Math.abs(spur.scrollLeft - ziel) > 4) {
+            spur.scrollTo({ left: ziel, behavior: 'auto' });
+          }
+        }, 320);
+      }
     };
+    var aktuell = function () { return Math.round(spur.scrollLeft / spur.clientWidth); };
+    gal.querySelector('.gal-vor').addEventListener('click', function () { zeige(aktuell() + 1); });
+    gal.querySelector('.gal-zurueck').addEventListener('click', function () { zeige(aktuell() - 1); });
+    Array.prototype.forEach.call(punkte, function (k, i) {
+      k.addEventListener('click', function () { zeige(i); });
+    });
+    var merk = -1;
+    spur.addEventListener('scroll', function () {
+      var i = aktuell();
+      if (i === merk) return;
+      merk = i;
+      Array.prototype.forEach.call(punkte, function (k, j) { k.classList.toggle('an', j === i); });
+    }, { passive: true });
+  }
+
+  /* ---- Die Geraete drehen und durchblaettern ----
+     Gedreht wird nur das Geraet. Die Neigung ist begrenzt, sonst steht es
+     irgendwann auf dem Kopf. */
+  var buehnen = document.querySelectorAll('.pocket-stage');
+  Array.prototype.forEach.call(buehnen, function (stage) {
+    var teil = stage.querySelector('.pocket');
+    if (!teil) return;
+    var ry = -28, rx = -8, zieht = false, x0 = 0, y0 = 0, ry0 = 0, rx0 = 0;
     var klemm = function (v, min, max) { return v < min ? min : (v > max ? max : v); };
+    var setzen = function () {
+      teil.style.setProperty('--ry', ry + 'deg');
+      teil.style.setProperty('--rx', rx + 'deg');
+    };
     stage.addEventListener('pointerdown', function (e) {
       zieht = true; x0 = e.clientX; y0 = e.clientY; ry0 = ry; rx0 = rx;
-      pocket.classList.add('greift');
+      teil.classList.add('greift');
       stage.setPointerCapture(e.pointerId);
     });
     stage.addEventListener('pointermove', function (e) {
@@ -161,14 +251,14 @@
     var los = function (e) {
       if (!zieht) return;
       zieht = false;
-      pocket.classList.remove('greift');
+      teil.classList.remove('greift');
       if (e && e.pointerId != null && stage.hasPointerCapture(e.pointerId)) {
         stage.releasePointerCapture(e.pointerId);
       }
     };
     stage.addEventListener('pointerup', los);
     stage.addEventListener('pointercancel', los);
-    pocket.addEventListener('keydown', function (e) {
+    teil.addEventListener('keydown', function (e) {
       var k = e.key, schritt = 12;
       if (k === 'ArrowLeft') { ry -= schritt; }
       else if (k === 'ArrowRight') { ry += schritt; }
@@ -179,6 +269,21 @@
       setzen();
     });
     setzen();
+  });
+
+  var geraete = document.querySelector('[data-geraete]');
+  if (geraete) {
+    var liste = geraete.querySelectorAll('.geraet');
+    var schild = document.querySelector('[data-geraet-name]');
+    var nr = 0;
+    var zeigeGeraet = function (i) {
+      nr = (i + liste.length) % liste.length;
+      Array.prototype.forEach.call(liste, function (g, j) { g.hidden = j !== nr; });
+      if (schild) schild.textContent = liste[nr].getAttribute('data-name');
+    };
+    geraete.querySelector('.geraet-vor').addEventListener('click', function () { zeigeGeraet(nr + 1); });
+    geraete.querySelector('.geraet-zurueck').addEventListener('click', function () { zeigeGeraet(nr - 1); });
+    zeigeGeraet(0);
   }
 
   /* ---- active nav link by scroll position (homepage only) ---- */

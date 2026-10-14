@@ -276,8 +276,8 @@ page("angebot.html",
           <div class="phone-screen">
             <video autoplay muted loop playsinline preload="metadata" width="400" height="868"
                    poster="assets/video/reel-instagram.jpg">
-              <source src="assets/video/reel-instagram.webm" type="video/webm">
               <source src="assets/video/reel-instagram.mp4" type="video/mp4">
+              <source src="assets/video/reel-instagram.webm" type="video/webm">
             </video>
             <span class="phone-island"></span>
           </div>
@@ -286,8 +286,8 @@ page("angebot.html",
           <div class="phone-screen">
             <video autoplay muted loop playsinline preload="metadata" width="400" height="868"
                    poster="assets/video/reel-tiktok.jpg" data-versatz="2.4">
-              <source src="assets/video/reel-tiktok.webm" type="video/webm">
               <source src="assets/video/reel-tiktok.mp4" type="video/mp4">
+              <source src="assets/video/reel-tiktok.webm" type="video/webm">
             </video>
             <span class="phone-island"></span>
           </div>
@@ -641,11 +641,40 @@ page("referenzen.html",
 </section>""")
 
 # ---------------------------------------------------------------- Referenz Alejandro
-# Das Geraet ist aus CSS gebaut, nicht aus einem 3D-Modell: die Seite soll
-# weiterhin ohne Bibliothek und ohne fremdes CDN auskommen.
+# Die beiden Geraete sind aus CSS gebaut, nicht aus einem 3D-Modell: die Seite
+# soll weiterhin ohne Bibliothek und ohne fremdes CDN auskommen. Die Masse
+# stammen aus den technischen Daten von DJI, damit die Verhaeltnisse stimmen:
+# Pocket 139,7 x 42,2 x 33,5 mm, Bildschirm 2 Zoll im Verhaeltnis 556:314.
+PFEIL_L = (u'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" '
+           u'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+           u'<path d="M19 12H5M11 18l-6-6 6-6"/></svg>')
+PFEIL_R = (u'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" '
+           u'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+           u'<path d="M5 12h14M13 6l6 6-6 6"/></svg>')
+
+ICH_BILDER = [
+ (u"alejandro-1.jpg", u"Alejandro Arndt vor einer Holzfassade"),
+ (u"alejandro-2.jpg", u"Alejandro Arndt an einem gedeckten Tisch im Garten"),
+ (u"alejandro-3.jpg", u"Alejandro Arndt auf einer Wiese"),
+]
+folien = u"".join(
+ u'\n          <li class="gal-bild"><img src="../assets/img/case/%s" alt="%s" width="800" height="1000"%s></li>'
+ % (d, a, u"" if i == 0 else u' loading="lazy"')
+ for i, (d, a) in enumerate(ICH_BILDER))
+punkte = u"".join(
+ u'<button class="gal-punkt%s" type="button" aria-label="Bild %d"></button>'
+ % (u" an" if i == 0 else u"", i + 1) for i in range(len(ICH_BILDER)))
+
+def quader(k=None):
+    """Die sechs Flaechen eines Quaders. Die Klassen sind fuer alle Quader
+    gleich; Groesse, Tiefe und Farbe kommen ueber --w, --h, --d und --m von
+    der Gruppe darueber. So braucht das Stylesheet nur einen Satz Regeln."""
+    return u"".join(u'\n            <span class="pk-f pk-%s"></span>' % f
+                    for f in (u"vo", u"hi", u"li", u"re", u"ob", u"un"))
+
 page("referenzen/alejandro-arndt.html",
  u"Alejandro Arndt | Kontor",
- u"Wer dreht und schneidet: Alejandro Arndt aus Uhingen, mit einer DJI Osmo Pocket 4.",
+ u"Wer dreht und schneidet: Alejandro Arndt aus Uhingen, mit DJI Osmo Pocket 4 und DJI Mic.",
  u"""<section class="section cs" style="padding-top:0">
   <div class="wrap">
     <div class="cs-brand">
@@ -656,33 +685,57 @@ page("referenzen/alejandro-arndt.html",
 
     <div class="me">
       <figure class="me-foto">
-        <img src="../assets/img/case/alejandro-portrait.jpg" alt="Alejandro Arndt vor einer Holzfassade" width="1000" height="1250">
+        <div class="gal" data-gal>
+          <ul class="gal-spur">%(folien)s
+          </ul>
+          <button class="gal-pfeil gal-zurueck" type="button" aria-label="Vorheriges Bild">%(pfeil_l)s</button>
+          <button class="gal-pfeil gal-vor" type="button" aria-label="Nächstes Bild">%(pfeil_r)s</button>
+        </div>
+        <div class="gal-punkte">%(punkte)s</div>
       </figure>
+
       <div class="me-txt">
         <h2 style="margin:0">Mein Equipment</h2>
-        <p class="lede" style="margin:12px 0 0">DJI Osmo Pocket 4. Stabilisiert, unauffällig und in zehn Sekunden ausgepackt. Genau richtig für einen Betrieb, der während des Drehs normal weiterarbeitet.</p>
-        <div class="pocket-stage">
-          <div class="pocket" id="pocket" role="img" aria-label="Dreidimensionale Darstellung einer DJI Osmo Pocket 4, mit der Maus oder dem Finger drehbar" tabindex="0">
-            <div class="pk-head">
-              <span class="pk-f pk-hf"><span class="pk-lens"></span></span>
-              <span class="pk-f pk-hb"></span>
-              <span class="pk-f pk-hl"></span>
-              <span class="pk-f pk-hr"></span>
-              <span class="pk-f pk-ht"></span>
-              <span class="pk-f pk-hu"></span>
-            </div>
-            <div class="pk-arm"></div>
-            <div class="pk-body">
-              <span class="pk-f pk-bf"><span class="pk-screen"></span></span>
-              <span class="pk-f pk-bb"><span class="pk-grip"></span></span>
-              <span class="pk-f pk-bl"></span>
-              <span class="pk-f pk-br"></span>
-              <span class="pk-f pk-bt"></span>
-              <span class="pk-f pk-bu"></span>
+        <p class="lede" style="margin:12px 0 0">Stabilisiert, unauffällig und in zehn Sekunden ausgepackt. Genau richtig für einen Betrieb, der während des Drehs normal weiterarbeitet.</p>
+
+        <div class="geraete" data-geraete>
+          <div class="geraet" data-name="DJI Osmo Pocket 4">
+            <div class="pocket-stage">
+              <div class="pocket" tabindex="0" role="img" aria-label="Dreidimensionale Darstellung einer DJI Osmo Pocket 4, mit Maus, Finger oder Pfeiltasten drehbar">
+                <div class="pk-koerper">%(koerper)s
+                  <span class="pk-schirm"><span class="pk-schirm-bild"></span></span>
+                  <span class="pk-rad"></span>
+                  <span class="pk-knopf"></span>
+                  <span class="pk-marke">dji</span>
+                  <span class="pk-seitentext">POCKET 4</span>
+                </div>
+                <div class="pk-stiel">%(stiel)s</div>
+                <div class="pk-motor">%(motor)s</div>
+                <div class="pk-kopf">%(kopf)s
+                  <span class="pk-linse"><span class="pk-linse-glas"></span></span>
+                </div>
+              </div>
             </div>
           </div>
+
+          <div class="geraet" data-name="DJI Mic" hidden>
+            <div class="pocket-stage">
+              <div class="pocket" tabindex="0" role="img" aria-label="Dreidimensionale Darstellung eines DJI Mic Senders, mit Maus, Finger oder Pfeiltasten drehbar">
+                <div class="mic-koerper">%(mic)s
+                  <span class="mic-gitter"></span>
+                  <span class="mic-led"></span>
+                  <span class="mic-marke">dji</span>
+                </div>
+                <div class="mic-clip">%(clip)s</div>
+              </div>
+            </div>
+          </div>
+
+          <button class="geraet-pfeil geraet-zurueck" type="button" aria-label="Vorheriges Gerät">%(pfeil_l)s</button>
+          <button class="geraet-pfeil geraet-vor" type="button" aria-label="Nächstes Gerät">%(pfeil_r)s</button>
         </div>
-        <p class="pocket-hint">Ziehen zum Drehen</p>
+        <p class="geraet-name" data-geraet-name>DJI Osmo Pocket 4</p>
+        <p class="pocket-hint">Ziehen zum Drehen, Pfeile für das nächste Gerät</p>
       </div>
     </div>
 
@@ -691,7 +744,9 @@ page("referenzen/alejandro-arndt.html",
       <p>Deshalb der Probemonat: Sie bekommen einen Monat lang Reels, ohne Rechnung und ohne Kündigungsfrist. Sie sehen am Ergebnis, ob es passt, und ich zeige, was ich kann. Ich arbeite von Uhingen aus und komme für den Dreh zu Ihnen.</p>
     </div>
   </div>
-</section>""" + cta("../"))
+</section>""" % {"folien": folien, "pfeil_l": PFEIL_L, "pfeil_r": PFEIL_R, "punkte": punkte,
+      "koerper": quader("kp"), "stiel": quader("st"), "motor": quader("mo"),
+      "kopf": quader("kf"), "mic": quader("mc"), "clip": quader("cl")} + cta("../"))
 
 # ---------------------------------------------------------------- Fallstudie PoseyPets
 page("referenzen/poseypets.html",

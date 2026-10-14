@@ -746,7 +746,9 @@ code{font-family:var(--mono);font-size:.9em;background:var(--bg-3);border:1px so
    Fenster: sonst laufen die Handys zwischen 700 und 900 Pixeln aus der
    Spalte heraus. */
 .phones{
-  container-type:inline-size;width:100%;
+  /* Deckel, damit die Handys in einer breiten Spalte nicht mitwachsen. Ohne
+     ihn stehen sie auf angebot.html deutlich groesser als auf der Startseite. */
+  container-type:inline-size;width:100%;max-width:400px;margin-inline:auto;
   display:flex;justify-content:center;align-items:flex-start;
   padding-block:clamp(14px,3vw,44px);
 }
@@ -824,87 +826,163 @@ code{font-family:var(--mono);font-size:.9em;background:var(--bg-3);border:1px so
 }
 
 /* ============================================================
-   Referenzseite Alejandro: Foto, Text und das Geraet
+   Referenzseite Alejandro: Bildergalerie, Text und die Geraete
    ============================================================ */
-.me{display:grid;grid-template-columns:.85fr 1fr;gap:clamp(24px,4vw,56px);
-  align-items:center;margin:clamp(30px,5vw,56px) 0}
-@media(max-width:860px){.me{grid-template-columns:1fr}}
-.me-foto{margin:0}
-.me-foto img{width:100%;height:auto;display:block;border-radius:var(--r-lg);border:1px solid var(--line)}
-
-/* ------------------------------------------------------------
-   DJI Osmo Pocket 4, aus CSS gebaut statt als 3D-Modell geladen.
-   Die Seite soll ohne Bibliothek und ohne fremdes CDN auskommen, deshalb
-   sechs Flaechen je Quader und eine Handvoll Transformationen. Alle Masse
-   haengen an --bw, --bh, --bd, damit sich das Geraet ueber eine Medienabfrage
-   verkleinern laesst, ohne dass die Flaechen auseinanderfallen.
-   ------------------------------------------------------------ */
-.pocket-stage{
-  --bw:88px; --bh:200px; --bd:70px;
-  --hw:58px; --hh:50px;  --hd:48px;
-  perspective:900px;display:grid;place-items:center;
-  min-height:calc(var(--bh) + var(--hh) + 96px);
-  margin-top:clamp(18px,3vw,30px);
-  touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none;
+.me{display:grid;grid-template-columns:clamp(210px,24vw,286px) 1fr;
+  gap:clamp(24px,4vw,56px);align-items:start;margin:clamp(30px,5vw,56px) 0}
+@media(max-width:860px){
+  .me{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
+  .me-foto{max-width:300px;margin-inline:auto}
 }
-.pocket-stage:active{cursor:grabbing}
-@media(max-width:520px){.pocket-stage{--bw:72px;--bh:164px;--bd:58px;--hw:48px;--hh:42px;--hd:40px}}
+.me-foto{margin:0}
 
-.pocket{position:relative;width:var(--bw);height:var(--bh);transform-style:preserve-3d;
-  transform:rotateX(var(--rx,-10deg)) rotateY(var(--ry,26deg));
+/* ---- Bildergalerie ----------------------------------------
+   Eine Spur zum Wischen mit Einrastpunkten. Die Pfeile schieben sie weiter,
+   auf dem Handy geht es ausserdem mit dem Finger. */
+.gal{position:relative;border-radius:var(--r-lg);overflow:hidden;
+  border:1px solid var(--line);background:var(--bg-2)}
+.gal-spur{display:flex;margin:0;padding:0;list-style:none;overflow-x:auto;
+  scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.gal-spur::-webkit-scrollbar{display:none}
+.gal-bild{flex:0 0 100%;scroll-snap-align:center}
+.gal-bild img{width:100%;height:auto;display:block;aspect-ratio:4/5;object-fit:cover}
+.gal-pfeil{position:absolute;top:50%;transform:translateY(-50%);z-index:2;
+  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  border:1px solid rgba(255,255,255,.2);background:rgba(11,11,12,.66);
+  backdrop-filter:blur(7px);color:var(--ink);cursor:pointer;padding:0;
+  transition:background .2s var(--ease),transform .2s var(--ease)}
+.gal-pfeil svg{width:16px;height:16px}
+.gal-pfeil:hover{background:rgba(11,11,12,.9)}
+.gal-zurueck{left:10px}
+.gal-vor{right:10px}
+.gal-punkte{display:flex;justify-content:center;gap:7px;margin-top:12px}
+.gal-punkt{width:7px;height:7px;padding:0;border-radius:50%;cursor:pointer;
+  border:1px solid var(--line-2);background:transparent;transition:background .2s var(--ease)}
+.gal-punkt.an{background:var(--ink);border-color:var(--ink)}
+
+/* ---- Geraete ----------------------------------------------
+   DJI Osmo Pocket 4 und DJI Mic, aus CSS gebaut statt als 3D-Modell geladen:
+   die Seite soll ohne Bibliothek und ohne fremdes CDN auskommen. Die Masse
+   stammen aus den technischen Daten (Pocket 139,7 x 42,2 x 33,5 mm,
+   Bildschirm 2 Zoll im Verhaeltnis 556:314), damit die Verhaeltnisse stimmen.
+   Jeder Quader bekommt --w, --h, --d und --m; die sechs Flaechen lesen das. */
+.geraete{position:relative;margin-top:clamp(16px,3vw,26px)}
+.geraet[hidden]{display:none}
+.geraet-pfeil{position:absolute;top:50%;transform:translateY(-50%);z-index:3;
+  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  border:1px solid var(--line-2);background:var(--bg-3);color:var(--ink-2);
+  cursor:pointer;padding:0;transition:color .2s var(--ease),background .2s var(--ease)}
+.geraet-pfeil svg{width:16px;height:16px}
+.geraet-pfeil:hover{color:var(--ink);background:var(--bg-4)}
+.geraet-zurueck{left:0}
+.geraet-vor{right:0}
+.geraet-name{margin:10px 0 0;text-align:center;font-size:.9rem;font-weight:600;color:var(--ink)}
+.pocket-hint{margin:5px 0 0;text-align:center;font-family:var(--mono);font-size:.6rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+
+.pocket-stage{perspective:1000px;display:grid;place-items:center;
+  min-height:292px;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+.pocket-stage:active{cursor:grabbing}
+@media(max-width:520px){.pocket-stage{min-height:252px}}
+
+.pocket{position:relative;width:1px;height:1px;transform-style:preserve-3d;
+  transform:rotateX(var(--rx,-8deg)) rotateY(var(--ry,-28deg));
   transition:transform .3s var(--ease)}
 .pocket.greift{transition:none}
 .pocket:focus-visible{outline:none}
-.pocket-stage:has(.pocket:focus-visible){outline:2px solid var(--ink);outline-offset:8px;border-radius:var(--r)}
+.pocket-stage:has(.pocket:focus-visible){outline:2px solid var(--ink);outline-offset:10px;border-radius:var(--r)}
 
-.pk-f{position:absolute;top:0;left:0;background:#1b1e22;
-  border:1px solid rgba(255,255,255,.06);border-radius:2px}
+/* Eine Gruppe ist ein Quader. Sie sitzt ueber --x, --y, --z im Raum. */
+.pk-koerper,.pk-stiel,.pk-motor,.pk-kopf,.mic-koerper,.mic-clip{
+  position:absolute;left:0;top:0;transform-style:preserve-3d;
+  width:var(--w);height:var(--h);
+  transform:translate3d(calc(var(--x) - var(--w)/2),calc(var(--y) - var(--h)/2),var(--z))}
 
-.pk-body{position:absolute;top:0;left:0;width:var(--bw);height:var(--bh);transform-style:preserve-3d}
-.pk-bf{width:var(--bw);height:var(--bh);transform:translateZ(calc(var(--bd)/2));
-  background:linear-gradient(160deg,#262a30,#14171a)}
-.pk-bb{width:var(--bw);height:var(--bh);transform:rotateY(180deg) translateZ(calc(var(--bd)/2));
-  background:linear-gradient(160deg,#1e2126,#0f1113)}
-.pk-bl{width:var(--bd);height:var(--bh);left:calc((var(--bw) - var(--bd))/2);
-  transform:rotateY(-90deg) translateZ(calc(var(--bw)/2));background:linear-gradient(160deg,#2c3037,#131518)}
-.pk-br{width:var(--bd);height:var(--bh);left:calc((var(--bw) - var(--bd))/2);
-  transform:rotateY(90deg) translateZ(calc(var(--bw)/2));background:linear-gradient(160deg,#2c3037,#131518)}
-.pk-bt{width:var(--bw);height:var(--bd);top:calc((var(--bh) - var(--bd))/2);
-  transform:rotateX(90deg) translateZ(calc(var(--bh)/2));background:#262a30}
-.pk-bu{width:var(--bw);height:var(--bd);top:calc((var(--bh) - var(--bd))/2);
-  transform:rotateX(-90deg) translateZ(calc(var(--bh)/2));background:#0d0f11}
+.pk-f{position:absolute;top:0;left:0;background:var(--m);
+  border-radius:var(--kr,4px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.045)}
+.pk-vo{width:var(--w);height:var(--h);transform:translateZ(calc(var(--d)/2));
+  background:linear-gradient(158deg,color-mix(in srgb,var(--m) 78%,#fff) 0%,var(--m) 42%,color-mix(in srgb,var(--m) 82%,#000) 100%)}
+.pk-hi{width:var(--w);height:var(--h);transform:rotateY(180deg) translateZ(calc(var(--d)/2));
+  background:linear-gradient(158deg,var(--m),color-mix(in srgb,var(--m) 72%,#000))}
+.pk-li{width:var(--d);height:var(--h);left:calc((var(--w) - var(--d))/2);
+  transform:rotateY(-90deg) translateZ(calc(var(--w)/2));
+  background:linear-gradient(158deg,color-mix(in srgb,var(--m) 88%,#fff),color-mix(in srgb,var(--m) 76%,#000))}
+.pk-re{width:var(--d);height:var(--h);left:calc((var(--w) - var(--d))/2);
+  transform:rotateY(90deg) translateZ(calc(var(--w)/2));
+  background:linear-gradient(158deg,color-mix(in srgb,var(--m) 70%,#000),var(--m))}
+.pk-ob{width:var(--w);height:var(--d);top:calc((var(--h) - var(--d))/2);
+  transform:rotateX(90deg) translateZ(calc(var(--h)/2));
+  background:color-mix(in srgb,var(--m) 86%,#fff)}
+.pk-un{width:var(--w);height:var(--d);top:calc((var(--h) - var(--d))/2);
+  transform:rotateX(-90deg) translateZ(calc(var(--h)/2));
+  background:color-mix(in srgb,var(--m) 62%,#000)}
 
-.pk-screen{position:absolute;inset:7% 10% 22%;border-radius:4px;
-  background:linear-gradient(152deg,#33465c 0%,#16222f 55%,#0d141c 100%);
-  border:1px solid rgba(255,255,255,.12);
-  box-shadow:inset 0 0 14px rgba(90,150,210,.22)}
-.pk-grip{position:absolute;inset:18% 22%;border-radius:3px;
-  background:repeating-linear-gradient(180deg,rgba(255,255,255,.045) 0 2px,transparent 2px 7px)}
+/* --- Osmo Pocket 4 ------------------------------------------------- */
+/* Griff: 42,2 breit, 33,5 tief, rund 98 hoch in mm. */
+.pk-koerper{--w:62px;--h:146px;--d:49px;--m:#1c1f23;--kr:8px;--x:0px;--y:30px;--z:0px}
+/* Der Stiel steht links am Kopfende, nicht mittig. */
+.pk-stiel {--w:15px;--h:34px;--d:19px;--m:#2f343a;--kr:5px;--x:-21px;--y:-60px;--z:0px}
+/* Waagerechtes Motorgehaeuse, laeuft vom Stiel nach rechts. */
+.pk-motor {--w:46px;--h:17px;--d:17px;--m:#3a4046;--kr:8px;--x:0px;--y:-82px;--z:0px}
+/* Kamerakopf am rechten Ende. */
+.pk-kopf  {--w:33px;--h:32px;--d:28px;--m:#2b3036;--kr:9px;--x:15px;--y:-100px;--z:2px}
+@media(max-width:520px){
+  .pk-koerper{--w:52px;--h:122px;--d:41px;--y:26px}
+  .pk-stiel {--w:13px;--h:28px;--d:16px;--x:-18px;--y:-50px}
+  .pk-motor {--w:38px;--h:14px;--d:14px;--y:-69px}
+  .pk-kopf  {--w:28px;--h:27px;--d:24px;--x:13px;--y:-84px}
+}
 
-.pk-arm{position:absolute;left:calc(var(--bw)/2 - 8px);top:-18px;width:16px;height:22px;
-  border-radius:3px;background:linear-gradient(180deg,#30353c,#16191d);transform-style:preserve-3d}
+/* Bildschirm im Querformat, 556:314, auf der Vorderseite des Griffs. */
+.pk-schirm{position:absolute;left:7%;right:7%;top:9%;z-index:2;
+  aspect-ratio:556/314;border-radius:4px;transform:translateZ(calc(var(--d)/2 + .6px));
+  background:#07090c;box-shadow:0 0 0 1px rgba(255,255,255,.1)}
+.pk-schirm-bild{position:absolute;inset:2px;border-radius:3px;
+  background:linear-gradient(145deg,#4b6b86 0%,#2a4257 40%,#16222e 100%);
+  box-shadow:inset 0 0 10px rgba(120,180,230,.3)}
+/* Das kupferne Einstellrad und der kleine Aufnahmeknopf darunter. */
+.pk-rad{position:absolute;left:58%;top:62%;width:19%;aspect-ratio:1;z-index:2;
+  border-radius:50%;transform:translateZ(calc(var(--d)/2 + .6px));
+  background:radial-gradient(circle at 36% 32%,#e8a765,#b2651f 60%,#6d3a0e);
+  box-shadow:0 0 0 1px rgba(0,0,0,.6)}
+.pk-knopf{position:absolute;left:22%;top:63%;width:15%;aspect-ratio:1;z-index:2;
+  border-radius:50%;transform:translateZ(calc(var(--d)/2 + .6px));
+  background:radial-gradient(circle at 36% 32%,#3c4249,#15181c);
+  box-shadow:0 0 0 1px rgba(0,0,0,.6)}
+.pk-marke{position:absolute;left:0;right:0;bottom:4%;z-index:2;text-align:center;
+  transform:translateZ(calc(var(--d)/2 + .6px));
+  font-family:var(--body);font-weight:700;font-size:7px;letter-spacing:.06em;color:#8b9199}
+.pk-seitentext{position:absolute;left:calc((var(--w) - var(--d))/2);top:0;z-index:2;
+  width:var(--d);height:var(--h);display:grid;place-items:center;
+  transform:rotateY(-90deg) translateZ(calc(var(--w)/2 + .6px));
+  font-family:var(--mono);font-size:6px;letter-spacing:.2em;color:#777d85;
+  writing-mode:vertical-rl}
+/* Objektiv mit der gruenlichen Verguetung. */
+.pk-linse{position:absolute;left:50%;top:50%;width:72%;aspect-ratio:1;z-index:2;
+  transform:translate(-50%,-50%) translateZ(calc(var(--d)/2 + .6px));
+  border-radius:50%;background:#0a0c0f;box-shadow:0 0 0 2px #41474e,0 0 0 3px #1b1e22}
+.pk-linse-glas{position:absolute;inset:14%;border-radius:50%;
+  background:radial-gradient(circle at 34% 30%,#9fe0d2 0%,#2f7f78 26%,#10303a 58%,#04080c 100%);
+  box-shadow:inset 0 0 6px rgba(0,0,0,.9)}
 
-.pk-head{position:absolute;left:calc((var(--bw) - var(--hw))/2);top:calc(-1 * (var(--hh) + 16px));
-  width:var(--hw);height:var(--hh);transform-style:preserve-3d}
-.pk-hf{width:var(--hw);height:var(--hh);transform:translateZ(calc(var(--hd)/2));
-  background:linear-gradient(160deg,#2a2f36,#15181c)}
-.pk-hb{width:var(--hw);height:var(--hh);transform:rotateY(180deg) translateZ(calc(var(--hd)/2));
-  background:linear-gradient(160deg,#20242a,#101214)}
-.pk-hl{width:var(--hd);height:var(--hh);left:calc((var(--hw) - var(--hd))/2);
-  transform:rotateY(-90deg) translateZ(calc(var(--hw)/2));background:linear-gradient(160deg,#30353c,#14171a)}
-.pk-hr{width:var(--hd);height:var(--hh);left:calc((var(--hw) - var(--hd))/2);
-  transform:rotateY(90deg) translateZ(calc(var(--hw)/2));background:linear-gradient(160deg,#30353c,#14171a)}
-.pk-ht{width:var(--hw);height:var(--hd);top:calc((var(--hh) - var(--hd))/2);
-  transform:rotateX(90deg) translateZ(calc(var(--hh)/2));background:#2b3037}
-.pk-hu{width:var(--hw);height:var(--hd);top:calc((var(--hh) - var(--hd))/2);
-  transform:rotateX(-90deg) translateZ(calc(var(--hh)/2));background:#0f1113}
+/* --- DJI Mic -------------------------------------------------------- */
+.mic-koerper{--w:62px;--h:46px;--d:26px;--m:#1d2024;--kr:10px;--x:0px;--y:0px;--z:0px}
+.mic-clip   {--w:30px;--h:34px;--d:7px;--m:#2c3137;--kr:4px;--x:0px;--y:12px;--z:-17px}
+@media(max-width:520px){
+  .mic-koerper{--w:54px;--h:40px;--d:23px}
+  .mic-clip   {--w:26px;--h:30px;--d:6px;--z:-15px}
+}
+.mic-gitter{position:absolute;left:12%;right:12%;top:16%;height:46%;z-index:2;
+  border-radius:4px;transform:translateZ(calc(var(--d)/2 + .6px));
+  background:
+    radial-gradient(circle at 2px 2px,rgba(255,255,255,.14) .9px,transparent 1.1px) 0 0/5px 5px,
+    linear-gradient(160deg,#2b3036,#15181c);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.mic-led{position:absolute;left:46%;bottom:14%;width:8%;aspect-ratio:1;z-index:2;
+  border-radius:50%;transform:translateZ(calc(var(--d)/2 + .6px));
+  background:radial-gradient(circle,#7df0a8,#1d7c45);box-shadow:0 0 6px rgba(93,230,150,.55)}
+.mic-marke{position:absolute;left:0;right:0;bottom:6%;z-index:2;text-align:center;
+  transform:translateZ(calc(var(--d)/2 + .6px));
+  font-family:var(--body);font-weight:700;font-size:7px;letter-spacing:.06em;color:#8b9199}
 
-.pk-lens{position:absolute;left:50%;top:50%;width:64%;aspect-ratio:1;transform:translate(-50%,-50%);
-  border-radius:50%;border:2px solid #23272c;
-  background:radial-gradient(circle at 36% 32%,#4a5c74 0%,#141c26 48%,#05070a 100%);
-  box-shadow:0 0 0 3px rgba(255,255,255,.045),inset 0 0 8px rgba(0,0,0,.8)}
-
-.pocket-hint{margin:14px 0 0;text-align:center;font-family:var(--mono);font-size:.64rem;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
-
-@media(prefers-reduced-motion:reduce){.pocket{transition:none}}
+@media(prefers-reduced-motion:reduce){.pocket,.gal-pfeil,.geraet-pfeil{transition:none}}
