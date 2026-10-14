@@ -260,7 +260,28 @@ page("angebot.html",
 <section class="section" style="padding-top:0">
   <div class="wrap offer">
     <div class="offer-art">
-      <img src="assets/img/phones-feed.png" alt="Zwei Smartphones zeigen senkrechte Kurzvideos nebeneinander" width="1520" height="1240" loading="lazy">
+      <div class="phones" role="img" aria-label="Zwei Smartphones zeigen senkrechte Kurzvideos nebeneinander, links Instagram, rechts TikTok">
+        <div class="phone phone-ig">
+          <div class="phone-screen">
+            <video autoplay muted loop playsinline preload="metadata" width="400" height="868"
+                   poster="assets/video/reel-instagram.jpg">
+              <source src="assets/video/reel-instagram.webm" type="video/webm">
+              <source src="assets/video/reel-instagram.mp4" type="video/mp4">
+            </video>
+            <span class="phone-island"></span>
+          </div>
+        </div>
+        <div class="phone phone-tt">
+          <div class="phone-screen">
+            <video autoplay muted loop playsinline preload="metadata" width="400" height="868"
+                   poster="assets/video/reel-tiktok.jpg" data-versatz="2.4">
+              <source src="assets/video/reel-tiktok.webm" type="video/webm">
+              <source src="assets/video/reel-tiktok.mp4" type="video/mp4">
+            </video>
+            <span class="phone-island"></span>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="offer-txt">
       <h2 style="margin:0">Das ist enthalten</h2>

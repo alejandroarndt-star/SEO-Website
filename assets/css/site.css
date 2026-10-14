@@ -731,13 +731,60 @@ code{font-family:var(--mono);font-size:.9em;background:var(--bg-3);border:1px so
   border-radius:var(--r);border:1px solid var(--line);margin:clamp(26px,3.4vw,40px) 0}
 
 /* ============================================================
-   Gratismonat: Handygrafik links, Angebot rechts
+   Gratismonat: zwei Handys links, Angebot rechts
    ============================================================ */
 .offer{display:grid;grid-template-columns:.92fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
 @media(max-width:900px){.offer{grid-template-columns:1fr}}
-.offer-art img{width:100%;height:auto;display:block;
-  filter:drop-shadow(0 50px 70px rgba(0,0,0,.65))}
-@media(max-width:900px){.offer-art{max-width:460px;margin:0 auto}}
+/* Zwei iPhone 18 Pro Max nebeneinander, links Instagram, rechts TikTok.
+   Alle Masse stammen vom Geraet: Bildschirm 1320 x 2868, also 19,5:9.
+   Rahmen, Eckenradius, Tasten und Dynamic Island haengen ueber --pw an der
+   Handybreite, damit die Verhaeltnisse in jeder Groesse stimmen. --pw ist
+   eine Containereinheit, bezieht sich also auf .phones und nicht auf das
+   Fenster: sonst laufen die Handys zwischen 700 und 900 Pixeln aus der
+   Spalte heraus. */
+.phones{
+  container-type:inline-size;width:100%;
+  display:flex;justify-content:center;align-items:flex-start;
+  padding-block:clamp(14px,3vw,44px);
+}
+.phone{
+  --pw:49cqw;
+  position:relative;flex:none;width:var(--pw);max-width:49%;
+  padding:calc(var(--pw)*.021);
+  border-radius:calc(var(--pw)*.148);
+  background:linear-gradient(145deg,#4a4e54 0%,#1b1e21 14%,#33373d 30%,
+    #101214 52%,#2d3137 72%,#15181b 88%,#3c4046 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.13),
+    0 2px 3px rgba(0,0,0,.55),
+    0 50px 70px rgba(0,0,0,.65);
+}
+.phone-screen{
+  position:relative;overflow:hidden;background:#000;
+  aspect-ratio:1320/2868;
+  border-radius:calc(var(--pw)*.127);
+}
+.phone-screen video{width:100%;height:100%;object-fit:cover;display:block}
+.phone-island{
+  position:absolute;top:calc(var(--pw)*.026);left:50%;transform:translateX(-50%);
+  width:calc(var(--pw)*.285);height:calc(var(--pw)*.082);
+  border-radius:999px;background:#000;
+}
+/* Seitentasten: rechts die Seitentaste, links Lautstaerke. */
+.phone::before,.phone::after{
+  content:"";position:absolute;border-radius:1px;
+  background:linear-gradient(180deg,#43474d,#15181b);
+}
+.phone::before{right:calc(var(--pw)*-.008);top:27%;width:calc(var(--pw)*.009);height:8.5%}
+.phone::after{left:calc(var(--pw)*-.008);top:19%;width:calc(var(--pw)*.009);height:12%}
+/* Instagram vorne, TikTok hoeher und dahinter. */
+.phone-ig{transform:rotate(-6deg);z-index:2}
+.phone-tt{transform:rotate(5deg) translateY(-7%);z-index:1;margin-left:calc(var(--pw)*-.21)}
+@media(prefers-reduced-motion:reduce){
+  .phone-ig,.phone-tt{transform:none}
+  .phone-tt{margin-left:calc(var(--pw)*-.06)}
+}
+@media(max-width:900px){.offer-art{max-width:460px;width:100%;margin:0 auto}}
 .offer-list{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:1px;
   border:1px solid var(--line);border-radius:var(--r-lg);background:var(--line);overflow:hidden}
 .offer-list li{display:flex;flex-direction:column;gap:5px;padding:18px clamp(18px,2.4vw,24px);background:var(--bg-3)}

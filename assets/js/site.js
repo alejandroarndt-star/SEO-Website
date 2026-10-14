@@ -74,6 +74,32 @@
     nums.forEach(function (el) { cio.observe(el); });
   }
 
+  /* ---- Handyvideos im Gratismonat ----
+     Zwei gleichzeitig wischende Videos sehen sofort nach Attrappe aus.
+     Deshalb laufen sie unterschiedlich lang und das rechte startet
+     versetzt. Bei reduzierter Bewegung bleibt das Standbild stehen. */
+  var reels = document.querySelectorAll('.phone-screen video');
+  if (reels.length) {
+    var ruhig = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    Array.prototype.forEach.call(reels, function (v) {
+      if (ruhig) {
+        v.removeAttribute('autoplay');
+        v.addEventListener('play', function () { v.pause(); });
+        v.pause();
+        return;
+      }
+      var versatz = parseFloat(v.getAttribute('data-versatz') || '0');
+      if (!versatz) return;
+      var setzen = function () {
+        if (v.duration && versatz < v.duration) {
+          try { v.currentTime = versatz; } catch (e) {}
+        }
+      };
+      if (v.readyState >= 1) setzen();
+      else v.addEventListener('loadedmetadata', setzen);
+    });
+  }
+
   /* ---- active nav link by scroll position (homepage only) ---- */
   var sections = document.querySelectorAll('section[id]');
   var navLinks = document.querySelectorAll('.nav a[href^="#"]');
