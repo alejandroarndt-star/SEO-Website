@@ -4,7 +4,7 @@ Run after changing the header or footer:  python3 _build/make_pages.py
 The generated .html files are what ships; this script is convenience only."""
 import io, re, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from blog_posts import RATGEBER, GEPLANT, META, TITEL
+from blog_posts import RATGEBER, GEPLANT, META, TITEL, DATUM, THEMEN, THEMEN_NAMEN
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 idx = io.open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
@@ -960,11 +960,33 @@ def lesezeit(html):
 
 POSTS = [(sl, ti, te, le, bo) for sl, ti, te, le, bo in RATGEBER]
 
-def card(q):
+NAME = dict(THEMEN_NAMEN)
+
+def datum_de(iso):
+    """2026-10-14 -> 14.10.2026"""
+    j, m, t = iso.split("-")
+    return u"%s.%s.%s" % (t, m, j)
+
+def card(q, up=u""):
+    """Karte wie im Posey-Magazin: Bild mit Lesezeit- und Datumsplakette,
+    darunter die Schlagwoerter und der Titel. Kein Teaser, der steht dort
+    auch nicht."""
+    slug = q[0]
+    themen = THEMEN.get(slug, ())
+    pillen = u"".join(u'<span class="post-tag">%s</span>' % NAME.get(t, t) for t in themen)
     return u"""
-      <a class="post" href="%s.html"><span class="meta">Ratgeber</span><h3>%s</h3><p>%s</p>"""\
-           u"""<span class="more">%s min lesen <span class="arr">&rarr;</span></span></a>""" % (
-        q[0], q[1], q[2], lesezeit(q[4]))
+      <a class="post" href="%(up)s%(slug)s.html" data-cats="%(cats)s">
+        <span class="post-bild">
+          <img src="%(up)s../assets/img/blog/%(slug)s-1.jpg" alt="" width="1200" height="900" loading="lazy">
+          <span class="post-zeit">%(zeit)s min</span>
+          <span class="post-datum">%(datum)s</span>
+        </span>
+        <span class="post-tags">%(pillen)s</span>
+        <h3>%(titel)s</h3>
+      </a>""" % {
+        "up": up, "slug": slug, "cats": u" ".join(themen),
+        "zeit": lesezeit(q[4]), "datum": datum_de(DATUM.get(slug, u"2026-10-14")),
+        "pillen": pillen, "titel": q[1]}
 
 def related(slug):
     rest = [q for q in POSTS if q[0] != slug]
@@ -1014,16 +1036,23 @@ for slug, titel, teaser, lede, body in POSTS:
 
 page("blog/index.html",
  u"Blog | Kontor",
- u"Ratgeber zur Suchmaschinenoptimierung: verständlich erklärt, ohne Fachchinesisch und ohne Versprechen, die niemand halten kann.",
+ u"Ratgeber zu Social Media und Suchmaschinenoptimierung: verständlich erklärt, ohne Fachchinesisch und ohne Versprechen, die niemand halten kann.",
  hero(kicker=u"Blog",
    h1=u"Blog",
    lede=u"Die ausführlichen Antworten auf die Fragen, die uns Kunden immer wieder stellen.") + u"""
 <section class="section" style="padding-top:0">
   <div class="wrap">
-    <div class="posts">%s
+    <div class="ref-filters" role="group" aria-label="Nach Thema filtern">%(filter)s
     </div>
+    <div class="posts">%(karten)s
+    </div>
+    <p class="ref-empty" hidden>Zu diesem Thema steht noch kein Beitrag bereit.</p>
   </div>
-</section>""" % u"".join(card(q) for q in POSTS))
+</section>""" % {
+  "filter": u"".join(
+    u'\n      <button class="ref-filter" data-cat="%s" aria-pressed="%s">%s</button>'
+    % (k, u"true" if k == u"alle" else u"false", n) for k, n in THEMEN_NAMEN),
+  "karten": u"".join(card(q) for q in POSTS)})
 
 # ---------------------------------------------------------------- Impressum
 page("impressum.html", u"Impressum | Kontor", u"Impressum nach § 5 DDG.",
