@@ -118,21 +118,31 @@ def acc(items, hue=None):
       </details>""" % (u" open" if i == 0 else u"", n, n, nr, title, sub, CHEV, body))
     return u'\n    <div class="acc">%s\n    </div>' % u"".join(out)
 
-SERVICES = [
+# Zwei Gruppen: Social Media zuerst, Suchmaschinenoptimierung dahinter.
+# Jede Leistungsseite verweist nur innerhalb ihrer Gruppe weiter, sonst stehen
+# auf jeder Seite sieben Querverweise und keiner wird mehr gelesen.
+SERVICES_SOCIAL = [
+ (1, u"Reels und Shorts", u"reels.html"),
+ (2, u"Profilbetreuung", u"social-media-betreuung.html"),
+ (3, u"Dreh vor Ort", u"dreh-vor-ort.html"),
+]
+SERVICES_SEO = [
  (1, u"SEO", u"seo.html"),
  (2, u"OnPage und Webdesign", u"onpage-und-webdesign.html"),
  (3, u"Linkaufbau", u"linkaufbau.html"),
  (4, u"SEO Audit", u"seo-audit.html"),
  (5, u"Reporting", u"reporting.html"),
 ]
+SERVICES = SERVICES_SEO   # Rueckwaertsname, falls noch jemand darauf zeigt
 
-def other_services(n):
-    """Querverweise auf die uebrigen vier Leistungen, je im eigenen Farbton."""
+def other_services(n, group=None):
+    """Querverweise auf die uebrigen Leistungen der Gruppe, je im eigenen Farbton."""
+    group = SERVICES_SEO if group is None else group
     rows = u"".join(
         u'\n      <a class="xs-row" href="%s" style="--c:var(--c%d);--c-soft:var(--c%d-soft)">'
         u'<span class="xs-n">0%d</span><span class="xs-t">%s</span>'
         u'<span class="xs-a">%s</span></a>' % (href, i, i, i, name, ARR)
-        for i, name, href in SERVICES if i != n)
+        for i, name, href in group if i != n)
     return u"""
 <section class="section" style="padding-top:0">
   <div class="wrap">
@@ -145,7 +155,8 @@ def other_services(n):
 </section>""" % rows
 
 def service(path, title, desc, kicker, h1, lede, sections, bullets_title, bullets,
-            accent=None, vals_head=u"", vals=(), faq_head=u"", faq=(), subs=()):
+            accent=None, vals_head=u"", vals=(), faq_head=u"", faq=(), subs=(),
+            group=None):
     body = hero(kicker=kicker, h1=h1, lede=lede, cta_up="../")
 
     # Die drei Textbloecke als aufklappbare Felder, erstes offen.
@@ -201,7 +212,7 @@ def service(path, title, desc, kicker, h1, lede, sections, bullets_title, bullet
   </div>
 </section>""" % (faq_head, qs)
 
-    body += other_services(accent)
+    body += other_services(accent, group)
     body += u"""
 <section class="section" style="padding-top:0">
   <div class="wrap">%s
@@ -212,27 +223,26 @@ def service(path, title, desc, kicker, h1, lede, sections, bullets_title, bullet
 # Die Leistungskarten stehen auf der Startseite und auf der Uebersicht. Hier
 # relativ innerhalb von leistungen/, auf der Startseite mit dem Praefix.
 SVC = [
- (u"01", u"SEO", u"seo.html",
-  u"Technik, Inhalte, lokale Sichtbarkeit.",
-  u"Die drei Bereiche h\u00e4ngen zusammen. Wir trennen sie nicht in Pakete, sondern arbeiten an dem, was bei Ihnen den Unterschied macht.",
-  u"Jetzt ranken"),
- (u"02", u"OnPage und Webdesign", u"onpage-und-webdesign.html",
-  u"Struktur vor Gestaltung.",
-  u"Wie eine Seite aufgebaut ist, entscheidet mehr \u00fcber die Position als ihr Aussehen. \u00dcberschriften, interne Links und Suchabsicht.",
-  u"Jetzt umbauen"),
- (u"03", u"Linkaufbau", u"linkaufbau.html",
-  u"Herkunft statt Anzahl.",
-  u"Verlinkungen aus Quellen, bei denen eine Erw\u00e4hnung auch ohne SEO Sinn ergeben w\u00fcrde. Keine gekauften Netzwerke.",
-  u"Jetzt verlinken"),
- (u"04", u"SEO Audit", u"seo-audit.html",
-  u"Erst messen, dann entscheiden.",
-  u"Vollst\u00e4ndige Bestandsaufnahme mit priorisierter Ma\u00dfnahmenliste. Auch einzeln beauftragbar, ohne Folgeauftrag.",
-  u"Jetzt pr\u00fcfen"),
- (u"05", u"Reporting", u"reporting.html",
-  u"Eine Seite, keine vierzig.",
-  u"Positionen, Besucher aus der Suche und was umgesetzt wurde. Lesbar ohne Vorkenntnisse, wann immer Sie ihn brauchen.",
-  u"Jetzt mitlesen"),
+ (u"01", u"Reels und Shorts", u"reels.html",
+  u"Schnitt, Untertitel, Grafik.",
+  u"Aus Rohaufnahmen werden Videos, die in den ersten zwei Sekunden halten. Geschnitten auf den Ton, mit Untertiteln, die ohne Ton funktionieren.",
+  u"Jetzt drehen"),
+ (u"02", u"Profilbetreuung", u"social-media-betreuung.html",
+  u"Ein Plan statt Zufall.",
+  u"Profiltext, Titelbilder, Aufteilung des Feeds und ein Plan, wann was erscheint. Damit nicht nach drei Wochen wieder Funkstille ist.",
+  u"Jetzt betreuen"),
+ (u"03", u"Dreh vor Ort", u"dreh-vor-ort.html",
+  u"Einen halben Tag, dann steht der Monat.",
+  u"Wir kommen in den Betrieb und drehen das Material f\u00fcr mehrere Wochen am St\u00fcck. Ohne Studio, ohne Team, ohne dass Ihr Tag stillsteht.",
+  u"Jetzt filmen"),
 ]
+# Die SEO-Leistungen stehen als ruhige Liste unter den Karten.
+SEO_ROWS = u"".join(
+    u'\n      <a class="xs-row" href="%s" style="--c:var(--c%d);--c-soft:var(--c%d-soft)">'
+    u'<span class="xs-n">%02d</span><span class="xs-t">%s</span>'
+    u'<span class="xs-a">%s</span></a>' % (href, ((i + 3) % 5) + 1, ((i + 3) % 5) + 1, i + 3, name, ARR)
+    for i, name, href in SERVICES_SEO)
+
 SVC_CARDS = u"".join(u"""
       <a class="svc-card" href="%s">
         <span class="svc-num">%s</span>
@@ -242,21 +252,229 @@ SVC_CARDS = u"".join(u"""
         <span class="svc-go">%s</span>
       </a>""" % (href, num, name, tag, txt, go) for num, name, href, tag, txt, go in SVC)
 
+# ---------------------------------------------------------------- Probemonat
+
+page("angebot.html",
+ u"Erster Monat kostenlos | Kontor",
+ u"Ein Monat Social Media ohne Rechnung: 10 bis 15 geschnittene Reels und Profilbetreuung. Keine Frist, keine stillschweigende Verlängerung.",
+ hero(kicker=u"Zum Start",
+   h1=u"Der erste Monat kostet nichts.",
+   lede=u"Wir produzieren einen Monat lang Ihre Inhalte, Sie sehen am Ergebnis, ob es für Sie passt. Ohne Rechnung, ohne Anzahlung, ohne Kündigungsfrist.",
+   cta_up="") + u"""
+<section class="section" style="padding-top:0">
+  <div class="wrap offer">
+    <div class="offer-art">
+      <img src="assets/img/phones-feed.png" alt="Zwei Smartphones zeigen senkrechte Kurzvideos nebeneinander" width="1520" height="1240" loading="lazy">
+    </div>
+    <div class="offer-txt">
+      <h2 style="margin:0">Das ist enthalten</h2>
+      <ul class="offer-list">
+        <li><strong>Ein halber Drehtag bei Ihnen</strong><span>Vier bis fünf Stunden in Ihrem Betrieb. Wir filmen Ihre Arbeit, Ihre Räume und ein paar Sätze von Ihnen. Sie arbeiten dabei normal weiter.</span></li>
+        <li><strong>10 bis 15 fertige Reels</strong><span>Geschnitten auf den Ton, mit von Hand geprüften Untertiteln und Bewegtgrafik, wo sie etwas erklärt. Im Hochformat, auf Wunsch zusätzlich quadratisch.</span></li>
+        <li><strong>Profil eingerichtet und gepflegt</strong><span>Profiltext, Profilbild, Kontaktwege, Titelbilder und ein Plan, wann was erscheint. Falls noch kein Profil besteht, richten wir es ein.</span></li>
+        <li><strong>Eine Korrekturschleife je Reel</strong><span>Sie sehen jedes Video, bevor es online geht, und sagen einmal, was anders soll.</span></li>
+        <li><strong>Alle Dateien gehören Ihnen</strong><span>Fertige Videos und Rohaufnahmen bekommen Sie mitgeliefert, auch wenn wir danach nicht weiterarbeiten.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg-2);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="checks">
+      <h2>Was danach passiert</h2>
+      <ul>
+        <li>Am Ende des Monats sehen wir uns gemeinsam die Zahlen aus Ihrem eigenen Konto an: Aufrufe, gespeicherte Videos, Profilaufrufe.</li>
+        <li>Erst dann nennen wir einen Preis für die weitere Zusammenarbeit, weil erst dann beide wissen, wie viel Arbeit Ihr Betrieb tatsächlich macht.</li>
+        <li>Es gibt keine stillschweigende Verlängerung. Melden Sie sich nicht, läuft das Angebot aus und es kommt keine Rechnung.</li>
+        <li>Für den Probemonat entsteht keine Forderung, auch nicht rückwirkend, wenn Sie danach ablehnen.</li>
+        <li>Ihre Zugänge bleiben bei Ihnen. Das Konto läuft auf Ihren Namen, nicht auf unseren.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head" style="max-width:none;align-items:center;text-align:center">
+      <h2>Warum wir das machen</h2>
+    </div>
+    <div class="prose" style="max-width:68ch;margin:0 auto">
+      <p>Kontor ist als Social-Media-Dienstleister neu. Wir können Ihnen deshalb keine Arbeitsproben aus laufenden Kundenprojekten zeigen, und wir halten nichts davon, das mit Versprechen zu überdecken. Stattdessen liefern wir einen Monat und Sie entscheiden am Ergebnis.</p>
+      <p>Für uns rechnet sich das, weil ein Betrieb, der vier Wochen lang gesehen hat, wie regelmäßige Videos wirken, in der Regel weitermacht. Für Sie rechnet es sich, weil Ihr Risiko bei null liegt: Sie investieren einen halben Tag Ihrer Zeit, sonst nichts.</p>
+      <p>Ein Hinweis zur Ehrlichkeit: Wir können nicht versprechen, wie viele Aufrufe Ihre Videos bekommen. Über die Ausspielung entscheiden die Plattformen, nicht wir. Was wir zusagen können, ist die Arbeit: die Anzahl der Videos, die Qualität des Schnitts und dass wir den Monat durchhalten.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg-2);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head" style="max-width:none;align-items:center;text-align:center">
+      <h2>Für wen das passt</h2>
+    </div>
+    <div class="vals">
+      <div class="val"><h3>Sichtbare Arbeit</h3><p>Handwerk, Praxen, Gastronomie, Studios: überall dort, wo sich das Ergebnis zeigen lässt, funktioniert das Format am schnellsten.</p></div>
+      <div class="val"><h3>Festes Einzugsgebiet</h3><p>Die Plattformen spielen Inhalte bevorzugt in der Umgebung aus. Für Betriebe mit lokaler Kundschaft ist das genau die richtige Reichweite.</p></div>
+      <div class="val"><h3>Profil vorhanden, aber still</h3><p>Am schnellsten geht es bei Betrieben, die schon ein Profil haben und dort wenig zurückbekommen. Die Hürde ist dann nur noch der Schnitt.</p></div>
+      <div class="val"><h3>Ein halber Tag frei</h3><p>Mehr brauchen wir nicht. Aber den brauchen wir, und er sollte an einem Tag liegen, an dem ohnehin gearbeitet wird.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-bottom:clamp(44px,5vw,72px)">
+  <div class="wrap">
+    <div class="sec-head" style="max-width:none;align-items:center;text-align:center">
+      <h2>Häufige Fragen</h2>
+    </div>
+    <div class="faq">
+      <details class="q"><summary>Wo ist der Haken? <span class="ic"></span></summary><div class="a">Es gibt keinen versteckten. Der offene ist: Wir hoffen, dass Sie danach weitermachen. Wenn nicht, behalten Sie trotzdem alle Videos und Rohaufnahmen, und es kommt keine Rechnung. Es gibt keine Klausel, die sich automatisch verlängert, und keine Anzahlung.</div></details>
+      <details class="q"><summary>Wie viele Betriebe nehmen Sie gleichzeitig? <span class="ic"></span></summary><div class="a">Zwei bis drei Probemonate parallel, nicht mehr. Ein Probemonat ist ein voller Arbeitsmonat, und mehrere gleichzeitig ließen sich nicht in der Qualität liefern, auf die es gerade ankommt. Wenn gerade alle Plätze belegt sind, sagen wir das und melden uns, sobald einer frei wird.</div></details>
+      <details class="q"><summary>Muss ich vor die Kamera? <span class="ic"></span></summary><div class="a">Nein. Es wirkt mit Ihnen im Bild meist besser, geht aber auch ohne: Hände bei der Arbeit, Räume, Abläufe, fertige Ergebnisse. Viele der erfolgreichsten Reels in Handwerk und Gastronomie zeigen überhaupt kein Gesicht.</div></details>
+      <details class="q"><summary>Was muss ich liefern? <span class="ic"></span></summary><div class="a">Einen halben Tag Zugang zu Ihrem Betrieb und das Fachliche: was gemacht wird, was daran besonders ist, was Kunden immer wieder fragen. Texte, Schnitt und Planung kommen von uns.</div></details>
+      <details class="q"><summary>Und wenn mir das Ergebnis nicht gefällt? <span class="ic"></span></summary><div class="a">Dann sagen Sie ab. Sie zahlen nichts und behalten die Dateien. Falls Ihnen während des Monats etwas nicht gefällt, sagen Sie es früh: Dafür ist die Korrekturschleife je Video da, und ein Probemonat ist genau der richtige Zeitpunkt, um Geschmack und Tonfall abzugleichen.</div></details>
+      <details class="q"><summary>Machen Sie auch Suchmaschinenoptimierung? <span class="ic"></span></summary><div class="a">Ja, das war unser Ausgangspunkt und bleibt im Angebot. Beschrieben ist es unter <a href="leistungen/seo.html">SEO</a>, die Bestandsaufnahme davor unter <a href="leistungen/seo-audit.html">SEO Audit</a>.</div></details>
+    </div>
+  </div>
+</section>
+""" + u"""
+<section class="section" style="padding-top:0">
+  <div class="wrap">%s
+  </div>
+</section>""" % cta(""), accent=1)
+
+# ---------------------------------------------------------------- Social-Media-Leistungen
+
+service("leistungen/reels.html",
+ u"Reels und Shorts | Kontor",
+ u"Schnitt, Untertitel und Bewegtgrafik für Kurzvideos. Aus einem halben Drehtag entstehen zehn bis fünfzehn Reels.",
+ u"Leistung 01", u"Reels und Shorts.",
+ u"Der Schnitt entscheidet, ob jemand nach zwei Sekunden weiterwischt oder bleibt. Genau dieser Teil bleibt im Tagesgeschäft liegen, und genau diesen Teil übernehmen wir.",
+ [(u"Schnitt auf den Ton",
+   u"Jeder Schnitt sitzt auf einem Einsatz in der Tonspur. Das klingt nach Kleinigkeit und ist der Unterschied zwischen einem Video, das man zu Ende sieht, und einem, bei dem man wegwischt. Dazu kommt die Auswahl: Aus zwanzig Minuten Rohmaterial werden sechzig Sekunden, und das Weglassen ist die eigentliche Arbeit. Tempo, Reihenfolge und der erste Satz entscheiden mehr als die Kameraqualität."),
+  (u"Untertitel, die ohne Ton funktionieren",
+   u"Der größte Teil der Kurzvideos wird ohne Ton angesehen, oft im Zug, im Wartezimmer oder nebenbei. Ohne Untertitel ist Ihr Video für diese Menschen stumm. Wir setzen sie Wort für Wort, lesbar auch auf einem kleinen Bildschirm, und prüfen jede Zeile von Hand nach. Automatisch erzeugte Untertitel schreiben Fachbegriffe und Eigennamen zuverlässig falsch, und nichts wirkt schneller unseriös als der eigene Firmenname in falscher Schreibweise."),
+  (u"Bewegtgrafik, wo sie hilft",
+   u"Eingeblendete Zahlen, Beschriftungen von Arbeitsschritten, ein Preis, ein Hinweis auf den nächsten Schritt. Bewegtgrafik ist kein Selbstzweck: Sie steht dort, wo ein Zuschauer sonst etwas nicht versteht. Was wir nicht machen, sind Effekte, die nur zeigen sollen, dass jemand ein Schnittprogramm bedienen kann. Ein ruhiges Video mit einer klaren Aussage schlägt ein unruhiges mit fünf.")],
+ u"Was Sie bekommen",
+ [u"Zehn bis fünfzehn fertige Reels im Monat, als Datei und auf Wunsch von uns eingestellt",
+  u"Untertitel in jedem Video, von Hand nachgeprüft",
+  u"Hochformat 9:16, zusätzlich auf Wunsch ein quadratischer Zuschnitt",
+  u"Eine Korrekturschleife je Reel, bevor etwas online geht",
+  u"Die Rohaufnahmen gehören Ihnen und werden mitgeliefert",
+  u"Keine Mindestlaufzeit, keine stillschweigende Verlängerung"],
+ accent=1,
+ vals_head=u"Woran ein Reel scheitert",
+ vals=[(u"Kein Anfang", u"Die ersten zwei Sekunden entscheiden. Wer dort erklärt, wer er ist, hat schon verloren."),
+       (u"Kein Ton", u"Ohne Untertitel ist das Video für die Mehrheit stumm, egal wie gut der Inhalt ist."),
+       (u"Kein Ende", u"Ein Video ohne nächsten Schritt bringt Aufrufe und keine Anfragen."),
+       (u"Kein Rhythmus", u"Schnitte neben dem Takt wirken unruhig, auch wenn niemand sagen kann, warum.")],
+ faq_head=u"Fragen zu Reels",
+ faq=[(u"Reicht Material vom Handy?",
+       u"Für den Anfang ja, wenn Licht und Ton stimmen. Wir sagen Ihnen vorher, worauf Sie beim Drehen achten müssen. Besser wird es mit einem <a href=\"dreh-vor-ort.html\">Dreh vor Ort</a>, weil dann Bildausschnitt, Ton und Abläufe von vornherein zum Schnitt passen."),
+      (u"Wie viele Videos sind sinnvoll?",
+       u"Zehn bis fünfzehn im Monat, also etwa drei pro Woche. Weniger reicht nicht, um überhaupt ausgespielt zu werden. Deutlich mehr ist für einen Betrieb neben dem Tagesgeschäft nicht durchzuhalten, und Durchhalten ist bei diesem Format der entscheidende Faktor."),
+      (u"Schreiben Sie auch die Texte?",
+       u"Ja, Beschreibung und Untertitel kommen von uns. Was Sie liefern müssen, ist das Fachliche: was gemacht wurde, was daran besonders war, was ein Kunde wissen sollte. Diesen Teil kann niemand von außen erfinden."),
+      (u"Was passiert mit den Videos, wenn wir aufhören?",
+       u"Sie behalten alles. Fertige Videos, Rohmaterial und Projektdateien. Das Konto läuft ohnehin auf Ihren Namen, nicht auf unseren.")],
+ subs=[u"Auswahl, Reihenfolge, Tempo", u"Wort für Wort, von Hand geprüft", u"Nur dort, wo sie etwas erklärt"],
+ group=SERVICES_SOCIAL)
+
+service("leistungen/social-media-betreuung.html",
+ u"Profilbetreuung | Kontor",
+ u"Profiltext, Titelbilder, Feedaufteilung und ein Plan, wann was erscheint. Damit nach drei Wochen nicht wieder Funkstille ist.",
+ u"Leistung 02", u"Profilbetreuung.",
+ u"Gute Videos in einem ungepflegten Profil bringen wenig. Wer über ein Reel auf Ihr Profil kommt, entscheidet dort in wenigen Sekunden, ob er Ihnen folgt oder anruft.",
+ [(u"Das Profil als Visitenkarte",
+   u"Profilbild, Name, Beschreibung und der eine Link, den die Plattformen erlauben. Klingt nach Kleinigkeiten und ist die Stelle, an der die meisten Anfragen verloren gehen. In der Beschreibung muss in einer Zeile stehen, was Sie machen und wo, denn danach wird gesucht. Dazu gehören erreichbare Kontaktwege: Telefonnummer antippbar, Adresse hinterlegt, Öffnungszeiten aktuell."),
+  (u"Ein Plan statt Zufall",
+   u"Was wann erscheint, steht vorher fest, und zwar für den ganzen Monat. Das ist weniger aufregend als spontane Einfälle und der einzige Grund, warum ein Profil nach drei Monaten noch lebt. Der Plan enthält auch, was bewusst nicht erscheint: Feiertagsgrüße, Beiträge über das Wetter und alles, was ein Profil füllt, ohne jemandem zu nützen."),
+  (u"Beobachten statt raten",
+   u"Jede Plattform zeigt im eigenen Konto, wie oft ein Video angesehen, gespeichert und geteilt wurde und wie viele Menschen danach auf das Profil gegangen sind. Diese Zahlen lesen wir monatlich und leiten daraus ab, welche Art von Video bei Ihrer Kundschaft funktioniert. Gespeicherte Videos sind dabei aussagekräftiger als Aufrufe, weil Speichern eine Absicht zeigt.")],
+ u"Was zur Betreuung gehört",
+ [u"Profiltext, Profilbild und Kontaktwege eingerichtet und aktuell gehalten",
+  u"Titelbilder, damit der Feed als Ganzes lesbar bleibt",
+  u"Monatsplan, welches Video wann erscheint",
+  u"Monatlicher Blick in die Statistiken Ihres Kontos, mit Ableitung für den Folgemonat",
+  u"Auf Wunsch stellen wir selbst ein, sonst bekommen Sie die Dateien",
+  u"Das Konto läuft auf Ihren Namen, Zugänge bleiben bei Ihnen"],
+ accent=2,
+ vals_head=u"Was wir nicht machen",
+ vals=[(u"Follower kaufen", u"Gekaufte Follower sehen Ihre Videos nicht und verschlechtern die Ausspielung an echte Menschen."),
+       (u"Kommentare beantworten", u"Antworten auf Kundenfragen gehören zu Ihnen. Wir können es nicht fachlich und sollten es nicht."),
+       (u"Reichweite versprechen", u"Über die Ausspielung entscheidet die Plattform. Wer Ihnen Aufrufzahlen zusichert, rät."),
+       (u"Alle Kanäle gleichzeitig", u"Lieber zwei Profile, die laufen, als fünf, die halb gepflegt sind.")],
+ faq_head=u"Fragen zur Betreuung",
+ faq=[(u"Welche Plattformen?",
+       u"In der Regel zwei: Instagram und TikTok. Beide spielen Kurzvideos an Menschen aus, die Ihnen nicht folgen, und beide bevorzugen Inhalte aus der Umgebung. Facebook kommt dazu, wenn Ihre Kundschaft dort ist. Mehr als zwei bis drei Profile gleichzeitig sind für einen Betrieb nicht sinnvoll zu pflegen."),
+      (u"Brauche ich dafür schon Follower?",
+       u"Nein, und das ist der eigentliche Grund für dieses Format. Kurzvideos werden an Menschen ausgespielt, die Ihnen nicht folgen. Ein Betrieb mit zweihundert Followern kann ein Video mit zwanzigtausend Aufrufen haben. Bei Fotobeiträgen funktioniert das nicht."),
+      (u"Wer antwortet auf Nachrichten?",
+       u"Sie. Anfragen über die Plattformen sind Kundenkontakt und gehören in Ihre Hand, auch weil die Antwort fachlich sein muss. Wir richten die Benachrichtigungen so ein, dass nichts liegen bleibt."),
+      (u"Was ist mit der eigenen Website?",
+       u"Die bleibt wichtig, weil ein Profil Ihnen nicht gehört und über Nacht gesperrt werden kann. Wer zusätzlich über Google gefunden werden will, findet das unter <a href=\"seo.html\">SEO</a>.")],
+ subs=[u"Bild, Name, Beschreibung, Kontakt", u"Ein Monatsplan, der eingehalten wird", u"Monatlich aus Ihrem eigenen Konto"],
+ group=SERVICES_SOCIAL)
+
+service("leistungen/dreh-vor-ort.html",
+ u"Dreh vor Ort | Kontor",
+ u"Ein halber Drehtag in Ihrem Betrieb ergibt das Material für mehrere Wochen. Ohne Studio, ohne Team, ohne Stillstand.",
+ u"Leistung 03", u"Dreh vor Ort.",
+ u"Der Unterschied zwischen Material, das sich schneiden lässt, und Material, aus dem nichts wird, entsteht beim Drehen. Deshalb kommen wir lieber einmal vorbei, als Ihnen eine Anleitung zu schicken.",
+ [(u"Ein halber Tag, kein Drehtag",
+   u"Wir kommen mit einer Kamera, einem Gimbal und einem Mikrofon, nicht mit einem Team und Scheinwerfern. Sie arbeiten weiter, wir filmen mit. Vier bis fünf Stunden genügen für das Material eines Monats, und der Betrieb läuft dabei normal weiter. Ihre Kundschaft wird nicht gefilmt, außer sie ist ausdrücklich einverstanden."),
+  (u"Was wir aufnehmen",
+   u"Drei Arten von Material, und alle drei braucht es. Erstens Ihre Arbeit in Nahaufnahme, also Hände, Werkzeug, Material, die Schritte eines Auftrags. Zweitens Sie selbst, wie Sie ein paar Sätze sagen, ohne Skript und ohne Teleprompter. Drittens Ihre Räume und Ihr Team, als ruhige Bilder zum Verbinden. Aus dieser Mischung entstehen Videos, die nach Ihrem Betrieb aussehen und nicht nach einem Werbefilm."),
+  (u"Ton ist wichtiger als Bild",
+   u"Ein leicht unscharfes Bild verzeiht jeder, schlechten Ton niemand. Deshalb kommt ein Ansteckmikrofon zum Einsatz, sobald jemand spricht, und wir drehen Sprechaufnahmen dort, wo es leise ist, nicht neben der Maschine. Maschinengeräusche nehmen wir getrennt auf und legen sie im Schnitt darunter, wenn sie zur Sache gehören.")],
+ u"Wie ein Drehtag abläuft",
+ [u"Vorher ein Telefonat: was gezeigt werden soll, wann es im Betrieb ruhig ist",
+  u"Vier bis fünf Stunden vor Ort, Sie arbeiten normal weiter",
+  u"Kamera, Gimbal und Ansteckmikrofon, kein Licht- oder Tonteam",
+  u"Keine Aufnahmen von Kundschaft ohne ausdrückliches Einverständnis",
+  u"Material für zehn bis fünfzehn Reels, dazu Standbilder für Website und Profil",
+  u"Die Rohaufnahmen bekommen Sie mitgeliefert und dürfen sie frei verwenden"],
+ accent=3,
+ vals_head=u"Was Sie vorbereiten sollten",
+ vals=[(u"Einen typischen Auftrag", u"Etwas, das an dem Tag ohnehin ansteht. Gestellte Arbeit sieht man im Video sofort."),
+       (u"Eine ruhige Ecke", u"Für Sprechaufnahmen. Ein Raum ohne Maschine und ohne Hall genügt."),
+       (u"Zwei, drei Fragen", u"Was Kunden Sie am Telefon immer wieder fragen. Daraus werden die besten Videos."),
+       (u"Aufgeräumt genug", u"Nicht blitzblank. Nur so, dass im Bild nichts liegt, was dort nicht hingehört.")],
+ faq_head=u"Fragen zum Dreh",
+ faq=[(u"Kostet der Drehtag extra?",
+       u"Im Probemonat nicht. Danach ist er eine eigene Position im Angebot und nicht Teil der monatlichen Betreuung, weil er nur alle paar Wochen anfällt. Wer das Rohmaterial lieber selbst dreht, bekommt von uns eine Anleitung und zahlt den Dreh nicht."),
+      (u"Wie weit fahren Sie?",
+       u"Innerhalb des Umkreises ohne Aufschlag, darüber hinaus nach Absprache. Fragen Sie einfach an, dann sagen wir, ob es passt."),
+      (u"Müssen meine Mitarbeiter mitmachen?",
+       u"Nein. Wer nicht ins Bild will, kommt nicht ins Bild. Das klären wir vorher, nicht während der Aufnahme, und es gibt genug Material ohne Gesichter."),
+      (u"Was ist mit Kundendaten im Bild?",
+       u"Alles, woraus sich eine Person erkennen lässt, bleibt draußen: Bildschirme, Unterlagen, Namensschilder, Kennzeichen. Darauf achten wir beim Drehen und noch einmal im Schnitt.")],
+ subs=[u"Vier bis fünf Stunden, Betrieb läuft weiter", u"Arbeit, Stimme, Räume", u"Mikrofon statt Maschinenlärm"],
+ group=SERVICES_SOCIAL)
+
 # ---------------------------------------------------------------- Leistungen overview
 page("leistungen/index.html",
  u"Leistungen | Kontor",
- u"SEO, OnPage und Webdesign, Linkaufbau, SEO Audit und Reporting. Festpreis, keine Mindestlaufzeit.",
+ u"Reels, Profilbetreuung und Dreh vor Ort f\u00fcr lokale Betriebe. Suchmaschinenoptimierung ebenfalls im Angebot.",
  hero(kicker=u"Leistungen",
    h1=u"Leistungen",
-   lede=u"Je nach Ausgangslage liegt der Hebel woanders. Welcher es bei Ihnen ist, steht in der Analyse, bevor Sie etwas beauftragen.",
+   lede=u"Der Schwerpunkt liegt auf Kurzvideos, weil sie auch Menschen erreichen, die Ihnen nicht folgen. Suchmaschinenoptimierung bleibt im Angebot f\u00fcr alle, die zus\u00e4tzlich \u00fcber Google gefunden werden wollen.",
    cta_up="../") + u"""
 <section class="section" style="padding-top:0">
   <div class="wrap">
     <div class="svc-grid">%s
     </div>
+
+    <div class="sec-head" style="max-width:none;align-items:center;text-align:center;margin-top:clamp(44px,6vw,76px)">
+      <h2 style="margin:0">Au\u00dferdem: Suchmaschinenoptimierung</h2>
+      <p class="lede" style="margin-top:12px">Technik, Seitenstruktur und lokale Sichtbarkeit. Auch einzeln beauftragbar.</p>
+    </div>
+    <div class="xs-list">%s
+    </div>
+
     <div class="prose" style="max-width:none">%s</div>
   </div>
-</section>""" % (SVC_CARDS, cta("../")))
+</section>""" % (SVC_CARDS, SEO_ROWS, cta("../")))
 
 service("leistungen/seo.html",
  u"SEO | Kontor",

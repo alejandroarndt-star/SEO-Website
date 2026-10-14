@@ -475,7 +475,7 @@ a.index-row:hover h3{color:#fff}
    Unterseiten: zentrierter Kopf mit Marker
    ============================================================ */
 .page-hero{text-align:center}
-.page-hero .pill{
+.pill{
   display:inline-block;font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
   color:var(--c,var(--ink-2));border:1px solid var(--c-soft,var(--line-2));border-radius:999px;padding:7px 16px;margin-bottom:22px;
 }
@@ -553,7 +553,7 @@ a,button,summary{-webkit-tap-highlight-color:rgba(255,255,255,.07)}
   /* Untergrenzen fuer Schriftgroessen: 11.5px fuer Beschriftungen,
      12px fuer alles, was tatsaechlich gelesen werden muss. */
   .hero-proof{flex-direction:column;align-items:center;gap:9px;font-size:.75rem;letter-spacing:.1em}
-  .kicker,.page-hero .pill{font-size:.72rem}
+  .kicker,.pill{font-size:.72rem}
   .svc-num,.step-n,.xs-n,.post .meta{font-size:.72rem}
   .ftr h4{font-size:.72rem}
   .ref-tag{font-size:.7rem}
@@ -727,3 +727,22 @@ code{font-family:var(--mono);font-size:.9em;background:var(--bg-3);border:1px so
    das aspect-ratio wirkungslos und das Bild wird beschnitten. */
 .art-body img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;
   border-radius:var(--r);border:1px solid var(--line);margin:clamp(26px,3.4vw,40px) 0}
+
+/* ============================================================
+   Gratismonat: Handygrafik links, Angebot rechts
+   ============================================================ */
+.offer{display:grid;grid-template-columns:.92fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+@media(max-width:900px){.offer{grid-template-columns:1fr}}
+.offer-art img{width:100%;height:auto;display:block;
+  filter:drop-shadow(0 50px 70px rgba(0,0,0,.65))}
+@media(max-width:900px){.offer-art{max-width:460px;margin:0 auto}}
+.offer-list{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-direction:column;gap:1px;
+  border:1px solid var(--line);border-radius:var(--r-lg);background:var(--line);overflow:hidden}
+.offer-list li{display:flex;flex-direction:column;gap:5px;padding:18px clamp(18px,2.4vw,24px);background:var(--bg-3)}
+.offer-list strong{font-size:.95rem;color:var(--ink)}
+.offer-list span{font-size:.9rem;color:var(--ink-2);line-height:1.6}
+.offer-fine{margin-top:18px;font-size:.86rem;color:var(--ink-3);line-height:1.65;max-width:54ch}
+
+/* Breites Standbild ueber dem Ablauf */
+.flow-shot{margin:0 0 clamp(30px,4vw,52px);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;background:var(--bg-2)}
+.flow-shot img{width:100%;height:auto;display:block;aspect-ratio:16/9;object-fit:cover}
