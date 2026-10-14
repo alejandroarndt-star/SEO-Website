@@ -117,9 +117,11 @@ p{margin:0}
 .hero-media video,.hero-media img{width:100%;height:100%;object-fit:cover}
 .hero-media::after{
   content:'';position:absolute;inset:0;
+  /* Bewusst leichter als zuvor, damit das Hero-Video sichtbar bleibt. Der
+     Verlauf muss nur den Text tragen, nicht das Bild zudecken. */
   background:
-    linear-gradient(to top,var(--bg) 0%,rgba(9,9,11,.68) 36%,rgba(9,9,11,.38) 70%,rgba(9,9,11,.6) 100%),
-    radial-gradient(ellipse 120% 90% at 50% 45%,rgba(9,9,11,.4) 0%,rgba(9,9,11,.78) 75%);
+    linear-gradient(to top,var(--bg) 0%,rgba(9,9,11,.52) 34%,rgba(9,9,11,.16) 72%,rgba(9,9,11,.4) 100%),
+    radial-gradient(ellipse 112% 76% at 50% 48%,rgba(9,9,11,.34) 0%,rgba(9,9,11,.5) 70%,rgba(9,9,11,.3) 100%);
 }
 .grain{position:absolute;inset:0;z-index:1;opacity:.055;pointer-events:none;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
@@ -746,3 +748,11 @@ code{font-family:var(--mono);font-size:.9em;background:var(--bg-3);border:1px so
 /* Breites Standbild ueber dem Ablauf */
 .flow-shot{margin:0 0 clamp(30px,4vw,52px);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;background:var(--bg-2)}
 .flow-shot img{width:100%;height:auto;display:block;aspect-ratio:16/9;object-fit:cover}
+
+/* Genau zwei Leistungskarten: je halbe Breite statt Drittel. */
+.svc-grid > :nth-child(1):nth-last-child(2),
+.svc-grid > :nth-child(2):nth-last-child(1){grid-column:span 3}
+@media(max-width:1000px){
+  .svc-grid > :nth-child(1):nth-last-child(2),
+  .svc-grid > :nth-child(2):nth-last-child(1){grid-column:span 1}
+}

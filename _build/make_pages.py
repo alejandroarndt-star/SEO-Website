@@ -121,11 +121,10 @@ def acc(items, hue=None):
 # Zwei Gruppen: Social Media zuerst, Suchmaschinenoptimierung dahinter.
 # Jede Leistungsseite verweist nur innerhalb ihrer Gruppe weiter, sonst stehen
 # auf jeder Seite sieben Querverweise und keiner wird mehr gelesen.
-SERVICES_SOCIAL = [
- (1, u"Reels und Shorts", u"reels.html"),
- (2, u"Profilbetreuung", u"social-media-betreuung.html"),
- (3, u"Dreh vor Ort", u"dreh-vor-ort.html"),
-]
+# Social Media ist bewusst EINE Seite, nicht drei: Der Kunde soll auf eine
+# Schaltflaeche klicken und dort alles finden, statt sich durch Teilleistungen
+# zu arbeiten. Deshalb ist die Liste leer, es gibt nichts zum Querverweisen.
+SERVICES_SOCIAL = []
 SERVICES_SEO = [
  (1, u"SEO", u"seo.html"),
  (2, u"OnPage und Webdesign", u"onpage-und-webdesign.html"),
@@ -223,25 +222,22 @@ def service(path, title, desc, kicker, h1, lede, sections, bullets_title, bullet
 # Die Leistungskarten stehen auf der Startseite und auf der Uebersicht. Hier
 # relativ innerhalb von leistungen/, auf der Startseite mit dem Praefix.
 SVC = [
- (u"01", u"Reels und Shorts", u"reels.html",
-  u"Schnitt, Untertitel, Grafik.",
-  u"Aus Rohaufnahmen werden Videos, die in den ersten zwei Sekunden halten. Geschnitten auf den Ton, mit Untertiteln, die ohne Ton funktionieren.",
-  u"Jetzt drehen"),
- (u"02", u"Profilbetreuung", u"social-media-betreuung.html",
-  u"Ein Plan statt Zufall.",
-  u"Profiltext, Titelbilder, Aufteilung des Feeds und ein Plan, wann was erscheint. Damit nicht nach drei Wochen wieder Funkstille ist.",
-  u"Jetzt betreuen"),
- (u"03", u"Dreh vor Ort", u"dreh-vor-ort.html",
-  u"Einen halben Tag, dann steht der Monat.",
-  u"Wir kommen in den Betrieb und drehen das Material f\u00fcr mehrere Wochen am St\u00fcck. Ohne Studio, ohne Team, ohne dass Ihr Tag stillsteht.",
-  u"Jetzt filmen"),
+ (u"01", u"Social Media Management", u"social-media-management.html",
+  u"Dreh, Schnitt, Profil. Alles drin.",
+  u"Wir kommen in den Betrieb, filmen einen halben Tag und machen daraus 10 bis 15 geschnittene Reels im Monat. Dazu Untertitel, Bewegtgrafik, Profilpflege und ein Plan, wann was erscheint.",
+  u"Was das umfasst"),
+ (u"02", u"SEO", u"seo.html",
+  u"Gefunden werden, ohne zu zahlen.",
+  u"Technik, Seitenstruktur und lokale Sichtbarkeit, damit Ihre Website bei Google auftaucht. Dazu Linkaufbau, Bestandsaufnahme und ein Bericht, der auf eine Seite passt.",
+  u"Was das umfasst"),
 ]
 # Die SEO-Leistungen stehen als ruhige Liste unter den Karten.
+# seo.html ist selbst eine der zwei Karten, taucht hier also nicht noch einmal auf.
 SEO_ROWS = u"".join(
     u'\n      <a class="xs-row" href="%s" style="--c:var(--c%d);--c-soft:var(--c%d-soft)">'
     u'<span class="xs-n">%02d</span><span class="xs-t">%s</span>'
-    u'<span class="xs-a">%s</span></a>' % (href, ((i + 3) % 5) + 1, ((i + 3) % 5) + 1, i + 3, name, ARR)
-    for i, name, href in SERVICES_SEO)
+    u'<span class="xs-a">%s</span></a>' % (href, i, i, i, name, ARR)
+    for i, name, href in SERVICES_SEO if href != u"seo.html")
 
 SVC_CARDS = u"".join(u"""
       <a class="svc-card" href="%s">
@@ -344,112 +340,54 @@ page("angebot.html",
 
 # ---------------------------------------------------------------- Social-Media-Leistungen
 
-service("leistungen/reels.html",
- u"Reels und Shorts | Kontor",
- u"Schnitt, Untertitel und Bewegtgrafik für Kurzvideos. Aus einem halben Drehtag entstehen zehn bis fünfzehn Reels.",
- u"Leistung 01", u"Reels und Shorts.",
- u"Der Schnitt entscheidet, ob jemand nach zwei Sekunden weiterwischt oder bleibt. Genau dieser Teil bleibt im Tagesgeschäft liegen, und genau diesen Teil übernehmen wir.",
- [(u"Schnitt auf den Ton",
-   u"Jeder Schnitt sitzt auf einem Einsatz in der Tonspur. Das klingt nach Kleinigkeit und ist der Unterschied zwischen einem Video, das man zu Ende sieht, und einem, bei dem man wegwischt. Dazu kommt die Auswahl: Aus zwanzig Minuten Rohmaterial werden sechzig Sekunden, und das Weglassen ist die eigentliche Arbeit. Tempo, Reihenfolge und der erste Satz entscheiden mehr als die Kameraqualität."),
-  (u"Untertitel, die ohne Ton funktionieren",
-   u"Der größte Teil der Kurzvideos wird ohne Ton angesehen, oft im Zug, im Wartezimmer oder nebenbei. Ohne Untertitel ist Ihr Video für diese Menschen stumm. Wir setzen sie Wort für Wort, lesbar auch auf einem kleinen Bildschirm, und prüfen jede Zeile von Hand nach. Automatisch erzeugte Untertitel schreiben Fachbegriffe und Eigennamen zuverlässig falsch, und nichts wirkt schneller unseriös als der eigene Firmenname in falscher Schreibweise."),
-  (u"Bewegtgrafik, wo sie hilft",
-   u"Eingeblendete Zahlen, Beschriftungen von Arbeitsschritten, ein Preis, ein Hinweis auf den nächsten Schritt. Bewegtgrafik ist kein Selbstzweck: Sie steht dort, wo ein Zuschauer sonst etwas nicht versteht. Was wir nicht machen, sind Effekte, die nur zeigen sollen, dass jemand ein Schnittprogramm bedienen kann. Ein ruhiges Video mit einer klaren Aussage schlägt ein unruhiges mit fünf.")],
+service("leistungen/social-media-management.html",
+ u"Social Media Management | Kontor",
+ u"Dreh vor Ort, Schnitt, Untertitel und Profilbetreuung aus einer Hand. 10 bis 15 Reels im Monat, erster Monat kostenlos.",
+ u"Leistung 01", u"Social Media Management.",
+ u"Ein halber Drehtag bei Ihnen, der Rest passiert bei uns: Schnitt, Untertitel, Grafik, Profilpflege und ein Plan, wann was erscheint. Sie müssen nichts können außer Ihren Beruf.",
+ [(u"Dreh vor Ort",
+   u"Wir kommen mit einer Kamera, einem Gimbal und einem Mikrofon, nicht mit einem Team und Scheinwerfern. Vier bis fünf Stunden genügen für das Material eines ganzen Monats, und Sie arbeiten dabei normal weiter. Aufgenommen wird dreierlei: Ihre Arbeit in Nahaufnahme, also Hände, Werkzeug und die Schritte eines Auftrags. Dann Sie selbst, wie Sie ein paar Sätze sagen, ohne Skript. Und Ihre Räume als ruhige Bilder zum Verbinden. Ihre Kundschaft wird nicht gefilmt, außer sie ist ausdrücklich einverstanden. Wer lieber selbst dreht, bekommt von uns eine Anleitung und spart den Drehtag."),
+  (u"Schnitt",
+   u"Jeder Schnitt sitzt auf einem Einsatz in der Tonspur. Das klingt nach Kleinigkeit und ist der Unterschied zwischen einem Video, das man zu Ende sieht, und einem, bei dem man wegwischt. Aus zwanzig Minuten Rohmaterial werden sechzig Sekunden, und das Weglassen ist die eigentliche Arbeit. Tempo, Reihenfolge und vor allem der Anfang entscheiden mehr als die Kameraqualität: Wer in den ersten zwei Sekunden erklärt, wer er ist, hat schon verloren."),
+  (u"Untertitel und Grafik",
+   u"Der größte Teil der Kurzvideos wird ohne Ton angesehen, im Zug, im Wartezimmer, nebenbei. Ohne Untertitel ist Ihr Video für diese Menschen stumm. Wir setzen sie Wort für Wort und prüfen jede Zeile von Hand nach, weil automatische Untertitel Fachbegriffe und Eigennamen zuverlässig falsch schreiben und nichts schneller unseriös wirkt als der eigene Firmenname in falscher Schreibweise. Bewegtgrafik kommt dort dazu, wo sie etwas erklärt: ein Arbeitsschritt, eine Zahl, ein Preis. Keine Effekte, die nur zeigen sollen, dass jemand ein Schnittprogramm bedienen kann."),
+  (u"Profil und Plan",
+   u"Gute Videos in einem ungepflegten Profil bringen wenig. Wer über ein Reel auf Ihr Profil kommt, entscheidet dort in Sekunden, ob er folgt oder anruft. Deshalb gehören Profilbild, Beschreibung, antippbare Telefonnummer, Adresse und Öffnungszeiten dazu, ebenso Titelbilder, damit der Feed als Ganzes lesbar bleibt. Und ein Plan für den ganzen Monat, was wann erscheint. Das ist weniger aufregend als spontane Einfälle und der einzige Grund, warum ein Profil nach drei Monaten noch lebt."),
+  (u"Veröffentlichung und Zahlen",
+   u"Sie bekommen die fertigen Dateien, auf Wunsch stellen wir selbst ein. Eine Korrekturschleife je Reel ist enthalten, bevor etwas online geht. Einmal im Monat sehen wir in die Statistiken Ihres eigenen Kontos: Aufrufe, gespeicherte Videos, Profilaufrufe. Gespeicherte Videos sind dabei aussagekräftiger als Aufrufe, weil Speichern eine Absicht zeigt. Daraus leiten wir ab, welche Art von Video bei Ihrer Kundschaft ankommt, und richten den Folgemonat danach aus."),
+  (u"Was nicht enthalten ist",
+   u"Damit es hinterher keinen Streit gibt, steht das hier und nicht im Kleingedruckten. Nicht enthalten sind: das Beantworten von Kommentaren und Nachrichten, weil das Kundenkontakt ist und fachlich von Ihnen kommen muss. Bezahlte Werbung. Das Betreuen von mehr als zwei bis drei Profilen gleichzeitig. Und alles, was wir nicht zusagen können: Wie oft ein Video ausgespielt wird, entscheidet die Plattform, nicht wir. Zusagen beziehen sich auf die Arbeit, also Anzahl, Schnitt und dass der Monat durchgehalten wird.")],
  u"Was Sie bekommen",
- [u"Zehn bis fünfzehn fertige Reels im Monat, als Datei und auf Wunsch von uns eingestellt",
+ [u"Ein halber Drehtag im Monat in Ihrem Betrieb, oder eine Anleitung, wenn Sie selbst drehen",
+  u"10 bis 15 fertige Reels im Monat, im Hochformat, auf Wunsch zusätzlich quadratisch",
   u"Untertitel in jedem Video, von Hand nachgeprüft",
-  u"Hochformat 9:16, zusätzlich auf Wunsch ein quadratischer Zuschnitt",
+  u"Profil eingerichtet und gepflegt, dazu ein Monatsplan",
   u"Eine Korrekturschleife je Reel, bevor etwas online geht",
-  u"Die Rohaufnahmen gehören Ihnen und werden mitgeliefert",
+  u"Monatlicher Blick in die Statistiken Ihres eigenen Kontos",
+  u"Fertige Videos und Rohaufnahmen gehören Ihnen, auch wenn wir danach nicht weiterarbeiten",
   u"Keine Mindestlaufzeit, keine stillschweigende Verlängerung"],
  accent=1,
  vals_head=u"Woran ein Reel scheitert",
  vals=[(u"Kein Anfang", u"Die ersten zwei Sekunden entscheiden. Wer dort erklärt, wer er ist, hat schon verloren."),
        (u"Kein Ton", u"Ohne Untertitel ist das Video für die Mehrheit stumm, egal wie gut der Inhalt ist."),
        (u"Kein Ende", u"Ein Video ohne nächsten Schritt bringt Aufrufe und keine Anfragen."),
-       (u"Kein Rhythmus", u"Schnitte neben dem Takt wirken unruhig, auch wenn niemand sagen kann, warum.")],
- faq_head=u"Fragen zu Reels",
- faq=[(u"Reicht Material vom Handy?",
-       u"Für den Anfang ja, wenn Licht und Ton stimmen. Wir sagen Ihnen vorher, worauf Sie beim Drehen achten müssen. Besser wird es mit einem <a href=\"dreh-vor-ort.html\">Dreh vor Ort</a>, weil dann Bildausschnitt, Ton und Abläufe von vornherein zum Schnitt passen."),
-      (u"Wie viele Videos sind sinnvoll?",
-       u"Zehn bis fünfzehn im Monat, also etwa drei pro Woche. Weniger reicht nicht, um überhaupt ausgespielt zu werden. Deutlich mehr ist für einen Betrieb neben dem Tagesgeschäft nicht durchzuhalten, und Durchhalten ist bei diesem Format der entscheidende Faktor."),
-      (u"Schreiben Sie auch die Texte?",
-       u"Ja, Beschreibung und Untertitel kommen von uns. Was Sie liefern müssen, ist das Fachliche: was gemacht wurde, was daran besonders war, was ein Kunde wissen sollte. Diesen Teil kann niemand von außen erfinden."),
-      (u"Was passiert mit den Videos, wenn wir aufhören?",
-       u"Sie behalten alles. Fertige Videos, Rohmaterial und Projektdateien. Das Konto läuft ohnehin auf Ihren Namen, nicht auf unseren.")],
- subs=[u"Auswahl, Reihenfolge, Tempo", u"Wort für Wort, von Hand geprüft", u"Nur dort, wo sie etwas erklärt"],
- group=SERVICES_SOCIAL)
-
-service("leistungen/social-media-betreuung.html",
- u"Profilbetreuung | Kontor",
- u"Profiltext, Titelbilder, Feedaufteilung und ein Plan, wann was erscheint. Damit nach drei Wochen nicht wieder Funkstille ist.",
- u"Leistung 02", u"Profilbetreuung.",
- u"Gute Videos in einem ungepflegten Profil bringen wenig. Wer über ein Reel auf Ihr Profil kommt, entscheidet dort in wenigen Sekunden, ob er Ihnen folgt oder anruft.",
- [(u"Das Profil als Visitenkarte",
-   u"Profilbild, Name, Beschreibung und der eine Link, den die Plattformen erlauben. Klingt nach Kleinigkeiten und ist die Stelle, an der die meisten Anfragen verloren gehen. In der Beschreibung muss in einer Zeile stehen, was Sie machen und wo, denn danach wird gesucht. Dazu gehören erreichbare Kontaktwege: Telefonnummer antippbar, Adresse hinterlegt, Öffnungszeiten aktuell."),
-  (u"Ein Plan statt Zufall",
-   u"Was wann erscheint, steht vorher fest, und zwar für den ganzen Monat. Das ist weniger aufregend als spontane Einfälle und der einzige Grund, warum ein Profil nach drei Monaten noch lebt. Der Plan enthält auch, was bewusst nicht erscheint: Feiertagsgrüße, Beiträge über das Wetter und alles, was ein Profil füllt, ohne jemandem zu nützen."),
-  (u"Beobachten statt raten",
-   u"Jede Plattform zeigt im eigenen Konto, wie oft ein Video angesehen, gespeichert und geteilt wurde und wie viele Menschen danach auf das Profil gegangen sind. Diese Zahlen lesen wir monatlich und leiten daraus ab, welche Art von Video bei Ihrer Kundschaft funktioniert. Gespeicherte Videos sind dabei aussagekräftiger als Aufrufe, weil Speichern eine Absicht zeigt.")],
- u"Was zur Betreuung gehört",
- [u"Profiltext, Profilbild und Kontaktwege eingerichtet und aktuell gehalten",
-  u"Titelbilder, damit der Feed als Ganzes lesbar bleibt",
-  u"Monatsplan, welches Video wann erscheint",
-  u"Monatlicher Blick in die Statistiken Ihres Kontos, mit Ableitung für den Folgemonat",
-  u"Auf Wunsch stellen wir selbst ein, sonst bekommen Sie die Dateien",
-  u"Das Konto läuft auf Ihren Namen, Zugänge bleiben bei Ihnen"],
- accent=2,
- vals_head=u"Was wir nicht machen",
- vals=[(u"Follower kaufen", u"Gekaufte Follower sehen Ihre Videos nicht und verschlechtern die Ausspielung an echte Menschen."),
-       (u"Kommentare beantworten", u"Antworten auf Kundenfragen gehören zu Ihnen. Wir können es nicht fachlich und sollten es nicht."),
-       (u"Reichweite versprechen", u"Über die Ausspielung entscheidet die Plattform. Wer Ihnen Aufrufzahlen zusichert, rät."),
-       (u"Alle Kanäle gleichzeitig", u"Lieber zwei Profile, die laufen, als fünf, die halb gepflegt sind.")],
- faq_head=u"Fragen zur Betreuung",
- faq=[(u"Welche Plattformen?",
-       u"In der Regel zwei: Instagram und TikTok. Beide spielen Kurzvideos an Menschen aus, die Ihnen nicht folgen, und beide bevorzugen Inhalte aus der Umgebung. Facebook kommt dazu, wenn Ihre Kundschaft dort ist. Mehr als zwei bis drei Profile gleichzeitig sind für einen Betrieb nicht sinnvoll zu pflegen."),
-      (u"Brauche ich dafür schon Follower?",
-       u"Nein, und das ist der eigentliche Grund für dieses Format. Kurzvideos werden an Menschen ausgespielt, die Ihnen nicht folgen. Ein Betrieb mit zweihundert Followern kann ein Video mit zwanzigtausend Aufrufen haben. Bei Fotobeiträgen funktioniert das nicht."),
-      (u"Wer antwortet auf Nachrichten?",
-       u"Sie. Anfragen über die Plattformen sind Kundenkontakt und gehören in Ihre Hand, auch weil die Antwort fachlich sein muss. Wir richten die Benachrichtigungen so ein, dass nichts liegen bleibt."),
-      (u"Was ist mit der eigenen Website?",
-       u"Die bleibt wichtig, weil ein Profil Ihnen nicht gehört und über Nacht gesperrt werden kann. Wer zusätzlich über Google gefunden werden will, findet das unter <a href=\"seo.html\">SEO</a>.")],
- subs=[u"Bild, Name, Beschreibung, Kontakt", u"Ein Monatsplan, der eingehalten wird", u"Monatlich aus Ihrem eigenen Konto"],
- group=SERVICES_SOCIAL)
-
-service("leistungen/dreh-vor-ort.html",
- u"Dreh vor Ort | Kontor",
- u"Ein halber Drehtag in Ihrem Betrieb ergibt das Material für mehrere Wochen. Ohne Studio, ohne Team, ohne Stillstand.",
- u"Leistung 03", u"Dreh vor Ort.",
- u"Der Unterschied zwischen Material, das sich schneiden lässt, und Material, aus dem nichts wird, entsteht beim Drehen. Deshalb kommen wir lieber einmal vorbei, als Ihnen eine Anleitung zu schicken.",
- [(u"Ein halber Tag, kein Drehtag",
-   u"Wir kommen mit einer Kamera, einem Gimbal und einem Mikrofon, nicht mit einem Team und Scheinwerfern. Sie arbeiten weiter, wir filmen mit. Vier bis fünf Stunden genügen für das Material eines Monats, und der Betrieb läuft dabei normal weiter. Ihre Kundschaft wird nicht gefilmt, außer sie ist ausdrücklich einverstanden."),
-  (u"Was wir aufnehmen",
-   u"Drei Arten von Material, und alle drei braucht es. Erstens Ihre Arbeit in Nahaufnahme, also Hände, Werkzeug, Material, die Schritte eines Auftrags. Zweitens Sie selbst, wie Sie ein paar Sätze sagen, ohne Skript und ohne Teleprompter. Drittens Ihre Räume und Ihr Team, als ruhige Bilder zum Verbinden. Aus dieser Mischung entstehen Videos, die nach Ihrem Betrieb aussehen und nicht nach einem Werbefilm."),
-  (u"Ton ist wichtiger als Bild",
-   u"Ein leicht unscharfes Bild verzeiht jeder, schlechten Ton niemand. Deshalb kommt ein Ansteckmikrofon zum Einsatz, sobald jemand spricht, und wir drehen Sprechaufnahmen dort, wo es leise ist, nicht neben der Maschine. Maschinengeräusche nehmen wir getrennt auf und legen sie im Schnitt darunter, wenn sie zur Sache gehören.")],
- u"Wie ein Drehtag abläuft",
- [u"Vorher ein Telefonat: was gezeigt werden soll, wann es im Betrieb ruhig ist",
-  u"Vier bis fünf Stunden vor Ort, Sie arbeiten normal weiter",
-  u"Kamera, Gimbal und Ansteckmikrofon, kein Licht- oder Tonteam",
-  u"Keine Aufnahmen von Kundschaft ohne ausdrückliches Einverständnis",
-  u"Material für zehn bis fünfzehn Reels, dazu Standbilder für Website und Profil",
-  u"Die Rohaufnahmen bekommen Sie mitgeliefert und dürfen sie frei verwenden"],
- accent=3,
- vals_head=u"Was Sie vorbereiten sollten",
- vals=[(u"Einen typischen Auftrag", u"Etwas, das an dem Tag ohnehin ansteht. Gestellte Arbeit sieht man im Video sofort."),
-       (u"Eine ruhige Ecke", u"Für Sprechaufnahmen. Ein Raum ohne Maschine und ohne Hall genügt."),
-       (u"Zwei, drei Fragen", u"Was Kunden Sie am Telefon immer wieder fragen. Daraus werden die besten Videos."),
-       (u"Aufgeräumt genug", u"Nicht blitzblank. Nur so, dass im Bild nichts liegt, was dort nicht hingehört.")],
- faq_head=u"Fragen zum Dreh",
- faq=[(u"Kostet der Drehtag extra?",
-       u"Im Probemonat nicht. Danach ist er eine eigene Position im Angebot und nicht Teil der monatlichen Betreuung, weil er nur alle paar Wochen anfällt. Wer das Rohmaterial lieber selbst dreht, bekommt von uns eine Anleitung und zahlt den Dreh nicht."),
-      (u"Wie weit fahren Sie?",
-       u"Innerhalb des Umkreises ohne Aufschlag, darüber hinaus nach Absprache. Fragen Sie einfach an, dann sagen wir, ob es passt."),
-      (u"Müssen meine Mitarbeiter mitmachen?",
-       u"Nein. Wer nicht ins Bild will, kommt nicht ins Bild. Das klären wir vorher, nicht während der Aufnahme, und es gibt genug Material ohne Gesichter."),
-      (u"Was ist mit Kundendaten im Bild?",
-       u"Alles, woraus sich eine Person erkennen lässt, bleibt draußen: Bildschirme, Unterlagen, Namensschilder, Kennzeichen. Darauf achten wir beim Drehen und noch einmal im Schnitt.")],
- subs=[u"Vier bis fünf Stunden, Betrieb läuft weiter", u"Arbeit, Stimme, Räume", u"Mikrofon statt Maschinenlärm"],
+       (u"Kein Durchhalten", u"Drei Wochen und dann Funkstille ist der Normalfall. Genau dagegen gibt es den Plan.")],
+ faq_head=u"Häufige Fragen",
+ faq=[(u"Was kostet das?",
+       u"Der erste Monat nichts, siehe <a href=\"../angebot.html\">Probemonat</a>. Danach ein fester Monatsbetrag für einen klar beschriebenen Umfang, den wir am Ende des Probemonats nennen, wenn beide wissen, wie viel Arbeit Ihr Betrieb tatsächlich macht. Keine Mindestlaufzeit."),
+      (u"Welche Plattformen?",
+       u"In der Regel zwei: Instagram und TikTok. Beide spielen Kurzvideos auch an Menschen aus, die Ihnen nicht folgen, und beide bevorzugen Inhalte aus der Umgebung. Facebook kommt dazu, wenn Ihre Kundschaft dort ist. Mehr als zwei bis drei Profile gleichzeitig sind für einen Betrieb nicht sinnvoll zu pflegen."),
+      (u"Muss ich vor die Kamera?",
+       u"Nein. Mit Ihnen im Bild wirkt es meist besser, geht aber auch ohne: Hände bei der Arbeit, Räume, Abläufe, fertige Ergebnisse. Viele der erfolgreichsten Reels in Handwerk und Gastronomie zeigen überhaupt kein Gesicht."),
+      (u"Brauche ich schon Follower?",
+       u"Nein, und das ist der eigentliche Grund für dieses Format. Ein Betrieb mit zweihundert Followern kann ein Video mit zwanzigtausend Aufrufen haben. Bei Fotobeiträgen funktioniert das nicht."),
+      (u"Wem gehören Konto und Videos?",
+       u"Ihnen, beides. Das Konto läuft auf Ihren Namen, die Zugänge bleiben bei Ihnen, und die Dateien bekommen Sie mitgeliefert. Beim Wechsel oder beim Aufhören verlieren Sie nichts."),
+      (u"Und wenn ich zusätzlich bei Google gefunden werden will?",
+       u"Dann kommt <a href=\"seo.html\">SEO</a> dazu. Beides aus einer Hand ist möglich und sinnvoll, weil dieselben Aufnahmen auch auf der Website und im Google-Profil getragen werden.")],
+ subs=[u"Vier bis fünf Stunden, Betrieb läuft weiter", u"Auswahl, Reihenfolge, Tempo",
+       u"Wort für Wort, von Hand geprüft", u"Profil, Titelbilder, Monatsplan",
+       u"Dateien, Korrekturschleife, Statistiken", u"Ausdrücklich draußen"],
  group=SERVICES_SOCIAL)
 
 # ---------------------------------------------------------------- Leistungen overview
@@ -466,8 +404,8 @@ page("leistungen/index.html",
     </div>
 
     <div class="sec-head" style="max-width:none;align-items:center;text-align:center;margin-top:clamp(44px,6vw,76px)">
-      <h2 style="margin:0">Au\u00dferdem: Suchmaschinenoptimierung</h2>
-      <p class="lede" style="margin-top:12px">Technik, Seitenstruktur und lokale Sichtbarkeit. Auch einzeln beauftragbar.</p>
+      <h2 style="margin:0">Im SEO-Paket enthalten</h2>
+      <p class="lede" style="margin-top:12px">Die Teilbereiche im Einzelnen. Jeder davon ist auch allein beauftragbar.</p>
     </div>
     <div class="xs-list">%s
     </div>
