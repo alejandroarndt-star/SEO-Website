@@ -27,7 +27,7 @@
       <a href="referenzen.html">Referenzen</a>
       <a href="referenzen/alejandro-arndt.html">Über mich</a>
       <a href="blog/">Blog</a>
-      <a href="kontakt.html">Kontakt</a>
+      <a href="angebot.html#kontakt">Kontakt</a>
     </nav>
     <div class="hdr-cta">
       <a href="angebot.html" class="btn btn-primary btn-sm">Gratismonat<span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
@@ -42,7 +42,7 @@
   <a href="referenzen.html">Referenzen</a>
   <a href="referenzen/alejandro-arndt.html">Über mich</a>
   <a href="blog/">Blog</a>
-  <a href="kontakt.html">Kontakt</a>
+  <a href="angebot.html#kontakt">Kontakt</a>
   <a href="angebot.html" class="btn btn-primary">Erster Monat kostenlos</a>
 </div>
 
@@ -129,6 +129,102 @@
         <span class="svc-go">Was das umfasst</span>
       </a>
     </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WER DREHT ============
+     Bildergalerie und Geraete wie auf der Seite "Ueber mich". Die Vorlage
+     dafuer steht in _build/make_pages.py unter ich_galerie() und
+     ich_geraete(); wird dort etwas geaendert, hier nachziehen. -->
+<section class="section" id="wer" style="background:var(--bg-2);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="ich-kurz rv">
+      <div class="ich-kurz-foto">
+    <div class="gal" data-gal>
+      <ul class="gal-spur">
+        <li class="gal-bild"><img src="assets/img/case/alejandro-1.jpg" alt="Alejandro Arndt vor einer Holzfassade" width="800" height="1000"></li>
+        <li class="gal-bild"><img src="assets/img/case/alejandro-2.jpg" alt="Alejandro Arndt an einem gedeckten Tisch im Garten" width="800" height="1000" loading="lazy"></li>
+        <li class="gal-bild"><img src="assets/img/case/alejandro-3.jpg" alt="Alejandro Arndt auf einer Wiese" width="800" height="1000" loading="lazy"></li>
+      </ul>
+      <button class="gal-pfeil gal-zurueck" type="button" aria-label="Vorheriges Bild"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
+      <button class="gal-pfeil gal-vor" type="button" aria-label="Nächstes Bild"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+    <div class="gal-punkte"><button class="gal-punkt an" type="button" aria-label="Bild 1"></button><button class="gal-punkt" type="button" aria-label="Bild 2"></button><button class="gal-punkt" type="button" aria-label="Bild 3"></button></div>
+      </div>
+      <div class="ich-kurz-geraet">
+    <div class="geraete" data-geraete>
+      <div class="geraet" data-name="DJI Osmo Pocket 4">
+        <div class="pocket-stage">
+          <div class="pocket" tabindex="0" role="img" aria-label="Dreidimensionale Darstellung einer DJI Osmo Pocket 4, mit Maus, Finger oder Pfeiltasten drehbar">
+            <div class="pk-koerper">
+            <span class="pk-f pk-vo"></span>
+            <span class="pk-f pk-hi"></span>
+            <span class="pk-f pk-li"></span>
+            <span class="pk-f pk-re"></span>
+            <span class="pk-f pk-ob"></span>
+            <span class="pk-f pk-un"></span>
+              <span class="pk-schirm"><span class="pk-schirm-bild"></span></span>
+              <span class="pk-rad"></span>
+              <span class="pk-knopf"></span>
+              <span class="pk-marke">dji</span>
+              <span class="pk-seitentext">POCKET 4</span>
+            </div>
+            <div class="pk-stiel">
+            <span class="pk-f pk-vo"></span>
+            <span class="pk-f pk-hi"></span>
+            <span class="pk-f pk-li"></span>
+            <span class="pk-f pk-re"></span>
+            <span class="pk-f pk-ob"></span>
+            <span class="pk-f pk-un"></span></div>
+            <div class="pk-motor">
+            <span class="pk-f pk-vo"></span>
+            <span class="pk-f pk-hi"></span>
+            <span class="pk-f pk-li"></span>
+            <span class="pk-f pk-re"></span>
+            <span class="pk-f pk-ob"></span>
+            <span class="pk-f pk-un"></span></div>
+            <div class="pk-kopf">
+            <span class="pk-f pk-vo"></span>
+            <span class="pk-f pk-hi"></span>
+            <span class="pk-f pk-li"></span>
+            <span class="pk-f pk-re"></span>
+            <span class="pk-f pk-ob"></span>
+            <span class="pk-f pk-un"></span>
+              <span class="pk-linse"><span class="pk-linse-glas"></span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="geraet" data-name="DJI Mic" hidden>
+        <div class="pocket-stage">
+          <div class="pocket" tabindex="0" role="img" aria-label="Dreidimensionale Darstellung eines DJI Mic Senders, mit Maus, Finger oder Pfeiltasten drehbar">
+            <div class="mic-koerper">
+            <span class="pk-f pk-vo"></span>
+            <span class="pk-f pk-hi"></span>
+            <span class="pk-f pk-li"></span>
+            <span class="pk-f pk-re"></span>
+            <span class="pk-f pk-ob"></span>
+            <span class="pk-f pk-un"></span>
+              <span class="mic-gitter"></span>
+              <span class="mic-led"></span>
+              <span class="mic-marke">dji</span>
+            </div>
+            <div class="mic-clip">
+            <span class="pk-f pk-vo"></span>
+            <span class="pk-f pk-hi"></span>
+            <span class="pk-f pk-li"></span>
+            <span class="pk-f pk-re"></span>
+            <span class="pk-f pk-ob"></span>
+            <span class="pk-f pk-un"></span></div>
+          </div>
+        </div>
+      </div>
+      <button class="geraet-pfeil geraet-zurueck" type="button" aria-label="Vorheriges Gerät"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg></button>
+      <button class="geraet-pfeil geraet-vor" type="button" aria-label="Nächstes Gerät"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </div>
+    <p class="geraet-name" data-geraet-name>DJI Osmo Pocket 4</p>
+      </div>
     </div>
   </div>
 </section>
@@ -281,14 +377,14 @@
         <ul>
           <li><a href="referenzen.html">Referenzen</a></li>
           <li><a href="blog/">Blog</a></li>
-          <li><a href="kontakt.html">Kontakt</a></li>
+          <li><a href="angebot.html#kontakt">Kontakt</a></li>
         </ul>
       </div>
       <div>
         <h4>Kontakt</h4>
         <ul>
           <li><a href="angebot.html">Erster Monat kostenlos</a></li>
-          <li><a href="kontakt.html">Termin vereinbaren</a></li>
+          <li><a href="angebot.html#kontakt">Termin vereinbaren</a></li>
         </ul>
       </div>
     </div>

@@ -187,11 +187,12 @@
   oeffneZiel();
   window.addEventListener('hashchange', oeffneZiel);
 
-  /* ---- Bildergalerie auf der Referenzseite ---- */
-  var gal = document.querySelector('[data-gal]');
-  if (gal) {
+  /* ---- Bildergalerien ----
+     Kommen auf der Startseite und auf der Referenzseite vor, deshalb ueber
+     alle Vorkommen und nicht nur ueber das erste. */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-gal]'), function (gal) {
     var spur = gal.querySelector('.gal-spur');
-    var punkte = document.querySelectorAll('.gal-punkt');
+    var punkte = gal.parentNode.querySelectorAll('.gal-punkt');
     var anzahl = spur.children.length;
     var zeige = function (i) {
       i = Math.max(0, Math.min(anzahl - 1, i));
@@ -222,7 +223,7 @@
       merk = i;
       Array.prototype.forEach.call(punkte, function (k, j) { k.classList.toggle('an', j === i); });
     }, { passive: true });
-  }
+  });
 
   /* ---- Die Geraete drehen und durchblaettern ----
      Gedreht wird nur das Geraet. Die Neigung ist begrenzt, sonst steht es
@@ -271,10 +272,9 @@
     setzen();
   });
 
-  var geraete = document.querySelector('[data-geraete]');
-  if (geraete) {
+  Array.prototype.forEach.call(document.querySelectorAll('[data-geraete]'), function (geraete) {
     var liste = geraete.querySelectorAll('.geraet');
-    var schild = document.querySelector('[data-geraet-name]');
+    var schild = geraete.parentNode.querySelector('[data-geraet-name]');
     var nr = 0;
     var zeigeGeraet = function (i) {
       nr = (i + liste.length) % liste.length;
@@ -284,7 +284,7 @@
     geraete.querySelector('.geraet-vor').addEventListener('click', function () { zeigeGeraet(nr + 1); });
     geraete.querySelector('.geraet-zurueck').addEventListener('click', function () { zeigeGeraet(nr - 1); });
     zeigeGeraet(0);
-  }
+  });
 
   /* ---- active nav link by scroll position (homepage only) ---- */
   var sections = document.querySelectorAll('section[id]');

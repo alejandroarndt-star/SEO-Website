@@ -83,7 +83,7 @@ HERO_T = u"""<section class="section page-hero" style="padding-top:0">
 def hero(kicker, h1, lede, cta_up=None):
     btn = u""
     if cta_up is not None:
-        btn = (u'\n    <div class="hero-cta"><a href="%skontakt.html" class="btn btn-primary">'
+        btn = (u'\n    <div class="hero-cta"><a href="%sangebot.html#kontakt" class="btn btn-primary">'
                u'Gratismonat anfragen%s</a></div>' % (cta_up, ARR))
     return HERO_T.format(kicker=kicker, h1=h1, lede=lede, cta=btn)
 
@@ -92,7 +92,7 @@ def cta(up=""):
       <div class="band-in">
         <h2 style="margin:0 0 14px">Monat eins, 100 %% kostenlos.</h2>
         <p class="lede">Wir drehen, schneiden und veröffentlichen einen Monat lang. Ohne Rechnung, ohne Kündigungsfrist.</p>
-        <div class="hero-cta"><a href="%skontakt.html" class="btn btn-primary">Gratismonat anfragen<span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+        <div class="hero-cta"><a href="%sangebot.html#kontakt" class="btn btn-primary">Gratismonat anfragen<span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
       </div>
     </div>""" % up
 
@@ -261,6 +261,31 @@ SVC_CARDS = u"".join(u"""
 
 # ---------------------------------------------------------------- Probemonat
 
+# ---------------------------------------------------------------- Kontakt
+# EINE Stelle fuer die Buchungsseite. Der Link kommt aus Google Kalender,
+# Terminplan -> Teilen. Solange hier der Platzhalter steht, zeigt die Seite
+# statt des Kalenders den Hinweis, dass per Mail ein Termin vereinbart wird.
+BOOKING_URL = u"BUCHUNGSSEITE_EINTRAGEN"
+MAIL = u"kontakt@kontor-seo.de"
+TEL_LINK, TEL_TEXT = u"+491771885605", u"+49 177 188 5605"
+
+if BOOKING_URL.startswith(u"http"):
+    BOOKING_PANEL = u"""<div class="book" data-booking="%(url)s">
+        <span class="kicker">Termin</span>
+        <h2>Telefontermin buchen</h2>
+        <p class="lede">Zwanzig Minuten, in denen wir uns Ihre Seite gemeinsam ansehen. <strong>Termine finden freitags statt.</strong></p>
+        <button class="btn btn-primary book-go" type="button">Freien Freitagstermin wählen%(arr)s</button>
+        <p class="book-hint">Mit dem Klick wird der Kalender von Google geladen. Dabei erhält Google Ihre IP-Adresse. Details in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+        <p class="book-fallback" hidden>Der Kalender lädt nicht? <a href="%(url)s" target="_blank" rel="noopener">Buchungsseite direkt öffnen</a> oder einfach eine Mail an <a href="mailto:%(mail)s">%(mail)s</a>.</p>
+      </div>""" % {"url": BOOKING_URL, "arr": ARR, "mail": MAIL}
+else:
+    BOOKING_PANEL = u"""<div class="book">
+        <span class="kicker">Termin</span>
+        <h2>Telefontermin</h2>
+        <p class="lede">Zwanzig Minuten, in denen wir uns Ihre Seite gemeinsam ansehen. <strong>Termine finden freitags statt.</strong></p>
+        <p class="book-hint">Die Online-Buchung wird gerade eingerichtet. Schreiben Sie uns bis dahin kurz an <a href="mailto:%(mail)s">%(mail)s</a>, wir schlagen Ihnen einen Freitagstermin vor.</p>
+      </div>""" % {"mail": MAIL}
+
 page("angebot.html",
  u"Erster Monat kostenlos | Kontor",
  u"Ein Monat Social Media ohne Rechnung: 10 bis 15 geschnittene Reels und Profilbetreuung. Keine Frist, keine stillschweigende Verlängerung.",
@@ -365,10 +390,28 @@ page("angebot.html",
   </div>
 </section>
 """ + u"""
-<section class="section" style="padding-top:0">
-  <div class="wrap">%s
+<section class="section" id="kontakt" style="padding-top:0">
+  <div class="wrap serp-grid">
+    <div class="prose">
+      <h2 style="margin-top:0">Direkt erreichbar</h2>
+      <p><strong>E-Mail:</strong> <a href="mailto:%(mail)s">%(mail)s</a><br>
+         <strong>Telefon:</strong> <a href="tel:%(tel_link)s">%(tel_text)s</a></p>
+      <h3>Was wir dafür brauchen</h3>
+      <ul>
+        <li>Ihren Betrieb</li>
+        <li>Ihr Ort oder Einzugsgebiet</li>
+        <li>Die zwei bis drei Leistungen, die Sie zeigen wollen</li>
+      </ul>
+      <p>Antwort in der Regel innerhalb eines Werktags.</p>
+    </div>
+    <div>
+      <!-- Der Kalender wird erst nach einem Klick geladen. Vorher geht keine
+           Anfrage an Google, damit die Aussage in der Datenschutzerklaerung
+           ("keine Inhalte Dritter") fuer alle gilt, die nicht buchen wollen. -->
+      %(panel)s
+    </div>
   </div>
-</section>""" % cta(""), accent=1)
+</section>""" % {"mail": MAIL, "tel_link": TEL_LINK, "tel_text": TEL_TEXT, "panel": BOOKING_PANEL}, accent=1)
 
 # ---------------------------------------------------------------- Social-Media-Leistungen
 
@@ -665,6 +708,67 @@ punkte = u"".join(
  u'<button class="gal-punkt%s" type="button" aria-label="Bild %d"></button>'
  % (u" an" if i == 0 else u"", i + 1) for i in range(len(ICH_BILDER)))
 
+def ich_galerie(up=u""):
+    """Die Bildergalerie. up ist das Praefix zum Wurzelverzeichnis."""
+    folien = u"".join(
+     u'\n        <li class="gal-bild"><img src="%sassets/img/case/%s" alt="%s" width="800" height="1000"%s></li>'
+     % (up, d, a, u"" if i == 0 else u' loading="lazy"')
+     for i, (d, a) in enumerate(ICH_BILDER))
+    punkte = u"".join(
+     u'<button class="gal-punkt%s" type="button" aria-label="Bild %d"></button>'
+     % (u" an" if i == 0 else u"", i + 1) for i in range(len(ICH_BILDER)))
+    return u"""<div class="gal" data-gal>
+      <ul class="gal-spur">%(folien)s
+      </ul>
+      <button class="gal-pfeil gal-zurueck" type="button" aria-label="Vorheriges Bild">%(l)s</button>
+      <button class="gal-pfeil gal-vor" type="button" aria-label="N\u00e4chstes Bild">%(r)s</button>
+    </div>
+    <div class="gal-punkte">%(punkte)s</div>""" % {
+      "folien": folien, "punkte": punkte, "l": PFEIL_L, "r": PFEIL_R}
+
+
+def ich_geraete():
+    """Osmo Pocket 4 und DJI Mic, zum Drehen und Durchblaettern."""
+    return u"""<div class="geraete" data-geraete>
+      <div class="geraet" data-name="DJI Osmo Pocket 4">
+        <div class="pocket-stage">
+          <div class="pocket" tabindex="0" role="img" aria-label="Dreidimensionale Darstellung einer DJI Osmo Pocket 4, mit Maus, Finger oder Pfeiltasten drehbar">
+            <div class="pk-koerper">%(koerper)s
+              <span class="pk-schirm"><span class="pk-schirm-bild"></span></span>
+              <span class="pk-rad"></span>
+              <span class="pk-knopf"></span>
+              <span class="pk-marke">dji</span>
+              <span class="pk-seitentext">POCKET 4</span>
+            </div>
+            <div class="pk-stiel">%(stiel)s</div>
+            <div class="pk-motor">%(motor)s</div>
+            <div class="pk-kopf">%(kopf)s
+              <span class="pk-linse"><span class="pk-linse-glas"></span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="geraet" data-name="DJI Mic" hidden>
+        <div class="pocket-stage">
+          <div class="pocket" tabindex="0" role="img" aria-label="Dreidimensionale Darstellung eines DJI Mic Senders, mit Maus, Finger oder Pfeiltasten drehbar">
+            <div class="mic-koerper">%(mic)s
+              <span class="mic-gitter"></span>
+              <span class="mic-led"></span>
+              <span class="mic-marke">dji</span>
+            </div>
+            <div class="mic-clip">%(clip)s</div>
+          </div>
+        </div>
+      </div>
+      <button class="geraet-pfeil geraet-zurueck" type="button" aria-label="Vorheriges Ger\u00e4t">%(l)s</button>
+      <button class="geraet-pfeil geraet-vor" type="button" aria-label="N\u00e4chstes Ger\u00e4t">%(r)s</button>
+    </div>
+    <p class="geraet-name" data-geraet-name>DJI Osmo Pocket 4</p>""" % {
+      "koerper": quader(), "stiel": quader(), "motor": quader(),
+      "kopf": quader(), "mic": quader(), "clip": quader(),
+      "l": PFEIL_L, "r": PFEIL_R}
+
+
 def quader(k=None):
     """Die sechs Flaechen eines Quaders. Die Klassen sind fuer alle Quader
     gleich; Groesse, Tiefe und Farbe kommen ueber --w, --h, --d und --m von
@@ -675,78 +779,25 @@ def quader(k=None):
 page("referenzen/alejandro-arndt.html",
  u"Alejandro Arndt | Kontor",
  u"Wer dreht und schneidet: Alejandro Arndt aus Uhingen, mit DJI Osmo Pocket 4 und DJI Mic.",
- u"""<section class="section cs" style="padding-top:0">
+ u"""<section class="section cs" style="padding-top:clamp(30px,5vw,56px)">
   <div class="wrap">
-    <div class="cs-brand">
-      <h1 style="font-size:clamp(2rem,4.6vw,3.4rem);margin:0">Alejandro Arndt</h1>
-      <p class="lede" style="margin:0 auto">Ich drehe und schneide die Reels selbst. Hier steht, womit und warum.</p>
-      <div class="tags"><span class="tag accent">Social Media</span><span class="tag">Reels</span><span class="tag">Schnitt</span><span class="tag">Uhingen</span></div>
-    </div>
-
     <div class="me">
-      <figure class="me-foto">
-        <div class="gal" data-gal>
-          <ul class="gal-spur">%(folien)s
-          </ul>
-          <button class="gal-pfeil gal-zurueck" type="button" aria-label="Vorheriges Bild">%(pfeil_l)s</button>
-          <button class="gal-pfeil gal-vor" type="button" aria-label="Nächstes Bild">%(pfeil_r)s</button>
+      <div class="me-foto">
+        <h1 class="me-name">Alejandro Arndt</h1>
+        %(galerie)s
+        <div class="prose me-vorstellung">
+          <p>Videografie ist meine Leidenschaft. Ich drehe und schneide, seit ich eine Kamera halten kann, und sitze jeden Tag mehrere Stunden im Schnitt. Genau das will ich zu meinem Beruf machen.</p>
+          <p>Deshalb der Probemonat: einen Monat lang Reels, ohne Rechnung und ohne K\u00fcndigungsfrist. Ich arbeite von Uhingen aus und komme f\u00fcr den Dreh zu Ihnen.</p>
         </div>
-        <div class="gal-punkte">%(punkte)s</div>
-      </figure>
-
+      </div>
       <div class="me-txt">
         <h2 style="margin:0">Mein Equipment</h2>
-        <p class="lede" style="margin:12px 0 0">Stabilisiert, unauffällig und in zehn Sekunden ausgepackt. Genau richtig für einen Betrieb, der während des Drehs normal weiterarbeitet.</p>
-
-        <div class="geraete" data-geraete>
-          <div class="geraet" data-name="DJI Osmo Pocket 4">
-            <div class="pocket-stage">
-              <div class="pocket" tabindex="0" role="img" aria-label="Dreidimensionale Darstellung einer DJI Osmo Pocket 4, mit Maus, Finger oder Pfeiltasten drehbar">
-                <div class="pk-koerper">%(koerper)s
-                  <span class="pk-schirm"><span class="pk-schirm-bild"></span></span>
-                  <span class="pk-rad"></span>
-                  <span class="pk-knopf"></span>
-                  <span class="pk-marke">dji</span>
-                  <span class="pk-seitentext">POCKET 4</span>
-                </div>
-                <div class="pk-stiel">%(stiel)s</div>
-                <div class="pk-motor">%(motor)s</div>
-                <div class="pk-kopf">%(kopf)s
-                  <span class="pk-linse"><span class="pk-linse-glas"></span></span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="geraet" data-name="DJI Mic" hidden>
-            <div class="pocket-stage">
-              <div class="pocket" tabindex="0" role="img" aria-label="Dreidimensionale Darstellung eines DJI Mic Senders, mit Maus, Finger oder Pfeiltasten drehbar">
-                <div class="mic-koerper">%(mic)s
-                  <span class="mic-gitter"></span>
-                  <span class="mic-led"></span>
-                  <span class="mic-marke">dji</span>
-                </div>
-                <div class="mic-clip">%(clip)s</div>
-              </div>
-            </div>
-          </div>
-
-          <button class="geraet-pfeil geraet-zurueck" type="button" aria-label="Vorheriges Gerät">%(pfeil_l)s</button>
-          <button class="geraet-pfeil geraet-vor" type="button" aria-label="Nächstes Gerät">%(pfeil_r)s</button>
-        </div>
-        <p class="geraet-name" data-geraet-name>DJI Osmo Pocket 4</p>
-        <p class="pocket-hint">Ziehen zum Drehen, Pfeile für das nächste Gerät</p>
+        %(geraete)s
+        <p class="pocket-hint">Ziehen zum Drehen, Pfeile f\u00fcr das n\u00e4chste Ger\u00e4t</p>
       </div>
     </div>
-
-    <div class="prose" style="max-width:62ch;margin-inline:auto">
-      <p>Videografie ist meine Leidenschaft. Ich drehe und schneide, seit ich eine Kamera halten kann, und sitze jeden Tag mehrere Stunden im Schnitt. Genau das will ich zu meinem Beruf machen.</p>
-      <p>Deshalb der Probemonat: Sie bekommen einen Monat lang Reels, ohne Rechnung und ohne Kündigungsfrist. Sie sehen am Ergebnis, ob es passt, und ich zeige, was ich kann. Ich arbeite von Uhingen aus und komme für den Dreh zu Ihnen.</p>
-    </div>
   </div>
-</section>""" % {"folien": folien, "pfeil_l": PFEIL_L, "pfeil_r": PFEIL_R, "punkte": punkte,
-      "koerper": quader("kp"), "stiel": quader("st"), "motor": quader("mo"),
-      "kopf": quader("kf"), "mic": quader("mc"), "clip": quader("cl")} + cta("../"))
+</section>""" % {"galerie": ich_galerie(u"../"), "geraete": ich_geraete()} + cta("../"))
 
 # ---------------------------------------------------------------- Fallstudie PoseyPets
 page("referenzen/poseypets.html",
@@ -863,59 +914,25 @@ page("referenzen/poseypets.html",
   </div>
 </section>""")
 
-# ---------------------------------------------------------------- Kontakt
-# EINE Stelle fuer die Buchungsseite. Der Link kommt aus Google Kalender,
-# Terminplan -> Teilen. Solange hier der Platzhalter steht, zeigt die Seite
-# statt des Kalenders den Hinweis, dass per Mail ein Termin vereinbart wird.
-BOOKING_URL = u"BUCHUNGSSEITE_EINTRAGEN"
-MAIL = u"kontakt@kontor-seo.de"
-TEL_LINK, TEL_TEXT = u"+491771885605", u"+49 177 188 5605"
-
-if BOOKING_URL.startswith(u"http"):
-    BOOKING_PANEL = u"""<div class="book" data-booking="%(url)s">
-        <span class="kicker">Termin</span>
-        <h2>Telefontermin buchen</h2>
-        <p class="lede">Zwanzig Minuten, in denen wir uns Ihre Seite gemeinsam ansehen. <strong>Termine finden freitags statt.</strong></p>
-        <button class="btn btn-primary book-go" type="button">Freien Freitagstermin wählen%(arr)s</button>
-        <p class="book-hint">Mit dem Klick wird der Kalender von Google geladen. Dabei erhält Google Ihre IP-Adresse. Details in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
-        <p class="book-fallback" hidden>Der Kalender lädt nicht? <a href="%(url)s" target="_blank" rel="noopener">Buchungsseite direkt öffnen</a> oder einfach eine Mail an <a href="mailto:%(mail)s">%(mail)s</a>.</p>
-      </div>""" % {"url": BOOKING_URL, "arr": ARR, "mail": MAIL}
-else:
-    BOOKING_PANEL = u"""<div class="book">
-        <span class="kicker">Termin</span>
-        <h2>Telefontermin</h2>
-        <p class="lede">Zwanzig Minuten, in denen wir uns Ihre Seite gemeinsam ansehen. <strong>Termine finden freitags statt.</strong></p>
-        <p class="book-hint">Die Online-Buchung wird gerade eingerichtet. Schreiben Sie uns bis dahin kurz an <a href="mailto:%(mail)s">%(mail)s</a>, wir schlagen Ihnen einen Freitagstermin vor.</p>
-      </div>""" % {"mail": MAIL}
-
-page("kontakt.html",
- u"Kontakt und Gratismonat | Kontor",
- u"Ersten Monat Social Media kostenlos anfragen. Telefontermine freitags.",
- hero(kicker=u"Kontakt",
-   h1=u"Erster Monat kostenlos.",
-   lede=u"Schreiben Sie kurz, um welchen Betrieb es geht. Unverbindlich, ohne Rechnung.") + u"""
-<section class="section" style="padding-top:0">
-  <div class="wrap serp-grid">
-    <div class="prose">
-      <h2 style="margin-top:0">Direkt erreichbar</h2>
-      <p><strong>E-Mail:</strong> <a href="mailto:%(mail)s">%(mail)s</a><br>
-         <strong>Telefon:</strong> <a href="tel:%(tel_link)s">%(tel_text)s</a></p>
-      <h3>Was wir dafür brauchen</h3>
-      <ul>
-        <li>Ihren Betrieb</li>
-        <li>Ihr Ort oder Einzugsgebiet</li>
-        <li>Die zwei bis drei Leistungen, die Sie zeigen wollen</li>
-      </ul>
-      <p>Antwort in der Regel innerhalb eines Werktags.</p>
-    </div>
-    <div>
-      <!-- Der Kalender wird erst nach einem Klick geladen. Vorher geht keine
-           Anfrage an Google, damit die Aussage in der Datenschutzerklaerung
-           ("keine Inhalte Dritter") fuer alle gilt, die nicht buchen wollen. -->
-      %(panel)s
-    </div>
-  </div>
-</section>""" % {"mail": MAIL, "tel_link": TEL_LINK, "tel_text": TEL_TEXT, "panel": BOOKING_PANEL})
+# Die frühere kontakt.html ist in angebot.html aufgegangen. Sie bleibt nur
+# als Weiterleitung stehen, damit verschickte und indexierte Links nicht ins
+# Leere laufen. GitHub Pages kann keine echte Weiterleitung, deshalb per
+# Meta-Refresh und Canonical.
+io.open(os.path.join(ROOT, "kontakt.html"), "w", encoding="utf-8").write(u"""<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="0; url=angebot.html">
+<link rel="canonical" href="https://kontor-seo.de/angebot.html">
+<meta name="robots" content="noindex,follow">
+<title>Weitergeleitet | Kontor</title>
+</head>
+<body>
+<p>Diese Seite ist umgezogen. Weiter zum <a href="angebot.html">Gratismonat</a>.</p>
+</body>
+</html>
+""")
+print("wrote kontakt.html (Weiterleitung)")
 
 # ---------------------------------------------------------------- Blog
 # Nur noch ein Format: Ratgeber. Jeder Beitrag eine eigene Seite unter blog/.
@@ -963,7 +980,7 @@ SIDE = u"""
           <span class="art-toc-h">Kapitel</span>
           <ol></ol>
         </nav>
-        <a href="../kontakt.html" class="btn btn-primary btn-sm art-cta">Gratismonat anfragen</a>
+        <a href="../angebot.html#kontakt" class="btn btn-primary btn-sm art-cta">Gratismonat anfragen</a>
       </div>
     </aside>"""
 

@@ -828,8 +828,13 @@ code{font-family:var(--mono);font-size:.9em;background:var(--bg-3);border:1px so
 /* ============================================================
    Referenzseite Alejandro: Bildergalerie, Text und die Geraete
    ============================================================ */
-.me{display:grid;grid-template-columns:clamp(210px,24vw,286px) 1fr;
+.me{display:grid;grid-template-columns:minmax(240px,340px) 1fr;
   gap:clamp(24px,4vw,56px);align-items:start;margin:clamp(30px,5vw,56px) 0}
+/* Der Name steht ueber dem Bild, nicht als grosse Zeile ueber der Seite. */
+.me-name{font-size:clamp(1.35rem,2.1vw,1.7rem);margin:0 0 14px}
+.me-vorstellung{margin-top:18px}
+.me-vorstellung p{font-size:.92rem;line-height:1.7;color:var(--ink-2)}
+.me-vorstellung p + p{margin-top:12px}
 @media(max-width:860px){
   .me{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
   .me-foto{max-width:300px;margin-inline:auto}
@@ -866,7 +871,8 @@ code{font-family:var(--mono);font-size:.9em;background:var(--bg-3);border:1px so
    stammen aus den technischen Daten (Pocket 139,7 x 42,2 x 33,5 mm,
    Bildschirm 2 Zoll im Verhaeltnis 556:314), damit die Verhaeltnisse stimmen.
    Jeder Quader bekommt --w, --h, --d und --m; die sechs Flaechen lesen das. */
-.geraete{position:relative;margin-top:clamp(16px,3vw,26px)}
+/* Schmal halten, sonst stehen die Pfeile weit vom Geraet weg. */
+.geraete{position:relative;margin-top:clamp(16px,3vw,26px);max-width:310px;margin-inline:auto}
 .geraet[hidden]{display:none}
 .geraet-pfeil{position:absolute;top:50%;transform:translateY(-50%);z-index:3;
   width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
@@ -986,3 +992,15 @@ code{font-family:var(--mono);font-size:.9em;background:var(--bg-3);border:1px so
   font-family:var(--body);font-weight:700;font-size:7px;letter-spacing:.06em;color:#8b9199}
 
 @media(prefers-reduced-motion:reduce){.pocket,.gal-pfeil,.geraet-pfeil{transition:none}}
+
+/* ------------------------------------------------------------
+   Kurzvorstellung auf der Startseite: links die Bilder, rechts das Geraet.
+   Ohne Text, der steht auf der Seite "Ueber mich".
+   ------------------------------------------------------------ */
+.ich-kurz{display:grid;grid-template-columns:minmax(220px,320px) 1fr;
+  gap:clamp(24px,4vw,64px);align-items:center;justify-content:center}
+.ich-kurz-foto{min-width:0}
+.ich-kurz-geraet{min-width:0}
+@media(max-width:780px){
+  .ich-kurz{grid-template-columns:1fr;max-width:340px;margin-inline:auto;gap:clamp(20px,5vw,34px)}
+}
