@@ -31,7 +31,15 @@ WISCH="${WISCH:-0.3}"            # Dauer des Hochwischers
 SZENE="${SZENE:-0.30}"           # Empfindlichkeit der Szenenerkennung
 TRIM_OBEN="${TRIM_OBEN:-0}"      # Anteil oben weg. Alejandros Aufnahmen sind
 TRIM_UNTEN="${TRIM_UNTEN:-0}"    # bereits ohne Status- und Navigationsleiste.
-X_ANTEIL="${X_ANTEIL:-1.0}"      # 0 = links beschneiden, 1 = rechts stehen
+ANPASSUNG="${ANPASSUNG:-einpassen}"  # einpassen = ganzes Bild zeigen, oben und
+                                 # unten mit einer weichgezeichneten Fassung
+                                 # des Bildes auffuellen. fuellen = seitlich
+                                 # beschneiden, bis der Bildschirm voll ist.
+                                 # Die Aufnahmen sind breiter als der sehr
+                                 # hohe Bildschirm, fuellen schneidet also
+                                 # rund ein Drittel der Breite weg und wirkt
+                                 # wie hineingezoomt.
+X_ANTEIL="${X_ANTEIL:-1.0}"      # nur bei fuellen. 0 = links beschneiden, 1 = rechts stehen
                                  # lassen. Muss 1 bleiben: dort sitzt die
                                  # Leiste mit Herz, Kommentar und Zaehlern.
                                  # Ohne sie erkennt niemand Instagram/TikTok.
@@ -58,26 +66,40 @@ echo "Quelle: ${BQ}x${HQ}, ${DAUER}s"
 
 # --- 1. Zuschnitt auf das Handyverhaeltnis ------------------------------
 read NUTZ_B NUTZ_H X OBEN HOEHE <<ENDE
-$(python3 - "$BQ" "$HQ" "$TRIM_OBEN" "$TRIM_UNTEN" "$X_ANTEIL" "$A_BREITE" "$A_HOEHE" "$BREITE" <<'PY'
+$(python3 - "$BQ" "$HQ" "$TRIM_OBEN" "$TRIM_UNTEN" "$X_ANTEIL" "$A_BREITE" "$A_HOEHE" "$BREITE" "$ANPASSUNG" <<'PY'
 import sys
 bq, hq = int(sys.argv[1]), int(sys.argv[2])
 t_o, t_u, x_anteil = float(sys.argv[3]), float(sys.argv[4]), float(sys.argv[5])
 a_b, a_h, breite = int(sys.argv[6]), int(sys.argv[7]), int(sys.argv[8])
+anpassung = sys.argv[9]
 gerade = lambda v: max(2, int(v) // 2 * 2)
 oben, unten = gerade(hq * t_o), gerade(hq * t_u)
 nutz_h = hq - oben - unten
-nutz_b = gerade(min(bq, nutz_h * a_b / a_h))
-nutz_h = gerade(min(nutz_h, nutz_b * a_h / a_b))
-x = gerade((bq - nutz_b) * x_anteil)
+if anpassung == "fuellen":
+    nutz_b = gerade(min(bq, nutz_h * a_b / a_h))
+    nutz_h = gerade(min(nutz_h, nutz_b * a_h / a_b))
+    x = gerade((bq - nutz_b) * x_anteil)
+else:
+    nutz_b, nutz_h, x = gerade(bq), gerade(nutz_h), 0
 print(nutz_b, nutz_h, x, oben, gerade(breite * a_h / a_b))
 PY
 )
 ENDE
+echo "Anpassung: ${ANPASSUNG}"
 echo "Zuschnitt: ${NUTZ_B}x${NUTZ_H} ab x=${X} y=${OBEN}  ->  ${BREITE}x${HOEHE}"
 
-ffmpeg -loglevel error -y -i "$EIN" \
-  -vf "crop=${NUTZ_B}:${NUTZ_H}:${X}:${OBEN},scale=${BREITE}:${HOEHE}:flags=lanczos,fps=${FPS}" \
-  -an -c:v libx264 -crf 17 -preset veryfast "$TMP/roh.mp4"
+if [ "$ANPASSUNG" = "fuellen" ]; then
+  ffmpeg -loglevel error -y -i "$EIN" \
+    -vf "crop=${NUTZ_B}:${NUTZ_H}:${X}:${OBEN},scale=${BREITE}:${HOEHE}:flags=lanczos,fps=${FPS}" \
+    -an -c:v libx264 -crf 17 -preset veryfast "$TMP/roh.mp4"
+else
+  # Ganzes Bild auf volle Breite, oben und unten eine weichgezeichnete,
+  # abgedunkelte Fassung desselben Bildes. So faellt nichts weg und es
+  # entstehen keine toten schwarzen Balken.
+  ffmpeg -loglevel error -y -i "$EIN" -filter_complex \
+    "[0:v]crop=${NUTZ_B}:${NUTZ_H}:${X}:${OBEN},fps=${FPS},split=2[bg][fg];[bg]scale=${BREITE}:${HOEHE}:force_original_aspect_ratio=increase,crop=${BREITE}:${HOEHE},gblur=sigma=22,eq=brightness=-0.10:saturation=0.9[bgb];[fg]scale=${BREITE}:-2:flags=lanczos[fgs];[bgb][fgs]overlay=(W-w)/2:(H-h)/2" \
+    -an -c:v libx264 -crf 17 -preset veryfast "$TMP/roh.mp4"
+fi
 
 # --- 2. Wischstellen finden ---------------------------------------------
 ffmpeg -loglevel error -y -i "$TMP/roh.mp4" \

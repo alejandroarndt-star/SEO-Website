@@ -32,16 +32,21 @@ CRF=37 CRF_WEBM=54 ./_build/reels-loop.sh ~/Downloads/instagram.mov instagram 18
 CRF=37 CRF_WEBM=54 ./_build/reels-loop.sh ~/Downloads/tiktok.mov    tiktok    15
 ```
 
-Das Skript schneidet auf 1320:2868 zu, sucht über Szenenerkennung die Wischer,
-nimmt ab jeder Stelle höchstens 4,5 Sekunden und hängt die Stücke mit einem
-echten Hochwischer aneinander.
+Das Skript bringt die Aufnahme auf 1320:2868, sucht über Szenenerkennung die
+Wischer, nimmt ab jeder Stelle höchstens 4,5 Sekunden und hängt die Stücke mit
+einem echten Hochwischer aneinander.
+
+Der Bildschirm des Handys ist mit 19,5:9 viel höher als die Aufnahmen. Das
+ganze Bild passt also nur hinein, wenn oben und unten etwas aufgefüllt wird.
+Genau das macht `ANPASSUNG=einpassen`, der Standard.
 
 | Variable | Standard | wofür |
 |---|---|---|
 | `SZENE` | `0.30` | Empfindlichkeit der Wischerkennung. Zu wenige Abschnitte: kleiner setzen, z. B. `0.15`. |
 | `MAX_CLIP` | `4.5` | Länge je Reel |
 | `MIN_CLIP` | `1.8` | kürzere Schnipsel fliegen raus |
-| `X_ANTEIL` | `1.0` | **nicht ändern.** 1 heißt: rechts stehen lassen. Dort sitzt die Leiste mit Herz, Kommentar und Zählern. Mittig beschnitten fehlt sie, und dann erkennt niemand mehr Instagram oder TikTok. |
+| `ANPASSUNG` | `einpassen` | `einpassen` zeigt das ganze Bild auf voller Breite und füllt oben und unten mit einer weichgezeichneten, abgedunkelten Fassung desselben Bildes auf. `fuellen` beschneidet stattdessen seitlich, bis der Bildschirm voll ist. Die Aufnahmen sind deutlich breiter als der sehr hohe Bildschirm, `fuellen` schneidet also rund ein Drittel der Breite weg und wirkt wie hineingezoomt. Deshalb `einpassen`. |
+| `X_ANTEIL` | `1.0` | nur bei `fuellen`. 1 heißt: rechts stehen lassen. Dort sitzt die Leiste mit Herz, Kommentar und Zählern. Mittig beschnitten fehlt sie, und dann erkennt niemand mehr Instagram oder TikTok. |
 | `TRIM_OBEN` / `TRIM_UNTEN` | `0` | Alejandros Aufnahmen sind bereits ohne Status- und Navigationsleiste. Bei frischen Vollbildaufnahmen auf `0.055` und `0.045` setzen. |
 | `CRF` / `CRF_WEBM` | `33` / `46` | größer = kleinere Datei. Für die Seite wurde 37/54 genommen. |
 
