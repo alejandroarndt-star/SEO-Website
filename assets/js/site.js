@@ -89,15 +89,96 @@
         return;
       }
       var versatz = parseFloat(v.getAttribute('data-versatz') || '0');
-      if (!versatz) return;
       var setzen = function () {
-        if (v.duration && versatz < v.duration) {
+        if (versatz && v.duration && versatz < v.duration) {
           try { v.currentTime = versatz; } catch (e) {}
         }
       };
       if (v.readyState >= 1) setzen();
       else v.addEventListener('loadedmetadata', setzen);
     });
+
+    /* Auf dem Handy startet autoplay nicht zuverlaessig, wenn das Video beim
+       Laden noch weit unterhalb des Bildschirms liegt. Safari auf iOS laesst
+       es dann einfach stehen, und man muesste auf Abspielen tippen. Deshalb
+       wird hier angestossen, sobald der Abschnitt in Sicht kommt, und wieder
+       angehalten, wenn er weg ist. Das spart ausserdem Akku. */
+    if (!ruhig && 'IntersectionObserver' in window) {
+      var vio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          var v = en.target;
+          if (en.isIntersecting) {
+            var p = v.play();
+            if (p && p.catch) { p.catch(function () {}); }
+          } else if (!v.paused) {
+            v.pause();
+          }
+        });
+      }, { threshold: 0.15 });
+      Array.prototype.forEach.call(reels, function (v) { vio.observe(v); });
+    }
+  }
+
+  /* ---- Sprungmarke auf ein Klappfeld: aufklappen und hinscrollen ----
+     Die Felder auf der Startseite verweisen auf einzelne Punkte der
+     Leistungsseite. Ohne das hier landet man oben auf einem zugeklappten Feld. */
+  var oeffneZiel = function () {
+    if (!window.location.hash) return;
+    var ziel;
+    try { ziel = document.querySelector(window.location.hash); } catch (e) { return; }
+    if (!ziel || ziel.tagName !== 'DETAILS') return;
+    ziel.open = true;
+    var sanft = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    ziel.scrollIntoView({ block: 'start', behavior: sanft ? 'smooth' : 'auto' });
+  };
+  oeffneZiel();
+  window.addEventListener('hashchange', oeffneZiel);
+
+  /* ---- Die Osmo Pocket drehen ----
+     Zeigerereignisse, damit Maus und Finger denselben Weg gehen. Gedreht wird
+     nur das Geraet, nicht die Kamera im Geraet: die Neigung ist begrenzt,
+     sonst steht es irgendwann auf dem Kopf. */
+  var stage = document.querySelector('.pocket-stage');
+  var pocket = document.getElementById('pocket');
+  if (stage && pocket) {
+    var ry = 26, rx = -10, zieht = false, x0 = 0, y0 = 0, ry0 = 0, rx0 = 0;
+    var setzen = function () {
+      pocket.style.setProperty('--ry', ry + 'deg');
+      pocket.style.setProperty('--rx', rx + 'deg');
+    };
+    var klemm = function (v, min, max) { return v < min ? min : (v > max ? max : v); };
+    stage.addEventListener('pointerdown', function (e) {
+      zieht = true; x0 = e.clientX; y0 = e.clientY; ry0 = ry; rx0 = rx;
+      pocket.classList.add('greift');
+      stage.setPointerCapture(e.pointerId);
+    });
+    stage.addEventListener('pointermove', function (e) {
+      if (!zieht) return;
+      ry = ry0 + (e.clientX - x0) * 0.55;
+      rx = klemm(rx0 - (e.clientY - y0) * 0.35, -46, 46);
+      setzen();
+    });
+    var los = function (e) {
+      if (!zieht) return;
+      zieht = false;
+      pocket.classList.remove('greift');
+      if (e && e.pointerId != null && stage.hasPointerCapture(e.pointerId)) {
+        stage.releasePointerCapture(e.pointerId);
+      }
+    };
+    stage.addEventListener('pointerup', los);
+    stage.addEventListener('pointercancel', los);
+    pocket.addEventListener('keydown', function (e) {
+      var k = e.key, schritt = 12;
+      if (k === 'ArrowLeft') { ry -= schritt; }
+      else if (k === 'ArrowRight') { ry += schritt; }
+      else if (k === 'ArrowUp') { rx = klemm(rx + schritt, -46, 46); }
+      else if (k === 'ArrowDown') { rx = klemm(rx - schritt, -46, 46); }
+      else { return; }
+      e.preventDefault();
+      setzen();
+    });
+    setzen();
   }
 
   /* ---- active nav link by scroll position (homepage only) ---- */

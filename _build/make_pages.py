@@ -84,20 +84,31 @@ def hero(kicker, h1, lede, cta_up=None):
     btn = u""
     if cta_up is not None:
         btn = (u'\n    <div class="hero-cta"><a href="%skontakt.html" class="btn btn-primary">'
-               u'Kostenlose SEO-Analyse%s</a></div>' % (cta_up, ARR))
+               u'Gratismonat anfragen%s</a></div>' % (cta_up, ARR))
     return HERO_T.format(kicker=kicker, h1=h1, lede=lede, cta=btn)
 
 def cta(up=""):
     return u"""<div class="band" style="margin-top:46px">
       <div class="band-in">
-        <h2 style="margin:0 0 14px">Wo steht Ihre Seite gerade?</h2>
-        <p class="lede">Sie bekommen schriftlich, für welche Suchbegriffe Sie gefunden werden, wer vor Ihnen steht und woran es liegt.</p>
-        <div class="hero-cta"><a href="%skontakt.html" class="btn btn-primary">Kostenlose SEO-Analyse<span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+        <h2 style="margin:0 0 14px">Monat eins, 100 %% kostenlos.</h2>
+        <p class="lede">Wir drehen, schneiden und veröffentlichen einen Monat lang. Ohne Rechnung, ohne Kündigungsfrist.</p>
+        <div class="hero-cta"><a href="%skontakt.html" class="btn btn-primary">Gratismonat anfragen<span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
       </div>
     </div>""" % up
 
 CHEV = (u'<span class="acc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" '
         u'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>')
+
+UMLAUTE = {u"\xe4": u"ae", u"\xf6": u"oe", u"\xfc": u"ue", u"\xdf": u"ss"}
+
+def schlagwort(text):
+    """Aus einer Ueberschrift eine Sprungmarke machen. Dieselbe Regel wie in
+    site.js, damit Verweise von der Startseite auf die Felder zeigen koennen."""
+    t = text.lower()
+    for k, v in UMLAUTE.items():
+        t = t.replace(k, v)
+    t = re.sub(r"[^a-z0-9]+", "-", t).strip("-")
+    return t[:40]
 
 def acc(items, hue=None):
     """items: (nr, titel, unterzeile, inhalt). Das erste Feld ist offen, damit
@@ -107,7 +118,7 @@ def acc(items, hue=None):
     for i, (nr, title, sub, body) in enumerate(items):
         n = hue if hue else ((int(nr) - 1) % 5) + 1
         out.append(u"""
-      <details class="acc-item"%s style="--c:var(--c%d);--c-soft:var(--c%d-soft)">
+      <details class="acc-item" id="%s"%s style="--c:var(--c%d);--c-soft:var(--c%d-soft)">
         <summary>
           <span class="acc-n">%s</span>
           <span><h2 class="acc-t">%s</h2><span class="acc-s">%s</span></span>
@@ -115,7 +126,7 @@ def acc(items, hue=None):
         </summary>
         <div class="acc-body">%s
         </div>
-      </details>""" % (u" open" if i == 0 else u"", n, n, nr, title, sub, CHEV, body))
+      </details>""" % (schlagwort(title), u" open" if i == 0 else u"", n, n, nr, title, sub, CHEV, body))
     return u'\n    <div class="acc">%s\n    </div>' % u"".join(out)
 
 # Zwei Gruppen: Social Media zuerst, Suchmaschinenoptimierung dahinter.
@@ -597,6 +608,7 @@ page("referenzen.html",
   <div class="wrap">
     <div class="ref-filters" role="group" aria-label="Nach Kategorie filtern">
       <button class="ref-filter" data-cat="alle" aria-pressed="true">Alle</button>
+      <button class="ref-filter" data-cat="social" aria-pressed="false">Social Media</button>
       <button class="ref-filter" data-cat="ecommerce" aria-pressed="false">E-Commerce</button>
       <button class="ref-filter" data-cat="technik" aria-pressed="false">Technisches SEO</button>
       <button class="ref-filter" data-cat="content" aria-pressed="false">Content</button>
@@ -604,13 +616,22 @@ page("referenzen.html",
     </div>
 
     <div class="ref-grid" style="--case-accent:var(--c4)">
+      <a class="ref-card" href="referenzen/alejandro-arndt.html" data-cats="social">
+        <div class="ref-tile">
+          <img src="assets/img/case/alejandro-arndt.jpg" alt="Alejandro Arndt vor einer Holzfassade" loading="lazy" width="1200" height="1200">
+          <div class="ref-tags"><span class="ref-tag">Social Media</span><span class="ref-tag">Reels</span><span class="ref-tag">Schnitt</span></div>
+          <span class="ref-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+        <h3 class="ref-name">Alejandro Arndt</h3>
+        <p class="ref-desc">Wer dreht und schneidet, mit welchem Ger\u00e4t und warum der erste Monat nichts kostet.</p>
+      </a>
       <a class="ref-card" href="referenzen/poseypets.html" data-cats="ecommerce technik content local">
         <div class="ref-tile">
           <img src="assets/img/case/poseypets-napoleon.jpg" alt="Tierportrait auf Leinwand neben dem abgebildeten Dackel" loading="lazy" width="1200" height="1200">
           <div class="ref-tags"><span class="ref-tag">E-Commerce</span><span class="ref-tag">Organic</span><span class="ref-tag">Content</span></div>
           <span class="ref-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
-        <h3 class="ref-name">PoseyPets</h3>
+        <h3 class="ref-name">PoseyPets <span class="ref-kind">SEO-Referenz</span></h3>
         <p class="ref-desc">Onlineshop für Tierportraits, von Grund auf für die organische Suche aufgebaut. Keyword-Struktur, sechs Landingpages, zwei Inhaltsformate.</p>
       </a>
     </div>
@@ -618,6 +639,59 @@ page("referenzen.html",
     <p class="ref-empty" hidden>In dieser Kategorie liegt noch keine Fallstudie vor.</p>
   </div>
 </section>""")
+
+# ---------------------------------------------------------------- Referenz Alejandro
+# Das Geraet ist aus CSS gebaut, nicht aus einem 3D-Modell: die Seite soll
+# weiterhin ohne Bibliothek und ohne fremdes CDN auskommen.
+page("referenzen/alejandro-arndt.html",
+ u"Alejandro Arndt | Kontor",
+ u"Wer dreht und schneidet: Alejandro Arndt aus Uhingen, mit einer DJI Osmo Pocket 4.",
+ u"""<section class="section cs" style="padding-top:0">
+  <div class="wrap">
+    <div class="cs-brand">
+      <h1 style="font-size:clamp(2rem,4.6vw,3.4rem);margin:0">Alejandro Arndt</h1>
+      <p class="lede" style="margin:0 auto">Ich drehe und schneide die Reels selbst. Hier steht, womit und warum.</p>
+      <div class="tags"><span class="tag accent">Social Media</span><span class="tag">Reels</span><span class="tag">Schnitt</span><span class="tag">Uhingen</span></div>
+    </div>
+
+    <div class="me">
+      <figure class="me-foto">
+        <img src="../assets/img/case/alejandro-portrait.jpg" alt="Alejandro Arndt vor einer Holzfassade" width="1000" height="1250">
+      </figure>
+      <div class="me-txt">
+        <h2 style="margin:0">Mein Equipment</h2>
+        <p class="lede" style="margin:12px 0 0">DJI Osmo Pocket 4. Stabilisiert, unauffällig und in zehn Sekunden ausgepackt. Genau richtig für einen Betrieb, der während des Drehs normal weiterarbeitet.</p>
+        <div class="pocket-stage">
+          <div class="pocket" id="pocket" role="img" aria-label="Dreidimensionale Darstellung einer DJI Osmo Pocket 4, mit der Maus oder dem Finger drehbar" tabindex="0">
+            <div class="pk-head">
+              <span class="pk-f pk-hf"><span class="pk-lens"></span></span>
+              <span class="pk-f pk-hb"></span>
+              <span class="pk-f pk-hl"></span>
+              <span class="pk-f pk-hr"></span>
+              <span class="pk-f pk-ht"></span>
+              <span class="pk-f pk-hu"></span>
+            </div>
+            <div class="pk-arm"></div>
+            <div class="pk-body">
+              <span class="pk-f pk-bf"><span class="pk-screen"></span></span>
+              <span class="pk-f pk-bb"><span class="pk-grip"></span></span>
+              <span class="pk-f pk-bl"></span>
+              <span class="pk-f pk-br"></span>
+              <span class="pk-f pk-bt"></span>
+              <span class="pk-f pk-bu"></span>
+            </div>
+          </div>
+        </div>
+        <p class="pocket-hint">Ziehen zum Drehen</p>
+      </div>
+    </div>
+
+    <div class="prose" style="max-width:62ch;margin-inline:auto">
+      <p>Videografie ist meine Leidenschaft. Ich drehe und schneide, seit ich eine Kamera halten kann, und sitze jeden Tag mehrere Stunden im Schnitt. Genau das will ich zu meinem Beruf machen.</p>
+      <p>Deshalb der Probemonat: Sie bekommen einen Monat lang Reels, ohne Rechnung und ohne Kündigungsfrist. Sie sehen am Ergebnis, ob es passt, und ich zeige, was ich kann. Ich arbeite von Uhingen aus und komme für den Dreh zu Ihnen.</p>
+    </div>
+  </div>
+</section>""" + cta("../"))
 
 # ---------------------------------------------------------------- Fallstudie PoseyPets
 page("referenzen/poseypets.html",
@@ -760,22 +834,22 @@ else:
       </div>""" % {"mail": MAIL}
 
 page("kontakt.html",
- u"Kontakt und kostenlose SEO-Analyse | Kontor",
- u"Fordern Sie die kostenlose SEO-Analyse für Ihre Website an. Telefontermine freitags.",
+ u"Kontakt und Gratismonat | Kontor",
+ u"Ersten Monat Social Media kostenlos anfragen. Telefontermine freitags.",
  hero(kicker=u"Kontakt",
-   h1=u"Kostenlose SEO-Analyse.",
-   lede=u"Schreiben Sie kurz, um welche Website es geht. Sie bekommen die Analyse schriftlich und unverbindlich.") + u"""
+   h1=u"Erster Monat kostenlos.",
+   lede=u"Schreiben Sie kurz, um welchen Betrieb es geht. Unverbindlich, ohne Rechnung.") + u"""
 <section class="section" style="padding-top:0">
   <div class="wrap serp-grid">
     <div class="prose">
       <h2 style="margin-top:0">Direkt erreichbar</h2>
       <p><strong>E-Mail:</strong> <a href="mailto:%(mail)s">%(mail)s</a><br>
          <strong>Telefon:</strong> <a href="tel:%(tel_link)s">%(tel_text)s</a></p>
-      <h3>Was wir für die Analyse brauchen</h3>
+      <h3>Was wir dafür brauchen</h3>
       <ul>
-        <li>Ihre Website</li>
+        <li>Ihren Betrieb</li>
         <li>Ihr Ort oder Einzugsgebiet</li>
-        <li>Die zwei bis drei Leistungen, über die Sie am liebsten Anfragen bekommen</li>
+        <li>Die zwei bis drei Leistungen, die Sie zeigen wollen</li>
       </ul>
       <p>Antwort in der Regel innerhalb eines Werktags.</p>
     </div>
@@ -834,7 +908,7 @@ SIDE = u"""
           <span class="art-toc-h">Kapitel</span>
           <ol></ol>
         </nav>
-        <a href="../kontakt.html" class="btn btn-primary btn-sm art-cta">Kostenlose SEO-Analyse</a>
+        <a href="../kontakt.html" class="btn btn-primary btn-sm art-cta">Gratismonat anfragen</a>
       </div>
     </aside>"""
 

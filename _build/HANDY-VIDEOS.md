@@ -28,9 +28,14 @@ Voraussetzung ist ffmpeg (`brew install ffmpeg`). So sind die aktuellen
 Dateien entstanden:
 
 ```bash
-CRF=37 CRF_WEBM=54 ./_build/reels-loop.sh ~/Downloads/instagram.mov instagram 18
-CRF=37 CRF_WEBM=54 ./_build/reels-loop.sh ~/Downloads/tiktok.mov    tiktok    15
+ANPASSUNG=fuellen CRF=37 CRF_WEBM=54 ./_build/reels-loop.sh ~/Downloads/instagram.mov instagram 18
+ANPASSUNG=fuellen CRF=37 CRF_WEBM=54 ./_build/reels-loop.sh ~/Downloads/tiktok.mov    tiktok    15
 ```
+
+Es läuft bewusst `fuellen`, obwohl das seitlich beschneidet: die weichen Ränder
+von `einpassen` fielen auf der Seite unangenehm auf. Stattdessen sind die
+Handys im CSS kleiner gesetzt (`--pw` im Block „Gratismonat"), dann fällt der
+Beschnitt nicht weiter auf.
 
 Das Skript bringt die Aufnahme auf 1320:2868, sucht über Szenenerkennung die
 Wischer, nimmt ab jeder Stelle höchstens 4,5 Sekunden und hängt die Stücke mit

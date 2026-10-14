@@ -61,7 +61,7 @@
 <section class="section cs" style="padding-top:clamp(40px,5vw,72px)">
   <div class="wrap">
     <div class="acc">
-      <details class="acc-item" open style="--c:var(--c1);--c-soft:var(--c1-soft)">
+      <details class="acc-item" id="ausgangssituation" open style="--c:var(--c1);--c-soft:var(--c1-soft)">
         <summary>
           <span class="acc-n">01</span>
           <span><h2 class="acc-t">Ausgangssituation</h2><span class="acc-s">Neuer Shop, keine Domainhistorie, null Sichtbarkeit</span></span>
@@ -77,7 +77,7 @@
           </div>
         </div>
       </details>
-      <details class="acc-item" style="--c:var(--c2);--c-soft:var(--c2-soft)">
+      <details class="acc-item" id="keyword-recherche" style="--c:var(--c2);--c-soft:var(--c2-soft)">
         <summary>
           <span class="acc-n">02</span>
           <span><h2 class="acc-t">Keyword-Recherche</h2><span class="acc-s">Der komplette erste Monat, bevor eine Zeile geschrieben wurde</span></span>
@@ -95,7 +95,7 @@
           <p>Am Ende des Monats stand eine sortierte Liste. Aus ihrem oberen Teil wurden die Landingpages, aus dem langen unteren Teil die Themen für Ratgeber und Lexikon. Beides kam aus derselben Datei, und keine Seite und kein Artikel entstand ohne Eintrag darin.</p>
         </div>
       </details>
-      <details class="acc-item" style="--c:var(--c3);--c-soft:var(--c3-soft)">
+      <details class="acc-item" id="seitenstruktur" style="--c:var(--c3);--c-soft:var(--c3-soft)">
         <summary>
           <span class="acc-n">03</span>
           <span><h2 class="acc-t">Seitenstruktur</h2><span class="acc-s">Ein Suchbegriff, eine Seite. Sechs Landingpages als Einstiege.</span></span>
@@ -108,7 +108,7 @@
           <p>Darunter liegt die zweite Ebene: die Produktseiten. Jede bekam einen eigenen Textblock, der auf ihren eigenen Begriff zugeschnitten ist, statt überall denselben Beschreibungstext zu wiederholen. Daneben, nicht darunter, stehen Ratgeber und Lexikon. So entsteht eine Struktur, in der jede Seite eine Aufgabe hat und keine zwei Seiten dieselbe.</p>
         </div>
       </details>
-      <details class="acc-item" style="--c:var(--c4);--c-soft:var(--c4-soft)">
+      <details class="acc-item" id="inhalte-und-blog" style="--c:var(--c4);--c-soft:var(--c4-soft)">
         <summary>
           <span class="acc-n">04</span>
           <span><h2 class="acc-t">Inhalte und Blog</h2><span class="acc-s">Jeden Tag ein Beitrag, in zwei Formaten mit zwei Aufgaben</span></span>
@@ -133,7 +133,7 @@
           </div>
         </div>
       </details>
-      <details class="acc-item" style="--c:var(--c5);--c-soft:var(--c5-soft)">
+      <details class="acc-item" id="technisches-seo" style="--c:var(--c5);--c-soft:var(--c5-soft)">
         <summary>
           <span class="acc-n">05</span>
           <span><h2 class="acc-t">Technisches SEO</h2><span class="acc-s">Metadaten, Alt-Texte, Auszeichnung, Ladezeit, interne Links</span></span>
@@ -154,7 +154,7 @@
           </div>
         </div>
       </details>
-      <details class="acc-item" style="--c:var(--c1);--c-soft:var(--c1-soft)">
+      <details class="acc-item" id="linkaufbau" style="--c:var(--c1);--c-soft:var(--c1-soft)">
         <summary>
           <span class="acc-n">06</span>
           <span><h2 class="acc-t">Linkaufbau</h2><span class="acc-s">Gezielte Ansprache passender Unternehmen, rund 30 externe Links</span></span>
@@ -172,7 +172,7 @@
           <p>Es ist der langsamste Bereich von allen. Dreißig gute Links brauchen deutlich mehr Zeit als dreihundert schlechte, und genau darin liegt ihr Wert.</p>
         </div>
       </details>
-      <details class="acc-item" style="--c:var(--c2);--c-soft:var(--c2-soft)">
+      <details class="acc-item" id="stand-heute" style="--c:var(--c2);--c-soft:var(--c2-soft)">
         <summary>
           <span class="acc-n">07</span>
           <span><h2 class="acc-t">Stand heute</h2><span class="acc-s">Live, verkauft, und die Sichtbarkeit baut sich weiter auf</span></span>
@@ -187,7 +187,7 @@
           </figure>
         </div>
       </details>
-      <details class="acc-item" style="--c:var(--c3);--c-soft:var(--c3-soft)">
+      <details class="acc-item" id="was-daraus-fuer-andere-folgt" style="--c:var(--c3);--c-soft:var(--c3-soft)">
         <summary>
           <span class="acc-n">08</span>
           <span><h2 class="acc-t">Was daraus für andere folgt</h2><span class="acc-s">Die Reihenfolge entscheidet, und die halbe Stunde am Anfang</span></span>
@@ -206,9 +206,9 @@
 <section class="section" style="padding-top:0">
   <div class="wrap"><div class="band" style="margin-top:46px">
       <div class="band-in">
-        <h2 style="margin:0 0 14px">Wo steht Ihre Seite gerade?</h2>
-        <p class="lede">Sie bekommen schriftlich, für welche Suchbegriffe Sie gefunden werden, wer vor Ihnen steht und woran es liegt.</p>
-        <div class="hero-cta"><a href="../kontakt.html" class="btn btn-primary">Kostenlose SEO-Analyse<span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+        <h2 style="margin:0 0 14px">Monat eins, 100 % kostenlos.</h2>
+        <p class="lede">Wir drehen, schneiden und veröffentlichen einen Monat lang. Ohne Rechnung, ohne Kündigungsfrist.</p>
+        <div class="hero-cta"><a href="../kontakt.html" class="btn btn-primary">Gratismonat anfragen<span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
       </div>
     </div>
   </div>
