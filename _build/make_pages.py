@@ -266,7 +266,7 @@ SVC_CARDS = u"".join(u"""
 # Terminplan -> Teilen. Solange hier der Platzhalter steht, zeigt die Seite
 # statt des Kalenders den Hinweis, dass per Mail ein Termin vereinbart wird.
 BOOKING_URL = u"BUCHUNGSSEITE_EINTRAGEN"
-MAIL = u"kontakt@kontor-seo.de"
+MAIL = u"alejandroarndt@kontor-seo.de"
 TEL_LINK, TEL_TEXT = u"+491771885605", u"+49 177 188 5605"
 
 if BOOKING_URL.startswith(u"http"):
@@ -1065,7 +1065,7 @@ page("impressum.html", u"Impressum | Kontor", u"Impressum nach § 5 DDG.",
     <h2>Diensteanbieter</h2>
     <p>Alejandro Arndt<br>Albstraße 54<br>73066 Uhingen<br>Deutschland</p>
     <h2>Kontakt</h2>
-    <p>Telefon: +49 177 188 5605<br>E-Mail: <a href="mailto:kontakt@kontor-seo.de">kontakt@kontor-seo.de</a></p>
+    <p>Telefon: +49 177 188 5605<br>E-Mail: <a href="mailto:alejandroarndt@kontor-seo.de">alejandroarndt@kontor-seo.de</a></p>
     <h2>Umsatzsteuer</h2>
     <p>Gemäß § 19 UStG wird keine Umsatzsteuer berechnet (Kleinunternehmerregelung).</p>
     <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
@@ -1095,7 +1095,7 @@ page("datenschutz.html", u"Datenschutzerklärung | Kontor",
     <h2>Terminbuchung über Google Kalender</h2>
     <p>Auf der Kontaktseite können Sie einen Telefontermin buchen. Der Kalender stammt von Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Er wird <strong>erst geladen, wenn Sie die Schaltfläche anklicken</strong>. Vorher wird keine Verbindung zu Google aufgebaut und es werden keine Daten übertragen.</p>
     <p>Mit dem Klick übermittelt Ihr Browser an Google insbesondere Ihre IP-Adresse sowie Browser- und Geräteangaben; Google kann dabei Cookies setzen. Rechtsgrundlage für das Laden ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO, die Sie durch den Klick erteilen und für die Zukunft widerrufen können, indem Sie die Seite verlassen oder neu laden. Buchen Sie anschließend einen Termin, verarbeiten wir Ihre Angaben zur Durchführung des Termins auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO.</p>
-    <p>Sie können einen Termin auch ohne Google vereinbaren, indem Sie uns per <a href="mailto:kontakt@kontor-seo.de">E-Mail</a> oder telefonisch schreiben.</p>
+    <p>Sie können einen Termin auch ohne Google vereinbaren, indem Sie uns per <a href="mailto:alejandroarndt@kontor-seo.de">E-Mail</a> oder telefonisch schreiben.</p>
 
     <h2>Kontaktaufnahme</h2>
     <p>Wenn Sie uns per E-Mail oder Telefon kontaktieren, verarbeiten wir Ihre Angaben ausschließlich zur Bearbeitung Ihrer Anfrage. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO bei vorvertraglichen Maßnahmen, sonst Art. 6 Abs. 1 lit. f DSGVO. Die Daten werden gelöscht, sobald sie nicht mehr erforderlich sind und keine gesetzlichen Aufbewahrungsfristen entgegenstehen.</p>
