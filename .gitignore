@@ -1,2 +1,6 @@
 # Preview-/Arbeitsdateien, die nicht zur Website gehoeren
 _artifact-*.html
+
+# Lokale Werkzeuge und Zwischenstaende
+__pycache__/
+.claude/

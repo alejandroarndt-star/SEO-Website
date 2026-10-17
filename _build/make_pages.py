@@ -136,6 +136,14 @@ def acc(items, hue=None):
 # Schaltflaeche klicken und dort alles finden, statt sich durch Teilleistungen
 # zu arbeiten. Deshalb ist die Liste leer, es gibt nichts zum Querverweisen.
 SERVICES_SOCIAL = []
+# Die vier Hauptleistungen. Jede Hauptseite verweist auf die drei anderen,
+# damit niemand auf einer Seite landet und den Rest des Angebots nicht sieht.
+SERVICES_HAUPT = [
+ (1, u"Social Media Management", u"social-media-management.html"),
+ (2, u"SEO", u"seo.html"),
+ (3, u"Paid Ads", u"paid-ads.html"),
+ (4, u"Kanalbetreuung", u"kanalbetreuung.html"),
+]
 SERVICES_SEO = [
  (1, u"SEO", u"seo.html"),
  (2, u"OnPage und Webdesign", u"onpage-und-webdesign.html"),
@@ -240,6 +248,14 @@ SVC = [
  (u"02", u"SEO", u"seo.html",
   u"Gefunden werden, ohne zu zahlen.",
   u"Technik, Seitenstruktur und lokale Sichtbarkeit, damit Ihre Website bei Google auftaucht. Dazu Linkaufbau, Bestandsaufnahme und ein Bericht, der auf eine Seite passt.",
+  u"Was das umfasst"),
+ (u"03", u"Paid Ads", u"paid-ads.html",
+  u"Anzeigen, die sich rechnen m\u00fcssen.",
+  u"Anzeigen bei Google, Instagram und TikTok. Wir fangen klein an, messen die Anfragen statt der Klicks und sagen es, wenn sich das Budget bei Ihnen nicht lohnt.",
+  u"Was das umfasst"),
+ (u"04", u"Kanalbetreuung", u"kanalbetreuung.html",
+  u"Jemand antwortet. Jeden Werktag.",
+  u"Kommentare, Nachrichten und Bewertungen werden werktags beantwortet, Profile und Google-Eintrag bleiben aktuell. Fachliches stimmen wir vorher mit Ihnen ab.",
   u"Was das umfasst"),
 ]
 # Die SEO-Leistungen stehen als ruhige Liste unter den Karten.
@@ -431,7 +447,7 @@ service("leistungen/social-media-management.html",
   (u"Veröffentlichung und Zahlen",
    u"Sie bekommen die fertigen Dateien, auf Wunsch stellen wir selbst ein. Eine Korrekturschleife je Reel ist enthalten, bevor etwas online geht. Einmal im Monat sehen wir in die Statistiken Ihres eigenen Kontos: Aufrufe, gespeicherte Videos, Profilaufrufe. Gespeicherte Videos sind dabei aussagekräftiger als Aufrufe, weil Speichern eine Absicht zeigt. Daraus leiten wir ab, welche Art von Video bei Ihrer Kundschaft ankommt, und richten den Folgemonat danach aus."),
   (u"Was nicht enthalten ist",
-   u"Damit es hinterher keinen Streit gibt, steht das hier und nicht im Kleingedruckten. Nicht enthalten sind: das Beantworten von Kommentaren und Nachrichten, weil das Kundenkontakt ist und fachlich von Ihnen kommen muss. Bezahlte Werbung. Das Betreuen von mehr als zwei bis drei Profilen gleichzeitig. Und alles, was wir nicht zusagen können: Wie oft ein Video ausgespielt wird, entscheidet die Plattform, nicht wir. Zusagen beziehen sich auf die Arbeit, also Anzahl, Schnitt und dass der Monat durchgehalten wird.")],
+   u"Damit es hinterher keinen Streit gibt, steht das hier und nicht im Kleingedruckten. Nicht enthalten sind: das Betreuen von mehr als zwei bis drei Profilen gleichzeitig. Kommentare, Nachrichten und Bewertungen übernehmen wir gern, das läuft über die <a href=\"kanalbetreuung.html\">Kanalbetreuung</a>. Anzeigen laufen über <a href=\"paid-ads.html\">Paid Ads</a>. Und alles, was wir nicht zusagen können: Wie oft ein Video ausgespielt wird, entscheidet die Plattform, nicht wir. Zusagen beziehen sich auf die Arbeit, also Anzahl, Schnitt und dass der Monat durchgehalten wird.")],
  u"Was Sie bekommen",
  [u"Ein halber Drehtag im Monat in Ihrem Betrieb, oder eine Anleitung, wenn Sie selbst drehen",
   u"10 bis 15 fertige Reels im Monat, im Hochformat, auf Wunsch zusätzlich quadratisch",
@@ -463,15 +479,120 @@ service("leistungen/social-media-management.html",
  subs=[u"Vier bis fünf Stunden, Betrieb läuft weiter", u"Auswahl, Reihenfolge, Tempo",
        u"Wort für Wort, von Hand geprüft", u"Profil, Titelbilder, Monatsplan",
        u"Dateien, Korrekturschleife, Statistiken", u"Ausdrücklich draußen"],
- group=SERVICES_SOCIAL)
+ group=SERVICES_HAUPT)
+
+# ---------------------------------------------------------------- Paid Ads
+
+service("leistungen/paid-ads.html",
+ u"Paid Ads | Kontor",
+ u"Anzeigen bei Google, Instagram und TikTok für lokale Betriebe. Kleines Budget, feste Obergrenze, monatlicher Bericht.",
+ u"Leistung 03", u"Paid Ads.",
+ u"Anzeigen kaufen Sichtbarkeit, die sonst Monate braucht. Wir fangen mit einem kleinen Budget an, messen Anfragen statt Klicks und sagen es, wenn sich Werbung bei Ihnen nicht lohnt.",
+ [(u"Wann Anzeigen sinnvoll sind",
+   u"Nicht immer. Anzeigen lohnen sich, wenn Sie etwas anbieten, nach dem jemand aktiv sucht, oder wenn Sie kurzfristig Termine füllen müssen. Sie lohnen sich nicht, wenn die Seite, auf der die Leute landen, keine Anfrage auslöst. Dann ist jeder Klick bezahltes Geld für einen Besuch, der nichts bringt. Deshalb sehen wir zuerst auf das Ziel der Anzeige und erst danach auf die Anzeige selbst. Wenn wir glauben, dass Sie Ihr Geld besser in <a href=\"seo.html\">SEO</a> oder in Videos stecken, sagen wir das, bevor eine Kampagne läuft."),
+  (u"Google Ads",
+   u"Für alles, wonach jemand bereits sucht: Notdienst, Reparatur, ein konkreter Handwerksberuf mit Ortsnamen dahinter. Wir bauen eine überschaubare Zahl von Anzeigengruppen statt einer unübersichtlichen Struktur, schreiben die Texte selbst und pflegen eine Liste mit Suchbegriffen, für die Sie ausdrücklich nicht erscheinen sollen. Diese Ausschlussliste ist in kleinen Konten der größte einzelne Hebel: Ohne sie zahlen Sie für Studienarbeiten, Stellensuchen und Mitbewerber, die nachsehen, was Sie kosten."),
+  (u"Anzeigen bei Instagram und TikTok",
+   u"Hier sucht niemand, hier wird gescrollt. Deshalb funktioniert nur, was aussieht wie ein normales Video und nicht wie Werbung. Das passt zu dem, was wir ohnehin drehen: Ein Reel, das organisch gut läuft, ist der beste Kandidat für ein Budget, weil es sich bereits ohne Geld bewährt hat. Wir heben also vorhandene Videos an, statt extra Werbefilme zu produzieren. Das ist günstiger und wirkt glaubwürdiger."),
+  (u"Budget und Abrechnung",
+   u"Das Werbebudget zahlen Sie direkt an Google, Meta oder TikTok, über Ihr eigenes Konto und Ihre eigene Zahlungsart. Es läuft nicht über uns, und wir nehmen keinen Anteil davon. Unsere Arbeit ist ein fester Betrag, unabhängig davon, wie viel Sie ausgeben. Prozentuale Abrechnung belohnt höhere Ausgaben und genau das wollen wir nicht. Im Konto steht eine Obergrenze, die ohne Ihre Zustimmung nicht steigt. Für den Anfang reichen oft zehn bis zwanzig Euro am Tag."),
+  (u"Messen und Nachsteuern",
+   u"Gemessen wird, was Sie weiterbringt: Anrufe, Formularanfragen, Wegbeschreibungen. Klicks und Reichweite stehen im Bericht, sind aber nicht das Ziel. In den ersten Wochen schauen wir öfter hinein, danach einmal in der Woche, weil ständiges Umstellen die Auswertung kaputt macht. Einmal im Monat bekommen Sie eine Seite mit dem, was ausgegeben wurde, was dabei herauskam und was im nächsten Monat geändert wird."),
+  (u"Was nicht enthalten ist",
+   u"Das Werbebudget selbst. Zusagen über eine bestimmte Zahl an Anfragen oder einen bestimmten Preis pro Anfrage, denn beides hängt an Markt, Jahreszeit und Wettbewerb. Anzeigen für Angebote, hinter denen wir nicht stehen können. Und das Beantworten der Anfragen, die hereinkommen, das machen Sie oder die <a href=\"kanalbetreuung.html\">Kanalbetreuung</a>.")],
+ u"Was Sie bekommen",
+ [u"Konten auf Ihren Namen, Zugang bleibt bei Ihnen",
+  u"Aufbau und laufende Betreuung von Google Ads, Instagram oder TikTok",
+  u"Anzeigentexte und Auswahl der Videos, die ein Budget bekommen",
+  u"Gepflegte Ausschlussliste, damit kein Geld an falschen Suchen hängen bleibt",
+  u"Messung von Anrufen und Formularanfragen, nicht nur von Klicks",
+  u"Feste Obergrenze im Konto, die ohne Ihre Zustimmung nicht steigt",
+  u"Monatsbericht auf einer Seite",
+  u"Fester Betrag für unsere Arbeit, kein Anteil am Budget",
+  u"Keine Mindestlaufzeit"],
+ accent=3,
+ vals_head=u"Woran Anzeigen Geld verbrennen",
+ vals=[(u"Falsches Ziel", u"Wer auf eine Startseite schickt statt auf die passende Seite, zahlt für Besuche ohne Anfrage."),
+       (u"Keine Ausschlüsse", u"Ohne gepflegte Ausschlussliste zahlen Sie für Suchen, die nie ein Auftrag werden."),
+       (u"Werbung, die wie Werbung aussieht", u"Im Feed wird weggewischt. Nur was wirkt wie ein normales Video, wird gesehen."),
+       (u"Falsche Zahl im Blick", u"Klicks sind billig zu kaufen. Zählen muss, was am Telefon ankommt.")],
+ faq_head=u"Häufige Fragen",
+ faq=[(u"Mit welchem Budget fängt man an?",
+       u"Oft reichen zehn bis zwanzig Euro am Tag, um nach drei bis vier Wochen zu sehen, ob etwas trägt. Weniger ist meistens zu wenig, um überhaupt Daten zu bekommen. Mehr ergibt erst Sinn, wenn klar ist, was funktioniert."),
+      (u"Wem gehört das Werbekonto?",
+       u"Ihnen. Es läuft auf Ihren Namen und Ihre Zahlungsart, wir bekommen Zugriff. Wenn wir nicht weiterarbeiten, bleiben Konto, Daten und Kampagnen bei Ihnen."),
+      (u"Nehmen Sie einen Prozentsatz vom Budget?",
+       u"Nein. Unsere Arbeit kostet einen festen Betrag. Eine prozentuale Abrechnung würde uns dafür belohnen, Ihnen höhere Ausgaben zu empfehlen."),
+      (u"Wie schnell kommen Anfragen?",
+       u"Bei Google oft in den ersten Tagen, weil die Leute bereits suchen. Bei Instagram und TikTok dauert es länger, dort wird erst Aufmerksamkeit erzeugt. Eine Zahl sagen wir vorher nicht zu."),
+      (u"Brauche ich Anzeigen, wenn ich schon SEO mache?",
+       u"Nicht zwingend. Anzeigen überbrücken die Zeit, bis <a href=\"seo.html\">SEO</a> wirkt, oder füllen Lücken in ruhigen Monaten. Dauerhaft ist unbezahlte Sichtbarkeit die günstigere Grundlage."),
+      (u"Können Sie meine bestehenden Kampagnen übernehmen?",
+       u"Ja. Wir sehen zuerst hinein und sagen Ihnen, was wir behalten und was wir abschalten würden, bevor etwas geändert wird.")],
+ subs=[u"Erst das Ziel, dann die Anzeige", u"Suchanzeigen mit Ausschlussliste",
+       u"Vorhandene Reels mit Budget", u"Ihr Konto, feste Obergrenze",
+       u"Anfragen statt Klicks", u"Ausdrücklich draußen"],
+ group=SERVICES_HAUPT)
+
+# ---------------------------------------------------------------- Kanalbetreuung
+
+service("leistungen/kanalbetreuung.html",
+ u"Kanalbetreuung | Kontor",
+ u"Kommentare, Nachrichten und Bewertungen werktags beantwortet, Profile und Google-Eintrag gepflegt. Für Betriebe ohne Zeit dafür.",
+ u"Leistung 04", u"Kanalbetreuung.",
+ u"Ein Video bringt Aufmerksamkeit, danach schreibt jemand. Wir beantworten Kommentare, Nachrichten und Bewertungen werktags und halten Ihre Profile aktuell. Alles Fachliche stimmen wir vorher mit Ihnen ab.",
+ [(u"Kommentare und Nachrichten",
+   u"Der häufigste Grund, warum aus Reichweite keine Aufträge werden: Es schreibt jemand, und drei Tage später hat er jemand anderen beauftragt. Wir sehen an jedem Werktag in Ihre Postfächer bei Instagram, TikTok und Facebook und antworten in der Regel am selben Tag. Alles, was Preis, Termin oder Fachfrage ist, geht an Sie, mit einer kurzen Zwischennachricht an den Interessenten, damit niemand im Leeren wartet."),
+  (u"Antworten, die nach Ihnen klingen",
+   u"Vor dem Start schreiben wir gemeinsam auf, was Sie machen, was Sie nicht machen, welches Gebiet Sie bedienen und wie Sie mit Preisfragen umgehen. Daraus entsteht ein kurzer Leitfaden mit Ihren Formulierungen. Was dort nicht steht, beantworten wir nicht selbst, sondern fragen Sie. So steht nie eine Zusage im Netz, die Sie nicht halten können, und es klingt trotzdem nicht nach Vorlage."),
+  (u"Bewertungen",
+   u"Bewertungen bei Google werden gelesen, bevor jemand anruft, und eine unbeantwortete schlechte Bewertung wirkt schwerer als sie ist. Wir antworten auf jede, freundlich und kurz, und bei Kritik ohne Rechtfertigung. Bei einer Bewertung, die sachlich falsch ist oder gegen die Regeln verstößt, stellen wir den Antrag auf Entfernung. Außerdem richten wir ein, wie Sie zufriedene Kunden um eine Bewertung bitten, ohne dafür etwas zu versprechen. Gekaufte Bewertungen machen wir nicht."),
+  (u"Profile und Google-Eintrag",
+   u"Öffnungszeiten an Feiertagen, geänderte Telefonnummern, neue Leistungen, Urlaub: Das steht überall dort, wo es jemand nachsieht, und es ist fast immer veraltet. Wir pflegen Ihr <a href=\"../blog/google-unternehmensprofil-einrichten.html\">Google-Unternehmensprofil</a> und die Angaben in den sozialen Profilen, laden regelmäßig Bilder hoch und halten Adresse, Telefonnummer und Zeiten überall gleich. Unterschiedliche Angaben kosten Vertrauen und schaden nebenbei der lokalen Sichtbarkeit."),
+  (u"Berichte und Erreichbarkeit",
+   u"Einmal im Monat bekommen Sie eine kurze Übersicht: wie viele Nachrichten kamen, worum es ging, welche Fragen sich häufen. Daraus wird meistens sichtbar, welche Information auf Ihrer Website oder im nächsten Video fehlt. Bei allem, was eilt, erreichen Sie uns direkt, ohne Ticketsystem."),
+  (u"Was nicht enthalten ist",
+   u"Antworten am Wochenende und nachts. Telefondienst. Angebote schreiben, Termine verbindlich zusagen oder Preise nennen, die nicht vorher abgestimmt sind. Rechtliche Auseinandersetzungen um eine Bewertung, hier endet unsere Arbeit beim Antrag auf Entfernung. Und das Produzieren der Videos selbst, das steht unter <a href=\"social-media-management.html\">Social Media Management</a>.")],
+ u"Was Sie bekommen",
+ [u"Kommentare und Nachrichten werktags gesichtet, Antwort in der Regel am selben Tag",
+  u"Ein abgestimmter Leitfaden, damit Antworten nach Ihnen klingen",
+  u"Fachliches und Preisfragen gehen an Sie, der Interessent wartet nicht im Leeren",
+  u"Antwort auf jede Bewertung bei Google, Antrag auf Entfernung bei Verstoß",
+  u"Gepflegtes Google-Unternehmensprofil mit Zeiten, Leistungen und Bildern",
+  u"Gleiche Adresse, Telefonnummer und Öffnungszeiten auf allen Profilen",
+  u"Monatliche Übersicht, worum es in den Nachrichten ging",
+  u"Zugänge bleiben bei Ihnen, keine Mindestlaufzeit"],
+ accent=4,
+ vals_head=u"Woran Kanäle hängen bleiben",
+ vals=[(u"Zu spät", u"Wer nach drei Tagen antwortet, antwortet jemandem, der schon beauftragt hat."),
+       (u"Zu allgemein", u"Vorlagen erkennt jeder. Eine Antwort muss den konkreten Fall aufgreifen."),
+       (u"Keine Antwort auf Kritik", u"Eine unbeantwortete schlechte Bewertung wirkt schwerer, als sie ist."),
+       (u"Veraltete Angaben", u"Falsche Öffnungszeiten kosten Anrufe, bevor überhaupt jemand fragt.")],
+ faq_head=u"Häufige Fragen",
+ faq=[(u"Antworten Sie in meinem Namen?",
+       u"Ja, aus Ihrem Profil und in Ihrem Ton. Was Sie wie beantwortet haben wollen, steht vorher im gemeinsamen Leitfaden. Alles darüber hinaus fragen wir bei Ihnen nach."),
+      (u"Was ist mit Preisen und Terminen?",
+       u"Beides sagen wir nicht zu. Solche Anfragen gehen an Sie, der Interessent bekommt sofort eine kurze Nachricht, dass die Antwort kommt."),
+      (u"Brauche ich das zusätzlich zum Social Media Management?",
+       u"Nicht zwingend. Viele beantworten ihre Nachrichten gern selbst, und das wirkt am glaubwürdigsten. Sinnvoll wird die Kanalbetreuung, sobald mehr hereinkommt, als zwischen zwei Aufträgen zu schaffen ist."),
+      (u"Bekomme ich Zugang zu allem?",
+       u"Die Konten laufen auf Ihren Namen, die Zugänge bleiben bei Ihnen. Sie sehen jede Antwort, die wir geschrieben haben, und können uns jederzeit wieder entfernen."),
+      (u"Können Sie schlechte Bewertungen löschen lassen?",
+       u"Nur wenn sie gegen die Regeln von Google verstoßen, etwa bei Beleidigung oder wenn jemand gar nicht Kunde war. Dann stellen wir den Antrag. Eine schlechte, aber zutreffende Bewertung bleibt stehen, und eine gute Antwort darauf wirkt ohnehin besser."),
+      (u"Antworten Sie auch am Wochenende?",
+       u"Nein, werktags. Alles andere könnten wir nicht verlässlich zusagen, und ein Versprechen, das nach drei Wochen bricht, ist schlechter als keines.")],
+ subs=[u"Werktags gesichtet und beantwortet", u"Abgestimmter Leitfaden statt Vorlagen",
+       u"Antwort auf jede, auch auf Kritik", u"Zeiten, Leistungen, Bilder aktuell",
+       u"Monatsübersicht, direkte Erreichbarkeit", u"Ausdrücklich draußen"],
+ group=SERVICES_HAUPT)
 
 # ---------------------------------------------------------------- Leistungen overview
 page("leistungen/index.html",
  u"Leistungen | Kontor",
- u"Reels, Profilbetreuung und Dreh vor Ort f\u00fcr lokale Betriebe. Suchmaschinenoptimierung ebenfalls im Angebot.",
+ u"Social Media, SEO, Paid Ads und Kanalbetreuung f\u00fcr lokale Betriebe. Einzeln buchbar oder zusammen aus einer Hand.",
  hero(kicker=u"Leistungen",
    h1=u"Leistungen",
-   lede=u"Der Schwerpunkt liegt auf Kurzvideos, weil sie auch Menschen erreichen, die Ihnen nicht folgen. Suchmaschinenoptimierung bleibt im Angebot f\u00fcr alle, die zus\u00e4tzlich \u00fcber Google gefunden werden wollen.",
+   lede=u"Vier Bereiche, einzeln buchbar. Der Schwerpunkt liegt auf Kurzvideos, weil sie auch Menschen erreichen, die Ihnen nicht folgen. Dazu Sichtbarkeit bei Google, Anzeigen f\u00fcr den schnellen Weg und die laufende Betreuung Ihrer Kan\u00e4le.",
    cta_up="../") + u"""
 <section class="section" style="padding-top:0">
   <div class="wrap">
@@ -723,7 +844,8 @@ def ich_galerie(up=u""):
       <button class="gal-pfeil gal-zurueck" type="button" aria-label="Vorheriges Bild">%(l)s</button>
       <button class="gal-pfeil gal-vor" type="button" aria-label="N\u00e4chstes Bild">%(r)s</button>
     </div>
-    <div class="gal-punkte">%(punkte)s</div>""" % {
+    <div class="gal-punkte">%(punkte)s</div>
+    <p class="gal-name">Alejandro Arndt<span>Gesch\u00e4ftsf\u00fchrer</span></p>""" % {
       "folien": folien, "punkte": punkte, "l": PFEIL_L, "r": PFEIL_R}
 
 

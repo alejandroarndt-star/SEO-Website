@@ -436,6 +436,12 @@ a.index-row:hover h3{color:#fff}
 .svc-card{grid-column:span 2}
 .svc-grid > :nth-child(4):nth-last-child(2),
 .svc-grid > :nth-child(5):nth-last-child(1){grid-column:span 3}
+/* Genau vier Karten stehen als Zweierblock, sonst haengt die vierte allein
+   in der zweiten Reihe und das Raster wirkt abgebrochen. */
+.svc-grid > :nth-child(1):nth-last-child(4),
+.svc-grid > :nth-child(2):nth-last-child(3),
+.svc-grid > :nth-child(3):nth-last-child(2),
+.svc-grid > :nth-child(4):nth-last-child(1){grid-column:span 3}
 @media(max-width:1000px){
   .svc-grid{grid-template-columns:repeat(2,1fr)}
   .svc-card,.svc-grid > :nth-child(4):nth-last-child(2),
@@ -883,6 +889,9 @@ code{font-family:var(--mono);font-size:.9em;background:var(--bg-3);border:1px so
 .gal-zurueck{left:10px}
 .gal-vor{right:10px}
 .gal-punkte{display:flex;justify-content:center;gap:7px;margin-top:12px}
+/* Name und Rolle unter der Bildergalerie, gleiche Zeile wie .geraet-name. */
+.gal-name{margin:12px 0 0;text-align:center;font-size:.9rem;font-weight:600;color:var(--ink)}
+.gal-name span{display:block;margin-top:2px;font-weight:400;font-size:.82rem;color:var(--ink-2)}
 .gal-punkt{width:7px;height:7px;padding:0;border-radius:50%;cursor:pointer;
   border:1px solid var(--line-2);background:transparent;transition:background .2s var(--ease)}
 .gal-punkt.an{background:var(--ink);border-color:var(--ink)}
