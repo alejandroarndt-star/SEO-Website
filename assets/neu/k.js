@@ -95,18 +95,18 @@ $$('[data-dev]').forEach(p=>{
   set();
 });
 
-/* ---------- Vom Skript zum Reel: Reiter, wechseln von selbst nur wenn sichtbar ---------- */
-const tabs=$$('.k-tab'),steps=$$('.k-step'),stage=document.querySelector('.k-stage');
-if(tabs.length){
-  let i=0,el=0,last=performance.now(),hover=false,clicked=false,vis=false;const DUR=6500;
-  const bar=()=>tabs.forEach((t,j)=>t.querySelector('.prog').style.transform=`scaleX(${j===i?Math.min(1,el/DUR):0})`);
-  const go=n=>{i=n;el=0;tabs.forEach((t,j)=>t.classList.toggle('on',j===i));steps.forEach((s,j)=>s.classList.toggle('on',j===i));stage.style.setProperty('--sc',tabs[i].style.getPropertyValue('--tc'));bar()};
-  /* Wer selbst klickt, bestimmt: dann kein automatischer Wechsel mehr */
-  tabs.forEach((t,j)=>t.onclick=()=>{clicked=true;go(j)});
-  new IntersectionObserver(es=>vis=es[0].isIntersecting,{threshold:.4}).observe(stage);
-  stage.addEventListener('mouseenter',()=>hover=true);stage.addEventListener('mouseleave',()=>hover=false);
-  go(0);
-  if(!reduce)(function tick(now){const dt=now-last;last=now;if(vis&&!hover&&!clicked){el+=dt;if(el>=DUR)go((i+1)%tabs.length);else bar()}requestAnimationFrame(tick)})(performance.now());
+/* ---------- Vom Skript zum Reel: beim Scrollen, Reiter springen an die Stelle ---------- */
+const flowSec=document.querySelector('.k-flow'),tabs=$$('.k-tab'),steps=$$('.k-step'),stage=document.querySelector('.k-stage');
+if(flowSec&&tabs.length){
+  const n=tabs.length;let cur=null;
+  const show=i=>{if(i===cur)return;cur=i;tabs.forEach((t,j)=>t.classList.toggle('on',j===i));steps.forEach((x,j)=>x.classList.toggle('on',j===i));stage.style.setProperty('--sc',tabs[i].style.getPropertyValue('--tc'))};
+  const pinned=()=>getComputedStyle(flowSec.querySelector('.pin')).position==='sticky';
+  const onS=()=>{if(!pinned()){steps.forEach(x=>x.classList.add('on'));return}
+    const r=flowSec.getBoundingClientRect(),p=Math.max(0,Math.min(.9999,-r.top/(r.height-innerHeight)));
+    const i=Math.floor(p*n);show(i);
+    tabs.forEach((t,j)=>t.querySelector('.prog').style.transform='scaleX('+(j===i?(p*n-i).toFixed(3):0)+')')};
+  tabs.forEach((t,j)=>t.onclick=()=>{const top=flowSec.getBoundingClientRect().top+scrollY;scrollTo({top:top+(flowSec.offsetHeight-innerHeight)*(j+.5)/n,behavior:'smooth'})});
+  addEventListener('scroll',onS,{passive:true});addEventListener('resize',onS);show(0);onS();
 }
 
 /* ---------- FAQ aus Daten ---------- */

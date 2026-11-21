@@ -62,13 +62,13 @@ $$('.rv-tl').forEach(timeline);
 
 /* Startseite: Videoauswahl für den großen Regler */
 $$('.rv-pick').forEach(pick=>{
-  const home=pick.closest('.rv-home'),pair=home.querySelector('.rv'),tl=home.querySelector('.rv-tl');
+  const home=pick.closest('.rv-home'),pair=home.querySelector('.rv'),tl=home.querySelector('.stage .rv-tl');
   $$('button',pick).forEach(b=>b.onclick=()=>{
     $$('button',pick).forEach(x=>x.classList.toggle('on',x===b));
     const s=b.dataset.rv,r=pair.querySelector('.raw-v'),e=pair.querySelector('.ed-v');
     r.poster=M+'rv-'+s+'-raw.jpg';e.poster=M+'rv-'+s+'-edit.jpg';r.src=M+'rv-'+s+'-raw.mp4';e.src=M+'rv-'+s+'-edit.mp4';
     Promise.all([r,e].map(v=>new Promise(ok=>v.addEventListener('loadeddata',ok,{once:true})))).then(()=>{r.currentTime=0;e.currentTime=0;r.play();e.play()});
-    tl.dataset.rv=s;timeline(tl);
+    if(tl){tl.dataset.rv=s;timeline(tl)}
   });
 });
 })();
