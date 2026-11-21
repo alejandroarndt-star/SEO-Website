@@ -1,0 +1,108 @@
+/* Kontor Vorschau: Theme über der bestehenden site.css.
+   Gilt für ALLE Seiten. Schwarz bleibt die Grundfläche, Farbe kommt aus dem
+   Spektrum der Live-Seite (--c1 bis --c5) und sitzt auf einzelnen Elementen. */
+
+/* ---------- Schriften (Entwurf: zum Vergleichen umschaltbar) ---------- */
+body{--display:'Bricolage',sans-serif;--body:'Archivo',sans-serif;--dw:700;--track:-.04em}
+body[data-font="2"]{--display:'Schibsted Grotesk',sans-serif;--body:'Schibsted Grotesk',sans-serif;--track:-.035em}
+body[data-font="3"]{--display:'Urbanist',sans-serif;--body:'Urbanist',sans-serif;--track:-.03em}
+body[data-font="4"]{--display:'Familjen Grotesk',sans-serif;--body:'Hanken Grotesk',sans-serif;--track:-.035em}
+body[data-font="5"]{--display:'Geist',sans-serif;--body:'Geist',sans-serif;--dw:600;--track:-.04em}
+body{font-family:var(--body)}
+h1,h2,h3,h4{font-family:var(--display)}
+
+:root{--on:#0B0B0C;--r-tile:28px;--k-ease:cubic-bezier(.28,.11,.32,1)}
+
+/* Alles sichtbar ohne Einblendeffekt, Körnung weg */
+.rv{opacity:1!important;transform:none!important}
+.grain,.band::before{display:none!important}
+
+/* ---------- Kopfzeile ---------- */
+.k-hdr{position:sticky;top:0;z-index:100;background:var(--bg);transition:box-shadow .3s}
+.k-hdr.scrolled{box-shadow:0 1px 0 var(--line)}
+.k-hdr .k-in{display:flex;align-items:center;gap:36px;height:68px}
+.k-logo{font-family:var(--display);font-weight:var(--dw);font-size:1.5rem;letter-spacing:-.04em;margin-right:auto;color:var(--ink)}
+.k-nav{display:flex;gap:28px;font-size:.95rem;color:var(--ink-2)}
+.k-nav a{padding-block:6px;transition:color .2s}
+.k-nav a:hover{color:var(--ink)}
+.k-nav a.on{color:var(--ink);box-shadow:0 2px 0 var(--c1)}
+.k-hdr .burger{display:none}
+@media(max-width:900px){.k-nav,.k-hdr .k-cta{display:none}.k-hdr .burger{display:grid}}
+.mnav{padding-top:96px}
+
+/* ---------- Knöpfe: Pille, eine Höhe, nie zweizeilig ---------- */
+.kb,.btn{display:inline-flex;align-items:center;justify-content:center;height:50px;padding:0 26px!important;border-radius:999px;font-family:var(--body);font-weight:600;font-size:1rem;line-height:1;border:1.5px solid currentColor;white-space:nowrap;cursor:pointer;transition:background .25s var(--k-ease),color .25s var(--k-ease),transform .25s var(--k-ease)}
+.kb:active,.btn:active{transform:scale(.97)}
+.btn .arr{display:none}
+.kb-fill,.btn-primary{background:var(--ink);color:var(--on);border-color:var(--ink)}
+.kb-fill:hover,.btn-primary:hover{background:#fff;transform:none}
+.kb-line,.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-2)}
+.kb-line:hover,.btn-ghost:hover{background:var(--ink);color:var(--on);border-color:var(--ink)}
+.btn-sm,.k-hdr .kb{height:40px;padding:0 20px!important;font-size:.92rem}
+.prose a.btn-primary{color:var(--on)}
+
+/* ---------- Unterseiten: Kopfbereich ---------- */
+.page-top{padding-top:clamp(56px,7vw,96px)}
+.page-hero h1{font-size:clamp(2.6rem,6vw,5rem)!important;letter-spacing:var(--track);line-height:.98;max-width:18ch!important}
+.pill{font-family:var(--body);text-transform:none;letter-spacing:0;font-size:.85rem;font-weight:600;background:var(--c1);color:var(--on);border:0;padding:6px 14px;border-radius:999px}
+.kicker{font-family:var(--body);text-transform:none;letter-spacing:0;font-size:.9rem;font-weight:600;color:var(--c1)}
+h2{letter-spacing:var(--track)}
+
+/* ---------- Farbige Elemente auf Schwarz ---------- */
+/* Schlussband: wechselt die Farbe je Seite über data-band */
+.band{border:0;border-radius:var(--r-tile);background:var(--c2);color:var(--on)}
+.band .lede,.band p{color:color-mix(in srgb,var(--on) 78%,var(--c2))!important}
+.band .btn-primary{background:var(--on);color:#fff;border-color:var(--on)}
+.band .btn-primary:hover{background:#222}
+body[data-band="1"] .band{background:var(--c1)}
+body[data-band="3"] .band{background:var(--c3)}
+body[data-band="4"] .band{background:var(--c4)}
+body[data-band="5"] .band{background:var(--c5)}
+body[data-band="1"] .band p,body[data-band="3"] .band p,body[data-band="4"] .band p,body[data-band="5"] .band p{color:color-mix(in srgb,var(--on) 80%,transparent)!important}
+
+/* Leistungsseiten: Akkordeon mit Farbe je Abschnitt */
+.acc-item{border-radius:var(--r-tile)!important;overflow:hidden}
+.acc-item[open]{background:var(--c,var(--c1))!important;color:var(--on)}
+.acc-item[open] .acc-t,.acc-item[open] .acc-n{color:var(--on)!important}
+.acc-item[open] .acc-s,.acc-item[open] .acc-body p,.acc-item[open] .acc-body li{color:color-mix(in srgb,var(--on) 78%,transparent)!important}
+.acc-item[open] .acc-body strong,.acc-item[open] .acc-body h3{color:var(--on)!important}
+.acc-item[open] .acc-ic{border-color:var(--on)!important;color:var(--on)!important}
+/* Werte-Kacheln in Spektrumfarben */
+.val{border:0!important;border-radius:var(--r-tile)!important;color:var(--on)!important}
+.vals > .val:nth-child(5n+1){background:var(--c1)!important}
+.vals > .val:nth-child(5n+2){background:var(--c2)!important}
+.vals > .val:nth-child(5n+3){background:var(--c5)!important}
+.vals > .val:nth-child(5n+4){background:var(--c4)!important}
+.vals > .val:nth-child(5n+5){background:var(--c3)!important}
+.val *{color:inherit!important}
+.val p{opacity:.8}
+/* Referenzkarten und Blogkarten */
+.ref-tile,.post-bild{border-radius:var(--r-tile)!important;border:0!important}
+.post-tag{font-family:var(--body);text-transform:none;letter-spacing:0;font-size:.75rem;font-weight:600;background:var(--c,var(--c1));color:var(--on);border:0}
+.ref-filter{border-radius:999px}
+/* Blog-Seitenleiste */
+.art-box{border-radius:var(--r-tile);background:var(--c1);color:var(--on);border:0}
+.art-box .logo,.art-box .art-sub,.art-box .art-toc,.art-box .art-toc a,.art-box .art-toc-h{color:var(--on)!important}
+.art-box .btn-primary{background:var(--on);color:#fff;border-color:var(--on)}
+/* FAQ-Knöpfe in Farbe */
+.q[open] .ic{background:var(--c1)!important;border-color:var(--c1)!important;color:var(--on)}
+
+/* ---------- Fußzeile ---------- */
+.k-ftr{background:var(--bg);border-top:1px solid var(--line);padding-block:72px 32px;font-size:.92rem;margin-top:clamp(60px,8vw,110px)}
+.k-ftr .k-cols{display:grid;grid-template-columns:5fr 2fr 2fr 3fr;gap:32px}
+.k-ftr .k-big{font-family:var(--display);font-weight:var(--dw);font-size:clamp(3rem,7vw,5.5rem);letter-spacing:-.05em;line-height:.9}
+.k-ftr p{color:var(--ink-2);margin-top:16px;max-width:34ch}
+.k-ftr h4{font-family:var(--body);font-size:.85rem;font-weight:600;text-transform:none;letter-spacing:0;color:var(--ink);margin:0 0 14px}
+.k-ftr ul{list-style:none;margin:0;padding:0;display:grid;gap:9px;color:var(--ink-2)}
+.k-ftr a:hover{color:var(--ink)}
+.k-ftr .k-bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-top:56px;padding-top:20px;border-top:1px solid var(--line);color:var(--ink-3);font-size:.82rem}
+.k-ftr .k-bot div{display:flex;gap:20px}
+@media(max-width:760px){.k-ftr .k-cols{grid-template-columns:1fr 1fr}.k-ftr .k-cols > :first-child{grid-column:1/-1}}
+.ftr{display:none}
+
+/* ---------- Entwurfsleiste ---------- */
+.k-dock{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:300;background:#1b1b1d;color:#fff;border:1px solid #333;border-radius:14px;padding:8px;display:flex;gap:6px;align-items:center;max-width:calc(100vw - 24px);overflow-x:auto;font:500 12px/1 system-ui,sans-serif}
+.k-dock span{padding:0 6px;color:#aaa;white-space:nowrap}
+.k-dock button{all:unset;cursor:pointer;min-width:24px;height:24px;padding:0 4px;display:grid;place-items:center;border-radius:6px;color:#ddd;box-sizing:border-box}
+.k-dock button.on{background:#E0A33C;color:#111;font-weight:700}
+body.clean .k-dock{display:none}

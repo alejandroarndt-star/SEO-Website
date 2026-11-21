@@ -4,3 +4,6 @@ _artifact-*.html
 # Lokale Werkzeuge und Zwischenstaende
 __pycache__/
 .claude/
+
+# Design-Entwuerfe, nur lokal, enthalten Kundenmaterial ohne Freigabe
+_entwurf/

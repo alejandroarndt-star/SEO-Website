@@ -74,3 +74,15 @@ Dann http://127.0.0.1:8777 öffnen.
 - Hero Video: Clips von mixkit.co, Mixkit Free License, kommerzielle Nutzung
   erlaubt, keine Namensnennung nötig. Die Clips dürfen nicht als Rohmaterial
   weitergegeben werden, die Verwendung als Hintergrund hier ist abgedeckt.
+
+## Neues Design (November 2026)
+
+Seit dem 21.11.2026 werden die Seiten mit `_entwurf/build_vorschau.py` gebaut
+(nicht mehr mit `_build/make_pages.py`, das würde die neuen Seiten überschreiben).
+
+- Vorschau: `python3 _entwurf/build_vorschau.py` schreibt nach `_entwurf/vorschau/`
+- Live: `python3 _entwurf/build_vorschau.py --live` schreibt die Seiten hierher,
+  dazu `assets/neu/` (Styles, Skripte) und `assets/media/` (Reel-Clips, Logos)
+- Raw-vs-Edited-Clips: `python3 _entwurf/make_rawedit.py`
+
+`_entwurf/` liegt nur lokal (siehe .gitignore).
