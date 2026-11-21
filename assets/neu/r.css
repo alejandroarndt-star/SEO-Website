@@ -182,3 +182,34 @@
 .k-hero .k-plat{display:none}
 .k-sv.feat .kb,.k-sv.feat:hover .kb,.k-sv:hover .kb{background:linear-gradient(currentColor,currentColor) 0 100%/100% 1.5px no-repeat!important;border:0}
 .k-sv .kb{padding:0 0 3px!important;height:auto!important;display:inline-block}
+
+/* ---------- Anfrageformular ---------- */
+.k-form{background:#111113;border:1px solid var(--line);border-radius:var(--r-tile);padding:clamp(22px,3vw,34px);display:grid;gap:16px}
+.k-form label{display:flex;flex-direction:column;gap:7px;font-size:.88rem;font-weight:600;color:var(--ink)}
+.k-fg{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.k-form input:not([type=checkbox]),.k-form select,.k-form textarea{font:inherit;font-weight:400;font-size:1rem;color:var(--ink);background:#0b0b0c;border:1.5px solid var(--line-2);border-radius:12px;padding:13px 14px;outline:none;transition:border-color .2s;min-width:0;width:100%}
+.k-form select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink-2) 50%),linear-gradient(135deg,var(--ink-2) 50%,transparent 50%);background-position:calc(100% - 18px) 55%,calc(100% - 13px) 55%;background-size:5px 5px;background-repeat:no-repeat;padding-right:36px}
+.k-form input:focus,.k-form select:focus,.k-form textarea:focus{border-color:var(--c1)}
+.k-form .bad{border-color:var(--c3)!important}
+.k-form textarea{resize:vertical;min-height:110px}
+.k-form ::placeholder{color:var(--ink-3)}
+.k-chipset{border:0;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.k-chipset legend{font-size:.88rem;font-weight:600;margin-bottom:10px;padding:0}
+.k-pick{flex-direction:row!important;cursor:pointer}
+.k-pick input{position:absolute;opacity:0;pointer-events:none}
+.k-pick span{padding:9px 15px;border-radius:999px;border:1.5px solid var(--line-2);font-weight:600;font-size:.88rem;transition:all .2s}
+.k-pick:hover span{border-color:var(--ink-2)}
+.k-pick input:checked + span{background:var(--c1);border-color:var(--c1);color:var(--on)}
+.k-pick input:focus-visible + span{outline:2px solid var(--ink);outline-offset:2px}
+.k-hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0}
+.k-ok{flex-direction:row!important;align-items:flex-start;gap:10px!important;font-weight:400!important;color:var(--ink-2)!important;font-size:.85rem!important}
+.k-ok input{margin-top:3px;accent-color:var(--c1);width:17px;height:17px;flex:none}
+.k-ok a{text-decoration:underline;color:var(--ink)}
+.k-send{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.k-send small{color:var(--ink-3)}
+.k-form button[disabled]{opacity:.6;cursor:wait}
+.k-msg{margin:0;padding:16px 18px;border-radius:14px;font-weight:600}
+.k-msg.ok{background:var(--c5);color:var(--on)}
+.k-msg.err{background:color-mix(in srgb,var(--c3) 20%,#111);color:var(--ink);border:1px solid var(--c3)}
+.k-msg a{text-decoration:underline}
+@media(max-width:600px){.k-fg{grid-template-columns:1fr}}

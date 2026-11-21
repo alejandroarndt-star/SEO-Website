@@ -149,3 +149,30 @@ addEventListener('keydown',e=>{if((e.key==='h'||e.key==='H')&&!/INPUT|TEXTAREA/.
 setF(get('k-font')||'1');
 }
 })();
+
+/* ---------- Anfrageformular: geht per FormSubmit als E-Mail raus ---------- */
+(function(){
+document.querySelectorAll('.k-form').forEach(f=>{
+  const msg=f.querySelector('.k-msg'),btn=f.querySelector('button[type=submit]');
+  const show=(cls,html)=>{msg.hidden=false;msg.className='k-msg '+cls;msg.innerHTML=html};
+  f.addEventListener('submit',async e=>{
+    e.preventDefault();
+    if(f.querySelector('.k-hp').value)return;                  // Spam-Falle
+    let ok=true;f.querySelectorAll('[required]').forEach(i=>{const bad=i.type==='checkbox'?!i.checked:!i.value.trim()||(i.type==='email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(i.value));i.classList.toggle('bad',bad);if(bad)ok=false});
+    if(!ok){show('err','Bitte füllen Sie die markierten Felder aus und bestätigen Sie die Einwilligung.');return}
+    const fd=new FormData(f),data={};
+    for(const [k,v] of fd.entries()){if(k==='_honey')continue;data[k]=data[k]?data[k]+', '+v:v}
+    data._subject=`Neue Anfrage: ${data.Betrieb||''} (${data.Ort||''})`;data._template='table';data._replyto=data['E-Mail'];
+    btn.disabled=true;btn.textContent='Wird gesendet …';
+    try{
+      const r=await fetch('https://formsubmit.co/ajax/'+f.dataset.to,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});
+      const j=await r.json().catch(()=>({}));
+      if(!r.ok||String(j.success)==='false')throw new Error(j.message||'Fehler');
+      f.querySelectorAll('input,select,textarea,fieldset').forEach(x=>x.style.display='none');f.querySelectorAll('.k-fg,.k-send,.k-chipset,label').forEach(x=>x.style.display='none');
+      show('ok','Danke, Ihre Anfrage ist angekommen. Ich melde mich innerhalb von zwei Werktagen.');
+    }catch(err){
+      show('err','Das hat leider nicht geklappt. Schreiben Sie mir bitte direkt an <a href="mailto:'+f.dataset.to+'">'+f.dataset.to+'</a>.');
+    }finally{btn.disabled=false;btn.textContent='Anfrage senden'}
+  });
+});
+})();
