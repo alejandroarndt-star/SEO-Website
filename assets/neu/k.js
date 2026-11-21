@@ -167,10 +167,11 @@ document.querySelectorAll('.k-form').forEach(f=>{
     try{
       const r=await fetch('https://formsubmit.co/ajax/'+f.dataset.to,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});
       const j=await r.json().catch(()=>({}));
-      if(!r.ok||String(j.success)==='false')throw new Error(j.message||'Fehler');
+      if(!r.ok||String(j.success)==='false'){console.warn('FormSubmit:',r.status,j);throw new Error(j.message||'Fehler')}
       f.querySelectorAll('input,select,textarea,fieldset').forEach(x=>x.style.display='none');f.querySelectorAll('.k-fg,.k-send,.k-chipset,label').forEach(x=>x.style.display='none');
       show('ok','Danke, Ihre Anfrage ist angekommen. Ich melde mich innerhalb von zwei Werktagen.');
     }catch(err){
+      console.warn('Anfrage nicht gesendet:',err&&err.message);
       show('err','Das hat leider nicht geklappt. Schreiben Sie mir bitte direkt an <a href="mailto:'+f.dataset.to+'">'+f.dataset.to+'</a>.');
     }finally{btn.disabled=false;btn.textContent='Anfrage senden'}
   });
