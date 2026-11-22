@@ -7,3 +7,4 @@ __pycache__/
 
 # Design-Entwuerfe, nur lokal, enthalten Kundenmaterial ohne Freigabe
 _entwurf/
+.DS_Store
