@@ -161,3 +161,54 @@
 /* Geräte im Studio auf hellen Sockeln (Pressebilder haben weißen Hintergrund) */
 .k-gear img{width:clamp(150px,15vw,240px);background:#f3f3f1;border-radius:32px;padding:18px;mix-blend-mode:normal!important;filter:none;box-shadow:0 50px 80px -30px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.08)}
 .k-gear::after{content:attr(data-name);position:absolute;left:50%;bottom:-26px;transform:translateX(-50%);white-space:nowrap;font-size:.8rem;color:var(--ink-3)}
+
+/* Runde 8 */
+/* Umschalter Raw/Edited: ohne verschiebbare Pille, die aktive Hälfte ist eingefärbt */
+.rv-toggle .pill{display:none!important}
+.rv-toggle button{border-radius:999px;transition:background .3s,color .3s}
+.rv-flip.raw-on .rv-toggle .r{background:#3a3a3e;color:#fff}
+.rv-flip:not(.raw-on) .rv-toggle .e{background:var(--c1);color:var(--on)}
+/* Paid Ads: Algorithmus-Grafiken */
+.k-algo{padding:18px;border-radius:22px;background:#151517;border:1px solid var(--line-2);box-shadow:0 30px 60px -28px rgba(0,0,0,.85);display:grid;gap:12px;color:var(--ink)}
+.k-algo > b{font-family:var(--display);font-size:1rem}
+.k-algo small{color:var(--ink-3)}
+.k-algo .radar{position:relative;height:110px;display:grid;place-items:center}
+.k-algo .radar i{position:absolute;border:1.5px solid color-mix(in srgb,var(--c4) 60%,transparent);border-radius:50%;animation:k-ping 3s ease-out infinite}
+.k-algo .radar i:nth-child(1){width:40px;height:40px}.k-algo .radar i:nth-child(2){width:75px;height:75px;animation-delay:-1s}.k-algo .radar i:nth-child(3){width:110px;height:110px;animation-delay:-2s}
+.k-algo .radar span{width:12px;height:12px;border-radius:50%;background:var(--c4);box-shadow:0 0 0 6px color-mix(in srgb,var(--c4) 30%,transparent)}
+@keyframes k-ping{0%{opacity:.9;transform:scale(.6)}100%{opacity:0;transform:scale(1.15)}}
+.k-algo .chips{display:flex;flex-wrap:wrap;gap:6px}
+.k-algo .chips span{padding:5px 10px;border-radius:999px;background:color-mix(in srgb,var(--c4) 22%,#151517);font-size:.75rem;font-weight:600}
+.k-algo .curve{width:100%;height:80px;color:var(--c5)}
+.k-algo .bars{display:flex;align-items:flex-end;gap:6px;height:46px}
+.k-algo .bars i{flex:1;border-radius:4px 4px 0 0;background:color-mix(in srgb,var(--c5) 70%,transparent)}
+.k-algo .slider{position:relative;height:8px;border-radius:999px;background:#2a2a2e}
+.k-algo .slider span{position:absolute;inset:0 38% 0 0;border-radius:999px;background:var(--c1)}
+.k-algo .slider i{position:absolute;left:62%;top:50%;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,.5)}
+.k-algo .plats{display:flex;gap:8px}
+.k-algo .plats em{width:34px;height:34px;border-radius:10px;background:#000;color:var(--bc);display:grid;place-items:center}
+.k-algo .plats svg{width:16px;height:16px}
+/* Case Study: Fotos in den Kacheln */
+.k-cs-tile{overflow:hidden}
+.k-cs-tile .ph{display:block;width:calc(100% + 2 * clamp(28px,4vw,48px));max-width:none;margin:calc(-1 * clamp(28px,4vw,48px)) calc(-1 * clamp(28px,4vw,48px)) 28px;aspect-ratio:16/10;object-fit:cover;transition:transform .8s cubic-bezier(0,0,.2,1)}
+.k-cs-tile:hover .ph{transform:scale(1.04)}
+.k-studio-h{font-size:clamp(3.6rem,11vw,10rem)!important}
+/* Runde 8: Handy */
+html,body{overflow-x:clip}
+p,li,td,a{overflow-wrap:break-word}
+@media(max-width:640px){
+  .k-shero{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;padding-bottom:48px}
+  .k-shero > .wrap{order:-1;width:100%}
+  .k-fl{display:none;position:relative;left:auto!important;right:auto!important;top:auto!important;transform:none!important;opacity:1!important}
+  .k-fl.l1,.k-fl.r1{display:block}
+  .k-fl.l1{rotate:-4deg}.k-fl.r1{rotate:4deg}
+  .k-fl.card{width:calc(50% - 10px)}
+  .k-fl .k-reel{width:120px}
+  .k-algo{padding:14px;gap:9px;border-radius:18px}
+  .k-algo .radar{height:80px}
+  .k-algo .chips span{font-size:.68rem;padding:4px 8px}
+  .k-algo .curve{height:56px}
+  .k-cs-tile .ph{aspect-ratio:4/3}
+}
+@media(max-width:640px){.k-gear{display:none}}
+.k-cs-tile .ph{object-position:50% 70%}
