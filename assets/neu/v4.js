@@ -54,3 +54,19 @@ const par=$$('[data-par]');
 const parFx=()=>{const y=scrollY;par.forEach(el=>{el.style.transform=`translate3d(0,${(-y*parseFloat(el.dataset.par)).toFixed(1)}px,0)`})};
 if(!reduce){const f=()=>{stackFx();parFx()};addEventListener('scroll',()=>requestAnimationFrame(f),{passive:true});f()}
 })();
+
+/* Runde 9: Filmset, Licht geht an, Teile weichen beim Scrollen zur Seite */
+(function(){
+const set=document.querySelector('.k-set');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(set){
+  requestAnimationFrame(()=>setTimeout(()=>set.classList.add('on'),150));
+  const g=[...set.querySelectorAll('[data-spread]')].map(el=>{const [x,y,r]=el.dataset.spread.split(',').map(Number);return {el,x,y,r}});
+  const f=()=>{const h=set.offsetHeight,p=Math.max(0,Math.min(1,scrollY/h));const w=innerWidth;
+    g.forEach(o=>{o.el.style.transform=`translate3d(${(o.x*p*w*.18).toFixed(1)}px,${(o.y*p*h*.35).toFixed(1)}px,0) rotate(${(o.r*p).toFixed(2)}deg)`});
+    set.style.setProperty('--p',p.toFixed(3))};
+  if(!reduce){addEventListener('scroll',()=>requestAnimationFrame(f),{passive:true});f()}
+}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.25});
+document.querySelectorAll('.k-lbt-i').forEach(el=>reduce?el.classList.add('in'):io.observe(el));
+})();
