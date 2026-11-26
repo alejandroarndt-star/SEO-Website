@@ -245,3 +245,73 @@
 .k-vpage .k-full{width:min(420px,100%)}
 .k-vclient{font-weight:600;color:var(--c1);margin:0 0 14px}
 @media(max-width:860px){.k-fullsec,.k-vgrid{grid-template-columns:1fr}.k-vgrid > div:last-child{order:-1}}
+
+/* ---------- Terminbuchung (eigenes Widget, assets/neu/booking.js) ---------- */
+.k-bk{background:#111113;border:1px solid var(--line);border-radius:var(--r-tile);min-height:420px}
+.k-bk-in{padding:clamp(22px,3vw,34px);display:grid;gap:22px}
+.k-bk-hd{display:flex;gap:14px;align-items:center}
+.k-bk-hd img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none;border:2px solid var(--c1)}
+.k-bk-hd small{color:var(--ink-3);font-size:.8rem}
+.k-bk-hd h3{font-family:var(--display);font-weight:var(--dw,700);font-size:1.45rem;letter-spacing:-.025em;margin:2px 0 6px;line-height:1.1}
+.k-bk-meta{display:flex;flex-wrap:wrap;gap:6px 16px;margin:0;color:var(--ink-2);font-size:.85rem}
+.k-bk-meta span{display:inline-flex;align-items:center;gap:6px}
+.k-bk-tabs{display:inline-flex;justify-self:start;padding:4px;border-radius:999px;background:#0b0b0c;border:1px solid var(--line)}
+.k-bk-tabs button{font:inherit;font-weight:600;font-size:.9rem;border:0;background:none;color:var(--ink-2);padding:8px 18px;border-radius:999px;cursor:pointer}
+.k-bk-tabs button[aria-selected=true]{background:var(--c1);color:var(--on)}
+.k-bk-lbl{margin:0 0 12px;font-weight:600;color:var(--ink)}
+.k-bk-mon{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.k-bk-mon b{font-family:var(--display);font-size:1.1rem;letter-spacing:-.01em}
+.k-bk-mon button{width:36px;height:36px;border-radius:50%;border:1px solid var(--line-2);background:none;color:var(--ink);display:grid;place-items:center;cursor:pointer}
+.k-bk-mon button[disabled]{opacity:.25;cursor:default}
+.k-bk-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;justify-items:center}
+.k-bk-grid i{font-style:normal;font-size:.75rem;font-weight:600;color:var(--ink-3);padding-bottom:4px}
+.k-bk-grid span,.k-bk-grid button{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:inherit;font-size:.95rem;font-variant-numeric:tabular-nums}
+.k-bk-grid .no{color:var(--ink-3);opacity:.45}
+.k-bk-grid button{border:1.5px solid var(--line-2);background:#18181b;color:var(--ink);font-weight:600;cursor:pointer;transition:border-color .2s,background .2s,transform .2s}
+.k-bk-grid button:hover{border-color:var(--c1);transform:scale(1.06)}
+.k-bk-grid button.sel{background:var(--c1);border-color:var(--c1);color:var(--on)}
+.k-bk-slots{margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+.k-bk-slots h4{margin:0 0 12px;font-size:1rem}
+.k-bk-times{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:8px}
+.k-bk-times button{font:inherit;font-weight:600;font-variant-numeric:tabular-nums;padding:10px 0;border-radius:12px;border:1.5px solid var(--line-2);background:none;color:var(--ink);cursor:pointer;transition:border-color .2s,background .2s}
+.k-bk-times button:hover{border-color:var(--c1)}
+.k-bk-times button.sel{background:var(--c1);border-color:var(--c1);color:var(--on)}
+.k-bk-sum{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;border-radius:14px;background:#18181b;border:1px solid var(--line-2);margin-bottom:16px}
+.k-bk-sum small{display:block;color:var(--ink-3);font-size:.78rem}
+.k-bk-back{font:inherit;font-weight:600;font-size:.88rem;color:var(--c1);background:none;border:0;cursor:pointer;text-decoration:underline}
+.k-bk-form{display:grid;gap:14px}
+.k-bk-form label{display:flex;flex-direction:column;gap:7px;font-size:.88rem;font-weight:600;color:var(--ink)}
+.k-bk-form input:not([type=checkbox]):not([type=radio]){font:inherit;font-weight:400;font-size:1rem;color:var(--ink);background:#0b0b0c;border:1.5px solid var(--line-2);border-radius:12px;padding:12px 14px;outline:none;min-width:0;width:100%;transition:border-color .2s}
+.k-bk-form input:focus{border-color:var(--c1)}
+.k-bk-form .bad{border-color:var(--c3)!important;outline:1px solid var(--c3)}
+.k-bk-form ::placeholder{color:var(--ink-3)}
+.k-bk-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.k-bk-2{grid-template-columns:1fr}.k-bk-grid span,.k-bk-grid button{width:40px;height:40px}}
+.k-bk-ok{flex-direction:row!important;align-items:flex-start;gap:10px!important;font-weight:400!important;color:var(--ink-2)!important;font-size:.83rem!important}
+.k-bk-ok input{margin-top:3px;accent-color:var(--c1);width:17px;height:17px;flex:none}
+.k-bk-ok a{color:var(--ink);text-decoration:underline}
+.k-bk-chips{border:0;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.k-bk-chips legend{font-size:.88rem;font-weight:600;margin-bottom:8px;padding:0}
+.k-bk-chips label{flex-direction:row!important;cursor:pointer}
+.k-bk-chips input{position:absolute;opacity:0;pointer-events:none}
+.k-bk-chips span{padding:8px 14px;border-radius:999px;border:1.5px solid var(--line-2);font-weight:600;font-size:.86rem}
+.k-bk-chips input:checked+span{background:var(--c1);border-color:var(--c1);color:var(--on)}
+.k-bk-chips input:focus-visible+span{outline:2px solid var(--ink);outline-offset:2px}
+.k-bk-err{margin:0;color:var(--c3);font-weight:600;font-size:.9rem}
+.k-bk-err a{color:inherit}
+.k-bk-form button[type=submit]{justify-self:start}
+.k-bk-form button[disabled]{opacity:.6;cursor:wait}
+.k-bk-load{display:flex;align-items:center;gap:12px;color:var(--ink-2);padding:30px 0}
+.k-bk-load span{width:18px;height:18px;border-radius:50%;border:2px solid var(--line-2);border-top-color:var(--c1);animation:k-bk-spin .8s linear infinite}
+@keyframes k-bk-spin{to{transform:rotate(360deg)}}
+.k-bk-note{color:var(--ink-2);line-height:1.6}
+.k-bk-note a{color:var(--ink);text-decoration:underline}
+.k-bk-done{display:grid;gap:8px;justify-items:start;padding:10px 0}
+.k-bk-done i{width:54px;height:54px;border-radius:50%;background:var(--c1);color:var(--on);display:grid;place-items:center;margin-bottom:6px}
+.k-bk-done h4{font-family:var(--display);font-size:1.4rem;margin:0}
+.k-bk-done p{margin:0;color:var(--ink-2)}
+.k-bk-done b{color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.k-bk-grid button,.k-bk-load span{transition:none;animation:none}}
+.k-bk-page .wrap{max-width:760px}
+.k-bk-page{padding-top:clamp(110px,14vw,150px)}
+.k-sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
